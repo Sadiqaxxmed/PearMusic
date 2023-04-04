@@ -3,7 +3,7 @@
 demo demo demo demo demo demo demo demo
 
 ## Home Page
-![Alt Text](./assets/apple home page.gif)
+![Alt Text](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDYwN2QxZjc2YWUzMGYzMjU3ZDhmZWFhMmEyMWI0NTQwYTE3ODU4ZiZjdD1n/VqloZHGYsSGD9UPXyM/giphy.gif)
 
 
 ## Wiki Links
