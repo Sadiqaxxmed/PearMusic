@@ -1,4 +1,4 @@
-# PearMusic
+# 🍐 PearMusic
 
 demo demo demo demo demo demo demo demo
 
