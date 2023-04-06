@@ -1,28 +1,65 @@
 import React from 'react'
+import './SideBar.css'
+import image from '../../images/pear2.png'
+function SideBar() {
 
-function SideBar(){
-    
-    return(
+    return (
         <div className='SB-body'>
-            <h1 className='SB-logo'>Pear Music</h1>
-            <div>
-                <input placeholder='Search'></input>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src={image} style={{ width: 'auto', height: '23px' }} />
+                <h2 className='SB-logo' style={{ fontWeight: '400' }}>
+                    Music
+                </h2>
             </div>
+            <div className='SB-search-field-div'>
+                <span class="material-symbols-outlined">
+                    search
+                </span>
+                <input placeholder='Search' id='search-field'></input>
+            </div>
+            <h3 className='SB-lib-play-headers'>Library</h3>
             <div className='SB-Library'>
-                <ul className='SB-Library-title'/>
-                    <h1>Library</h1>
-                    <li className='SB-Browse'>Browse</li>
-                    <li className='SB-Songs'>Songs</li>
-                    <li className='SB-Albums'>Albums</li>
+                <li className='SB-Library'>
+                    <span class="material-symbols-outlined SB-icons  pink-icons">
+                        grid_view
+                    </span>
+                    <p>Browse</p></li>
+                <li className='SB-Library'>
+                    <span class="material-symbols-outlined SB-icons pink-icons">
+                        music_note
+                    </span>
+                    <p>Songs</p></li>
+                <li className='SB-Library'>
+                    <span class="material-symbols-outlined SB-icons pink-icons">
+                        home_storage
+                    </span>
+                    <p>Albums</p></li>
             </div>
             <div className='SB-Playlists'>
-                <ul className='SB-Playlists-Title'/>
-                    <h1>PlayLists</h1>
-                    <li className='SB-All-Playlists'>All Playlists</li>
-                <ul className='SB-User-Playlists' />
-                    <li>gym</li>
-                    <li>body adi adi</li>
-                    <li>ya ya ya ya</li>
+                <ul className='SB-Playlists-Title' />
+                <h3 className='SB-lib-play-headers'>Playlists</h3>
+                <div className='SB-Playlist-div'>
+                    <li className='SB-User-Playlist-li'>
+                        <span class="material-symbols-outlined SB-icons pink-icons">
+                            list
+                        </span>
+                        <p>All Playlists</p></li>
+                    <li className='SB-User-Playlist-li'>
+                        <span class="material-symbols-outlined SB-icons pink-icons">
+                            queue_music
+                        </span>
+                        <p>gym</p></li>
+                    <li className='SB-User-Playlist-li'>
+                        <span class="material-symbols-outlined SB-icons pink-icons">
+                            queue_music
+                        </span>
+                        <p>body adi adi</p></li>
+                    <li className='SB-User-Playlist-li'>
+                        <span class="material-symbols-outlined SB-icons pink-icons">
+                            queue_music
+                        </span>
+                        <p>ya ya ya ya</p></li>
+                </div>
             </div>
         </div>
     )
