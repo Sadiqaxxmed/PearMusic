@@ -1,0 +1,10 @@
+.BR-body {
+  height: 2000px;
+  padding-top: 65px;
+  padding-left: 300px;
+}
+
+.BR-labels {
+  color: white;
+  font-size: 34px;
+}
