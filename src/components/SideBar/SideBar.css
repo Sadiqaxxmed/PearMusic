@@ -1,0 +1,84 @@
+.SB-body {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  position: fixed;
+  border-right: 1px solid black;
+  padding-left: 20px;
+  padding-right: 65px;
+  height: 100vh;
+  background-color: rgb(37, 37, 38);
+  color: white;
+  font-weight: 300;
+}
+
+.SB-search-field-div {
+  position: relative;
+}
+
+.SB-search-field-div input {
+  padding-left: 30px;
+}
+
+.SB-search-field-div span {
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  font-size: 20px;
+}
+
+.SB-icons {
+  color: rgb(226 96 106);
+}
+
+#search-field {
+  background-color: rgb(31, 31, 31);
+  color: white;
+  border: 1px solid rgb(64, 64, 64);
+  border-radius: 3px;
+  padding: 6px 5px 5px 28px;
+}
+
+#search-field:focus {
+  box-shadow: 0px 0px 0px 4px rgb(176 76 78);
+  outline: none;
+}
+
+.SB-Library {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  list-style-type: none;
+}
+
+div.SB-Library {
+  display: flex;
+  flex-direction: column;
+}
+
+.pink-icons {
+  padding-right: 7px;
+  padding-top: 14px;
+}
+
+.SB-lib-play-headers {
+  font-weight: 400;
+  color: rgb(110, 110, 108);
+}
+
+.SB-User-Playlist-li {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.SB-Playlist-div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: center;
+  list-style-type: none;
+  padding-bottom: 7px;
+}
