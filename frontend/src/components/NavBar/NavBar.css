@@ -1,0 +1,8 @@
+.NB-body {
+  display: flex;
+  background-color: rgb(44, 44, 44);
+  height: 54px;
+  position: fixed;
+  left: 260px;
+  width: 100%;
+}
