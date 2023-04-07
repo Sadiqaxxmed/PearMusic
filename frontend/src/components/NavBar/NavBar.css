@@ -3,8 +3,8 @@
   background-color: rgb(44, 44, 44);
   height: 54px;
   position: fixed;
-  left:260px;
-  width: calc(100% - 266px);
+  left: 260px;
+  width: calc(100% - 260px);/* subtracts removed width from width when calculating width */
   z-index: 1;
   justify-content: space-between;
 }
@@ -51,26 +51,49 @@
   color: rgb(105, 105, 105);
 }
 
-.NB-Wrapper{
+#shuffle:hover{
+  color: red;
+}
+
+#backwards:hover{
+  color: red;
+}
+
+#play:hover{
+  color: red;
+}
+
+#forwards:hover{
+  color: red;
+}
+
+#repeat:hover{
+  color: red;
+}
+
+.NB-Wrapper{ /* wraps the song image and the grey player */
   display: flex;
   flex-direction: row;
   margin-left: 62px;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 .NB-MUSIC-BLOCK{
-  background-color: rgb(105, 105, 105);
+  background-color: rgba(105, 105, 105,.5);
   display: flex;
   flex-direction: row;
   width: 26vw;
   justify-content: center;
   align-items: center;
-  margin-right: 81px;
+  margin-right: 30px; /* come back */
 }
 
 .NB-Pear{
   height: 31px;
   display: flex;
   align-self: center;
+  opacity: .8;
 }
 
 .NB-Volume-Slider{
@@ -85,13 +108,14 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding-right: 10px;
 }
 
 input[type=range] {
   -webkit-appearance: none;
   width: 100px;
   background-color: rgb(44, 44, 44);
-  margin-left: 10px;
+  margin-right: 50px;
 }
 input[type=range]:focus {
   outline: none;
@@ -190,3 +214,5 @@ input[type=range]:focus::-ms-fill-upper {
   font-size: larger;
   color:rgb(120, 120, 120);
 }
+
+
