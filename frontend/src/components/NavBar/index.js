@@ -1,12 +1,21 @@
-import React from "react";
-// import ReactPlayer from "react-player";
-// import ReactAudioPlayer from 'react-audio-player'
+import React,{useState} from "react";
+
+
+import Menu from "./Menu/index";
 import noSong from '../../images/Music.png'
 import pear from '../../images/pear2.png'
-// import music from '../../test-music'
 import './NavBar.css'
 
+
+  
+
 function NavBar() {
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   return (
     <div className="NB-body">
@@ -31,42 +40,12 @@ function NavBar() {
         <div className="NB-Symbol">
       </div>
       <div className="NB-Menu-Wrap">
-
-        <i class="fa-solid fa-bars" id='burger'/>
+        <i class="fa-solid fa-bars" id='burger' onClick={toggleMenu}/>
+        {isMenuOpen && <Menu />} {/* opens menu when clicked on */}
       </div>
     </div>
   )
 }
-//328x54
+
 
 export default NavBar
-{/* <div className="player-controls">
-        <div className="player-buttons">
-          <button className="previous-button">
-          <span class="material-symbols-outlined"> fast_rewind </span>
-          </button>
-          <button className="play-button">
-          <span class="material-symbols-outlined"> play_arrow </span>
-          </button>
-          <button className="pause-button">
-          <span class="material-symbols-outlined"> stop </span>
-          </button>
-          <button className="next-button">
-          <span class="material-symbols-outlined"> fast_forward </span>
-          </button>
-        </div>
-        <div className="progress-bar-container">
-          <div className="progress-bar"></div>
-        </div>
-      </div> */}
-      {/* <ReactPlayer
-        className="react-player"
-        url={[{src : '../../test-music/Good-Morning.mp3',type:'mp3'}]}
-        controls
-        playing
-      /> */}
-      {/* <ReactAudioPlayer
-          src="../../test-music/Good-Morning.mp3"
-          autoPlay
-          controls
-        /> */}
