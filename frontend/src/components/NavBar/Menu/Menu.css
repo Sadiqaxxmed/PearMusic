@@ -84,3 +84,14 @@
     padding-right: 7px;
     color: rgb(221, 221, 211);
 } 
+
+#Menu::after {
+    /* Create the arrow using a pseudo-element */
+    content: "";
+    position: absolute;
+    top: -12px; /* Position the arrow above the menu container */
+    right: 10px; /* Position the arrow on the top right corner of the menu container */
+    border: solid transparent;
+    border-width: 0px 1px 12px 9px;
+    border-color: transparent transparent  rgb(75, 75, 75) transparent; /* Set the color of the arrow */
+}
