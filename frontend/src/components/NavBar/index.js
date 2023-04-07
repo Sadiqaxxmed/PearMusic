@@ -1,6 +1,6 @@
 import React from "react";
-import ReactPlayer from "react-player";
-import ReactAudioPlayer from 'react-audio-player'
+// import ReactPlayer from "react-player";
+// import ReactAudioPlayer from 'react-audio-player'
 import noSong from '../../images/Music.png'
 import pear from '../../images/pear2.png'
 // import music from '../../test-music'
