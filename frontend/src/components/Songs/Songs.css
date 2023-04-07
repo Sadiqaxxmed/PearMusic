@@ -1,0 +1,43 @@
+.song-body {
+  padding-top: 150px;
+  padding-left:  300px;
+}
+
+.song-section {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+}
+
+.art-cover {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+
+.song-info {
+  color: white;
+  flex-direction: row;
+}
+
+#artists-name {
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+
+}
+
+#song-name {
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+
+}
+
+.SG-Title {
+  color: white;
+  font-size: 34px;
+  padding-top: 250px;
+  padding-left: 250px;
+}
