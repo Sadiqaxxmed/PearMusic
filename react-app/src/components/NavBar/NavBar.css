@@ -1,0 +1,218 @@
+.NB-body {
+  display: flex;
+  background-color: rgb(44, 44, 44);
+  height: 54px;
+  position: fixed;
+  left: 260px;
+  width: calc(100% - 260px);/* subtracts removed width from width when calculating width */
+  z-index: 1;
+  justify-content: space-between;
+}
+
+.music-player-container{
+  display: flex;
+  padding-left: 50px;
+  align-self: center;
+  flex-direction: row;
+  justify-content: space-between;
+  gap:15px;
+}
+
+#shuffle{
+  display: flex;
+  flex-direction: row;
+  padding-top: 8px;
+  color: rgb(105, 105, 105);
+}
+
+#backwards{
+  display: flex;
+  flex-direction: row;
+  color: rgb(105, 105, 105);
+}
+
+#play{
+  display: flex;
+  flex-direction: row;
+  padding-top: 8px;
+  color: rgb(105, 105, 105);
+}
+
+#forwards{
+  display: flex;
+  flex-direction: row;
+  color: rgb(105, 105, 105);
+}
+
+#repeat{
+  display: flex;
+  flex-direction: row;
+  padding-top: 8px;
+  color: rgb(105, 105, 105);
+}
+
+#shuffle:hover{
+  color: red;
+}
+
+#backwards:hover{
+  color: red;
+}
+
+#play:hover{
+  color: red;
+}
+
+#forwards:hover{
+  color: red;
+}
+
+#repeat:hover{
+  color: red;
+}
+
+.NB-Wrapper{ /* wraps the song image and the grey player */
+  display: flex;
+  flex-direction: row;
+  margin-left: 62px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+.NB-MUSIC-BLOCK{
+  background-color: rgba(105, 105, 105,.5);
+  display: flex;
+  flex-direction: row;
+  width: 26vw;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30px; /* come back */
+}
+
+.NB-Pear{
+  height: 31px;
+  display: flex;
+  align-self: center;
+  opacity: .8;
+}
+
+.NB-Volume-Slider{
+  display: flex;
+  flex-direction: row;
+}
+
+#music.fa-solid.fa-volume-low{
+  color: rgb(136, 136, 136);
+  font-size: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100px;
+  background-color: rgb(44, 44, 44);
+  margin-right: 50px;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: rgb(74, 74, 74);
+  border-radius: 1px;
+  border: 0px solid #000000;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #000000;
+  border: 1px solid rgb(62, 62, 62);
+  height: 10px;
+  width: 10px;
+  border-radius: 25px;
+  background: rgb(255, 255, 255);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -3px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #2497E3;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #2497E3;
+  border-radius: 1px;
+  border: 0px solid #000000;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #000000;
+  /* border: 1px solid #2497E3; */
+  height: 18px;
+  width: 18px;
+  border-radius: 25px;
+  background: #A1D0FF;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #2497E3;
+  border: 0px solid #000000;
+  border-radius: 2px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-fill-upper {
+  background: #2497E3;
+  border: 0px solid #000000;
+  border-radius: 2px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 0px 0px 0px #000000;
+  border: 1px solid #2497E3;
+  height: 18px;
+  width: 18px;
+  border-radius: 25px;
+  background: #A1D0FF;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #2497E3;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #2497E3;
+}
+
+.NB-Menu-Wrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 17px;
+  right: 10px;
+}
+
+#burger{
+  font-size: larger;
+  color:rgb(120, 120, 120);
+}
+
+
