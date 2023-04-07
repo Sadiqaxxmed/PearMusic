@@ -1,4 +1,5 @@
 .BR-body {
+  z-index: -1;
   height: 2000px;
   padding-top: 65px;
   padding-left: 300px;
