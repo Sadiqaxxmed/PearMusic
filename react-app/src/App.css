@@ -1,0 +1,24 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  height: 100vh;
+  background-color: rgb(31, 31, 31);
+  
+}
+
+/* right side webpage scroll bar css made it look a lil btr */
+
+body::-webkit-scrollbar {
+  width: .45em;
+  height: 120px;
+}
+ 
+body::-webkit-scrollbar-track {
+  background-color: rgb(44, 44, 44);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  border-radius: 5px;
+}
