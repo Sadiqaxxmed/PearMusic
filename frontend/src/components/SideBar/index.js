@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+
 import './SideBar.css'
 import image from '../../images/pear2.png'
 function SideBar() {
@@ -23,12 +25,12 @@ function SideBar() {
                     <span class="material-symbols-outlined SB-icons  pink-icons">
                         grid_view
                     </span>
-                    <p>Browse</p></li>
+                    <p> <Link exact="true" to="/" style={{ textDecoration:'none', color:'white' }}> Browse  </Link> </p></li>
                 <li className='SB-Library'>
                     <span class="material-symbols-outlined SB-icons pink-icons">
                         music_note
                     </span>
-                    <p>Songs</p></li>
+                    <p> <Link exact="true" to="/songs" style={{ textDecoration:'none', color:'white' }}> Songs  </Link> </p></li>
                 <li className='SB-Library'>
                     <span class="material-symbols-outlined SB-icons pink-icons">
                         home_storage
