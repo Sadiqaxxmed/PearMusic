@@ -20,11 +20,11 @@ function NavBar() {
   return (
     <div className="NB-body">
       <div className="music-player-container">
-        <i class="fa-solid fa-shuffle fa-sm" id='shuffle'></i>
-        <i class="fa-solid fa-backward fa" id='backwards'></i>
-        <i class="fa-solid fa-play fa-xl" id='play'></i>
-        <i class="fa-solid fa-forward fa" id='forwards'></i>
-        <i class="fa-solid fa-repeat fa-sm" id='repeat'></i>
+        <div> <i class="fa-solid fa-shuffle fa-sm" id='shuffle'></i> </div>
+        <div> <i class="fa-solid fa-backward fa" id='backwards'></i> </div>
+        <div> <i class="fa-solid fa-play fa-xl" id='play'></i> </div>
+        <div> <i class="fa-solid fa-forward fa" id='forwards'></i> </div>
+        <div> <i class="fa-solid fa-repeat fa-sm" id='repeat'></i> </div>
       </div>
       <div className="NB-Wrapper">
         <img src={noSong} alt='music'/>

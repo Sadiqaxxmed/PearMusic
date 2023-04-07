@@ -51,6 +51,26 @@
   color: rgb(105, 105, 105);
 }
 
+#shuffle:hover{
+  color: red;
+}
+
+#backwards:hover{
+  color: red;
+}
+
+#play:hover{
+  color: red;
+}
+
+#forwards:hover{
+  color: red;
+}
+
+#repeat:hover{
+  color: red;
+}
+
 .NB-Wrapper{
   display: flex;
   flex-direction: row;
