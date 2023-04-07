@@ -3,7 +3,7 @@ import React from 'react'
 import SideBar from './components/SideBar/index.js'
 import NavBar from './components/NavBar';
 import Browser from './components/Browse';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 function App() {
   return (
