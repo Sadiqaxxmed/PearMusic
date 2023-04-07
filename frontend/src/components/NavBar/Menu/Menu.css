@@ -1,0 +1,86 @@
+#Menu {
+    position: absolute;
+    top: 30px; /* adjust to your desired position */
+    right: 0px; /* adjust to your desired position */
+    background-color: rgb(30,30,30);
+    width: 180px;
+    border-radius: 8px;
+    border: solid rgb(75, 75, 75) 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size:90%;
+    /* add box shadow later */
+    /* Add other styles for your menu items */
+}
+
+.Menu-Welcome{
+    padding: 8px 0px 8px 0px;
+    width: 100%;
+    color: rgb(214, 214, 214);
+}
+
+.Menu-Buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.Menu-LogIn-Wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    width: 100%;
+    border-top: solid rgb(98, 98, 98) 1px;
+    border-bottom: solid rgb(98, 98, 98) 1px;
+}
+
+.Menu-SignUp-Wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    width: 100%;
+}
+
+.Menu-SignUp-Btn{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 8px 0px 8px 0px ;
+    
+    color: rgb(240, 78, 62);
+} 
+
+.Menu-LogIn-Btn{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 8px 0px 8px 0px ;
+    color: rgb(240, 78, 62);
+}
+
+.Menu-SignUp-Btn:hover{
+}
+
+.Menu-LogIn-Btn:hover{
+}
+
+#Login-Icon{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: end;
+    align-items: flex-end;
+    padding-right: 10px;
+    color: rgb(221, 221, 211);
+}
+
+#SignUp-Icon{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: end;
+    align-items: flex-end;
+    padding-right: 7px;
+    color: rgb(221, 221, 211);
+} 
