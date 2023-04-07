@@ -71,12 +71,12 @@
   color: red;
 }
 
-.NB-Wrapper{
+.NB-Wrapper{ /* wraps the song image and the grey player */
   display: flex;
   flex-direction: row;
   margin-left: 62px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 .NB-MUSIC-BLOCK{
