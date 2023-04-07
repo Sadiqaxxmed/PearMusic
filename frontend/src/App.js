@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import Browser from './components/Browse';
 import Songs from './components/Songs';
 
+
 function App() {
   return (
   <>
