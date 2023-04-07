@@ -21,8 +21,8 @@ function App() {
   return (
     <>
       <SideBar />
-      <NavBar />
-      <Navigation isLoaded={isLoaded} />
+      <NavBar isLoaded={isLoaded} />
+      <Navigation />
       {isLoaded && (
         <Switch>
           <Route path="/login" >

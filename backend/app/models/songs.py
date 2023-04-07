@@ -17,5 +17,3 @@ class Song(db.Model):
     albumId = db.relationship('Album', backref='song', lazy=True)
 
 
-# EXAMPLE
-# books = db.relationship('Book', backref='author', lazy=True)
