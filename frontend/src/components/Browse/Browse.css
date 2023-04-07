@@ -2,9 +2,36 @@
   height: 2000px;
   padding-top: 65px;
   padding-left: 300px;
+  padding-right: 50px;
 }
 
 .BR-labels {
-  color: white;
+  color: rgb(238, 238, 238);
   font-size: 34px;
+  font-weight: 500;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgb(42, 42, 42);
+}
+
+.BR-browse-images {
+  border-radius: 12px;
+  height: 275px;
+  width: 250px;
+  margin-left: 40px;
+}
+
+.BR-album-images {
+  height: 225px;
+  width: 210px;
+  margin-right: 15px;
+  border-radius: 7px;
+  margin-left: 40px;
+}
+
+.BR-song-images {
+  height: 40px;
+  width: 80px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 40px;
 }
