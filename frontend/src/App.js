@@ -1,25 +1,47 @@
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Route, Switch } from "react-router-dom";
+import SignupFormPage from "./components/SignupFormPage";
+import LoginFormPage from "./components/LoginFormPage";
+import { authenticate } from "./store/session";
+import Navigation from "./components/Navigation";
 import './App.css';
-import React from 'react'
-import { Route, Routes } from 'react-router-dom';
 import SideBar from './components/SideBar/index.js'
 import NavBar from './components/NavBar';
 import Browser from './components/Browse';
 import Songs from './components/Songs';
 
-
 function App() {
+  const dispatch = useDispatch();
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+    dispatch(authenticate()).then(() => setIsLoaded(true));
+  }, [dispatch]);
+
   return (
-  <>
-    <SideBar />
-    <NavBar />
-    <Routes>
-      <Route path="/" element={<Browser />} />
-    </Routes>
-    <Routes>
-      <Route path="/songs" element={<Songs />} />
-    </Routes>
-  </>
+    <>
+      <SideBar />
+      <NavBar isLoaded={isLoaded} />
+      <Navigation />
+      {isLoaded && (
+        <Switch>
+          <Route path="/login" >
+            <LoginFormPage />
+          </Route>
+          <Route path="/signup">
+            <SignupFormPage />
+          </Route>
+          <Route exact path="/">
+            <Browser />
+          </Route>
+          <Route path="/songs">
+            <Songs />
+          </Route>
+        </Switch>
+      )}
+    </>
   );
+
 }
 
 export default App;
