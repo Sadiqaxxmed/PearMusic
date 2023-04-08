@@ -21,35 +21,47 @@ function LoginFormModal() {
     }
   };
 
+  const [showModal, setShowModal] = useState(true);
+
+	const handleCloseModal = () => {
+		setShowModal(false); // Set the state to close the modal
+	}
+
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
-      </form>
+      {showModal && (
+      <div className="LogIn-Wrapper">
+        <i class="fa-solid fa-xmark" onClick={() => handleCloseModal()}id='x' id='x'/>
+        <h1 className="LogIn-Title">Login</h1>
+        <form className='LogIn-Form' onSubmit={handleSubmit}>
+          <div>
+            {errors.map((error, idx) => (
+              <p key={idx}>{error}</p>
+            ))}
+          </div>
+          <label className="LogIn-Form-Top-Text">
+            Email:
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <label className="LogIn-Form-Top-Text">
+            Password:
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          <div className='LogIn-Button' type="submit">Log In</div>
+          <div className="SignUp-Demo-Btn">Demo User</div>
+        </form>
+      </div>
+		)}
     </>
   );
 }

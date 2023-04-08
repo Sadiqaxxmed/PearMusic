@@ -11,6 +11,8 @@
     display: flex;
     align-self: flex-start;
     justify-content: flex-start;
+    color: rgba(245, 245, 247, 1);
+    padding-left: 10px;
 }
 
 .SignUp-Errors{ /* errors wrapper */
@@ -24,9 +26,9 @@
 .SignUp-Form{
     display: flex;
     flex-direction: column;
-    
     gap:10px;
     width: 70%;
+    color: rgba(245, 245, 247, 1);
 }
 
 .SignUp-Form-Top-Text{
@@ -42,4 +44,40 @@
     font-size: x-large;
     padding: 15px;
     cursor: pointer;
+    color: rgba(245, 245, 247, 1);
+}
+
+input{
+    background-color: rgb(75, 75, 75);
+    padding: 3px 0 3px 0;
+    border-radius: 5px;
+    border: 2px solid transparent;
+}
+
+.SignUp-Buttons-Div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.SignUp-Button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    background-color: rgb(218, 15, 72);
+    width: 60%;
+    border-radius: 4px;
+    padding: 8px 0px 8px 0px;
+}
+
+.SignUp-Demo-Btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
 }
