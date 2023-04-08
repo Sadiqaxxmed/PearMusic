@@ -3,7 +3,7 @@
     top: 30px; /* adjust to your desired position */
     right: 0px; /* adjust to your desired position */
     background-color: rgb(30,30,30);
-    width: 180px;
+    width: 190px;
     border-radius: 8px;
     border: solid rgb(75, 75, 75) 1px;
     /* display: none; */
@@ -25,6 +25,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 187px;
 }
 
 .Menu-LogIn-Wrapper{
@@ -88,13 +89,82 @@
     color: rgb(221, 221, 211);
 }
 
-/* #Menu::after { */
+.Menu::after { 
     /* Create the arrow using a pseudo-element */
-    /* content: ""; */
-    /* position: absolute; */
-    /* top: -12px; Position the arrow above the menu container */
-    /* right: 10px; Position the arrow on the top right corner of the menu container */
-    /* border: solid transparent; */
-    /* border-width: 0px 1px 12px 9px; */
-    /* border-color: transparent transparent  rgb(75, 75, 75) transparent; Set the color of the arrow */
-/* } */
+    content: ""; 
+    position: absolute; 
+    top: -12px; /*Position the arrow above the menu container */
+    right: 10px; /*Position the arrow on the top right corner of the menu container */
+    border: solid transparent;
+    border-width: 0px 1px 12px 9px;
+    border-color: transparent transparent  rgb(75, 75, 75) transparent; /* Set the color of the arrow*/
+}
+
+
+.Menu-Manage-Disc-Btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 8px 0px 8px 0px ;
+    color: rgb(240, 78, 62);
+    border-top: solid rgb(98, 98, 98) 1px;
+    border-bottom: solid rgb(98, 98, 98) 1px;
+    padding-left: 3px;
+}
+
+.Menu-Upload-Btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 8px 0px 8px 0px ;
+    color: rgb(240, 78, 62);
+    border-bottom: solid rgb(98, 98, 98) 1px;
+    padding-left: 3px;
+}
+
+.Menu-LogOut-Btn{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 8px 0px 8px 0px ;
+    color: rgb(240, 78, 62);
+    padding-left: 3px;
+}
+
+.Menu-Manage-Disc-Btn{
+    cursor: pointer;
+}
+
+.Menu-Upload-Btn{
+    cursor: pointer;
+}
+
+.Menu-LogOut-Btn{
+    cursor: pointer;    
+}
+
+#vinyl{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: end;
+    align-items: flex-end;
+    padding-right: 10px;
+    color: rgb(221, 221, 211);
+    font-size: small;
+}
+
+#upload{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: end;
+    align-items: flex-end;
+    padding-right: 9px;
+    color: rgb(221, 221, 211);
+    font-size: small;
+}

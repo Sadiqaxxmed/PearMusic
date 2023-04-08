@@ -52,23 +52,23 @@
 }
 
 #shuffle:hover{
-  color: red;
+  color:rgb(164, 159, 165);
 }
 
 #backwards:hover{
-  color: red;
+  color:rgb(164, 159, 165);
 }
 
 #play:hover{
-  color: red;
+  color:rgb(164, 159, 165);
 }
 
 #forwards:hover{
-  color: red;
+  color:rgb(164, 159, 165);
 }
 
 #repeat:hover{
-  color: red;
+  color:rgb(164, 159, 165);
 }
 
 .NB-Wrapper{ /* wraps the song image and the grey player */
@@ -210,9 +210,18 @@ input[type=range]:focus::-ms-fill-upper {
   right: 10px;
 }
 
+.fa-solid.fa-bars{
+  background-color: white;
+}
+
 #burger{
   font-size: larger;
   color:rgb(120, 120, 120);
+  background-color: transparent;
 }
 
-
+#burger:hover{
+  color:rgb(164, 159, 165) ;
+  /* box-shadow: 0px 0px 6px 5px rgba(61, 49, 65,.5); */ /* looks bad */
+  cursor: pointer;
+}

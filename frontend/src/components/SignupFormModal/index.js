@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
@@ -28,18 +29,27 @@ function SignupFormModal() {
 			]);
 		}
 	};
+	
+	const [showModal, setShowModal] = useState(true);
+
+	const handleCloseModal = () => {
+		setShowModal(false); // Set the state to close the modal
+	}
 
 	return (
 		<>
-			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
-				<ul>
+		{showModal && (
+		<div className="SignUp-Wrapper">
+			<i class="fa-solid fa-xmark" onClick={() => handleCloseModal()}id='x'/>
+			<h1 className="SignUp-Title">Sign Up</h1>
+			<form className='SignUp-Form' onSubmit={handleSubmit}>
+				<div className="SignUp-Errors">
 					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
+						<p className='SignUp-Error' key={idx}>{error}</p>
 					))}
-				</ul>
-				<label>
-					Email
+				</div>
+				<label className="SignUp-Form-Top-Text">
+					Email:
 					<input
 						type="text"
 						value={email}
@@ -47,8 +57,8 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<label>
-					Username
+				<label className="SignUp-Form-Top-Text">
+					Username:
 					<input
 						type="text"
 						value={username}
@@ -56,8 +66,8 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<label>
-					Password
+				<label className="SignUp-Form-Top-Text">
+					Password:
 					<input
 						type="password"
 						value={password}
@@ -65,8 +75,8 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<label>
-					Confirm Password
+				<label className="SignUp-Form-Top-Text">
+					Confirm Password:
 					<input
 						type="password"
 						value={confirmPassword}
@@ -74,8 +84,13 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<button type="submit">Sign Up</button>
+				<div className="SignUp-Buttons-Div">
+					<div className='SignUp-Button' type="submit">Sign Up</div>
+					<div className="SignUp-Demo-Btn">Demo User</div>
+				</div>
 			</form>
+		</div>
+		)}
 		</>
 	);
 }
