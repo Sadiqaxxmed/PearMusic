@@ -45,14 +45,27 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
+          <div className='Menu-Buttons'>
+            <div className='Menu-Welcome'>&nbsp;&nbsp;Welcome {user.username}!</div>
+              {/* <div>{user.email}</div> */}
+              
+                <div className="Menu-Manage-Disc-Btn"> Manage Discography 
+                  <i class="fa-solid fa-record-vinyl" id='vinyl'/> 
+                </div>
+
+                <div className="Menu-Upload-Btn">Upload Album
+                  <i class="fa-solid fa-cloud-arrow-up" id='upload'/>
+                </div>
+
+                <div className='Menu-LogOut-Btn' onClick={handleLogout}>
+                  Log Out
+                </div>
+              </div>
+            
           </>
         ) : (
           <>
+            <div className='Menu-Welcome'>&nbsp;&nbsp;Welcome!</div>
             <div className="Menu-LogIn-Wrapper">
               {/* NEED TO PROBABLY IMPLEMENT ISLOADED */}
               <OpenModalButton
