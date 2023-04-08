@@ -1,0 +1,45 @@
+.SignUp-Wrapper{
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 40px;
+}
+
+.SignUp-Title{
+    display: flex;
+    align-self: flex-start;
+    justify-content: flex-start;
+}
+
+.SignUp-Errors{ /* errors wrapper */
+
+}
+
+.SignUp-Error{ /* individual errors */
+
+}
+
+.SignUp-Form{
+    display: flex;
+    flex-direction: column;
+    
+    gap:10px;
+    width: 70%;
+}
+
+.SignUp-Form-Top-Text{
+    display: flex;
+    flex-direction: column;
+}
+
+#x {
+    /* Close icon styles go here */
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: x-large;
+    padding: 15px;
+    cursor: pointer;
+}
