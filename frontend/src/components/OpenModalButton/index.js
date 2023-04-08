@@ -16,7 +16,11 @@ function OpenModalButton({
   };
 
   return (
-    <button onClick={onClick}>{buttonText}</button>
+    <>
+      {/* <button onClick={onClick}>{buttonText}</button> */}
+      <div className='Menu-LogIn-Btn' onClick={onClick}>&nbsp;&nbsp;{buttonText}</div>
+      {/* <i class="fa-solid fa-right-to-bracket" id='Login-Icon'></i> */}
+    </>
   );
 }
 

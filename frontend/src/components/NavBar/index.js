@@ -1,5 +1,6 @@
 import React,{useState} from "react";
-
+import ProfileButton from "../Navigation/ProfileButton";
+import { useSelector } from "react-redux";
 
 import Menu from "./Menu/index";
 import noSong from '../../images/Music.png'
@@ -7,10 +8,10 @@ import pear from '../../images/pear2.png'
 import './NavBar.css'
 
 
-  
+
 
 function NavBar() {
-
+  const sessionUser = useSelector(state => state.session.user);
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const toggleMenu = () => {
@@ -28,7 +29,7 @@ function NavBar() {
       </div>
       <div className="NB-Wrapper">
         <img src={noSong} alt='music'/>
-        
+
         <div className='NB-MUSIC-BLOCK'>
           <img className="NB-Pear" src={pear} alt='pear'/>
         </div>
@@ -40,8 +41,9 @@ function NavBar() {
         <div className="NB-Symbol">
       </div>
       <div className="NB-Menu-Wrap">
-        <i class="fa-solid fa-bars" id='burger' onClick={toggleMenu}/>
-        {isMenuOpen && <Menu />} {/* opens menu when clicked on */}
+        {/* <i class="fa-solid fa-bars" id='burger' onClick={toggleMenu}/> */}
+        <ProfileButton user ={sessionUser} onClick={toggleMenu} />
+        {isMenuOpen && <Menu />} {/*opens menu when clicked on*/}
       </div>
     </div>
   )

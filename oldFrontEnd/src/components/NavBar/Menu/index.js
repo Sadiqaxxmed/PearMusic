@@ -1,17 +1,12 @@
 import React from 'react';
-import ProfileButton from '../../Navigation/ProfileButton';
-import { useSelector } from 'react-redux';
 import './Menu.css'; // import the CSS file for the menu styles
 
-const Menu = ({ isLoaded }) => {
-    const sessionUser = useSelector(state => state.session.user);
-
+const Menu = () => {
     return (
     <div id="Menu" >
         <div className='Menu-Buttons'>
-            <ProfileButton user ={sessionUser} />
 
-            {/* <div className='Menu-Welcome'>&nbsp;&nbsp;Welcome!</div>
+            <div className='Menu-Welcome'>&nbsp;&nbsp;Welcome!</div>
 
             <div className='Menu-LogIn-Wrapper'>
                 <div className='Menu-LogIn-Btn'>&nbsp;&nbsp;Log In</div>
@@ -21,7 +16,7 @@ const Menu = ({ isLoaded }) => {
             <div className='Menu-SignUp-Wrapper'>
                 <div className='Menu-SignUp-Btn'>&nbsp;&nbsp;Sign Up</div>
                 <i class="fa-solid fa-user-plus" id='SignUp-Icon'></i>
-            </div> */}
+            </div>
         </div>
     </div>
     );

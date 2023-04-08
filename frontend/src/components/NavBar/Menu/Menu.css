@@ -1,4 +1,4 @@
-#Menu {
+.Menu {
     position: absolute;
     top: 30px; /* adjust to your desired position */
     right: 0px; /* adjust to your desired position */
@@ -6,10 +6,11 @@
     width: 180px;
     border-radius: 8px;
     border: solid rgb(75, 75, 75) 1px;
-    display: flex;
+    /* display: none; */
     flex-direction: column;
     justify-content: flex-start;
     font-size:90%;
+    padding: 0;
     /* add box shadow later */
     /* Add other styles for your menu items */
 }
@@ -47,9 +48,9 @@
     width: 100%;
     align-items: center;
     padding: 8px 0px 8px 0px ;
-    
     color: rgb(240, 78, 62);
-} 
+
+}
 
 .Menu-LogIn-Btn{
     display: flex;
@@ -60,9 +61,11 @@
 }
 
 .Menu-SignUp-Btn:hover{
+    cursor: pointer;
 }
 
 .Menu-LogIn-Btn:hover{
+    cursor: pointer;
 }
 
 #Login-Icon{
@@ -83,15 +86,15 @@
     align-items: flex-end;
     padding-right: 7px;
     color: rgb(221, 221, 211);
-} 
-
-#Menu::after {
-    /* Create the arrow using a pseudo-element */
-    content: "";
-    position: absolute;
-    top: -12px; /* Position the arrow above the menu container */
-    right: 10px; /* Position the arrow on the top right corner of the menu container */
-    border: solid transparent;
-    border-width: 0px 1px 12px 9px;
-    border-color: transparent transparent  rgb(75, 75, 75) transparent; /* Set the color of the arrow */
 }
+
+/* #Menu::after { */
+    /* Create the arrow using a pseudo-element */
+    /* content: ""; */
+    /* position: absolute; */
+    /* top: -12px; Position the arrow above the menu container */
+    /* right: 10px; Position the arrow on the top right corner of the menu container */
+    /* border: solid transparent; */
+    /* border-width: 0px 1px 12px 9px; */
+    /* border-color: transparent transparent  rgb(75, 75, 75) transparent; Set the color of the arrow */
+/* } */
