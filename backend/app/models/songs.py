@@ -12,9 +12,20 @@ class Song(db.Model):
     mp3file = db.Column(db.String, nullable=False)
     duration = db.Column(db.Float, nullable=False)
 
-    # userId = db.relationship('User', backref='song', lazy=True)
     user_id = db.Column(db.Integer, ForeignKey('users.id'))
-    db.relationship("User", primaryjoin="User.id == Song.user_id")
-    # albumId = db.relationship('Album', backref='song', lazy=True)
     album_id = db.Column(db.Integer, ForeignKey('users.id'))
+
+    db.relationship("User", primaryjoin="User.id == Song.user_id")
     db.relationship("User", primaryjoin="User.id == Album.owner_id")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'genre': self.genre,
+            'coverImage': self.coverImage,
+            'mp3file': self.mp3file,
+            'duration': self.duration,
+            'user_id': self.user_id,
+            'album_id': self.album_id
+        }
