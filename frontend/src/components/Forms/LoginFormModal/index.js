@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { login } from "../../store/session";
+import { login } from "../../../store/session";
 import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
+import { useModal } from "../../../context/Modal";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -31,7 +31,7 @@ function LoginFormModal() {
     <>
       {showModal && (
       <div className="LogIn-Wrapper">
-        <i class="fa-solid fa-xmark" onClick={() => handleCloseModal()}id='x' id='x'/>
+        <i className="fa-solid fa-xmark" onClick={() => handleCloseModal()}id='x' id='x'/>
         <h1 className="LogIn-Title">Login</h1>
         <form className='LogIn-Form' onSubmit={handleSubmit}>
           <div>
@@ -42,6 +42,7 @@ function LoginFormModal() {
           <label className="LogIn-Form-Top-Text">
             Email:
             <input
+              id='form-input'
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -51,13 +52,14 @@ function LoginFormModal() {
           <label className="LogIn-Form-Top-Text">
             Password:
             <input
+              id='form-input'
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </label>
-          <div className='LogIn-Button' type="submit">Log In</div>
+          <button className='LogIn-Button' type="submit">Log In</button>
           <div className="SignUp-Demo-Btn">Demo User</div>
         </form>
       </div>

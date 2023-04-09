@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import { useModal } from "../../context/Modal";
-import { signUp } from "../../store/session";
+import { useModal } from "../../../context/Modal";
+import { signUp } from "../../../store/session";
 import "./SignupForm.css";
 
 function SignupFormModal() {
@@ -40,7 +40,7 @@ function SignupFormModal() {
 		<>
 		{showModal && (
 		<div className="SignUp-Wrapper">
-			<i class="fa-solid fa-xmark" onClick={() => handleCloseModal()}id='x'/>
+			<i className="fa-solid fa-xmark" onClick={() => handleCloseModal()}id='x'/>
 			<h1 className="SignUp-Title">Sign Up</h1>
 			<form className='SignUp-Form' onSubmit={handleSubmit}>
 				<div className="SignUp-Errors">
@@ -51,6 +51,7 @@ function SignupFormModal() {
 				<label className="SignUp-Form-Top-Text">
 					Email:
 					<input
+						id='form-input'
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
@@ -60,6 +61,7 @@ function SignupFormModal() {
 				<label className="SignUp-Form-Top-Text">
 					Username:
 					<input
+						id='form-input'
 						type="text"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -69,6 +71,7 @@ function SignupFormModal() {
 				<label className="SignUp-Form-Top-Text">
 					Password:
 					<input
+						id='form-input'
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
@@ -78,6 +81,7 @@ function SignupFormModal() {
 				<label className="SignUp-Form-Top-Text">
 					Confirm Password:
 					<input
+						id='form-input'
 						type="password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
@@ -85,7 +89,7 @@ function SignupFormModal() {
 					/>
 				</label>
 				<div className="SignUp-Buttons-Div">
-					<div className='SignUp-Button' type="submit">Sign Up</div>
+					<button className='SignUp-Button' type="submit">Sign Up</button>
 					<div className="SignUp-Demo-Btn">Demo User</div>
 				</div>
 			</form>

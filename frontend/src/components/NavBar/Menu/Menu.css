@@ -73,7 +73,7 @@
     display: flex;
     flex-direction: column;
     align-self: center;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: flex-end;
     padding-right: 10px;
     color: rgb(221, 221, 211);
@@ -83,7 +83,7 @@
     display: flex;
     flex-direction: column;
     align-self: center;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: flex-end;
     padding-right: 7px;
     color: rgb(221, 221, 211);
@@ -151,20 +151,31 @@
     display: flex;
     flex-direction: column;
     align-self: center;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: flex-end;
     padding-right: 10px;
     color: rgb(221, 221, 211);
     font-size: small;
 }
 
-#upload{
+#upload-album{
     display: flex;
     flex-direction: column;
     align-self: center;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: flex-end;
     padding-right: 9px;
+    color: rgb(221, 221, 211);
+    font-size: medium;
+}
+
+#upload-song{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-right: 11px;
     color: rgb(221, 221, 211);
     font-size: small;
 }

@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
+import LoginFormModal from "../Forms/LoginFormModal";
+import SignupFormModal from "../Forms/SignupFormModal";
+import SongForm from '../Forms/SongForm'
+import AlbumForm from '../Forms/AlbumForm'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -40,7 +42,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <div className="Menu-Btn-Wrap">
-          <i class="fa-solid fa-bars" id='burger' onClick={openMenu}/>
+          <i className="fa-solid fa-bars" id='burger' onClick={openMenu}/>
       </div>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
@@ -50,11 +52,27 @@ function ProfileButton({ user }) {
               {/* <div>{user.email}</div> */}
               
                 <div className="Menu-Manage-Disc-Btn"> Manage Discography 
-                  <i class="fa-solid fa-record-vinyl" id='vinyl'/> 
+                  <i className="fa-solid fa-record-vinyl" id='vinyl'/> 
                 </div>
 
-                <div className="Menu-Upload-Btn">Upload Album
-                  <i class="fa-solid fa-cloud-arrow-up" id='upload'/>
+                <div className="Menu-Upload-Btn">
+                  <OpenModalButton
+                  buttonText="Upload Album"
+                  onItemClick={closeMenu}
+                  modalComponent={<AlbumForm />}
+                  />
+                  <span className="material-symbols-outlined" id='upload-album'>
+                    library_music
+                  </span>
+                </div>
+
+                <div className="Menu-Upload-Btn">
+                  <OpenModalButton
+                  buttonText="Upload Song"
+                  onItemClick={closeMenu}
+                  modalComponent={<SongForm />}
+                  />
+                  <i className="fa-solid fa-music" id='upload-song'></i>
                 </div>
 
                 <div className='Menu-LogOut-Btn' onClick={handleLogout}>
@@ -73,15 +91,15 @@ function ProfileButton({ user }) {
                 onItemClick={closeMenu}
                 modalComponent={<LoginFormModal />}
               />
-              <i class="fa-solid fa-right-to-bracket" id='Login-Icon'></i>
+              <i className="fa-solid fa-right-to-bracket" id='Login-Icon'></i>
             </div>
             <div className="Menu-SignUp-Wrapper">
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-            <i class="fa-solid fa-user-plus" id='SignUp-Icon'></i>
+              <OpenModalButton
+                buttonText="Sign Up"
+                onItemClick={closeMenu}
+                modalComponent={<SignupFormModal />}
+              />
+              <i className="fa-solid fa-user-plus" id='SignUp-Icon'></i>
             </div>
           </>
         )}

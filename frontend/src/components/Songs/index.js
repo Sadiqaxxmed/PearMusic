@@ -21,8 +21,8 @@ function Songs() {
     </div>
     </div>
     <div className='icon-section'>
-      <i id='song-icon-menu' class="fa-solid fa-ellipsis"></i>
-      <i  id='song-icon-heart' class="fa-solid fa-heart"></i>
+      <i id='song-icon-menu' className="fa-solid fa-ellipsis"></i>
+      <i  id='song-icon-heart' className="fa-solid fa-heart"></i>
     </div>
   </div>
 
