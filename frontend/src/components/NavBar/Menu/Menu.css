@@ -120,10 +120,8 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
-    padding: 8px 0px 8px 0px ;
     color: rgb(240, 78, 62);
     border-bottom: solid rgb(98, 98, 98) 1px;
-    padding-left: 3px;
 }
 
 .Menu-LogOut-Btn{
@@ -178,4 +176,24 @@
     padding-right: 11px;
     color: rgb(221, 221, 211);
     font-size: small;
+}
+
+.Upload.Song{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    color: rgb(240, 78, 62);
+    padding: 5px 0 5px 0;
+}
+
+.Upload.Album{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    color: rgb(240, 78, 62);
+    padding: 5px 0 5px 0;
 }

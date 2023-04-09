@@ -14,7 +14,7 @@ function SideBar() {
                 </h2>
             </div>
             <div className='SB-search-field-div'>
-                <span class="material-symbols-outlined">
+                <span className="material-symbols-outlined">
                     search
                 </span>
                 <input placeholder='Search' id='search-field'></input>
@@ -22,17 +22,17 @@ function SideBar() {
             <h3 className='SB-lib-play-headers'>Library</h3>
             <div className='SB-Library'>
                 <li className='SB-Library'>
-                    <span class="material-symbols-outlined SB-icons  pink-icons">
+                    <span className="material-symbols-outlined SB-icons  pink-icons">
                         grid_view
                     </span>
                     <p> <Link exact="true" to="/" style={{ textDecoration:'none', color:'white' }}> Browse  </Link> </p></li>
                 <li className='SB-Library'>
-                    <span class="material-symbols-outlined SB-icons pink-icons">
+                    <span className="material-symbols-outlined SB-icons pink-icons">
                         music_note
                     </span>
                     <p> <Link exact="true" to="/songs" style={{ textDecoration:'none', color:'white' }}> Songs  </Link> </p></li>
                 <li className='SB-Library'>
-                    <span class="material-symbols-outlined SB-icons pink-icons">
+                    <span className="material-symbols-outlined SB-icons pink-icons">
                         home_storage
                     </span>
                     <p>Albums</p></li>
@@ -42,22 +42,22 @@ function SideBar() {
                 <h3 className='SB-lib-play-headers'>Playlists</h3>
                 <div className='SB-Playlist-div'>
                     <li className='SB-User-Playlist-li'>
-                        <span class="material-symbols-outlined SB-icons pink-icons">
+                        <span className="material-symbols-outlined SB-icons pink-icons">
                             list
                         </span>
                         <p>All Playlists</p></li>
                     <li className='SB-User-Playlist-li'>
-                        <span class="material-symbols-outlined SB-icons pink-icons">
+                        <span className="material-symbols-outlined SB-icons pink-icons">
                             queue_music
                         </span>
                         <p>gym</p></li>
                     <li className='SB-User-Playlist-li'>
-                        <span class="material-symbols-outlined SB-icons pink-icons">
+                        <span className="material-symbols-outlined SB-icons pink-icons">
                             queue_music
                         </span>
                         <p>body adi adi</p></li>
                     <li className='SB-User-Playlist-li'>
-                        <span class="material-symbols-outlined SB-icons pink-icons">
+                        <span className="material-symbols-outlined SB-icons pink-icons">
                             queue_music
                         </span>
                         <p>ya ya ya ya</p></li>

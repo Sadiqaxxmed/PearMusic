@@ -51,7 +51,7 @@ function ProfileButton({ user }) {
             <div className='Menu-Welcome'>&nbsp;&nbsp;Welcome {user.username}!</div>
               {/* <div>{user.email}</div> */}
               
-                <div className="Menu-Manage-Disc-Btn"> Manage Discography 
+                <div className="Menu-Manage-Disc-Btn">&nbsp;Manage Discography 
                   <i className="fa-solid fa-record-vinyl" id='vinyl'/> 
                 </div>
 
@@ -76,7 +76,7 @@ function ProfileButton({ user }) {
                 </div>
 
                 <div className='Menu-LogOut-Btn' onClick={handleLogout}>
-                  Log Out
+                  &nbsp;Log Out
                 </div>
               </div>
             
