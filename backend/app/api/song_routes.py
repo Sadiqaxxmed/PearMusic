@@ -1,6 +1,7 @@
 import mutagen
 from mutagen.wave import WAVE
-from flask import Blueprint, jsonify, redirect
+from flask import Blueprint, jsonify, redirect, request
+from flask_wtf.csrf import generate_csrf
 from flask_login import login_required
 from app.models import Song, User, db
 from app.forms import SongForm
@@ -22,7 +23,21 @@ def songs():
 @song_routes.route('/singleSong', methods=['POST'])
 @login_required
 def create_song():
-    form = SongForm()
+    data = request.get_json();
+    form = SongForm(
+        title=data['songTitle'],
+        genre=data['genreValue'],
+        coverImage=data['songCoverImage'],
+        mp3File=data['songMp3'],
+        csrf_token=generate_csrf()
+    )
+
+    print('REQUEST   :   ', request.files)
+
+    print('FORM   :   ', form);
+
+    # print('DATA  :  ', data['songMp3'])
+    # print('DATA  :  ', data['songTitle'])
 
     def audio_duration(length):
         length %= 3600
