@@ -16,11 +16,20 @@ function SignupFormModal() {
     const { closeModal } = useModal();
 
     const handleGenreValueChange = (selectedOption) => {
-        setGenreValue(selectedOption);
+        //console.log(selectedOption.value)
+        setGenreValue(selectedOption.value);
     }
 
     function handleFileChange(event) {
-        setSongCoverImage(event.target.files[0]);
+        //console.log('asdasdasdasdas', event.target.files[0])
+        //console.log('theres something about ya girl and yoour in my worrrld and i wanna swirl',event.target.files)
+        setSongMp3(event.target.files[0]);
+        // setSongCoverImage(event.target.files[0])
+    }
+
+    function handleCoverFileChange(event) {
+        //console.log('theres something about ya girl and yoour in my worrrld and i wanna swirl',event.target.files)
+        setSongCoverImage(event.target.files[0])
     }
 
 
@@ -30,20 +39,23 @@ function SignupFormModal() {
         // console.log('COVER IMAGE FILE  :   ', e)
 
         const formData = new FormData();
-        formData.append('coverImage', songCoverImage)
-        formData.append('songMp3', songMp3)
+        
+        // console.log('ass',Object.values({songMp3}))
+        formData.append('songMp3' , songMp3)
+        formData.append('songCoverImage', songCoverImage)
         formData.append('title', songTitle)
         formData.append('genre', genreValue)
+        // console.log('tig ol biddies', formData.get('songMp3'))
+        // console.log('big ol giddies', formData.get('title'))
+        // console.log('gooboo', formData.get('genre'))
+        // console.log('solja boy tell em', formData.get('songCoverImage'))
 
-
-        console.log(formData) // FormData{}
-
-        // const res = await fetch('/songs/singleSong', {
-        //     method: "POST",
-        //     headers: {'Content-Type': 'application/json'},
-        //     body: JSON.stringify(songData),
-        // });
-        // console.log('RESPONSE', await res.json())
+        const res = await fetch('/songs/singleSong', {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: formData
+        });
+        console.log('RESPONSE', await res.json())
         return;
     };
 
@@ -82,14 +94,14 @@ function SignupFormModal() {
                             {errors.map((error, idx) => (
                                 <p key={idx}>{error}</p>
                             ))}
-                        </div>
+                        </div> 
                         <div className="SF-Song-Title-Lable">Song Title:
                             <input type='text' className="SF-Song-Title" value={songTitle} onChange={(e) => setSongTitle(e.target.value)} required />
-                        </div>
+                        </div> 
                         <div> Cover Image:
-                            <input className="SF-CoverImage" type='file' accept='image/*' onChange={handleFileChange} required />
+                            <input className="SF-CoverImage" type='file' accept='image/*' onChange={handleCoverFileChange} required />
 
-                        </div>
+                        </div> 
                         <div className="SF-Genre-Wrapper"> Genre:
                             <ReactSelect
                                 className="SF-Genre"
@@ -97,9 +109,9 @@ function SignupFormModal() {
                                 value={genreValue}
                                 onChange={handleGenreValueChange}
                             />
-                        </div>
+                        </div> 
                         <div className="SF-Mp3-Wrapper"> Song File:
-                            <input className="SF-Mp3" type='file' onChange={(e) => setSongMp3(e.target.files[0].name)} required />
+                            <input type='file' onChange={handleFileChange} required />
                         </div>
                         <button className='SF-Submit-Btn' type="submit">Submit</button>
                     </form>
