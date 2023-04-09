@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
@@ -8,6 +8,7 @@ import "./SongForm.css";
 
 function SignupFormModal() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [errors, setErrors] = useState([]);
     const [songTitle, setSongTitle] = useState('')
     const [songCoverImage, setSongCoverImage] = useState(null)
@@ -41,7 +42,7 @@ function SignupFormModal() {
         const formData = new FormData();
 
         // console.log('ass',Object.values({songMp3}))
-        formData.append('songMp3' , songMp3)
+        formData.append('songMp3', songMp3)
         formData.append('songCoverImage', songCoverImage)
         formData.append('title', songTitle)
         formData.append('genre', genreValue)
@@ -54,8 +55,10 @@ function SignupFormModal() {
             method: "POST",
             body: formData
         });
-        console.log('RESPONSE', await res.json())
-        return;
+
+        if (res.ok) {
+            return history.push('/')
+        }
     };
 
     const GenreOptions = [

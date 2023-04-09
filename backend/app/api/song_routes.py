@@ -1,5 +1,7 @@
 import mutagen
-from mutagen.wave import WAVE
+import requests
+from io import BytesIO
+from mutagen.mp3 import MP3
 from flask import Blueprint, jsonify, redirect, request
 from flask_wtf.csrf import generate_csrf
 from flask_login import login_required
@@ -23,27 +25,17 @@ def songs():
 @song_routes.route('/singleSong', methods=['POST'])
 @login_required
 def create_song():
-    print('BEFORE:   ', request.files)
-    cover_image = request.files.get('songCoverImage')
-    song_mp3 = request.files.get('songMp3')
-    title = request.form.get('title')
-    genre = request.form.get('genre')
+    data = request.files
 
-    print('HERE     :     ' ,cover_image, song_mp3, title, genre)
-    # form = SongForm(
-    #     title=data['songTitle'],
-    #     genre=data['genreValue'],
-    #     coverImage=data['songCoverImage'],
-    #     mp3File=data['songMp3'],
-    #     csrf_token=generate_csrf()
-    # )
-
-    # print('REQUEST   :   ', request.files)
-
-    return {'message': 'lol'}
-
-    # print('DATA  :  ', data['songMp3'])
-    # print('DATA  :  ', data['songTitle'])
+    form = SongForm(
+        title=data.get('title'),
+        genre=data.get('genre'),
+        coverImage=data.get('songCoverImage'),
+        mp3File=data.get('songMp3'),
+        # Is this right? Not sure if we should be generating a new
+        # token or grabbing the token from the client
+        csrf_token=generate_csrf()
+    )
 
     def audio_duration(length):
         length %= 3600
@@ -55,7 +47,7 @@ def create_song():
 
     if form.validate_on_submit():
 
-        song = form.data["mp3file"]
+        song = form.data["mp3File"]
         coverImage = form.data["coverImage"]
 
         song.filename = get_unique_filename(song.filename)
@@ -66,7 +58,7 @@ def create_song():
         uploadImage = upload_file_to_AWS(coverImage)
 
         # If song or upload failed to AWS return error message
-        if "url" not in uploadSong or uploadImage:
+        if "url" not in uploadSong and uploadImage:
             # if the dictionary doesn't have a url key
             # it means that there was an error when we tried to upload
             # so we send back that error message
@@ -75,7 +67,17 @@ def create_song():
         songURL = uploadSong["url"]
         imageURL = uploadImage["url"]
 
-        audio = WAVE(songURL)
+
+        # Retrieve the file contents from the URL using requests.get()
+        response = requests.get(songURL)
+
+        # Pass the file contents to the MP3() function using BytesIO()
+        audio = MP3(BytesIO(response.content))
+
+        # audio = MP3(songURL)
+        print('AUDIO', audio)
+        print('AUDIO LENGTH', audio.info.length)
+        print('AUDIO BIT-RATE', audio.info.bitrate)
 
         audio_info = audio.info
 
@@ -94,7 +96,7 @@ def create_song():
         )
         db.session.add(new_song)
         db.session.commit()
-        return redirect("/")
+        return {"message": "Succesfully Uploaded Song", "status": 201}
 
     if form.errors:
         print(form.errors)
