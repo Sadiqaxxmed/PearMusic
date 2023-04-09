@@ -1,6 +1,11 @@
 .song-body {
-  padding-top: 75px;
-  padding-left:  280px;
+  /* padding-top: 75px;
+  padding-left:  280px; */
+  z-index: -1;
+  height: 2000px;
+  padding-top: 65px;
+  padding-left: 300px;
+  padding-right: 50px;
 }
 
 .song-section {

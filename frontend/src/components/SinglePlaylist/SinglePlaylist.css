@@ -1,0 +1,14 @@
+.SG-PL-Body {
+  z-index: -1;
+  height: 2000px;
+  padding-top: 100px;
+  padding-left: 300px;
+  padding-right: 50px;
+}
+
+.SG-PL-Img{
+  height: 225px;
+  width: 225px;
+  border-radius: 10px;
+  padding-bottom: 5px;
+}
