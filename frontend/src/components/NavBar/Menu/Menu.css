@@ -53,7 +53,15 @@
 
 }
 
-.Menu-LogIn-Btn{
+.Log.In{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 8px 0px 8px 0px ;
+    color: rgb(240, 78, 62);
+}
+
+.Sign.Up{
     display: flex;
     width: 100%;
     align-items: center;
