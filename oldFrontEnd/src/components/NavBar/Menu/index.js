@@ -10,12 +10,12 @@ const Menu = () => {
 
             <div className='Menu-LogIn-Wrapper'>
                 <div className='Menu-LogIn-Btn'>&nbsp;&nbsp;Log In</div>
-                <i class="fa-solid fa-right-to-bracket" id='Login-Icon'></i>
+                <i className="fa-solid fa-right-to-bracket" id='Login-Icon'></i>
             </div>
 
             <div className='Menu-SignUp-Wrapper'>
                 <div className='Menu-SignUp-Btn'>&nbsp;&nbsp;Sign Up</div>
-                <i class="fa-solid fa-user-plus" id='SignUp-Icon'></i>
+                <i className="fa-solid fa-user-plus" id='SignUp-Icon'></i>
             </div>
         </div>
     </div>
