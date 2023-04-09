@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
@@ -8,6 +8,7 @@ import "./SongForm.css";
 
 function SignupFormModal() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [errors, setErrors] = useState([]);
     const [songTitle, setSongTitle] = useState('')
     const [songCoverImage, setSongCoverImage] = useState(null)
@@ -39,9 +40,9 @@ function SignupFormModal() {
         // console.log('COVER IMAGE FILE  :   ', e)
 
         const formData = new FormData();
-        
+
         // console.log('ass',Object.values({songMp3}))
-        formData.append('songMp3' , songMp3)
+        formData.append('songMp3', songMp3)
         formData.append('songCoverImage', songCoverImage)
         formData.append('title', songTitle)
         formData.append('genre', genreValue)
@@ -52,11 +53,12 @@ function SignupFormModal() {
 
         const res = await fetch('/songs/singleSong', {
             method: "POST",
-            headers: {'Content-Type': 'application/json'},
             body: formData
         });
-        console.log('RESPONSE', await res.json())
-        return;
+
+        if (res.ok) {
+            return history.push('/')
+        }
     };
 
     const GenreOptions = [
@@ -94,14 +96,14 @@ function SignupFormModal() {
                             {errors.map((error, idx) => (
                                 <p key={idx}>{error}</p>
                             ))}
-                        </div> 
+                        </div>
                         <div className="SF-Song-Title-Lable">Song Title:
                             <input type='text' className="SF-Song-Title" value={songTitle} onChange={(e) => setSongTitle(e.target.value)} required />
-                        </div> 
+                        </div>
                         <div> Cover Image:
                             <input className="SF-CoverImage" type='file' accept='image/*' onChange={handleCoverFileChange} required />
 
-                        </div> 
+                        </div>
                         <div className="SF-Genre-Wrapper"> Genre:
                             <ReactSelect
                                 className="SF-Genre"
@@ -109,7 +111,7 @@ function SignupFormModal() {
                                 value={genreValue}
                                 onChange={handleGenreValueChange}
                             />
-                        </div> 
+                        </div>
                         <div className="SF-Mp3-Wrapper"> Song File:
                             <input type='file' onChange={handleFileChange} required />
                         </div>
