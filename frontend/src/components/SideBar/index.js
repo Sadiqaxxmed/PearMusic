@@ -35,7 +35,7 @@ function SideBar() {
                     <span className="material-symbols-outlined SB-icons pink-icons">
                         home_storage
                     </span>
-                    <p>Albums</p></li>
+                    <p> <Link exact="true" to="/albums" style={{ textDecoration:'none', color:'white' }}>Albums</Link> </p></li>
             </div>
             <div className='SB-Playlists'>
                 <ul className='SB-Playlists-Title' />
@@ -45,7 +45,7 @@ function SideBar() {
                         <span className="material-symbols-outlined SB-icons pink-icons">
                             list
                         </span>
-                        <p>All Playlists</p></li>
+                        <p> <Link exact="true" to="/allPlaylist" style={{ textDecoration:'none', color:'white' }}> All Playlists  </Link> </p></li>
                     <li className='SB-User-Playlist-li'>
                         <span className="material-symbols-outlined SB-icons pink-icons">
                             queue_music

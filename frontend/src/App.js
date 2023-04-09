@@ -8,6 +8,10 @@ import SideBar from './components/SideBar/index.js'
 import NavBar from './components/NavBar';
 import Browser from './components/Browse';
 import Songs from './components/Songs';
+import AllPlaylist from './components/AllPlaylist';
+import SinglePlaylist from "./components/SinglePlaylist";
+import Albums from "./components/Albums";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +38,15 @@ function App() {
           </Route>
           <Route path="/songs">
             <Songs />
+          </Route>
+          <Route path="/allPlaylist">
+            <AllPlaylist />
+          </Route>
+          <Route path="/SinglePlaylist">
+            <SinglePlaylist />
+          </Route>
+          <Route path="/albums">
+            <Albums />
           </Route>
         </Switch>
       )}
