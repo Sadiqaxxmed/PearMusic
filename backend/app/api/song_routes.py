@@ -23,18 +23,24 @@ def songs():
 @song_routes.route('/singleSong', methods=['POST'])
 @login_required
 def create_song():
-    data = request.get_json();
-    form = SongForm(
-        title=data['songTitle'],
-        genre=data['genreValue'],
-        coverImage=data['songCoverImage'],
-        mp3File=data['songMp3'],
-        csrf_token=generate_csrf()
-    )
+    print('BEFORE:   ', request.files)
+    cover_image = request.files.get('songCoverImage')
+    song_mp3 = request.files.get('songMp3')
+    title = request.form.get('title')
+    genre = request.form.get('genre')
 
-    print('REQUEST   :   ', request.files)
+    print('HERE     :     ' ,cover_image, song_mp3, title, genre)
+    # form = SongForm(
+    #     title=data['songTitle'],
+    #     genre=data['genreValue'],
+    #     coverImage=data['songCoverImage'],
+    #     mp3File=data['songMp3'],
+    #     csrf_token=generate_csrf()
+    # )
 
-    print('FORM   :   ', form);
+    # print('REQUEST   :   ', request.files)
+
+    return {'message': 'lol'}
 
     # print('DATA  :  ', data['songMp3'])
     # print('DATA  :  ', data['songTitle'])
