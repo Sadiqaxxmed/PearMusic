@@ -16,7 +16,6 @@ function Browser() {
 
   useEffect(() => {
     dispatch(thunkAllSongs());
-
   }, [dispatch])
 
   useEffect(() => {

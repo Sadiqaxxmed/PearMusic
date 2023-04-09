@@ -45,7 +45,7 @@ const songsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_SONGS:
       return { ...state, allSongs: { ...action.songs } }
-    default: return { ...initialState }
+    default: return { ...state }
   }
 }
 

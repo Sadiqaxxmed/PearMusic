@@ -47,7 +47,7 @@ const albumsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_ALBUMS:
       return { ...state, allAlbums: { ...action.albums } }
-    default: return { ...initialState }
+    default: return { ...state }
   }
 }
 
