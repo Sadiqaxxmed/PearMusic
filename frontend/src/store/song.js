@@ -3,11 +3,16 @@
 
 // TODO: CONSTANTS
 const ALL_SONGS = 'ALL_SONGS';
+const RESET_SONGS = 'RESET_SONGS';
 
 // TODO: ACTION CREATORS
 export const actionAllSongs = (songs) => {
   return { type: ALL_SONGS, songs }
 }
+
+export const actionResetSongs = (reset) => {
+  return { type: RESET_SONGS, reset }
+};
 
 
 // TODO: NORMALIZE DATA
@@ -32,6 +37,11 @@ export const thunkAllSongs = () => async dispatch => {
   }
 }
 
+export const thunkResetSongs = () => async dispatch => {
+  dispatch(actionResetSongs(initialState));
+  return;
+};
+
 
 // TODO: INITIAL SLICE STATE
 const initialState = {
@@ -45,6 +55,8 @@ const songsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_SONGS:
       return { ...state, allSongs: { ...action.songs } }
+    case RESET_SONGS:
+      return action.reset
     default: return { ...state }
   }
 }
