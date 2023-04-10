@@ -11,6 +11,7 @@ import Songs from './components/Songs';
 import AllPlaylist from './components/AllPlaylist';
 import SinglePlaylist from "./components/SinglePlaylist";
 import Albums from "./components/Albums";
+import ManageDiscography from "./components/Manage-Discography";
 
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
           </Route>
           <Route path="/albums">
             <Albums />
+          </Route>
+          <Route path="/manage-discography">
+            <ManageDiscography />
           </Route>
         </Switch>
       )}
