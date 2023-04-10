@@ -6,6 +6,17 @@
   padding-right: 50px;
 }
 
+.BR-browse-carousel {
+  display: flex;
+  width: auto;
+  height: 22rem;
+}
+
+.BR-images {
+  margin-right: 2rem;
+  border-radius: 10px;
+}
+
 .BR-labels {
   color: rgb(238, 238, 238);
   font-size: 34px;
