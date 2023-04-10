@@ -9,10 +9,11 @@ import { thunkAllSongs, thunkResetSongs } from "../../store/song";
 import './Browse.css'
 import 'swiper/swiper.min.css'
 import 'swiper/modules/navigation/navigation.min.css'
-import image from '../../images/Fin-Cards/K-Pop-Card.gif'
-import image2 from '../../images/Fin-Cards/Pop-Card.gif'
-import image3 from '../../images/Fin-Cards/R&B-Card.gif'
-import image4 from '../../images/Fin-Cards/Rap-Card.gif'
+import image from '../../images/Fin-Cards(smaller)/kpop.gif'
+import image2 from '../../images/Fin-Cards(smaller)/pop.gif'
+import image3 from '../../images/Fin-Cards(smaller)/rap.gif'
+import image4 from '../../images/Fin-Cards(smaller)/r&b.gif'
+
 
 function Browser() {
   const dispatch = useDispatch();
