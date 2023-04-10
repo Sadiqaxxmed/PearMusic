@@ -2,6 +2,7 @@ from .db import db
 from sqlalchemy import ForeignKey
 
 
+
 class Playlist(db.Model):
     __tablename__ = 'playlists'
 
@@ -11,3 +12,11 @@ class Playlist(db.Model):
     # ownerId = db.relationship('User', backref='playlist', lazy=True)
     owner_id = db.Column(db.Integer, ForeignKey('users.id'))
     db.relationship("User", primaryjoin="User.id == Playlist.owner_id")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'owner_id': self.owner_id,
+        }
