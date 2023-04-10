@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../Forms/LoginFormModal";
@@ -42,44 +43,42 @@ function ProfileButton({ user }) {
   return (
     <>
       <div className="Menu-Btn-Wrap">
-          <i className="fa-solid fa-bars" id='burger' onClick={openMenu}/>
+        <i className="fa-solid fa-bars" id='burger' onClick={openMenu} />
       </div>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-          <div className='Menu-Buttons'>
-            <div className='Menu-Welcome'>&nbsp;&nbsp;Welcome {user.username}!</div>
+            <div className='Menu-Buttons'>
+              <div className='Menu-Welcome'>&nbsp;&nbsp;Welcome {user.username}!</div>
               {/* <div>{user.email}</div> */}
-              
-                <div className="Menu-Manage-Disc-Btn">&nbsp;Manage Discography 
-                  <i className="fa-solid fa-record-vinyl" id='vinyl'/> 
-                </div>
-
-                <div className="Menu-Upload-Btn">
-                  <OpenModalButton
+              <NavLink to='/manage-discography' style={{textDecoration:'none'}} className="Menu-Manage-Disc-Btn">&nbsp;Manage Discography
+                <i className="fa-solid fa-record-vinyl" id='vinyl' />
+              </NavLink>
+              <div className="Menu-Upload-Btn">
+                <OpenModalButton
                   buttonText="Upload Album"
                   onItemClick={closeMenu}
                   modalComponent={<AlbumForm />}
-                  />
-                  <span className="material-symbols-outlined" id='upload-album'>
-                    library_music
-                  </span>
-                </div>
+                />
+                <span className="material-symbols-outlined" id='upload-album'>
+                  library_music
+                </span>
+              </div>
 
-                <div className="Menu-Upload-Btn">
-                  <OpenModalButton
+              <div className="Menu-Upload-Btn">
+                <OpenModalButton
                   buttonText="Upload Song"
                   onItemClick={closeMenu}
                   modalComponent={<SongForm />}
-                  />
-                  <i className="fa-solid fa-music" id='upload-song'></i>
-                </div>
-
-                <div className='Menu-LogOut-Btn' onClick={handleLogout}>
-                  &nbsp;Log Out
-                </div>
+                />
+                <i className="fa-solid fa-music" id='upload-song'></i>
               </div>
-            
+
+              <div className='Menu-LogOut-Btn' onClick={handleLogout}>
+                &nbsp;Log Out
+              </div>
+            </div>
+
           </>
         ) : (
           <>

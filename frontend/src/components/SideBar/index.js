@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { NavLink,Link } from 'react-router-dom';
 
 import './SideBar.css'
 import image from '../../images/pear2.png'
@@ -7,17 +7,19 @@ function SideBar() {
 
     return (
         <div className='SB-body'>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <NavLink to='/' style={{ display: 'flex', alignItems: 'center', textDecoration:'none', color:'white', width:'0'}}>
                 <img src={image} style={{ width: 'auto', height: '23px' }} />
                 <h2 className='SB-logo' style={{ fontWeight: '400' }}>
                     Music
                 </h2>
-            </div>
+            </NavLink>
             <div className='SB-search-field-div'>
                 <span className="material-symbols-outlined">
                     search
                 </span>
+                <form onSubmit={() => alert('Feature Coming Soon!')}>
                 <input placeholder='Search' id='search-field'></input>
+                </form>
             </div>
             <h3 className='SB-lib-play-headers'>Library</h3>
             <div className='SB-Library'>

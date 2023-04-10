@@ -1,0 +1,42 @@
+.MD-body {
+  z-index: -1;
+  height: 2000px;
+  padding-top: 65px;
+  padding-left: 300px;
+  padding-right: 50px;
+}
+
+.MD-label {
+  color: rgb(238, 238, 238);
+  font-size: 34px;
+  font-weight: 500;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgb(42, 42, 42);
+}
+
+.MD-sub-labels {
+  color: rgb(238, 238, 238);
+  font-size: 24px;
+  font-weight: 500;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgb(42, 42, 42);
+}
+
+.MD-songs-container-div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.MD-songs-img {
+  margin-left: 45px;
+  height: 100px;
+  width: auto;
+  border-radius: 10px;
+}
+
+.MD-songs-test-css {
+  height: 50px;
+  width: 50px;
+  margin-left: 100px;
+  border-radius: 10px;
+}

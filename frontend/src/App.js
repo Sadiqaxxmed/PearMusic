@@ -11,7 +11,9 @@ import Songs from './components/Songs';
 import AllPlaylist from './components/AllPlaylist';
 import SinglePlaylist from "./components/SinglePlaylist";
 import Albums from "./components/Albums";
+import ManageDiscography from "./components/Manage-Discography";
 import ScrollToTop from './components/ScrollToTop.js'
+
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +50,9 @@ function App() {
           </Route>
           <Route path="/albums">
             <Albums />
+          </Route>
+          <Route path="/manage-discography">
+            <ManageDiscography />
           </Route>
         </Switch>
       )}
