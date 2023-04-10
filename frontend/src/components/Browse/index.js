@@ -11,6 +11,10 @@ import 'swiper/swiper.min.css'
 import 'swiper/modules/navigation/navigation.min.css'
 import 'swiper/modules/pagination/pagination.min.css'
 // import 'swiper/modules/scrollbar/scrollbar.min.css'
+import image from '../../images/Fin-Cards/K-Pop-Card.gif'
+import image2 from '../../images/Fin-Cards/Pop-Card.gif'
+import image3 from '../../images/Fin-Cards/R&B-Card.gif'
+import image4 from '../../images/Fin-Cards/Rap-Card.gif'
 
 function Browser() {
   const dispatch = useDispatch();
@@ -44,7 +48,10 @@ function Browser() {
           Browse
         </h1>
         <div className="BR-browse-carousel">
-          <img className="BR-browse-images" src='https://is5-ssl.mzstatic.com/image/thumb/Video114/v4/a2/da/85/a2da8572-031c-8058-a576-29e3c3b61b6b/Job2857371a-d686-4e4a-b432-76d75141c7cb-108139790-PreviewImage_PreviewImageIntermediate_preview_image_nonvideo-Time1606902986937.png/540x540cc.webp' />
+        <img className="BR-images" src={image} alt="Example GIF" />
+        <img className="BR-images" src={image2} alt="Example GIF" />
+        <img className="BR-images" src={image3} alt="Example GIF" />
+        <img className="BR-images" src={image4} alt="Example GIF" />
         </div>
         <h1 className="BR-labels">Albums</h1>
         {albums && (
@@ -57,6 +64,7 @@ function Browser() {
             // scrollbar={{ draggable: true }}
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => console.log(swiper)}
+            style={{zIndex:'-1'}}
           >
             {albums.map(album => (
               <SwiperSlide>
@@ -93,6 +101,7 @@ function Browser() {
             // scrollbar={{ draggable: true }}
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => console.log(swiper)}
+            style={{zIndex:'-1'}}
           >
             {songs.map(song =>
               <SwiperSlide>
