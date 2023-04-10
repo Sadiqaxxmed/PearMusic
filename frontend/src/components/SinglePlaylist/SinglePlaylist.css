@@ -161,9 +161,15 @@
 }
 
 .SGPL-icon-menu {
-  color: black;
+  color: rgb(251, 45, 71);
 }
 
 .SGPL-Time {
-  display: flex;
+  display: inline-flex;
+  width: 100px;
+}
+
+.SGPL-icon-menu-div {
+  padding-top: 10px;
+  padding-left: 10px;
 }
