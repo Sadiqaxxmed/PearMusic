@@ -3,11 +3,16 @@
 
 // TODO: CONSTANTS
 const ALL_ALBUMS = 'ALL_ALBUMS';
+const RESET_ALBUMS = 'RESET_ALBUMS';
 
 // TODO: ACTION CREATORS
 export const actionAllAlbums = (albums) => {
   return { type: ALL_ALBUMS, albums }
 }
+
+export const actionresetAlbums = (reset) => {
+  return { type: RESET_ALBUMS, reset }
+};
 
 
 // TODO: NORMALIZE DATA
@@ -34,6 +39,11 @@ export const thunkAllAlbums = () => async dispatch => {
   }
 }
 
+export const thunkResetAlbums = () => async dispatch => {
+  dispatch(actionresetAlbums(initialState));
+  return;
+};
+
 
 // TODO: INITIAL SLICE STATE
 const initialState = {
@@ -47,6 +57,8 @@ const albumsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_ALBUMS:
       return { ...state, allAlbums: { ...action.albums } }
+    case RESET_ALBUMS:
+      return action.reset
     default: return { ...state }
   }
 }
