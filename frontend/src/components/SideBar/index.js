@@ -17,7 +17,9 @@ function SideBar() {
                 <span className="material-symbols-outlined">
                     search
                 </span>
+                <form onSubmit={() => alert('Feature Coming Soon!')}>
                 <input placeholder='Search' id='search-field'></input>
+                </form>
             </div>
             <h3 className='SB-lib-play-headers'>Library</h3>
             <div className='SB-Library'>
