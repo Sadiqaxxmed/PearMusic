@@ -20,6 +20,10 @@ function NavBar() {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0)
 
+  //console logs start
+  console.log(currentTime)
+  //console logs end
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
@@ -46,8 +50,10 @@ function NavBar() {
     }
   };
 
-  const handleProgressChange = () => {
-    //to do
+  const handleProgressChange = (e) => {
+    console.log(e)
+    playerRef.current.seekTo(e)
+    setCurrentTime(e)
   }
 
   function convertDecimalToTime(decimalValue) {
@@ -96,7 +102,8 @@ function NavBar() {
                 <div className="NB-Player-CurrentTime">{convertDecimalToTime(currentTime)}</div>
                 <div className="NB-Player-TimeLeft">-{convertDecimalToTime(duration-currentTime)}</div>
               </div>
-              <input className='NB-Progress' type="range" value={currentTime} min='0' max={duration} onChange={(e)=> setCurrentTime(e.target.value)}/>
+              {/* onChange={(e)=> setCurrentTime(e.target.value)} */}
+              <input className='NB-Progress' type="range" value={currentTime} min='0' max={duration} onChange={(e)=> handleProgressChange(e.target.value)}/>
             </>
           : <img className="NB-Pear" src={pear} alt='pear'/>
           }
