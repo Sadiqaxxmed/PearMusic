@@ -27,6 +27,7 @@ greenlet = "==2.0.1"
 Mako = "==1.2.4"
 boto3 = "*"
 mutagen = "*"
+requests = "*"
 
 [dev-packages]
 
