@@ -1,10 +1,10 @@
 import React,{useState} from "react";
 import ProfileButton from "../Navigation/ProfileButton";
 import { useSelector } from "react-redux";
-
 import Menu from "./Menu/index";
 import noSong from '../../images/Music.png'
 import pear from '../../images/pear2.png'
+import ReactPlayer from 'react-player'
 import './NavBar.css'
 
 
