@@ -5,11 +5,26 @@ from mutagen.mp3 import MP3
 from flask import Blueprint, jsonify, redirect, request
 from flask_wtf.csrf import generate_csrf
 from flask_login import login_required
-from app.models import Song, User, db
+from app.models import Song, User, liked_songs, db
 from app.forms import SongForm
 from .AWS_helpers import get_unique_filename, upload_file_to_AWS
 
 song_routes = Blueprint('song', __name__)
+
+
+@song_routes.route('/likedSongs/<int:user_id>')
+def get_liked_songs(user_id):
+    """
+    Query for all of user liked songs and returns them in a list of song dictionaries
+    """
+
+    user = User.query.get(user_id)
+    if not user:
+        return {'error': 'User not found'}, 404
+
+    liked_songs_query = db.session.query(Song).join(liked_songs).filter_by(owner_id=user_id).all()
+    return {'likedSongs': [song.to_dict() for song in liked_songs_query]}
+
 
 
 @song_routes.route('/allSongs')
@@ -101,3 +116,15 @@ def create_song():
     if form.errors:
         print(form.errors)
         return {"message": "Invalid Data", "status": 403}
+
+@song_routes.route('/allSongs/<int:user_id>')
+def get_user_songs(user_id):
+    """
+    Query for all user songs and returns them in a list of song dictionaries
+    """
+    user = User.query.get(user_id)
+    if not user:
+        return {'error': 'User not found'}, 404
+
+    songs = Song.query.filter_by(user_id=user_id).all()
+    return {'songs': [song.to_dict() for song in songs]}
