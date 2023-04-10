@@ -1,4 +1,4 @@
-import React,{useState, useRef} from "react";
+import React,{useState, useRef, useEffect} from "react";
 import ProfileButton from "../Navigation/ProfileButton";
 import { useSelector } from "react-redux";
 import Menu from "./Menu/index";
@@ -12,6 +12,7 @@ import './NavBar.css'
 
 function NavBar() {
   const sessionUser = useSelector(state => state.session.user);
+  const currentSong = useSelector(state => state.songs.singleSong)
   const playerRef = useRef(null); // Create a ref to the ReactPlayer component
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -19,10 +20,15 @@ function NavBar() {
   const [playPause, setPlayPause] = useState(false)
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0)
-
+  const [songUrl, setSongUrl] = useState('')
   //console logs start
-  console.log(currentTime)
+  console.log('ass',currentSong)
   //console logs end
+
+  useEffect(() => {
+    setSongUrl(currentSong.mp3file)
+    console.log('currentSong ==', currentSong.mp3file)
+  },[currentSong])
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -80,7 +86,7 @@ function NavBar() {
           {/* Render ReactPlayer component and pass ref */}
           <ReactPlayer 
             ref={playerRef}
-            url='https://file-examples.com/storage/fe9278ad7f642dbd39ac5c9/2017/11/file_example_MP3_700KB.mp3' 
+            url={songUrl}
             controls={false}
             volume = {volume/100}
             playing = {playPause}
