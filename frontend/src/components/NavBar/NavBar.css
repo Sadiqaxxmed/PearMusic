@@ -154,12 +154,18 @@ input.NB-Progress::-webkit-slider-thumb {
   margin-top: -3px;
 }
 
+.NB-Img{
+  width: 44px;
+  height: 40px;
+  box-shadow: 2px 0 3px #000; /* Box shadow properties, adjust values as needed */
+}
+
 .NB-Player-Times{
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 98%;
   justify-content: space-between;
-  font-size:.6em;
+  font-size:.55em;
   position: absolute;
   bottom: 6px;
   color: rgb(121, 120, 121);
