@@ -1,10 +1,10 @@
 import React from 'react';
-import ProfileButton from '../../Navigation/ProfileButton';
-import { useSelector } from 'react-redux';
+// import ProfileButton from '../../Navigation/ProfileButton';
+// import { useSelector } from 'react-redux';
 import './Menu.css'; // import the CSS file for the menu styles
 
 const Menu = ({ isLoaded }) => {
-    const sessionUser = useSelector(state => state.session.user);
+    // const sessionUser = useSelector(state => state.session.user);
 
     return (
     <div id="Menu" >

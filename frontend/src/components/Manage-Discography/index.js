@@ -1,14 +1,13 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { thunkResetSongs, thunkUserSongs } from '../../store/song';
+import { thunkResetAlbums, thunkUserAlbums } from '../../store/album';
+import { thunkResetPlaylists, thunkUserPlaylists } from '../../store/playlist';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 
-
 import './Manage-Discography.css'
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { thunkUserSongs } from '../../store/song';
-import { thunkUserAlbums } from '../../store/album';
-// import { thunkUserPlaylists } from '../../store/playlist';
 
 function ManageDiscography() {
   const dispatch = useDispatch();
@@ -22,29 +21,29 @@ function ManageDiscography() {
   useEffect(() => {
     dispatch(thunkUserSongs(userId))
     dispatch(thunkUserAlbums(userId))
-    // dispatch(thunkUserPlaylists(userId))
-
+    dispatch(thunkUserPlaylists(userId))
     if (!userId) {
       return history.push('/')
     }
-  }, [dispatch, userId])
 
-
-  function MyComponent(numSlides, className) {
-    const imageURL = "https://assets.teenvogue.com/photos/615c6f908b261647679498e4/16:9/w_2560%2Cc_limit/GettyImages-1344925419.jpg";
-    const imageCount = numSlides;
-
-    const images = [];
-    for (let i = 0; i < imageCount; i++) {
-      images.push(<SwiperSlide className='MD-songs-carousel-images-div'><img className={className} key={i} src={imageURL} alt={`Image ${i + 1}`} /></SwiperSlide>);
+    return () => {
+      dispatch(thunkResetSongs())
+      dispatch(thunkResetAlbums())
+      dispatch(thunkResetPlaylists())
     }
-    return images
-  }
 
-  // const songsCSS = 'MD-songs-test-css';
-  const albumsAndplaylistCSS = 'MD-songs-img';
+  }, [dispatch, userId, history])
 
-  const test = 'none'
+  // function MyComponent(numSlides, className) {
+  //   const imageURL = "https://assets.teenvogue.com/photos/615c6f908b261647679498e4/16:9/w_2560%2Cc_limit/GettyImages-1344925419.jpg";
+  //   const imageCount = numSlides;
+
+  //   const images = [];
+  //   for (let i = 0; i < imageCount; i++) {
+  //     images.push(<SwiperSlide className='MD-songs-carousel-images-div'><img className={className} key={i} src={imageURL} alt={`Image ${i + 1}`} /></SwiperSlide>);
+  //   }
+  //   return images
+  // }
 
   return (
     <div className="MD-body">
@@ -62,7 +61,7 @@ function ManageDiscography() {
           >
             <div className='MD-songs-carousel-images-div'>
               {userSongs.map(song =>
-                <SwiperSlide className='MD-songs-carousel-images-div'><img className='MD-songs-test-css' key={song.id} src={song.coverImage} alt={`Image ${song.id + 1}`} /></SwiperSlide>
+                <SwiperSlide className='MD-songs-carousel-images-div'><img className='MD-songs-test-css' key={song.id} src={song.coverImage} alt='Song Cover' /></SwiperSlide>
               )}
               {/* Render Jennie Pics lol */}
               {/* {MyComponent(30, albumsAndplaylistCSS)} */}
@@ -84,7 +83,10 @@ function ManageDiscography() {
           >
             <div className='MD-songs-carousel-images-div'>
               {/* {MyComponent(30, albumsAndplaylistCSS)} */}
-
+              {userPlaylists.map(playlist =>
+                // <SwiperSlide className='MD-songs-carousel-images-div'><img className='MD-songs-test-css' key={playlist.id} src={playlist.coverImage} alt={`Image ${playlist.id + 1}`} /></SwiperSlide>
+                <SwiperSlide className='MD-songs-carousel-images-div'><h3>{playlist.title}</h3></SwiperSlide>
+              )}
             </div>
           </Swiper>
         </div>
@@ -103,7 +105,7 @@ function ManageDiscography() {
           >
             <div className='MD-songs-carousel-images-div'>
               {userAlbums.map(album =>
-                <SwiperSlide className='MD-songs-carousel-images-div'><img className='MD-songs-img' key={album.id} src={album.coverImage} alt={`Image ${album.id + 1}`} /></SwiperSlide>
+                <SwiperSlide className='MD-songs-carousel-images-div'><img className='MD-songs-img' key={album.id} src={album.coverImage} alt='Album Cover' /></SwiperSlide>
               )}
               {/* {MyComponent(30, albumsAndplaylistCSS)} */}
 

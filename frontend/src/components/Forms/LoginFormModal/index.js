@@ -31,7 +31,7 @@ function LoginFormModal() {
     <>
       {showModal && (
       <div className="LogIn-Wrapper">
-        <i className="fa-solid fa-xmark" onClick={() => handleCloseModal()}id='x' id='x'/>
+        <i className="fa-solid fa-xmark" onClick={() => handleCloseModal()} id='x'/>
         <h1 className="LogIn-Title">Login</h1>
         <form className='LogIn-Form' onSubmit={handleSubmit}>
           <div>

@@ -1,11 +1,10 @@
 import React,{useState, useRef, useEffect} from "react";
 import ProfileButton from "../Navigation/ProfileButton";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Menu from "./Menu/index";
 import noSong from '../../images/Music.png'
 import pear from '../../images/pear2.png'
 import ReactPlayer from 'react-player'
-import { Dispatch } from "react";
 import './NavBar.css'
 
 
@@ -26,14 +25,15 @@ function NavBar() {
   const [songTitle, setSongTitle] = useState('')
   const [songArtist, setSongArtist] = useState('')
   const [coverImage, setCoverImage] = useState('')
-  const [albumTitle, setAlbumTitle] = useState(null)
+  // const [albumTitle, setAlbumTitle] = useState(null)
+  const [toggleIcon, setToggleIcon] = useState('fa-solid fa-play fa-xl')
 
   //console logs start
 
   // console.log('ass',currentSong)
 
   //console logs end
-  
+
   useEffect(() => {
     if(currentSong.mp3file !== undefined) {
       setHasPlayed(true)
@@ -44,7 +44,7 @@ function NavBar() {
     setSongArtist(currentSong.artistName)
     setCoverImage(currentSong.coverImage)
     // setAlbumTitle(currentSong.albumTitle) need to pass in album title to single song
-  },[currentSong])
+  },[currentSong, hasPlayed])
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -52,8 +52,13 @@ function NavBar() {
 
   function playPauseFunc(){
     setHasPlayed(true)
-    if(!playPause) setPlayPause(true)
-    else setPlayPause(false)
+    if(!playPause) {
+      setToggleIcon('fa-solid fa-pause fa-xl')
+      setPlayPause(true)
+    } else {
+      setToggleIcon('fa-solid fa-play fa-xl')
+      setPlayPause(false)
+    }
   }
 
   const handleSeekUp = () => {
@@ -88,17 +93,18 @@ function NavBar() {
       <div className="music-player-container">
         <div> <i className="fa-solid fa-shuffle fa-sm" id='shuffle'></i> </div>
         <div> <i onClick={handleSeekDown} className="fa-solid fa-backward fa" id='backwards'></i> </div>
-        <div> <i onClick={playPauseFunc} className="fa-solid fa-play fa-xl" id='play'></i> </div>
+        <div> <i onClick={playPauseFunc} className={toggleIcon} id='play'></i> </div>
+        {/* <div> <i onClick={playPauseFunc} className="fa-solid fa-pause fa-xl" id='play'></i> </div> */}
         <div> <i onClick={handleSeekUp}className="fa-solid fa-forward fa" id='forwards'></i> </div>
         <div> <i className="fa-solid fa-repeat fa-sm" id='repeat'></i> </div>
       </div>
       <div className="NB-Wrapper">
         {!hasPlayed
-        ? (<img className="NB-Img" src={noSong} alt='music'/>) 
-        : (<img className="NB-Img" src={coverImage} />)}
-        <div className='NB-MUSIC-BLOCK'> 
+        ? (<img className="NB-Img" src={noSong} alt='music'/>)
+        : (<img className="NB-Img" src={coverImage} alt='cover' />)}
+        <div className='NB-MUSIC-BLOCK'>
           {/* Render ReactPlayer component and pass ref */}
-          <ReactPlayer 
+          <ReactPlayer
             ref={playerRef}
             url={songUrl}
             controls={false}
@@ -109,7 +115,7 @@ function NavBar() {
             onDuration={(duration) => setDuration(duration)}
             style={{display: 'none'}}
           />
-          {hasPlayed 
+          {hasPlayed
           ? <>
               <div className="NB-Player-CurrentSong-Wrapper">
                 <div className="NB-Player-CurrentSong">{songTitle}</div>

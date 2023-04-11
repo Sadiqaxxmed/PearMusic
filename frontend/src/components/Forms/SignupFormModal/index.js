@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { signUp } from "../../../store/session";
@@ -29,7 +29,7 @@ function SignupFormModal() {
 			]);
 		}
 	};
-	
+
 	const [showModal, setShowModal] = useState(true);
 
 	const handleCloseModal = () => {
