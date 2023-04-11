@@ -8,7 +8,7 @@ function SideBar() {
     return (
         <div className='SB-body'>
             <NavLink to='/' style={{ display: 'flex', alignItems: 'center', textDecoration:'none', color:'white', width:'0'}}>
-                <img src={image} style={{ width: 'auto', height: '23px' }} />
+                <img src={image} alt='temp' style={{ width: 'auto', height: '23px' }} />
                 <h2 className='SB-logo' style={{ fontWeight: '400' }}>
                     Music
                 </h2>

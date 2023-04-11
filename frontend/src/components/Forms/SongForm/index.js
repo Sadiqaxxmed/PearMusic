@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import ReactSelect from 'react-select';
-import { useDispatch, useSelector } from "react-redux";
-import { useModal } from "../../../context/Modal";
-import { signUp } from "../../../store/session";
+import { useSelector } from "react-redux";
+// import { useModal } from "../../../context/Modal";
+// import { signUp } from "../../../store/session";
 import "./SongForm.css";
 
 function SignupFormModal() {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const history = useHistory();
     const [errors, setErrors] = useState([]);
     const [songTitle, setSongTitle] = useState('')
@@ -17,7 +17,7 @@ function SignupFormModal() {
 
     const artistName = useSelector(state => state.session.user.username)
 
-    const { closeModal } = useModal();
+    // const { closeModal } = useModal();
 
     const handleGenreValueChange = (selectedOption) => {
         //console.log(selectedOption.value)
@@ -40,6 +40,7 @@ function SignupFormModal() {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        console.log('VALUES   :   ', e)
         // console.log('COVER IMAGE FILE  :   ', e)
 
         const formData = new FormData();
@@ -117,7 +118,7 @@ function SignupFormModal() {
                             />
                         </div>
                         <div className="SF-Mp3-Wrapper"> Song File:
-                            <input type='file' onChange={handleFileChange} required />
+                            <input type='file' accept="audio/*" onChange={handleFileChange} required />
                         </div>
                         <button className='SF-Submit-Btn' type="submit">Submit</button>
                     </form>

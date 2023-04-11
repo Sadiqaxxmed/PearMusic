@@ -47,10 +47,9 @@ function Browser() {
     } else {
       setLoaded(false)
     }
-  }, [songs, albums])
+  }, [songs, albums, loaded])
 
   const songFunc = (song) =>  {
-    // console.log(song)
     dispatch(thunkSingleSong(song))
   }
 
@@ -93,7 +92,7 @@ function Browser() {
             {shuffledAlbums.map(album => (
               <SwiperSlide key={album.id}>
                 <div style={{ marginTop: '50px' }}>
-                  <img className='BR-album-images' src={album.coverImage} />
+                  <img className='BR-album-images' src={album.coverImage} alt='Album Cover' />
                   <h3 style={{ color: 'rgb(238, 238, 238)', textAlign: 'center' }}>{album.title}</h3>
                 </div>
               </SwiperSlide>
@@ -112,8 +111,8 @@ function Browser() {
           >
             {shuffledSongs.map(song =>
               <SwiperSlide key={song.id}>{/* come back. its targeting all the whitespace. add div container for songs and song info */}
-                <div className="BR-song-container" onClick={(e) => songFunc(song)}>
-                  <img className='BR-song-images' src={song.coverImage}></img>
+                <div className="BR-song-container" onClick={() => songFunc(song)}>
+                  <img className='BR-song-images' src={song.coverImage} alt='Song Cover'></img>
                   <div className="BR-song-title">
                     <h3 style={{ color: 'rgb(238, 238, 238)', fontSize: '15px', marginBottom: '2px' }}>{song.title}</h3>
                     <h5 style={{ color: 'rgb(105, 105, 105)', fontSize: '10px', fontWeight: '600', margin: '0', }}>{song.genre}</h5>

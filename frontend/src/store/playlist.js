@@ -1,12 +1,20 @@
 // TODO: CONSTANTS
 const ALL_PLAYLISTS = 'ALL_PLAYLISTS';
 const USER_PLAYLISTS = 'USER_PLAYLISTS';
+const RESET_PLAYLISTS = 'RESET_PLAYLISTS';
 
 // TODO: ACTION CREATORS
 export const actionAllPlaylists = (playlists) => {
   return { type: ALL_PLAYLISTS, playlists }
 }
 
+export const actionUserPlaylists = (playlists) => {
+  return { type: USER_PLAYLISTS, playlists}
+}
+
+export const actionResetPlaylists = (reset) => {
+  return { type: RESET_PLAYLISTS, reset}
+}
 
 // TODO: NORMALIZE DATA
 const normalizePlaylistSongs = (playlists) => {
@@ -30,15 +38,20 @@ export const thunkAllPlaylists = () => async dispatch => {
   }
 }
 
-// export const thunkUserSongs = (userId) => async dispatch => {
-//   const response = await fetch(`/songs/allSongs/${userId}`)
-//   if (response.ok) {
-//     const allUserSongs = await response.json();
-//     const normalized = normalizeAllSongs(allUserSongs.songs)
-//     dispatch(actionUserSongs(normalized))
-//     return;
-//   }
-// }
+export const thunkUserPlaylists = (userId) => async dispatch => {
+  const response = await fetch(`/playlists/allPlaylists/${userId}`)
+  if (response.ok) {
+    const allUserPlaylists = await response.json();
+    const normalized = normalizePlaylistSongs(allUserPlaylists.playlists)
+    dispatch(actionUserPlaylists(normalized))
+    return;
+  }
+}
+
+export const thunkResetPlaylists = () => async dispatch => {
+  dispatch(actionResetPlaylists)
+  return;
+}
 
 // TODO: INITIAL SLICE STATE
 const initialState = {
@@ -52,6 +65,8 @@ const playlistReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_PLAYLISTS:
       return { ...state, allPlaylists: { ...action.playlists }}
+    case USER_PLAYLISTS:
+      return{ ...state, allPlaylists: { ...action.playlists }}
     default: return { ...state }
   }
 }
