@@ -10,3 +10,4 @@ class SongForm(FlaskForm):
     genre = StringField('Genre', validators=[DataRequired()])
     coverImage = FileField('Cover Image', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
     mp3File = FileField('Mp3 File', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    artistName = StringField('artistName', validators=[DataRequired()])

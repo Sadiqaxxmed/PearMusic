@@ -11,6 +11,7 @@ class Song(db.Model):
     coverImage = db.Column(db.String, nullable=False)
     mp3file = db.Column(db.String, nullable=False)
     duration = db.Column(db.Float, nullable=False)
+    artistName = db.Column(db.String, nullable=False)
 
     user_id = db.Column(db.Integer, ForeignKey('users.id'))
     album_id = db.Column(db.Integer, ForeignKey('users.id'))
@@ -27,5 +28,6 @@ class Song(db.Model):
             'mp3file': self.mp3file,
             'duration': self.duration,
             'user_id': self.user_id,
-            'album_id': self.album_id
+            'album_id': self.album_id,
+            'artistName': self.artistName
         }

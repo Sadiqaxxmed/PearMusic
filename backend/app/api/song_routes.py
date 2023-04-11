@@ -34,6 +34,8 @@ def songs():
     Query for all songs and returns them in a list of song dictionaries
     """
     songs = Song.query.all()
+    songs[0]['ownerName'] = 'Sadiq'
+    print('SONG OWNER NAME  :  ', songs[0]['ownerName'])
     return {'songs': [song.to_dict() for song in songs]}
 
 
@@ -47,6 +49,7 @@ def create_song():
         genre=data.get('genre'),
         coverImage=data.get('songCoverImage'),
         mp3File=data.get('songMp3'),
+        artistName=data.get('artistName'),
         # Is this right? Not sure if we should be generating a new
         # token or grabbing the token from the client
         csrf_token=generate_csrf()
@@ -107,7 +110,8 @@ def create_song():
             genre=form.data['genre'],
             coverImage=imageURL,
             mp3file=songURL,
-            duration=float(songDuration)
+            duration=float(songDuration),
+            artistName=form.data['artistName']
         )
         db.session.add(new_song)
         db.session.commit()
