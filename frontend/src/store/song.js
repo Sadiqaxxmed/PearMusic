@@ -3,6 +3,7 @@
 
 // TODO: CONSTANTS
 const ALL_SONGS = 'ALL_SONGS';
+const USER_SONGS = 'USER_SONGS';
 const SINGLE_SONG = 'SINGLE_SONG'
 const RESET_SONGS = 'RESET_SONGS';
 
@@ -17,6 +18,10 @@ export const actionResetSongs = (reset) => {
 
 export const actionSingleSong = (song) => {
   return { type: SINGLE_SONG, song}
+}
+
+export const actionUserSongs = (songs) => {
+  return { type: USER_SONGS, songs}
 }
 
 
@@ -38,6 +43,16 @@ export const thunkAllSongs = () => async dispatch => {
     const allSongs = await response.json();
     const normalized = normalizeAllSongs(allSongs.songs);
     dispatch(actionAllSongs(normalized));
+    return;
+  }
+}
+
+export const thunkUserSongs = (userId) => async dispatch => {
+  const response = await fetch(`/songs/allSongs/${userId}`)
+  if (response.ok) {
+    const allUserSongs = await response.json();
+    const normalized = normalizeAllSongs(allUserSongs.songs)
+    dispatch(actionUserSongs(normalized))
     return;
   }
 }
@@ -69,6 +84,8 @@ const songsReducer = (state = initialState, action) => {
       return { ...state, singleSong: { ...action.song } }
     case RESET_SONGS:
       return action.reset
+    case USER_SONGS:
+      return { ...state, allSongs: { ...action.songs }}
     default: return { ...state }
   }
 }

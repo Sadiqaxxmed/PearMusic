@@ -34,8 +34,6 @@ def songs():
     Query for all songs and returns them in a list of song dictionaries
     """
     songs = Song.query.all()
-    songs[0]['ownerName'] = 'Sadiq'
-    print('SONG OWNER NAME  :  ', songs[0]['ownerName'])
     return {'songs': [song.to_dict() for song in songs]}
 
 
