@@ -24,12 +24,13 @@ function App() {
 
   return (
     <>
-      <ScrollToTop/>
-      <SideBar />
-      <NavBar isLoaded={isLoaded} />
-      <Navigation />
+        <ScrollToTop/>
+        <SideBar />
+        <NavBar isLoaded={isLoaded} />
+        <Navigation />
       {isLoaded && (
         <Switch>
+          
           {/* <Route path="/login" >
             <LoginFormPage />
           </Route>

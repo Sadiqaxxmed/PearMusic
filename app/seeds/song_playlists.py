@@ -30,8 +30,8 @@ def seed_song_playlists():
 def undo_song_playlists():
     if environment == "production":
         db.session.execute(
-            f"TRUNCATE table {SCHEMA}.song_playlists RESTART IDENTITY CASCADE;")
+            f"TRUNCATE table {SCHEMA}.playlist_songs RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM song_playlists"))
+        db.session.execute(text("DELETE FROM playlist_songs"))
 
     db.session.commit()
