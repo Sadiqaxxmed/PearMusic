@@ -33,7 +33,7 @@ const normalizeAllAlbums = (albums) => {
 
 // TODO: THUNK AC'S
 export const thunkAllAlbums = () => async dispatch => {
-  const response = await fetch('/albums/allAlbums')
+  const response = await fetch('/api/albums/allAlbums')
 
   if (response.ok) {
     // ! PROBABLY SHOULD FIX REPETITIVE KEYS (albums: albums)
@@ -46,7 +46,7 @@ export const thunkAllAlbums = () => async dispatch => {
 };
 
 export const thunkUserAlbums = (userId) => async dispatch => {
-  const response = await fetch(`/albums/allAlbums/${userId}`)
+  const response = await fetch(`/api/albums/allAlbums/${userId}`)
 
   if (response.ok) {
     const userAlbums = await response.json()
