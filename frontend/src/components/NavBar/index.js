@@ -53,10 +53,10 @@ function NavBar() {
   function playPauseFunc(){
     setHasPlayed(true)
     if(!playPause) {
-      setToggleIcon('fa-solid fa-pause fa-xl')
+      setToggleIcon('fa-solid fa-pause fa-xl icon-hover-pointer')
       setPlayPause(true)
     } else {
-      setToggleIcon('fa-solid fa-play fa-xl')
+      setToggleIcon('fa-solid fa-play fa-xl icon-hover-pointer')
       setPlayPause(false)
     }
   }
@@ -91,12 +91,12 @@ function NavBar() {
   return (
     <div className="NB-body">
       <div className="music-player-container">
-        <div> <i className="fa-solid fa-shuffle fa-sm" id='shuffle'></i> </div>
-        <div> <i onClick={handleSeekDown} className="fa-solid fa-backward fa" id='backwards'></i> </div>
+        <div> <i className="fa-solid fa-shuffle fa-sm icon-hover-pointer" id='shuffle'></i> </div>
+        <div> <i onClick={handleSeekDown} className="fa-solid fa-backward fa icon-hover-pointer" id='backwards'></i> </div>
         <div> <i onClick={playPauseFunc} className={toggleIcon} id='play'></i> </div>
         {/* <div> <i onClick={playPauseFunc} className="fa-solid fa-pause fa-xl" id='play'></i> </div> */}
-        <div> <i onClick={handleSeekUp}className="fa-solid fa-forward fa" id='forwards'></i> </div>
-        <div> <i className="fa-solid fa-repeat fa-sm" id='repeat'></i> </div>
+        <div> <i onClick={handleSeekUp}className="fa-solid fa-forward fa icon-hover-pointer" id='forwards'></i> </div>
+        <div> <i className="fa-solid fa-repeat fa-sm icon-hover-pointer" id='repeat'></i> </div>
       </div>
       <div className="NB-Wrapper">
         {!hasPlayed

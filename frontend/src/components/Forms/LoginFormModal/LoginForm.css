@@ -1,4 +1,4 @@
-.LogIn-Wrapper{
+.LogIn-Wrapper {
     width: 40vw;
     display: flex;
     flex-direction: column;
@@ -7,7 +7,7 @@
     padding-bottom: 40px;
 }
 
-.LogIn-Title{
+.LogIn-Title {
     display: flex;
     align-self: flex-start;
     justify-content: flex-start;
@@ -15,20 +15,20 @@
     padding-left: 10px;
 }
 
-.LogIn-Form{
+.LogIn-Form {
     display: flex;
     flex-direction: column;
-    gap:10px;
+    gap: 10px;
     width: 70%;
     color: rgba(245, 245, 247, 1);
 }
 
-.LogIn-Form-Top-Text{
+.LogIn-Form-Top-Text {
     display: flex;
     flex-direction: column;
 }
 
-.LogIn-Button{
+.LogIn-Button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,21 +37,30 @@
     width: 60%;
     border-radius: 4px;
     padding: 8px 0px 8px 0px;
+    margin-top: 10px;
     border: 0 solid;
     color: white;
+    transition: box-shadow 0.3s ease-in-out;
+
 }
 
-#form-input:focus{
+.LogIn-Button:hover {
+    cursor: pointer;
+    box-shadow: 3px 3px 5px black;
+}
+
+#form-input:focus {
     border: 2px solid red;
 }
 
 /* Remove outline on focus */
 input:focus {
     outline: none;
-    }
+}
 
-  Remove validation styles */
-input:invalid {
-    outline: none; /* Optional: Remove outline on invalid input */
-    box-shadow: none; /* Optional: Remove box-shadow on invalid input */
+Remove validation styles */ input:invalid {
+    outline: none;
+    /* Optional: Remove outline on invalid input */
+    box-shadow: none;
+    /* Optional: Remove box-shadow on invalid input */
 }

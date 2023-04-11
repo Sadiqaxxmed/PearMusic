@@ -64,12 +64,32 @@ def seed_songs():
         user_id=1,
         artistName='Demo'
     )
+    song7 = Song(
+        title='OMG',
+        genre='K-Pop',
+        coverImage='https://i.ytimg.com/vi/sVTy_wmn5SU/maxresdefault.jpg',
+        mp3file='https://www.youtube.com/watch?v=sVTy_wmn5SU&ab_channel=HYBELABELS',
+        duration=3.40,
+        user_id=1,
+        artistName='Demo'
+    )
+    song8 = Song(
+        title='How You Like That',
+        genre='K-Pop',
+        coverImage='https://i.ytimg.com/vi/ioNng23DkIM/maxresdefault.jpg',
+        mp3file='https://www.youtube.com/watch?v=ioNng23DkIM&ab_channel=BLACKPINK',
+        duration=3.03,
+        user_id=1,
+        artistName='Demo'
+    )
     db.session.add(song1)
     db.session.add(song2)
     db.session.add(song3)
     db.session.add(song4)
     db.session.add(song5)
     db.session.add(song6)
+    db.session.add(song7)
+    db.session.add(song8)
     db.session.commit()
 
 

@@ -35,6 +35,7 @@
     width: 100%;
     border-top: solid rgb(98, 98, 98) 1px;
     border-bottom: solid rgb(98, 98, 98) 1px;
+    cursor: pointer;
 }
 
 .Menu-SignUp-Wrapper{
@@ -42,6 +43,10 @@
     flex-direction: row;
     align-items:center;
     width: 100%;
+}
+
+.Menu-SignUp-Wrapper:hover {
+    cursor: pointer;
 }
 
 .Menu-SignUp-Btn{
@@ -97,10 +102,10 @@
     color: rgb(221, 221, 211);
 }
 
-.Menu::after { 
+.Menu::after {
     /* Create the arrow using a pseudo-element */
-    content: ""; 
-    position: absolute; 
+    content: "";
+    position: absolute;
     top: -12px; /*Position the arrow above the menu container */
     right: 10px; /*Position the arrow on the top right corner of the menu container */
     border: solid transparent;
@@ -150,7 +155,7 @@
 }
 
 .Menu-LogOut-Btn{
-    cursor: pointer;    
+    cursor: pointer;
 }
 
 #vinyl{

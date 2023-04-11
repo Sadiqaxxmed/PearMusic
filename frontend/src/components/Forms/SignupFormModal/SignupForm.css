@@ -82,6 +82,9 @@ input{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 15px;
 }
 
+.SignUp-Demo-Btn > p:hover {
+    cursor: pointer;
+    color: rgb(218, 15, 72);
+}
