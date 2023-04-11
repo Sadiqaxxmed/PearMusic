@@ -1,13 +1,17 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy import ForeignKey
+
 
 class Album(db.Model):
   __tablename__ = 'albums'
+  
+  if environment == "production":
+    __table_args__ = {'schema': SCHEMA}
 
   id = db.Column(db.Integer, primary_key=True)
   title = db.Column(db.String(255), nullable=True)
   coverImage = db.Column(db.String, nullable=False)
-  owner_id = db.Column(db.Integer, ForeignKey('users.id'))
+  owner_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')))
   db.relationship("User", primaryjoin="User.id == Album.owner_id")
 
   def to_dict(self):

@@ -1,9 +1,12 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy import ForeignKey
 
 
 class Song(db.Model):
     __tablename__ = "songs"
+    
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
@@ -13,8 +16,8 @@ class Song(db.Model):
     duration = db.Column(db.Float, nullable=False)
     artistName = db.Column(db.String, nullable=False)
 
-    user_id = db.Column(db.Integer, ForeignKey('users.id'))
-    album_id = db.Column(db.Integer, ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')))
+    album_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')))
 
     db.relationship("User", primaryjoin="User.id == Song.user_id")
     db.relationship("User", primaryjoin="User.id == Album.owner_id")
