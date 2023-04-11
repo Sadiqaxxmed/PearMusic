@@ -41,6 +41,10 @@
   border-radius: 10px;
 }
 
-.MD-h3-display-none {
+.MD-section-container {
+  margin-bottom: 50px;
+}
+
+.MD-display-none {
   display: none;
 }
