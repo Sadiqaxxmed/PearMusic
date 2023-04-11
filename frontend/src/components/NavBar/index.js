@@ -1,10 +1,11 @@
 import React,{useState, useRef, useEffect} from "react";
 import ProfileButton from "../Navigation/ProfileButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Menu from "./Menu/index";
 import noSong from '../../images/Music.png'
 import pear from '../../images/pear2.png'
 import ReactPlayer from 'react-player'
+import { Dispatch } from "react";
 import './NavBar.css'
 
 
@@ -16,18 +17,33 @@ function NavBar() {
   const playerRef = useRef(null); // Create a ref to the ReactPlayer component
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [hasPlayed, setHasPlayed] = useState(false)
   const [volume,setVolume] = useState(30)
   const [playPause, setPlayPause] = useState(false)
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0)
   const [songUrl, setSongUrl] = useState('')
-  //console logs start
-  console.log('ass',currentSong)
-  //console logs end
+  const [songTitle, setSongTitle] = useState('')
+  const [songArtist, setSongArtist] = useState('')
+  const [coverImage, setCoverImage] = useState('')
+  const [albumTitle, setAlbumTitle] = useState(null)
 
+  //console logs start
+
+  // console.log('ass',currentSong)
+
+  //console logs end
+  
   useEffect(() => {
+    if(currentSong.mp3file !== undefined) {
+      setHasPlayed(true)
+      setPlayPause(true)
+    }
     setSongUrl(currentSong.mp3file)
-    console.log('currentSong ==', currentSong.mp3file)
+    setSongTitle(currentSong.title)
+    setSongArtist(currentSong.artistName)
+    setCoverImage(currentSong.coverImage)
+    // setAlbumTitle(currentSong.albumTitle) need to pass in album title to single song
   },[currentSong])
 
   const toggleMenu = () => {
@@ -35,11 +51,9 @@ function NavBar() {
   }
 
   function playPauseFunc(){
-    if(!playPause){
-      setPlayPause(true)
-    }else{
-      setPlayPause(false)
-    }
+    setHasPlayed(true)
+    if(!playPause) setPlayPause(true)
+    else setPlayPause(false)
   }
 
   const handleSeekUp = () => {
@@ -57,7 +71,7 @@ function NavBar() {
   };
 
   const handleProgressChange = (e) => {
-    console.log(e)
+    // console.log(e)
     playerRef.current.seekTo(e)
     setCurrentTime(e)
   }
@@ -79,9 +93,9 @@ function NavBar() {
         <div> <i className="fa-solid fa-repeat fa-sm" id='repeat'></i> </div>
       </div>
       <div className="NB-Wrapper">
-        {!playPause
+        {!hasPlayed
         ? (<img src={noSong} alt='music'/>) 
-        : (<img src={noSong} />)}
+        : (<img src={coverImage} />)}
         <div className='NB-MUSIC-BLOCK'> 
           {/* Render ReactPlayer component and pass ref */}
           <ReactPlayer 
@@ -95,13 +109,13 @@ function NavBar() {
             onDuration={(duration) => setDuration(duration)}
             style={{display: 'none'}}
           />
-          {playPause 
+          {hasPlayed 
           ? <>
               <div className="NB-Player-CurrentSong-Wrapper">
-                <div className="NB-Player-CurrentSong">Kill You</div>
+                <div className="NB-Player-CurrentSong">{songTitle}</div>
                 <div className="NB-Player-ArtistAlbum">
-                  <div className="NB-Player-Artist">Eminem </div> --
-                  <div className="NB-Player-Album"> The Marshall Mathers LP</div>
+                  <div className="NB-Player-Artist">{songArtist}</div>&nbsp;&nbsp; {/* change to -- equvalent emoji or symbol idk just no middle space in it like this (-  -)  */}
+                  <div className="NB-Player-Album">(album name)</div>
                 </div>
               </div>
               <div className="NB-Player-Times">
