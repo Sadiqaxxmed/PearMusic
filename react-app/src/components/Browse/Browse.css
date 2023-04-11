@@ -1,0 +1,99 @@
+.BR-body {
+  z-index: -1;
+  height: 2000px;
+  padding-top: 65px;
+  padding-left: 300px;
+  padding-right: 50px;
+}
+
+.BR-browse-container {
+  display: flex;
+  width: 100%;
+  height: 22rem;
+  /* background-color: red; */
+}
+
+.BR-images {
+  margin-right: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  box-shadow: 3px 3px 5px black;
+  transition: box-shadow 0.3s ease-in-out;
+  object-fit: cover;
+}
+
+.BR-images-div {
+  display: flex;
+}
+
+/* Can use this media screen to fix resize for browse cards*/
+/* @media screen and (max-width: 1300px) {
+  .BR-browse-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 10px;
+    height: auto;
+    width: 50%;
+  }
+} */
+
+.BR-images:hover {
+  cursor: pointer;
+  box-shadow: 10px 10px 10px black;
+}
+
+.BR-labels {
+  color: rgb(238, 238, 238);
+  font-size: 34px;
+  font-weight: 500;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgb(42, 42, 42);
+}
+
+.BR-browse-images {
+  border-radius: 12px;
+  height: 275px;
+  width: 250px;
+  margin-left: 40px;
+}
+
+.BR-album-images {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  margin-left: 60px;
+}
+
+.BR-album-images:hover {
+  cursor: pointer;
+}
+
+.BR-song-container {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  /* border-top: 1px solid black;
+  border-bottom: 1px solid black; */
+}
+
+
+.BR-song-images {
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 40px;
+}
+
+.BR-song-title {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color: rgb(222, 222, 222);
+  /* width: 40%; */
+}

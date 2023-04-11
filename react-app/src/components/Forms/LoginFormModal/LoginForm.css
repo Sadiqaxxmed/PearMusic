@@ -1,0 +1,66 @@
+.LogIn-Wrapper {
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 40px;
+}
+
+.LogIn-Title {
+    display: flex;
+    align-self: flex-start;
+    justify-content: flex-start;
+    color: rgba(245, 245, 247, 1);
+    padding-left: 10px;
+}
+
+.LogIn-Form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 70%;
+    color: rgba(245, 245, 247, 1);
+}
+
+.LogIn-Form-Top-Text {
+    display: flex;
+    flex-direction: column;
+}
+
+.LogIn-Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    background-color: rgb(218, 15, 72);
+    width: 60%;
+    border-radius: 4px;
+    padding: 8px 0px 8px 0px;
+    margin-top: 10px;
+    border: 0 solid;
+    color: white;
+    transition: box-shadow 0.3s ease-in-out;
+
+}
+
+.LogIn-Button:hover {
+    cursor: pointer;
+    box-shadow: 3px 3px 5px black;
+}
+
+#form-input:focus {
+    border: 2px solid red;
+}
+
+/* Remove outline on focus */
+input:focus {
+    outline: none;
+}
+
+Remove validation styles */ input:invalid {
+    outline: none;
+    /* Optional: Remove outline on invalid input */
+    box-shadow: none;
+    /* Optional: Remove box-shadow on invalid input */
+}
