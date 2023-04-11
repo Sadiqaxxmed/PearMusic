@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from sqlalchemy import ForeignKey
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -14,6 +15,9 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    db.relationship('Song', primaryjoin='users.c.id == liked_songs.c.owner_id', backref='users')
+    db.relationship('Playlist', primaryjoin='users.c.id == liked_playlists.c.owner_id', backref='users')
+    
     @property
     def password(self):
         return self.hashed_password
