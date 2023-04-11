@@ -24,7 +24,7 @@ function App() {
 
   return (
     <>
-      <ScrollToTop/>
+        <ScrollToTop/>
         <SideBar />
         <NavBar isLoaded={isLoaded} />
         <Navigation />

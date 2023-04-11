@@ -37,7 +37,7 @@ const normalizeAllSongs = (songs) => {
 
 // TODO: THUNK AC'S
 export const thunkAllSongs = () => async dispatch => {
-  const response = await fetch('/songs/allSongs')
+  const response = await fetch('/api/songs/allSongs')
 
   if (response.ok) {
     const allSongs = await response.json();
@@ -48,7 +48,7 @@ export const thunkAllSongs = () => async dispatch => {
 }
 
 export const thunkUserSongs = (userId) => async dispatch => {
-  const response = await fetch(`/songs/allSongs/${userId}`)
+  const response = await fetch(`/api/songs/allSongs/${userId}`)
   if (response.ok) {
     const allUserSongs = await response.json();
     const normalized = normalizeAllSongs(allUserSongs.songs)
