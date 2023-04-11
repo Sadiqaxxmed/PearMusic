@@ -94,8 +94,8 @@ function NavBar() {
       </div>
       <div className="NB-Wrapper">
         {!hasPlayed
-        ? (<img src={noSong} alt='music'/>) 
-        : (<img src={coverImage} />)}
+        ? (<img className="NB-Img" src={noSong} alt='music'/>) 
+        : (<img className="NB-Img" src={coverImage} />)}
         <div className='NB-MUSIC-BLOCK'> 
           {/* Render ReactPlayer component and pass ref */}
           <ReactPlayer 
