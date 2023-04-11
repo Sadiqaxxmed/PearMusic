@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from 'react-router-dom';
 import ReactSelect from 'react-select';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { signUp } from "../../../store/session";
 import "./SongForm.css";
@@ -14,6 +14,9 @@ function SignupFormModal() {
     const [songCoverImage, setSongCoverImage] = useState(null)
     const [songMp3, setSongMp3] = useState(null)
     const [genreValue, setGenreValue] = useState(null)
+
+    const artistName = useSelector(state => state.session.user.username)
+
     const { closeModal } = useModal();
 
     const handleGenreValueChange = (selectedOption) => {
@@ -46,6 +49,7 @@ function SignupFormModal() {
         formData.append('songCoverImage', songCoverImage)
         formData.append('title', songTitle)
         formData.append('genre', genreValue)
+        formData.append('artistName', artistName)
         // console.log('tig ol biddies', formData.get('songMp3'))
         // console.log('big ol giddies', formData.get('title'))
         // console.log('gooboo', formData.get('genre'))
