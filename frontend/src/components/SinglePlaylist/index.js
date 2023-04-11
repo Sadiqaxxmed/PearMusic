@@ -99,9 +99,7 @@ function SinglePlaylist() {
             </div>
           </div>
           </div>
-
         </div>
-
       </div>
     </>
   )
