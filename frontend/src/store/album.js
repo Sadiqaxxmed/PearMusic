@@ -3,21 +3,27 @@
 
 // TODO: CONSTANTS
 const ALL_ALBUMS = 'ALL_ALBUMS';
+const USER_ALBUMS = 'USER_ALBUMS';
 const RESET_ALBUMS = 'RESET_ALBUMS';
 
 // TODO: ACTION CREATORS
 export const actionAllAlbums = (albums) => {
   return { type: ALL_ALBUMS, albums }
-}
+};
 
 export const actionresetAlbums = (reset) => {
   return { type: RESET_ALBUMS, reset }
+};
+
+export const actionUserAlbums = (albums) => {
+  return { type: USER_ALBUMS, albums }
 };
 
 
 // TODO: NORMALIZE DATA
 const normalizeAllAlbums = (albums) => {
   let normalize = {};
+  console.log('IM HERE GANGALANCHE   :     ', albums)
   albums.forEach(album => {
     normalize[album.id] = album;
   })
@@ -35,6 +41,17 @@ export const thunkAllAlbums = () => async dispatch => {
     const allAlbums = await response.json();
     const normalized = normalizeAllAlbums(allAlbums.albums)
     dispatch(actionAllAlbums(normalized))
+    return;
+  }
+};
+
+export const thunkUserAlbums = (userId) => async dispatch => {
+  const response = await fetch(`/albums/allAlbums/${userId}`)
+
+  if (response.ok) {
+    const userAlbums = await response.json()
+    const normalized = normalizeAllAlbums(userAlbums.albums)
+    dispatch(actionUserAlbums(normalized))
     return;
   }
 }
@@ -56,6 +73,8 @@ const initialState = {
 const albumsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_ALBUMS:
+      return { ...state, allAlbums: { ...action.albums } }
+    case USER_ALBUMS:
       return { ...state, allAlbums: { ...action.albums } }
     case RESET_ALBUMS:
       return action.reset

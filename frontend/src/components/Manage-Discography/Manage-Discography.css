@@ -40,3 +40,7 @@
   margin-left: 100px;
   border-radius: 10px;
 }
+
+.MD-h3-display-none {
+  display: none;
+}
