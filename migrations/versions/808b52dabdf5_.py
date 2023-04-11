@@ -102,7 +102,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('owner_id', 'song_id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE like_songs SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE liked_songs SET SCHEMA {SCHEMA};")
 
     op.create_table('playlist_songs',
     sa.Column('playlist_id', sa.Integer(), nullable=False),
