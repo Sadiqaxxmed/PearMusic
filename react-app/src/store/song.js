@@ -19,15 +19,19 @@ export const actionResetSongs = (reset) => {
 };
 
 export const actionSingleSong = (song) => {
-  return { type: SINGLE_SONG, song}
+  return { type: SINGLE_SONG, song }
 }
 
 export const actionUserSongs = (songs) => {
-  return { type: USER_SONGS, songs}
+  return { type: USER_SONGS, songs }
 }
 
 export const actionUpdateSong = (song) => {
-  return { type: UPDATE_SONG, song}
+  return { type: UPDATE_SONG, song }
+}
+
+export const actionDeleteSong = (song) => {
+  return { type: DELETE_SONG, song }
 }
 
 // TODO: NORMALIZE DATA
@@ -62,15 +66,40 @@ export const thunkUserSongs = (userId) => async dispatch => {
   }
 }
 
-export const thunkResetSongs = () => async dispatch => {
-  dispatch(actionResetSongs(initialState));
-  return;
-};
-
 export const thunkSingleSong = (song) => async dispatch => {
   dispatch(actionSingleSong(song))
   return;
 }
+
+export const thunkUpdateSong = (song) => async dispatch => {
+  const response = fetch('<whatever path sadiq sets up>')
+
+  if (response.ok) {
+    const updatedSong = await response.json();
+    // TODO: ADD NORMALIZATION IF NEEDED
+    return;
+  }
+  return { error: 'There was a problem updating the song', statusCode: response.status}
+}
+
+export const thunkDeleteSong = (songId, userId) => async dispatch => {
+  const response = fetch('<whatever path sadiq sets up>')
+
+  if (response.ok) {
+    const deletedSong = await response.json();
+    // TODO: FINISH THE REST OF ROUTE
+    dispatch(thunkUserSongs(userId))
+    return deletedSong;
+  }
+
+  return { error: 'There was a problem deleting the song', statusCode: response.status };
+}
+
+
+export const thunkResetSongs = () => async dispatch => {
+  dispatch(actionResetSongs(initialState));
+  return;
+};
 
 
 // TODO: INITIAL SLICE STATE

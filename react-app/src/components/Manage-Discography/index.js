@@ -116,13 +116,19 @@ function ManageDiscography() {
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => console.log(swiper)}
           >
-            <div className='MD-songs-carousel-images-div'>
-              {userAlbums.map(album =>
-                <SwiperSlide className='MD-songs-carousel-images-div'><img className='MD-songs-img' key={album.id} src={album.coverImage} alt='Album Cover' /></SwiperSlide>
-              )}
-              {/* {MyComponent(30, albumsAndplaylistCSS)} */}
-
-            </div>
+            {userAlbums.map(album =>
+              <div className='MD-albums-carousel-images-div'>
+                <SwiperSlide >
+                  <div style={{ display: 'flex', flexDirection: 'column'}}>
+                    <img className='MD-album-images' key={album.id} src={album.coverImage} alt='Album Cover' />
+                    <div style={{display: 'flex', }}>
+                    <h3 style={{ color: 'rgb(238, 238, 238)', marginLeft:'60px' }}>{album.title}</h3>
+                    <i id='MD-eclipse' className="fa-solid fa-ellipsis"></i>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              </div>
+            )}
           </Swiper>
         </div>
       </div>
