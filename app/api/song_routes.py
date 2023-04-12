@@ -130,3 +130,29 @@ def get_user_songs(user_id):
 
     songs = Song.query.filter_by(user_id=user_id).all()
     return {'songs': [song.to_dict() for song in songs]}
+
+
+@song_routes.route('/update/<int:song_id>', methods=['PUT'])
+@login_required
+def update_song(song_id):
+    song = Song.query.get(song_id)
+    if song:
+        data = request.get_json()
+        song.title = data.get('title', song.title)
+        song.coverImage = data.get('coverImage', song.coverImage)
+        db.session.commit()
+        return {'message': 'Song updated successfully', 'status': 200}
+    else:
+        return {'error': 'Song not found', 'status': 404}
+
+
+@song_routes.route('/delete/<int:song_id>', methods=['DELETE'])
+@login_required
+def delete_song(song_id):
+    song = Song.query.get(song_id)
+    if song:
+        db.session.delete(song)
+        db.session.commit()
+        return {'message': 'Song deleted successfully', 'status': 200}
+    else:
+        return {'error': 'Song not found', 'status': 404}
