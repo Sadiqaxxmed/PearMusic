@@ -1,0 +1,26 @@
+.DS-Main-Wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    padding-bottom: 20px;
+}
+
+.DS-Title{
+    display: flex;
+    align-self: center;
+    color: white;
+}
+
+.DS-Button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    background-color: rgb(218, 15, 72);
+    /* border: 1px solid white; */
+    width: 60%;
+    border-radius: 4px;
+    padding: 8px 0px 8px 0px;
+    color: white;
+    cursor: pointer;
+}
