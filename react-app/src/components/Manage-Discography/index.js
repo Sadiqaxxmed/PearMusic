@@ -50,18 +50,31 @@ function ManageDiscography() {
       <h1 className='MD-label'>Manage Discography</h1>
       <div className={userSongs.length ? 'MD-section-container' : 'MD-display-none'}>
         <h3 className='MD-sub-labels'>Songs</h3>
-        <div className='MD-songs-container-div'>
+        <div>
           <Swiper
             modules={[Navigation]}
-            slidesPerView={4}
+            slidesPerView={2}
             slidesPerGroup={1}
             navigation
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => console.log(swiper)}
           >
-            <div className='MD-songs-carousel-images-div'>
+            <div>
               {userSongs.map(song =>
-                <SwiperSlide className='MD-songs-carousel-images-div'><img className='MD-songs-test-css' key={song.id} src={song.coverImage} alt='Song Cover' /></SwiperSlide>
+                <SwiperSlide className='MD-swiper-slide-songs'>
+                  <div className='MD-song-container-div'>
+                    <div>
+                      <img className='MD-song-images' key={song.id} src={song.coverImage} alt='Song Cover' />
+                    </div>
+                    <div className='MD-song-description-div'>
+                      <h3>{song.title}</h3>
+                      <p>{song.genre}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <i id='MD-eclipse' className="fa-solid fa-ellipsis"></i>
+                  </div>
+                </SwiperSlide>
               )}
               {/* Render Jennie Pics lol */}
               {/* {MyComponent(30, albumsAndplaylistCSS)} */}

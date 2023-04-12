@@ -22,24 +22,54 @@
   border-bottom: 1px solid rgb(42, 42, 42);
 }
 
-.MD-songs-container-div {
-  display: flex;
-  flex-wrap: wrap;
+.MD-swiper-slide-songs {
+  display: inline-flex;
+  justify-content: space-evenly;
 }
 
-.MD-songs-img {
-  margin-left: 45px;
-  height: 100px;
-  width: auto;
-  border-radius: 10px;
-}
-
-.MD-songs-test-css {
+.MD-song-images {
   height: 50px;
   width: 50px;
-  margin-left: 100px;
   border-radius: 10px;
 }
+
+.MD-song-description-div {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+}
+
+.MD-song-description-div > h3 {
+  padding: 0;
+  margin: 0;
+  color: rgb(238, 238, 238);
+  font-size: 18px;
+}
+
+.MD-song-description-div > p {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  color: rgb(105, 105, 105);
+}
+
+
+.MD-song-container-div {
+  display: inline-flex;
+  /* margin-left: 60px; */
+}
+
+#MD-eclipse {
+  padding-top: 15px;
+  /* padding-left: 100px; */
+  color: rgb(226, 96, 106)
+}
+
+#MD-eclipse:hover {
+  cursor: pointer;
+}
+
+
 
 .MD-section-container {
   margin-bottom: 50px;

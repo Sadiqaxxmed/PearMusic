@@ -4,7 +4,9 @@
 // TODO: CONSTANTS
 const ALL_SONGS = 'ALL_SONGS';
 const USER_SONGS = 'USER_SONGS';
-const SINGLE_SONG = 'SINGLE_SONG'
+const SINGLE_SONG = 'SINGLE_SONG';
+const UPDATE_SONG = 'UPDATE_SONG';
+const DELETE_SONG = 'DELETE_SONG';
 const RESET_SONGS = 'RESET_SONGS';
 
 // TODO: ACTION CREATORS
@@ -24,6 +26,9 @@ export const actionUserSongs = (songs) => {
   return { type: USER_SONGS, songs}
 }
 
+export const actionUpdateSong = (song) => {
+  return { type: UPDATE_SONG, song}
+}
 
 // TODO: NORMALIZE DATA
 const normalizeAllSongs = (songs) => {
