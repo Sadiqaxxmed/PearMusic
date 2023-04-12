@@ -1,0 +1,44 @@
+.UDM-Main-Wrapper{
+    background-color: rgb(30,30,30);
+    border: solid rgb(75, 75, 75) 1px;
+    border-radius: 8px;
+    width: 110px;
+    color: rgb(214, 214, 214);
+    font-size: small;
+    position: absolute;
+    z-index: 1000;
+}
+/* used to fix overflow issue with menu popup being hidden by swiper */
+div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden{
+    overflow: visible;
+}
+.UDM-Update-Wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    width: 100%;
+    border-bottom: solid rgb(98, 98, 98) 1px;
+    cursor: pointer;
+    justify-content: space-between;
+    padding: 5px 0 5px 0;
+}
+.UDM-Delete-Wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    width: 100%;
+    cursor: pointer;
+    justify-content: space-between;
+    padding: 5px 0 5px 0;
+}
+#update-ico{
+    position: relative;
+    right: 5px;
+}
+#delete-ico{
+    position: relative;
+    right: 6px;
+}
+
+.UDM-Update{}
+.UDM-Delete{}
