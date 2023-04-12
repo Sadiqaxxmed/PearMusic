@@ -6,12 +6,21 @@
     color: rgb(214, 214, 214);
     font-size: small;
     position: absolute;
-    z-index: 1000;
 }
 /* used to fix overflow issue with menu popup being hidden by swiper */
 div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden{
     overflow: visible;
 }
+/* idk rn the menu is going under songs and chaning the z index doesnt do anything */
+/* img.MD-song-images{
+    z-index: -1;
+    overflow: visible;
+} */
+
+.UDM-Main-Wrapper-Hidden{
+    display: none;
+}
+
 .UDM-Update-Wrapper{
     display: flex;
     flex-direction: row;

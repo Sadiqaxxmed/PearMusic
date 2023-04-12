@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 
 import './Manage-Discography.css'
-import UDModal from './UDModal'
+import UDModal from './UDModalMenu'
 
 function ManageDiscography() {
   const dispatch = useDispatch();
