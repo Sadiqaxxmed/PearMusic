@@ -5,7 +5,7 @@ from mutagen.mp3 import MP3
 from flask import Blueprint, jsonify, redirect, request
 from flask_wtf.csrf import generate_csrf
 from flask_login import login_required
-from app.models import Song, User, liked_songs, db
+from app.models import Song, User, liked_songs, db, playlist_songs
 from app.forms import SongForm
 from .AWS_helpers import get_unique_filename, upload_file_to_AWS
 
@@ -132,6 +132,11 @@ def get_user_songs(user_id):
     return {'songs': [song.to_dict() for song in songs]}
 
 
+@song_routes.route('playlistSongs/<int:playlist_id>')
+def get_playlist_songs(playlist_id):
+
+    songs = db.session.query(Song).join(playlist_songs).filter_by(playlist_id=playlist_id).all()
+    return {'playlistSongs': [song.to_dict() for song in songs]}
 @song_routes.route('/update/<int:song_id>', methods=['PUT'])
 @login_required
 def update_song(song_id):
