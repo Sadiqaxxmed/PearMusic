@@ -30,7 +30,7 @@ function App() {
         <Navigation />
       {isLoaded && (
         <Switch>
-          
+
           {/* <Route path="/login" >
             <LoginFormPage />
           </Route>
@@ -46,7 +46,7 @@ function App() {
           <Route path="/allPlaylist">
             <AllPlaylist />
           </Route>
-          <Route path="/SinglePlaylist">
+          <Route path="/SinglePlaylist/:playlist_id">
             <SinglePlaylist />
           </Route>
           <Route path="/albums">

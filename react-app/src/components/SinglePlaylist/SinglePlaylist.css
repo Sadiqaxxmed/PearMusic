@@ -37,6 +37,11 @@
   font-size: 13px;
 }
 
+.SGPL-Buttons {
+  position: relative;
+  top: 60px;
+}
+
 .SGPL-Play-Button {
   display: inline-flex;
   justify-content: center;

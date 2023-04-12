@@ -26,3 +26,11 @@ def get_user_playlists(user_id):
 
     playlists = Playlist.query.filter_by(owner_id=user_id).all()
     return {'playlists': [playlist.to_dict() for playlist in playlists]}
+
+@playlist_routes.route('/singlePlaylist/<int:playlist_id>')
+def get_single_playlist(playlist_id):
+    playlist = Playlist.query.get(playlist_id)
+    if not playlist:
+        return {'error': 'Playlist not found'}, 404
+
+    return { 'playlist': playlist.to_dict() }

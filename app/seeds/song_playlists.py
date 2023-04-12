@@ -7,11 +7,11 @@ from sqlalchemy.sql import text
 def seed_song_playlists():
     playlist_songs_data = [
         {'playlist_id': 1, 'song_id': 1},
-        {'playlist_id': 2, 'song_id': 2},
-        {'playlist_id': 3, 'song_id': 3},
-        {'playlist_id': 4, 'song_id': 4},
-        {'playlist_id': 5, 'song_id': 5},
-        {'playlist_id': 6, 'song_id': 6}
+        {'playlist_id': 1, 'song_id': 2},
+        {'playlist_id': 1, 'song_id': 3},
+        {'playlist_id': 2, 'song_id': 4},
+        {'playlist_id': 2, 'song_id': 5},
+        {'playlist_id': 2, 'song_id': 6}
     ]
 
 

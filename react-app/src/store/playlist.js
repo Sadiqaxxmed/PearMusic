@@ -1,6 +1,8 @@
 // TODO: CONSTANTS
 const ALL_PLAYLISTS = 'ALL_PLAYLISTS';
 const USER_PLAYLISTS = 'USER_PLAYLISTS';
+const SONGS_PLAYLIST = 'SONGS_PLAYLIST';
+const SINGLE_PLAYLIST = 'SINGLE_PLAYLIST';
 const RESET_PLAYLISTS = 'RESET_PLAYLISTS';
 
 // TODO: ACTION CREATORS
@@ -12,8 +14,16 @@ export const actionUserPlaylists = (playlists) => {
   return { type: USER_PLAYLISTS, playlists}
 }
 
+export const actionSongsPlaylist = (songs) => {
+  return { type: SONGS_PLAYLIST, songs }
+}
+
 export const actionResetPlaylists = (reset) => {
   return { type: RESET_PLAYLISTS, reset}
+}
+
+export const actionSinglePlaylist = (playlist) => {
+  return { type: SINGLE_PLAYLIST, playlist }
 }
 
 // TODO: NORMALIZE DATA
@@ -48,6 +58,27 @@ export const thunkUserPlaylists = (userId) => async dispatch => {
   }
 }
 
+export const thunkPlaylistSongs = (playlistId) => async dispatch => {
+  const response = await fetch(`/api/songs/playlistSongs/${playlistId}`)
+
+  if (response.ok) {
+    const songs = await response.json();
+    const normalize = normalizePlaylistSongs(songs.playlistSongs)
+    dispatch(actionSongsPlaylist(normalize))
+    return;
+  }
+}
+
+export const thunkSinglePlaylist = (playlistId) => async dispatch => {
+  const response = await fetch(`/api/playlists/singlePlaylist/${playlistId}`);
+
+  if (response.ok) {
+    const playlist = await response.json();
+    dispatch(actionSinglePlaylist(playlist));
+    return;
+  }
+}
+
 export const thunkResetPlaylists = () => async dispatch => {
   dispatch(actionResetPlaylists)
   return;
@@ -56,17 +87,23 @@ export const thunkResetPlaylists = () => async dispatch => {
 // TODO: INITIAL SLICE STATE
 const initialState = {
   allPlaylists: {},
-  singlePlaylist: {}
+  singlePlaylist: {},
+  playlistDetails: {}
 }
 
 
 // TODO: REDUCER
 const playlistReducer = (state = initialState, action) => {
+  console.log('INSIDE REDUCER ',action.songs)
   switch (action.type) {
     case ALL_PLAYLISTS:
       return { ...state, allPlaylists: { ...action.playlists }}
     case USER_PLAYLISTS:
-      return{ ...state, allPlaylists: { ...action.playlists }}
+      return { ...state, allPlaylists: { ...action.playlists }}
+    case SONGS_PLAYLIST:
+      return { ...state, singlePlaylist: { ...action.songs }}
+    case SINGLE_PLAYLIST:
+      return { ...state, playlistDetails: { ...action.playlist }}
     default: return { ...state }
   }
 }

@@ -88,7 +88,7 @@ function ManageDiscography() {
         <div className='MD-playlists-container-div'>
           <Swiper
             modules={[Navigation]}
-            slidesPerView={4}
+            slidesPerView={3}
             slidesPerGroup={1}
             navigation
             onSlideChange={() => console.log('slide change')}
@@ -121,7 +121,7 @@ function ManageDiscography() {
                 <SwiperSlide >
                   <div style={{ display: 'flex', flexDirection: 'column'}}>
                     <img className='MD-album-images' key={album.id} src={album.coverImage} alt='Album Cover' />
-                    <div style={{display: 'flex', }}>
+                    <div style={{ display: 'flex' }}>
                     <h3 style={{ color: 'rgb(238, 238, 238)', marginLeft:'60px' }}>{album.title}</h3>
                     <i id='MD-eclipse' className="fa-solid fa-ellipsis"></i>
                     </div>
