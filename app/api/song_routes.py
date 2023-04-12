@@ -137,23 +137,24 @@ def get_playlist_songs(playlist_id):
 
     songs = db.session.query(Song).join(playlist_songs).filter_by(playlist_id=playlist_id).all()
     return {'playlistSongs': [song.to_dict() for song in songs]}
+
 @song_routes.route('/update/<int:song_id>', methods=['PUT'])
 @login_required
 def update_song(song_id):
     song = Song.query.get(song_id)
+    data = request.json
     if song:
-        data = request.get_json()
-        song.title = data.get('title', song.title)
-        song.coverImage = data.get('coverImage', song.coverImage)
+        song.title = data.get('title')
+        song.genre = data.get('genre')
         db.session.commit()
         return {'message': 'Song updated successfully', 'status': 200}
     else:
         return {'error': 'Song not found', 'status': 404}
 
-
 @song_routes.route('/delete/<int:song_id>', methods=['DELETE'])
 @login_required
 def delete_song(song_id):
+    # print(song_id)
     song = Song.query.get(song_id)
     if song:
         db.session.delete(song)
