@@ -12,21 +12,6 @@ from .AWS_helpers import get_unique_filename, upload_file_to_AWS
 song_routes = Blueprint('song', __name__)
 
 
-@song_routes.route('/likedSongs/<int:user_id>')
-def get_liked_songs(user_id):
-    """
-    Query for all of user liked songs and returns them in a list of song dictionaries
-    """
-
-    user = User.query.get(user_id)
-    if not user:
-        return {'error': 'User not found'}, 404
-
-    liked_songs_query = db.session.query(Song).join(liked_songs).filter_by(owner_id=user_id).all()
-    return {'likedSongs': [song.to_dict() for song in liked_songs_query]}
-
-
-
 @song_routes.route('/allSongs')
 # @login_required
 def songs():
@@ -83,7 +68,6 @@ def create_song():
         songURL = uploadSong["url"]
         imageURL = uploadImage["url"]
 
-
         # Retrieve the file contents from the URL using requests.get()
         response = requests.get(songURL)
 
@@ -119,6 +103,7 @@ def create_song():
         print(form.errors)
         return {"message": "Invalid Data", "status": 403}
 
+
 @song_routes.route('/allSongs/<int:user_id>')
 def get_user_songs(user_id):
     """
@@ -135,8 +120,11 @@ def get_user_songs(user_id):
 @song_routes.route('playlistSongs/<int:playlist_id>')
 def get_playlist_songs(playlist_id):
 
-    songs = db.session.query(Song).join(playlist_songs).filter_by(playlist_id=playlist_id).all()
+    songs = db.session.query(Song).join(
+        playlist_songs).filter_by(playlist_id=playlist_id).all()
     return {'playlistSongs': [song.to_dict() for song in songs]}
+
+
 @song_routes.route('/update/<int:song_id>', methods=['PUT'])
 @login_required
 def update_song(song_id):
@@ -161,3 +149,44 @@ def delete_song(song_id):
         return {'message': 'Song deleted successfully', 'status': 200}
     else:
         return {'error': 'Song not found', 'status': 404}
+
+
+@song_routes.route('/likedSongs/<int:user_id>')
+def get_liked_songs(user_id):
+    """
+    Query for all of user liked songs and returns them in a list of song dictionaries
+    """
+
+    user = User.query.get(user_id)
+    if not user:
+        return {'error': 'User not found'}, 404
+
+    liked_songs_query = db.session.query(Song).join(
+        liked_songs).filter_by(owner_id=user_id).all()
+    return {'likedSongs': [song.to_dict() for song in liked_songs_query]}
+
+
+@song_routes.route('/likedSongs/<int:song_id>/<int:user_id>', methods=['PUT'])
+def update_liked_songs(song_id, user_id):
+    """
+    Query to update single liked user song
+    """
+    liked = db.session.query(liked_songs).filter(liked_songs[0]==user_id, liked_songs[1]==song_id)
+    # filter(liked_songs.owner_id==user_id, song_id==song_id)
+
+    # is_liked = db.session.query(liked_songs).filter_by(owner_id=user_id, song_id=song_id).first()
+    print('LIKKKEEEEDDDDDDD      ', liked)
+    # if is_liked:
+    #     # db.session.delete(is_liked)
+    #     db.session.execute(liked_songs.delete().where(
+    #     liked_songs.c.song_id == song_id
+    #     ))
+    message = 'Song deleted successfully'
+
+    # else:
+    #     db.session.execute(liked_songs.insert().values(owner_id=user_id, song_id=song_id))
+    #     message = 'Song added successfully'
+
+    # db.session.commit()
+
+    return {'message': message, 'status': 200}

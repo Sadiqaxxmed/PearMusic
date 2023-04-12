@@ -4,6 +4,8 @@
 // TODO: CONSTANTS
 const ALL_SONGS = 'ALL_SONGS';
 const USER_SONGS = 'USER_SONGS';
+const LIKED_SONGS = 'LIKED_SONGS';
+const DELETE_LIKED_SONG = 'DELETE_LIKED_SONG';
 const SINGLE_SONG = 'SINGLE_SONG';
 const UPDATE_SONG = 'UPDATE_SONG';
 const DELETE_SONG = 'DELETE_SONG';
@@ -24,6 +26,14 @@ export const actionSingleSong = (song) => {
 
 export const actionUserSongs = (songs) => {
   return { type: USER_SONGS, songs }
+}
+
+export const actionLikedSongs = (songs) => {
+  return { type: LIKED_SONGS, songs }
+}
+
+export const actionDeleteLikedSongs = (songs) => {
+  return { type: DELETE_LIKED_SONG, songs }
 }
 
 export const actionUpdateSong = (song) => {
@@ -62,6 +72,30 @@ export const thunkUserSongs = (userId) => async dispatch => {
     const allUserSongs = await response.json();
     const normalized = normalizeAllSongs(allUserSongs.songs)
     dispatch(actionUserSongs(normalized))
+    return;
+  }
+}
+
+export const thunkLikedSongs = (userId) => async dispatch => {
+  const response = await fetch(`/api/songs/likedSongs/${userId}`)
+
+  if (response.ok) {
+    const allUserSongs = await response.json();
+    console.log('THUNNNNKKKKK :    ', allUserSongs)
+    const normalized = normalizeAllSongs(allUserSongs.likedSongs)
+    dispatch(actionLikedSongs(normalized))
+    return;
+  }
+}
+
+export const thunkDeleteLikedSongs = (songId, userId) => async dispatch => {
+  const response = await fetch(`/api/songs/likedSongs/${songId}/${userId}`, {method:'PUT'})
+
+  if (response.ok) {
+    const allUserSongs = await response.json();
+    console.log('THUNNNNKKKKK :    ', allUserSongs)
+    // const normalized = normalizeAllSongs(allUserSongs.likedSongs)
+    // dispatch(actionLikedSongs(normalized))
     return;
   }
 }
@@ -119,6 +153,8 @@ const songsReducer = (state = initialState, action) => {
     case RESET_SONGS:
       return action.reset
     case USER_SONGS:
+      return { ...state, allSongs: { ...action.songs }}
+    case LIKED_SONGS:
       return { ...state, allSongs: { ...action.songs }}
     default: return { ...state }
   }
