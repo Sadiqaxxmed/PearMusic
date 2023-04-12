@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { thunkResetSongs, thunkUserSongs } from '../../store/song';
@@ -8,10 +8,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 
 import './Manage-Discography.css'
+import UDModal from './UDModalMenu'
 
 function ManageDiscography() {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const [isUDMOpen, setIsUDMOpen] = useState(false)
+  const [cardId, setCardId] = useState(null)
 
   const userId = useSelector(state => state.session.user?.id)
   const userSongs = Object.values(useSelector(state => state.songs.allSongs))
@@ -34,6 +38,13 @@ function ManageDiscography() {
 
   }, [dispatch, userId, history])
 
+
+    function toggleUDM(id) { //opens da meat ta ball menu 
+      if(!isUDMOpen) setIsUDMOpen(true)
+      else setIsUDMOpen(false)
+      setCardId(id)
+      
+    }
   // function MyComponent(numSlides, className) {
   //   const imageURL = "https://assets.teenvogue.com/photos/615c6f908b261647679498e4/16:9/w_2560%2Cc_limit/GettyImages-1344925419.jpg";
   //   const imageCount = numSlides;
@@ -59,9 +70,9 @@ function ManageDiscography() {
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => console.log(swiper)}
           >
-            <div>
+            <div >
               {userSongs.map(song =>
-                <SwiperSlide className='MD-swiper-slide-songs'>
+                <SwiperSlide className='MD-swiper-slide-songs' >
                   <div className='MD-song-container-div'>
                     <div>
                       <img className='MD-song-images' key={song.id} src={song.coverImage} alt='Song Cover' />
@@ -72,7 +83,8 @@ function ManageDiscography() {
                     </div>
                   </div>
                   <div>
-                    <i id='MD-eclipse' className="fa-solid fa-ellipsis"></i>
+                    <i id='MD-eclipse' className="fa-solid fa-ellipsis" onClick={((e) => toggleUDM(song.id))} onClose={((e) => setCardId(null))}></i>
+                    {isUDMOpen && (song.id == cardId) && <UDModal />}
                   </div>
                 </SwiperSlide>
               )}
