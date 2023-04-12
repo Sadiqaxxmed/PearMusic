@@ -1,6 +1,7 @@
 import React from "react";
 
 import './DeleteSong.css'
+import pearMusicIcon from '../../../../images/pearMusicIcon.png'
 
 const DeleteSong = () => {
     const handleDelete = () => {
@@ -9,8 +10,12 @@ const DeleteSong = () => {
 
     return(
         <div className='DS-Main-Wrapper' >
-            <h1 className="DS-Title">ARE YOU SURE?</h1>
-            <div className="DS-Button" onClick={handleDelete}>DELETE THIS SONG</div>
+            <img className='DS-Icon' src={pearMusicIcon} alt='Pear Music Icon' style={{width:'55px'}}/>
+            <p className="DS-Title">Are you sure you want to delete the song 'RapGod'</p>
+            <div className="DS-Buttons">
+                <div className="DS-Cancel-Button">Cancel</div>
+                <div className="DS-Del-Button" onClick={handleDelete}>Delete</div>
+            </div>
         </div>
     )
 }

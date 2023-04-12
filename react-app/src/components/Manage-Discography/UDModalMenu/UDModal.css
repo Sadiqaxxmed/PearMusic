@@ -5,11 +5,11 @@
     width: 110px;
     color: rgb(214, 214, 214);
     font-size: small;
-    position: absolute;
+    /* position: absolute; */
 }
 /* used to fix overflow issue with menu popup being hidden by swiper */
 div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden{
-    overflow: visible;
+    overflow: none;
 }
 /* idk rn the menu is going under songs and chaning the z index doesnt do anything */
 /* img.MD-song-images{
