@@ -19,11 +19,27 @@
     background-color: rgb(30, 30, 30);
     border: solid rgb(75, 75, 75) 1px;
     border-radius: 8px;
-    width: 170px;
+    width: 200px;
     color: rgb(214, 214, 214);
     font-size: small;
     position: relative;
     right:-115px;
+}
+
+.POM-BTN-Wrapper-Title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom: 1px solid rgb(75, 75, 75);
+    padding: 5px 0px 5px 0px;
+}
+
+.POM-BTN-Wrapper {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(75, 75, 75);
+    padding: 5px 0px 5px 0px;
+    cursor: pointer;
 }
 
 .TTM-Btn-Wrapper {

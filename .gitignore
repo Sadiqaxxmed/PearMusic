@@ -5,5 +5,6 @@ __pycache__/
 .DS_Store
 .vscode/
 *.db
+instance/
 instance/dev.db
 migrations/
