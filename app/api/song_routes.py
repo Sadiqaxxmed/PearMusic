@@ -124,10 +124,6 @@ def get_playlist_songs(playlist_id):
         playlist_songs).filter_by(playlist_id=playlist_id).all()
     return {'playlistSongs': [song.to_dict() for song in songs]}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 @song_routes.route('/update/<int:song_id>', methods=['PUT'])
 @login_required
 def update_song(song_id):
