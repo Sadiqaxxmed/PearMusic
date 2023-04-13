@@ -43,18 +43,7 @@ function ManageDiscography() {
       if(!isUDMOpen) setIsUDMOpen(true)
       else setIsUDMOpen(false)
       setCardId(id)
-
     }
-  // function MyComponent(numSlides, className) {
-  //   const imageURL = "https://assets.teenvogue.com/photos/615c6f908b261647679498e4/16:9/w_2560%2Cc_limit/GettyImages-1344925419.jpg";
-  //   const imageCount = numSlides;
-
-  //   const images = [];
-  //   for (let i = 0; i < imageCount; i++) {
-  //     images.push(<SwiperSlide className='MD-songs-carousel-images-div'><img className={className} key={i} src={imageURL} alt={`Image ${i + 1}`} /></SwiperSlide>);
-  //   }
-  //   return images
-  // }
 
   return (
     <div className="MD-body">
