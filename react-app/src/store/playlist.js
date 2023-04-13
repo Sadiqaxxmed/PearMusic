@@ -96,16 +96,16 @@ export const thunkSinglePlaylist = (playlistId) => async dispatch => {
 
 export const thunkCreatePlaylist = (songId) => async dispatch => {
   // TODO : NEED TO ADD ROUTE FOR FETCH, CHECK RESPONSE, RUN DISPATCH WITH PLAYLIST
-  const response = await fetch('some route', {
-    method: 'POST',
-    headers: 'application/json',
-    body: { songId: songId }
+  console.log(songId)
+  const response = await fetch(`/api/playlists/createPlaylist/${songId}`, {
+    method: 'POST'
   })
 
   if (response.ok) {
     const playlist = await response.json();
-    dispatch(thunkSinglePlaylist(playlist.id))
-    return;
+    console.log('daiuaohsfipuashfiapu',playlist.playlist.id)
+    dispatch(thunkSinglePlaylist(playlist.playlist.id))
+    return await playlist.playlist.id;
   }
 }
 

@@ -80,8 +80,9 @@ const initialState = {
 const queueReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_SONG':
-            console.log(Object.keys(state.queue).length === 0, 'asofnaio;psfno;aisnf')
-            if (!(Object.keys(state.queue).length === 0)) {
+            //NOT WORKING
+            console.log((state.queue), 'asofnaio;psfno;aisnf')
+            if (!(Object.values(state.queue).length === 0)) {
                 const queue = Object.values(state.queue)
                 queue.push(action.payload)
                 return {

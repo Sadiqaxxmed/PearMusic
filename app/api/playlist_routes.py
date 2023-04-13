@@ -57,13 +57,22 @@ def create_playlist_from_song(song_id):
         owner_id=user.id
     )
 
-    # Add the song to the playlist
-    playlist.songs.append(song)
-
     # Save the playlist to the database
     db.session.add(playlist)
     db.session.commit()
 
+
+    # # Add the song to the playlist
+    playlistId = playlist.id
+    playlist.songs.append(song)
+    db.session.commit()
+
+    # Add entry to playlist_songs table
+    db.session.execute(playlist_songs.insert().values(playlist_id=playlistId, song_id=song_id))
+    db.session.commit()
+    # song_playlist = song_playlist(playlist_id=playlist_id, song_id=song_id)
+    # db.session.add(song_playlist)
+    # db.session.commit()
     # Return the new playlist as JSON
 
     return { 'playlist': playlist.to_dict() }
