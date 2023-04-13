@@ -76,6 +76,15 @@ def seed_songs():
         user_id=1,
         artistName='Demo'
     )
+    song9 = Song (
+        title='Cupid',
+        genre='K-Pop',
+        coverImage='https://upload.wikimedia.org/wikipedia/en/a/a6/Fifty_Fifty_-_The_Beginning_Cupid.png',
+        mp3file='https://www.youtube.com/watch?v=6uvUTu716rU&ab_channel=FIFTYFIFTYOfficial',
+        duration=2.59,
+        user_id=1,
+        artistName='Demo'
+    )
     db.session.add(song1)
     db.session.add(song2)
     db.session.add(song3)
@@ -84,6 +93,7 @@ def seed_songs():
     db.session.add(song6)
     db.session.add(song7)
     db.session.add(song8)
+    db.session.add(song9)
     db.session.commit()
 
 
