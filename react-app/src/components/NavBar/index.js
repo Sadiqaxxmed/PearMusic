@@ -52,7 +52,15 @@ function NavBar() {
       setCoverImage(queue[0].coverImage)
        // setAlbumTitle(queue[0].albumTitle) 
     }
-  },[queue[0]])
+    setSongUrl(currentSong.mp3file)
+    setSongTitle(currentSong.title)
+    setSongArtist(currentSong.artistName)
+    setCoverImage(currentSong.coverImage)
+    if (songUrl) {
+      setToggleIcon('fa-solid fa-pause fa-xl icon-hover-pointer')
+    }
+    // setAlbumTitle(currentSong.albumTitle) need to pass in album title to single song
+  },[currentSong, hasPlayed])
 
 // LOGIC FOR TOP RIGHT MENU OPEN
   const toggleMenu = () => {

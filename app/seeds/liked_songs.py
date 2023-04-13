@@ -9,9 +9,9 @@ def seed_liked_songs():
         {'owner_id': 1, 'song_id': 1},
         {'owner_id': 1, 'song_id': 2},
         {'owner_id': 1, 'song_id': 3},
-        {'owner_id': 1, 'song_id': 4},
-        {'owner_id': 1, 'song_id': 5},
-        {'owner_id': 1, 'song_id': 6}
+        {'owner_id': 2, 'song_id': 1},
+        {'owner_id': 2, 'song_id': 5},
+        {'owner_id': 3, 'song_id': 6}
     ]
 
 
