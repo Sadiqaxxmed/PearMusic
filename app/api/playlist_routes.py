@@ -1,6 +1,7 @@
 from flask import Blueprint
 from flask_login import login_required, current_user
-from app.models import Playlist, User, Song, Comment, db
+from app.models import Playlist, User, Song, playlist_songs, db
+
 
 playlist_routes = Blueprint('playlist', __name__)
 
@@ -64,6 +65,30 @@ def create_playlist_from_song(song_id):
     db.session.commit()
 
     # Return the new playlist as JSON
+
+    return { 'playlist': playlist.to_dict() }
+
+
+@playlist_routes.route('/singlePlaylist/<int:playlist_id>/delete', methods=['DELETE'])
+def delete_playlist(playlist_id):
+    playlist = Playlist.query.filter_by(id=playlist_id).first()
+    if not playlist:
+        return {'error': 'Playlist not found'}, 404
+
+    db.session.delete(playlist)
+    db.session.commit()
+
+    return {'message': 'Playlist deleted successfully'}, 200
+
+
+@playlist_routes.route('/<int:playlist_id>/songs/<int:song_id>', methods=['DELETE'])
+def delete_song_from_playlist(playlist_id, song_id):
+
+    delete_stmt = playlist_songs.delete().where((playlist_songs.c.playlist_id == playlist_id) & (playlist_songs.c.song_id == song_id))
+    db.session.execute(delete_stmt)
+
+    db.session.commit()
+
     return {'playlist': playlist.to_dict()}
 
 
@@ -75,3 +100,4 @@ def get_playlists_comments(playlist_id):
         return {'message': 'There are no comments for this playlist'}, 404
 
     return {'comments': [comment.to_dict() for comment in comments]}
+

@@ -7,3 +7,5 @@ __pycache__/
 *.db
 instance/dev.db
 migrations/
+instance/
+instance/dev.db
