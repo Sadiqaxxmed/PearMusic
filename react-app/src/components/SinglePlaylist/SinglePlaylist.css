@@ -205,3 +205,19 @@
   padding-top: 10px;
   padding-left: 10px;
 }
+
+.SGPL-Comments-Area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.Profile-Pic-Section {
+  display: flex;
+  background-color: white;
+  font-size: .01em;
+}
+
+.Profile-pic {
+  background-color: red;
+  border-radius: 10px;
+}

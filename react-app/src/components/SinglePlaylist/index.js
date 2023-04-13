@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import './SinglePlaylist.css'
 import { thunkPlaylistSongs, thunkSinglePlaylist } from "../../store/playlist";
+import { thunkGetComments } from "../../store/comment";
 import { thunkNewQueue } from "../../store/queue";
 
 function SinglePlaylist() {
@@ -10,14 +11,18 @@ function SinglePlaylist() {
   const { playlist_id } = useParams()
   const songs = Object.values(useSelector(state => state.playlists.singlePlaylist))
   const playlist = Object.values(useSelector(state => state.playlists.playlistDetails))[0]
+  const comments = Object.values(useSelector(state => state.comments.playlistComments))
+
+  console.log('INSIDE THE COMPONENT', comments)
 
 
   useEffect(() => {
     dispatch(thunkPlaylistSongs(playlist_id))
     dispatch(thunkSinglePlaylist(playlist_id))
+    dispatch(thunkGetComments(playlist_id))
   }, [dispatch])
 
-  function addQueue(){
+  function addQueue() {
     dispatch(thunkNewQueue(playlist_id))
   }
 
@@ -96,6 +101,27 @@ function SinglePlaylist() {
               </div>
             </div>
           )}
+        </div>
+        <div className="SGPL-Comments-Container">
+          <div>
+            <p className="SGPL-Bottom-text">{comments.length} Comments</p>
+          </div>
+          <form>
+            <span class="material-symbols-outlined">account_circle</span>
+            <input type='text' placeholder="Add a comment..." style={{ marginBottom: '20px' }}></input>
+          </form>
+          <div className="SGPL-Comments-Area">
+            {comments.map(comment =>
+              <>
+                <div>
+                  <span class="material-symbols-outlined">account_circle</span>
+                  <div>
+                    <p>{comment.comment}</p>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </>
