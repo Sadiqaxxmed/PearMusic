@@ -1,6 +1,6 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import Playlist, User, Song, playlist_songs, db
+from app.models import Playlist, User, Song, playlist_songs, Comment, db
 
 
 playlist_routes = Blueprint('playlist', __name__)
@@ -98,7 +98,50 @@ def delete_song_from_playlist(playlist_id, song_id):
 
     db.session.commit()
 
-    return {'playlist': playlist.to_dict()}
+    return {'message': 'Song deleted successfully'}, 200
+
+@playlist_routes.route('/<int:playlist_id>/songs/<int:song_id>', methods=['POST'])
+def add_song_to_playlist(song_id, playlist_id):
+
+    playlist = Playlist.query.get(playlist_id)
+    if not playlist:
+        return {'error': 'Playlist not found'}, 404
+
+    # song_id = request.json.get('song_id')
+    # if not song_id:
+    #     return {'error': 'Song ID is required'}, 400
+
+    song = Song.query.get(song_id)
+    if not song:
+        return {'error': 'Song not found'}, 404
+
+    if song in playlist.songs:
+        return {'error': 'Song already in playlist'}, 400
+
+    playlist.songs.append(song)
+    db.session.commit()
+
+    # Add entry to playlist_songs table
+    db.session.execute(playlist_songs.insert().values(playlist_id=playlist_id, song_id=song_id))
+    db.session.commit()
+
+    return {'message': 'Song added to playlist successfully'}
+
+
+@playlist_routes.route('/update/<int:playlist_id>', methods=['PUT'])
+def update_playlist(playlist_id):
+    playlist = Playlist.query.get(playlist_id)
+    data = request.json
+
+    if playlist:
+        playlist.title = data.get('title')
+        playlist.description = data.get('description')
+        playlist.coverImage = data.get('coverImage')
+        db.session.commit()
+        return {'message': 'Playlist updated successfully', 'status': 200}
+    else:
+        return {'error': 'Song not found', 'status': 404}
+
 
 
 @playlist_routes.route('/singlePlaylist/<int:playlist_id>/comments')
@@ -109,4 +152,3 @@ def get_playlists_comments(playlist_id):
         return {'message': 'There are no comments for this playlist'}, 404
 
     return {'comments': [comment.to_dict() for comment in comments]}
-
