@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { thunkDeleteSong } from "../../../../store/song";
 
 import './DeleteSong.css'
+import pearMusicIcon from '../../../../images/pearMusicIcon.png'
 
-const DeleteSong = () => {
-    const handleDelete = () => {
-        console.log('handle submit in delete song modal')
+const DeleteSong = (song) => {
+    const dispatch = useDispatch();
+
+    const songTitle = song.songId.song.title
+    const userId = useSelector(state => state.session.user.id)
+    const songId = song.songId.song.id
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+        // console.log('delete song start')
+        // console.log({songId, userId})
+        dispatch(thunkDeleteSong({songId, userId}))
+        // console.log('delete song end')
     }
 
     return(
         <div className='DS-Main-Wrapper' >
-            <h1 className="DS-Title">ARE YOU SURE?</h1>
-            <div className="DS-Button" onClick={handleDelete}>DELETE THIS SONG</div>
+            <img className='DS-Icon' src={pearMusicIcon} alt='Pear Music Icon' style={{width:'55px'}}/>
+            <p className="DS-Title">Are you sure you want to delete the song - {songTitle}?</p>
+            <div className="DS-Buttons">
+                <div className="DS-Cancel-Button">Cancel</div>
+                <div className="DS-Del-Button" onClick={handleDelete}>Delete</div>
+            </div>
         </div>
     )
 }

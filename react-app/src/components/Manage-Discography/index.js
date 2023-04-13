@@ -85,7 +85,7 @@ function ManageDiscography() {
                   </div>
                   <div>
                     <i id='MD-eclipse' className="fa-solid fa-ellipsis" onClick={((e) => toggleUDM(song.id))} onClose={((e) => setCardId(null))}></i>
-                    {isUDMOpen && (song.id == cardId) && <UDModal />}
+                    {isUDMOpen && (song.id == cardId) && <UDModal song={song}/>}
                   </div>
                 </SwiperSlide>
               )}

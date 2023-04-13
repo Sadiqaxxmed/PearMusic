@@ -60,7 +60,6 @@ export const thunkUserPlaylists = (userId) => async dispatch => {
 
 export const thunkPlaylistSongs = (playlistId) => async dispatch => {
   const response = await fetch(`/api/songs/playlistSongs/${playlistId}`)
-
   if (response.ok) {
     const songs = await response.json();
     const normalize = normalizePlaylistSongs(songs.playlistSongs)
@@ -94,7 +93,7 @@ const initialState = {
 
 // TODO: REDUCER
 const playlistReducer = (state = initialState, action) => {
-  console.log('INSIDE REDUCER ',action.songs)
+  //console.log('INSIDE REDUCER ',action.songs)
   switch (action.type) {
     case ALL_PLAYLISTS:
       return { ...state, allPlaylists: { ...action.playlists }}

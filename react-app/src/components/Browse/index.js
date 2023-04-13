@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkAllAlbums, thunkResetAlbums } from "../../store/album";
 import { thunkAllSongs, thunkResetSongs, thunkLikedSongs, thunkLikeSongs, thunkDeleteLikedSongs } from "../../store/song";
-import { thunkSingleSong } from "../../store/song";
+import { thunkAddSong, thunkNewQueue, thunkPlayNow } from "../../store/queue";
 
 import './Browse.css'
 import 'swiper/swiper.min.css'
@@ -24,9 +24,7 @@ function Browser() {
   const user = useSelector(state => state.session.user?.id)
   const albums = Object.values(useSelector(state => state.albums.allAlbums))
   const songs = Object.values(useSelector(state => state.songs.allSongs))
-  const likedSongs = Object.values(useSelector(state => state.songs.likedSongs)).map(song => song.id )
-
-
+  const likedSongs = Object.values(useSelector(state => state.songs.likedSongs)).map(song => song.id)
 
   // Shuffle Albums/Songs (Adds nice dynamic element to browse page)
   const randomize = array => array.sort(() => 0.5 - Math.random())
@@ -54,13 +52,17 @@ function Browser() {
     }
   }, [songs, albums, loaded])
 
-  const songFunc = (song) =>  {
-    dispatch(thunkSingleSong(song))
+  const addSongToQeueueFunc = (song) => {
+    dispatch(thunkAddSong(song))
   }
 
-  function isLikedSong (songId, userId) {
+  const playNowFunc = (song) => {
+    dispatch(thunkPlayNow(song))
+  }
 
-    if (likedSongs.includes(songId)){
+  function isLikedSong(songId, userId) {
+
+    if (likedSongs.includes(songId)) {
       dispatch(thunkDeleteLikedSongs(songId, userId))
     } else dispatch(thunkLikeSongs(songId, userId))
 
@@ -107,7 +109,7 @@ function Browser() {
 <div className="BR-song-section">
   <div className="song-sec-div">
     <div className="song-art-cover">
-      <img className="art-cover" alt="temp" src={song.coverImage} onClick={() => songFunc(song)}></img>
+      <img className="art-cover" alt="temp" src={song.coverImage} onClick={() => playNowFunc(song)}></img>
     </div>
     <div className="song-info">
       <h3 className="song-info" id="song-name">
@@ -163,5 +165,4 @@ function Browser() {
 
 }
 
-
-export default Browser;
+export default Browser
