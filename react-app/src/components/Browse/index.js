@@ -89,6 +89,7 @@ function Browser() {
             navigation
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => console.log(swiper)}
+            style={{overflow:'hidden'}}
           >
             {shuffledAlbums.map(album => (
               <SwiperSlide key={album.id}>

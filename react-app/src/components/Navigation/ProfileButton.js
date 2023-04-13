@@ -51,7 +51,7 @@ function ProfileButton({ user }) {
             <div className='Menu-Buttons'>
               <div className='Menu-Welcome'>&nbsp;&nbsp;Welcome {user.username}!</div>
               {/* <div>{user.email}</div> */}
-              <NavLink to='/manage-discography' style={{textDecoration:'none'}} className="Menu-Manage-Disc-Btn">&nbsp;Manage Discography
+              <NavLink to='/manage-discography' style={{ textDecoration: 'none' }} className="Menu-Manage-Disc-Btn">&nbsp;Manage Discography
                 <i className="fa-solid fa-record-vinyl" id='vinyl' />
               </NavLink>
               <div className="Menu-Upload-Btn">

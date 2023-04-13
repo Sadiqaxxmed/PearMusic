@@ -162,11 +162,38 @@
   height: 80px;
   width: 100%;
   border-radius: 10px;
-  background-color: rgb(41, 30, 27);
+  /* background-color: rgb(41, 30, 27); */
+  background-color: rgb(35, 35, 35);
 }
+
+.SGPL-Darker-Shade:hover {
+  background-color: rgb(44, 44, 44);
+}
+
+/* .SGPL-Darker-Shade:focus {
+  background-color: rgb(156, 30, 29);
+} */
+
+.SGPL-No-Shade {
+  height: 80px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.SGPL-No-Shade:hover {
+  background-color: rgb(44, 44, 44);
+}
+
+/* .SGPL-No-Shade:focus {
+  background-color: rgb(156, 30, 29);
+} */
 
 .SGPL-icon-menu {
   color: rgb(251, 45, 71);
+}
+
+.SGPL-icon-menu:hover {
+  cursor: pointer;
 }
 
 .SGPL-Time {
