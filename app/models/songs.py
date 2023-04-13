@@ -4,7 +4,7 @@ from sqlalchemy import ForeignKey
 
 class Song(db.Model):
     __tablename__ = "songs"
-    
+
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
@@ -17,10 +17,15 @@ class Song(db.Model):
     artistName = db.Column(db.String, nullable=False)
 
     user_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')))
-    album_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')))
+    album_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('albums.id')))
+    playlist_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('playlists.id')))
 
-    db.relationship("User", primaryjoin="User.id == Song.user_id")
-    db.relationship("User", primaryjoin="User.id == Album.owner_id")
+    user = db.relationship("User", back_populates='songs')
+    album = db.relationship('Album', back_populates='songs')
+    playlist = db.relationship('Playlist', back_populates='songs')
+
+    likes = db.relationship('User', secondary='liked_songs', back_populates='likes')
+
 
     def to_dict(self):
         return {

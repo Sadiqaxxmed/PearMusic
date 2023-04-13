@@ -43,6 +43,9 @@ function NavBar() {
     setSongTitle(currentSong.title)
     setSongArtist(currentSong.artistName)
     setCoverImage(currentSong.coverImage)
+    if (songUrl) {
+      setToggleIcon('fa-solid fa-pause fa-xl icon-hover-pointer')
+    }
     // setAlbumTitle(currentSong.albumTitle) need to pass in album title to single song
   },[currentSong, hasPlayed])
 

@@ -15,9 +15,13 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    db.relationship('Song', primaryjoin='users.c.id == liked_songs.c.owner_id', backref='users')
-    db.relationship('Playlist', primaryjoin='users.c.id == liked_playlists.c.owner_id', backref='users')
-    
+    songs = db.relationship('Song', back_populates='user')
+    albums = db.relationship('Album', back_populates="user")
+    playlists = db.relationship('Playlist', back_populates='user')
+    comments = db.relationship('Comment', back_populates='user')
+
+    likes = db.relationship('Song', secondary='liked_songs', back_populates='likes')
+
     @property
     def password(self):
         return self.hashed_password

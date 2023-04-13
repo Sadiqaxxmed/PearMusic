@@ -4,7 +4,7 @@ from io import BytesIO
 from mutagen.mp3 import MP3
 from flask import Blueprint, jsonify, redirect, request
 from flask_wtf.csrf import generate_csrf
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import Song, User, liked_songs, db, playlist_songs
 from app.forms import SongForm
 from .AWS_helpers import get_unique_filename, upload_file_to_AWS
@@ -169,24 +169,30 @@ def get_liked_songs(user_id):
 @song_routes.route('/likedSongs/<int:song_id>/<int:user_id>', methods=['PUT'])
 def update_liked_songs(song_id, user_id):
     """
-    Query to update single liked user song
+    Query to delete liked user song
     """
-    liked = db.session.query(liked_songs).filter(liked_songs[0]==user_id, liked_songs[1]==song_id)
-    # filter(liked_songs.owner_id==user_id, song_id==song_id)
 
-    # is_liked = db.session.query(liked_songs).filter_by(owner_id=user_id, song_id=song_id).first()
-    print('LIKKKEEEEDDDDDDD      ', liked)
-    # if is_liked:
-    #     # db.session.delete(is_liked)
-    #     db.session.execute(liked_songs.delete().where(
-    #     liked_songs.c.song_id == song_id
-    #     ))
-    message = 'Song deleted successfully'
+    def filter_likes(song):
+        if song.id != song_id:
+            return True
+        return False
 
-    # else:
-    #     db.session.execute(liked_songs.insert().values(owner_id=user_id, song_id=song_id))
-    #     message = 'Song added successfully'
+    user = User.query.get(user_id)
+    user.likes = list(filter(filter_likes, user.likes))
+    db.session.commit()
 
-    # db.session.commit()
+    return {'message': 'Song deleted successfully', 'status': 200}
 
-    return {'message': message, 'status': 200}
+
+@song_routes.route('likeSong/<int:song_id>', methods=['POST'])
+@login_required
+def add_liked_song(song_id):
+    song = Song.query.get(song_id)
+
+    if not song:
+        return jsonify(message='Song not found'), 404
+
+    current_user.likes.append(song)
+    db.session.commit()
+
+    return jsonify(message='Song added to liked songs')

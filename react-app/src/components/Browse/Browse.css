@@ -23,10 +23,16 @@
   object-fit: cover;
 }
 
+
 .BR-images-div {
   display: flex;
+  padding-left: 30px;
+  justify-content: space-evenly;
 }
 
+.art-cover:hover {
+  cursor:pointer;
+}
 /* Can use this media screen to fix resize for browse cards*/
 /* @media screen and (max-width: 1300px) {
   .BR-browse-container {
@@ -78,7 +84,19 @@
   border-bottom: 1px solid black; */
 }
 
-
+.BR-song-section {
+  width: fit-content;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 50px;
+  text-align: left;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 50px;
+  /* border-top: 3px solid rgb(42, 42, 42);
+  border-bottom: 3px solid rgb(42, 42, 42); */
+}
 .BR-song-images {
   height: 50px;
   width: 50px;
@@ -92,6 +110,24 @@
   margin-left: 10px;
 }
 
+.BR-heart-icon {
+  color: rgb(226 96 106);
+}
+
+
+.BR-heart-icon:hover {
+  cursor: pointer;
+  color: rgb(226 96 106);
+}
+
+#song-icon-heart:hover {
+  cursor: pointer;
+}
+
+/* .BR-song-img-text{
+  display: flex;
+  min-width: 50%;
+} */
 .swiper-button-prev::after,
 .swiper-button-next::after {
   color: rgb(222, 222, 222);

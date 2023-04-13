@@ -2,14 +2,15 @@
 
 
 // TODO: CONSTANTS
-const ALL_SONGS = 'ALL_SONGS';
-const USER_SONGS = 'USER_SONGS';
-const LIKED_SONGS = 'LIKED_SONGS';
+const ALL_SONGS         = 'ALL_SONGS';
+const USER_SONGS        = 'USER_SONGS';
+const LIKED_SONGS       = 'LIKED_SONGS';
+const LIKE_SONG         = 'LIKE_SONG';
 const DELETE_LIKED_SONG = 'DELETE_LIKED_SONG';
-const SINGLE_SONG = 'SINGLE_SONG';
-const UPDATE_SONG = 'UPDATE_SONG';
-const DELETE_SONG = 'DELETE_SONG';
-const RESET_SONGS = 'RESET_SONGS';
+const SINGLE_SONG       = 'SINGLE_SONG';
+const UPDATE_SONG       = 'UPDATE_SONG';
+const DELETE_SONG       = 'DELETE_SONG';
+const RESET_SONGS       = 'RESET_SONGS';
 
 // TODO: ACTION CREATORS
 export const actionAllSongs = (songs) => {
@@ -30,6 +31,10 @@ export const actionUserSongs = (songs) => {
 
 export const actionLikedSongs = (songs) => {
   return { type: LIKED_SONGS, songs }
+}
+
+export const actionLikeSongs = (songs) => {
+  return { type: LIKE_SONG, songs }
 }
 
 export const actionDeleteLikedSongs = (songs) => {
@@ -81,9 +86,19 @@ export const thunkLikedSongs = (userId) => async dispatch => {
 
   if (response.ok) {
     const allUserSongs = await response.json();
-    console.log('THUNNNNKKKKK :    ', allUserSongs)
     const normalized = normalizeAllSongs(allUserSongs.likedSongs)
     dispatch(actionLikedSongs(normalized))
+    return;
+  }
+}
+
+export const thunkLikeSongs = (songId, userId) => async dispatch => {
+  const response = await fetch(`/api/songs/likeSong/${songId}`, {method:'POST'})
+
+  if (response.ok) {
+    // const lik = await response.json();
+    // const normalized = normalizeAllSongs(allUserSongs.likedSongs)
+    dispatch(thunkLikedSongs(userId))
     return;
   }
 }
@@ -92,10 +107,7 @@ export const thunkDeleteLikedSongs = (songId, userId) => async dispatch => {
   const response = await fetch(`/api/songs/likedSongs/${songId}/${userId}`, {method:'PUT'})
 
   if (response.ok) {
-    const allUserSongs = await response.json();
-    console.log('THUNNNNKKKKK :    ', allUserSongs)
-    // const normalized = normalizeAllSongs(allUserSongs.likedSongs)
-    // dispatch(actionLikedSongs(normalized))
+    dispatch(thunkLikedSongs(userId))
     return;
   }
 }
@@ -139,7 +151,8 @@ export const thunkResetSongs = () => async dispatch => {
 // TODO: INITIAL SLICE STATE
 const initialState = {
   allSongs: {},
-  singleSong: {}
+  singleSong: {},
+  likedSongs: {}
 }
 
 
@@ -155,7 +168,7 @@ const songsReducer = (state = initialState, action) => {
     case USER_SONGS:
       return { ...state, allSongs: { ...action.songs }}
     case LIKED_SONGS:
-      return { ...state, allSongs: { ...action.songs }}
+      return { ...state, likedSongs: { ...action.songs }}
     default: return { ...state }
   }
 }

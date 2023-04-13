@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkLikedSongs, thunkDeleteLikedSongs } from "../../store/song";
 
@@ -7,16 +7,15 @@ import "./Songs.css";
 
 function Songs() {
   const dispatch = useDispatch();
-  const user_id = useSelector((state) => state.session.user.id);
+  const user_id = useSelector((state) => state.session.user?.id);
 
-  const songs = Object.values(useSelector((state) => state.songs.allSongs));
+  const songs = Object.values(useSelector((state) => state.songs.likedSongs));
 
   useEffect(() => {
     dispatch(thunkLikedSongs(user_id));
   }, [dispatch]);
 
   function unlikeSong(e){
-    console.log("YASINE IS LIT SICK GOT HEEM")
     dispatch(thunkDeleteLikedSongs(e.currentTarget.dataset.songid, user_id));
   }
 
