@@ -17,11 +17,11 @@ export const actionPlayNow = (song) => ({
 })
 
 // for added functionalty later we can uncomment song id to remove specific songs
-// but for now i just want this to remove the first song in the queue when 
-// the song is finsihed playing 
+// but for now i just want this to remove the first song in the queue when
+// the song is finsihed playing
 export const actionRemoveSong = (songId) => ({
     type: REMOVE_SONG,
-    // payload: songId, 
+    // payload: songId,
 });
 
 // export const actionMoveSong = (songId, newIndex) => ({
@@ -63,7 +63,6 @@ export const thunkRemoveSong = () => async dispatch => {
 //makes new queue filled with playlist songs on (play click) for playlists or albums
 export const thunkNewQueue = (playlistId) => async dispatch => {
     const response = await fetch(`/api/songs/playlistSongs/${playlistId}`)
-    console.log(response)
     if (response.ok) {
         const songs = await response.json()
         const normalized = normalizePlaylistSongs(songs.playlistSongs)
