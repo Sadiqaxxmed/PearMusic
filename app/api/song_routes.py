@@ -4,27 +4,12 @@ from io import BytesIO
 from mutagen.mp3 import MP3
 from flask import Blueprint, jsonify, redirect, request
 from flask_wtf.csrf import generate_csrf
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import Song, User, liked_songs, db, playlist_songs
 from app.forms import SongForm
 from .AWS_helpers import get_unique_filename, upload_file_to_AWS
 
 song_routes = Blueprint('song', __name__)
-
-
-@song_routes.route('/likedSongs/<int:user_id>')
-def get_liked_songs(user_id):
-    """
-    Query for all of user liked songs and returns them in a list of song dictionaries
-    """
-
-    user = User.query.get(user_id)
-    if not user:
-        return {'error': 'User not found'}, 404
-
-    liked_songs_query = db.session.query(Song).join(liked_songs).filter_by(owner_id=user_id).all()
-    return {'likedSongs': [song.to_dict() for song in liked_songs_query]}
-
 
 
 @song_routes.route('/allSongs')
@@ -83,7 +68,6 @@ def create_song():
         songURL = uploadSong["url"]
         imageURL = uploadImage["url"]
 
-
         # Retrieve the file contents from the URL using requests.get()
         response = requests.get(songURL)
 
@@ -119,6 +103,7 @@ def create_song():
         print(form.errors)
         return {"message": "Invalid Data", "status": 403}
 
+
 @song_routes.route('/allSongs/<int:user_id>')
 def get_user_songs(user_id):
     """
@@ -135,8 +120,11 @@ def get_user_songs(user_id):
 @song_routes.route('playlistSongs/<int:playlist_id>')
 def get_playlist_songs(playlist_id):
 
-    songs = db.session.query(Song).join(playlist_songs).filter_by(playlist_id=playlist_id).all()
+    songs = db.session.query(Song).join(
+        playlist_songs).filter_by(playlist_id=playlist_id).all()
     return {'playlistSongs': [song.to_dict() for song in songs]}
+
+
 @song_routes.route('/update/<int:song_id>', methods=['PUT'])
 @login_required
 def update_song(song_id):
@@ -161,3 +149,50 @@ def delete_song(song_id):
         return {'message': 'Song deleted successfully', 'status': 200}
     else:
         return {'error': 'Song not found', 'status': 404}
+
+
+@song_routes.route('/likedSongs/<int:user_id>')
+def get_liked_songs(user_id):
+    """
+    Query for all of user liked songs and returns them in a list of song dictionaries
+    """
+
+    user = User.query.get(user_id)
+    if not user:
+        return {'error': 'User not found'}, 404
+
+    liked_songs_query = db.session.query(Song).join(
+        liked_songs).filter_by(owner_id=user_id).all()
+    return {'likedSongs': [song.to_dict() for song in liked_songs_query]}
+
+
+@song_routes.route('/likedSongs/<int:song_id>/<int:user_id>', methods=['PUT'])
+def update_liked_songs(song_id, user_id):
+    """
+    Query to delete liked user song
+    """
+
+    def filter_likes(song):
+        if song.id != song_id:
+            return True
+        return False
+
+    user = User.query.get(user_id)
+    user.likes = list(filter(filter_likes, user.likes))
+    db.session.commit()
+
+    return {'message': 'Song deleted successfully', 'status': 200}
+
+
+@song_routes.route('likeSong/<int:song_id>', methods=['POST'])
+@login_required
+def add_liked_song(song_id):
+    song = Song.query.get(song_id)
+
+    if not song:
+        return jsonify(message='Song not found'), 404
+
+    current_user.likes.append(song)
+    db.session.commit()
+
+    return jsonify(message='Song added to liked songs')

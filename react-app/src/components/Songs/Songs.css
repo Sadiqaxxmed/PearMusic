@@ -32,6 +32,8 @@
   display: flex;
   justify-content: space-evenly;
   padding-top: 20px;
+  flex-wrap: wrap;
+
 }
 
 .SG-labels {

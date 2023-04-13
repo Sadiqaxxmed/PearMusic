@@ -13,9 +13,14 @@ class Playlist(db.Model):
     title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(1000), nullable=False)
     coverImage = db.Column(db.String(), nullable=False)
-    # ownerId = db.relationship('User', backref='playlist', lazy=True)
     owner_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')))
-    db.relationship("User", primaryjoin="User.id == Playlist.owner_id")
+
+
+    user = db.relationship('User', back_populates='playlists')
+    songs = db.relationship('Song', back_populates='playlist')
+    comments = db.relationship('Comment', back_populates='playlist')
+
+
 
     def to_dict(self):
         return {
