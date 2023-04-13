@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import './SinglePlaylist.css'
 import { thunkPlaylistSongs, thunkSinglePlaylist } from "../../store/playlist";
-import { thunkGetComments, thunkCreateComment } from "../../store/comment";
+import { thunkGetComments, thunkCreateComment, thunkResetComments } from "../../store/comment";
 import { thunkNewQueue } from "../../store/queue";
 
 function SinglePlaylist() {
@@ -20,6 +20,10 @@ function SinglePlaylist() {
     dispatch(thunkPlaylistSongs(playlist_id))
     dispatch(thunkSinglePlaylist(playlist_id))
     dispatch(thunkGetComments(playlist_id))
+
+    return () => {
+      dispatch(thunkResetComments())
+    }
   }, [dispatch])
 
   function addQueue() {
