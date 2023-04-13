@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import './ToolTipMenu.css'
 
-import { thunkUserPlaylists,thunkResetPlaylists } from "../../store/playlist";
+import { thunkUserPlaylists,thunkResetPlaylists, thunkCreatePlaylist } from "../../store/playlist";
 import { func } from "prop-types";
 import { thunkAddSong } from "../../store/queue";
 
@@ -35,6 +35,12 @@ function ToolTipMenu(song) {
         return console.log('song added to queue')
     }
 
+    const createPlaylist = async (songId) => {
+        const playlistId = await dispatch(thunkCreatePlaylist(songId))
+        console.log('CREATED PLAYLIST', playlistId)
+        history.push(`/SinglePlaylist/${playlistId}`)
+    }
+
     // handles playlists menu pop out on 'add to playlist btn' click (need to add functionality to close menu once a button is clikced and an action is completed but for now its fine)
     function handlePopOut() {
         if (!showPlaylists) {
@@ -48,7 +54,7 @@ function ToolTipMenu(song) {
         <div>
             <div className={outerDivClassName}>
                 <div className="TTM-Btn-Wrapper"> {/* create playlist and redirect user to that new playlist */}
-                    <div className='TTM-Create-Playlist' onClick={((e) => console.log('CP CP CP CP CP'))}>&nbsp;Create playlist</div>
+                    <div className='TTM-Create-Playlist' onClick={((e) => createPlaylist(songId))}>&nbsp;Create playlist</div>
                 </div>
                 <div className="TTM-Btn-Wrapper" > {/* open extra menu with all user playlists */}
                     <div className='TTM-AddToPlaylist' onClick={((e) => handlePopOut())}>&nbsp;Add to playlist{`->`} </div>
