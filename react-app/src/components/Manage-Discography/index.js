@@ -39,11 +39,11 @@ function ManageDiscography() {
   }, [dispatch, userId, history])
 
 
-    function toggleUDM(id) { //opens da meat ta ball menu 
+    function toggleUDM(id) { //opens da meat ta ball menu
       if(!isUDMOpen) setIsUDMOpen(true)
       else setIsUDMOpen(false)
       setCardId(id)
-      
+
     }
   // function MyComponent(numSlides, className) {
   //   const imageURL = "https://assets.teenvogue.com/photos/615c6f908b261647679498e4/16:9/w_2560%2Cc_limit/GettyImages-1344925419.jpg";
@@ -69,6 +69,7 @@ function ManageDiscography() {
             navigation
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => console.log(swiper)}
+            style={{overflow:'hidden'}}
           >
             <div >
               {userSongs.map(song =>
@@ -105,6 +106,7 @@ function ManageDiscography() {
             navigation
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => console.log(swiper)}
+            style={{overflow:'hidden'}}
           >
             <div className='MD-songs-carousel-images-div'>
               {/* {MyComponent(30, albumsAndplaylistCSS)} */}
@@ -127,6 +129,7 @@ function ManageDiscography() {
             navigation
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => console.log(swiper)}
+            style={{overflow:'hidden'}}
           >
             {userAlbums.map(album =>
               <div className='MD-albums-carousel-images-div'>

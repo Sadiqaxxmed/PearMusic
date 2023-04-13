@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import './SinglePlaylist.css'
@@ -8,9 +8,9 @@ import { thunkNewQueue } from "../../store/queue";
 function SinglePlaylist() {
   const dispatch = useDispatch()
   const { playlist_id } = useParams()
-  
   const songs = Object.values(useSelector(state => state.playlists.singlePlaylist))
   const playlist = Object.values(useSelector(state => state.playlists.playlistDetails))[0]
+
 
   useEffect(() => {
     dispatch(thunkPlaylistSongs(playlist_id))
@@ -28,7 +28,7 @@ function SinglePlaylist() {
     for (let i = 0; i < songs.length; i++) {
       let duration = songs[i].duration;
       minutes += Math.floor(duration);
-      duration.toString().split('.').forEach((second, i)=> i % 2 != 0 ? seconds += parseInt(second) : false )
+      duration.toString().split('.').forEach((second, i) => i % 2 != 0 ? seconds += parseInt(second) : false)
     }
 
     return `${minutes} MINUTES, ${seconds} SECONDS`
@@ -38,10 +38,10 @@ function SinglePlaylist() {
     let minutes = 0;
     let seconds = 0;
 
-      let duration = songs.duration;
-      minutes = Math.floor(duration);
-      console.log(typeof parseInt(duration.toString().split('.')[1]))
-      seconds = duration.toString().split('.')[1].toString().length < 2 ? seconds = `0${duration.toString().split('.')[1].toString()}` : seconds = duration.toString().split('.')[1].toString()
+    let duration = songs.duration;
+    minutes = Math.floor(duration);
+    console.log(typeof parseInt(duration.toString().split('.')[1]))
+    seconds = duration.toString().split('.')[1].toString().length < 2 ? seconds = `0${duration.toString().split('.')[1].toString()}` : seconds = duration.toString().split('.')[1].toString()
     return `${minutes}:${seconds}`
   }
 
@@ -76,26 +76,26 @@ function SinglePlaylist() {
             <div className="SGPL-Bottom-Album-Header"> <p className="SGPL-Bottom-text" id="SGPL-Bottom-Time-text">Album</p> </div>
             <div className="SGPL-Bottom-Time-Header"> <p className="SGPL-Bottom-text" id="SGPL-Bottom-Time-text">Time</p> </div>
           </div>
-          {songs.map( (song, i) =>
-          <div className= {i % 2 == 0 ? "SGPL-Darker-Shade" : '' }>
-          <div className="SGPL-Bottom-Title-Header">
-          <div className="SGPL-Bottom-Song-Header">
-          <div className="SGPL-Bottom-Song">
-            <img className="SG-Bottom-PL-Img" alt='temp' src={song.coverImage}></img>
-            <p className="SGPL-Bottom-Song-text">{song.title}</p>
-          </div>
-          </div>
-          <div className="SGPL-Bottom-Artist-Header"> <p className="SGPL-Bottom-text" id="SGPL-Bottom-Info-Text">{song.artistName}</p> </div>
-          <div className="SGPL-Bottom-Album-Header"> <p className="SGPL-Bottom-text" id="SGPL-Bottom-Info-Text">{song.genre}</p> </div>
-          <div className="SGPL-Time">
-            <p className="SGPL-Bottom-text" id="SGPL-Bottom-Info-Text">{songTotalPlayTime(song)}</p>
-          <div className="SGPL-icon-menu-div">
-            <i className="fa-solid fa-ellipsis SGPL-icon-menu"></i>
-          </div>
-          </div>
-          </div>
-          </div>
-            )}
+          {songs.map((song, i) =>
+            <div className={i % 2 == 0 ? "SGPL-Darker-Shade" : 'SGPL-No-Shade'} tabindex="0">
+              <div className="SGPL-Bottom-Title-Header">
+                <div className="SGPL-Bottom-Song-Header">
+                  <div className="SGPL-Bottom-Song">
+                    <img className="SG-Bottom-PL-Img" alt='temp' src={song.coverImage}></img>
+                    <p className="SGPL-Bottom-Song-text">{song.title}</p>
+                  </div>
+                </div>
+                <div className="SGPL-Bottom-Artist-Header"> <p className="SGPL-Bottom-text" id="SGPL-Bottom-Info-Text">{song.artistName}</p> </div>
+                <div className="SGPL-Bottom-Album-Header"> <p className="SGPL-Bottom-text" id="SGPL-Bottom-Info-Text">{song.genre}</p> </div>
+                <div className="SGPL-Time">
+                  <p className="SGPL-Bottom-text" id="SGPL-Bottom-Info-Text">{songTotalPlayTime(song)}</p>
+                  <div className="SGPL-icon-menu-div">
+                    <i className="fa-solid fa-ellipsis SGPL-icon-menu"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
