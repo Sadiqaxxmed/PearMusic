@@ -1,9 +1,7 @@
-import { actionSingleSong } from "./song";
-
 // CONSTANTS
 const ADD_SONG = 'ADD_SONG'
 const PLAY_NOW = 'PLAY_NOW'
-// const REMOVE_SONG = 'REMOVE_SONG'
+const REMOVE_SONG = 'REMOVE_SONG'
 // const MOVE_SONG = 'MOVE_SONG'
 const NEW_QUEUE = 'NEW_QUEUE'
 
@@ -18,10 +16,13 @@ export const actionPlayNow = (song) => ({
     payload:song
 })
 
-// export const actionRemoveSong = (songId) => ({
-//     type: REMOVE_SONG,
-//     payload: songId,
-// });
+// for added functionalty later we can uncomment song id to remove specific songs
+// but for now i just want this to remove the first song in the queue when 
+// the song is finsihed playing 
+export const actionRemoveSong = (songId) => ({
+    type: REMOVE_SONG,
+    // payload: songId, 
+});
 
 // export const actionMoveSong = (songId, newIndex) => ({
 //     type: MOVE_SONG,
@@ -45,14 +46,17 @@ const normalizePlaylistSongs = (playlists) => {
 
 //adds song to back of existing queue
 export const thunkAddSong = (song) => async dispatch => {
-    // console.log('///////////////////' , song)
     dispatch(actionAddSong(song))
     return
 }
 //resets queue so only clicked song is in it
 export const thunkPlayNow = (song) => async dispatch => {
-    console.log(song)
     dispatch(actionPlayNow(song))
+    return
+}
+
+export const thunkRemoveSong = () => async dispatch => {
+    dispatch(actionRemoveSong())
     return
 }
 
@@ -85,11 +89,15 @@ const queueReducer = (state = initialState, action) => {
                 ...state,
                 queue:[{...action.payload}]
             }
-        // case 'REMOVE_SONG':
-        //     return {
-        //         ...state,
-        //         queue: state.queue.filter((song) => song.id !== action.payload),
-        //     };
+        case 'REMOVE_SONG':
+            // console.log('////////////////', Object.values(state.queue))
+            const newQueue = Object.values(state.queue)
+            newQueue.shift()
+            return {
+                ...state,
+                queue: newQueue,
+            };
+            // {...state, queue: state.queue.filter((song) => song.id !== action.payload),};
         case 'NEW_QUEUE':
             return { ...state, queue: {...action.songs}}
         // case 'MOVE_SONG': {

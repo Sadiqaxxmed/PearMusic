@@ -8,6 +8,7 @@ import { thunkNewQueue } from "../../store/queue";
 function SinglePlaylist() {
   const dispatch = useDispatch()
   const { playlist_id } = useParams()
+  
   const songs = Object.values(useSelector(state => state.playlists.singlePlaylist))
   const playlist = Object.values(useSelector(state => state.playlists.playlistDetails))[0]
 

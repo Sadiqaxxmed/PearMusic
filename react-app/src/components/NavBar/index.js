@@ -1,11 +1,12 @@
 import React,{useState, useRef, useEffect} from "react";
 import ProfileButton from "../Navigation/ProfileButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Menu from "./Menu/index";
 import noSong from '../../images/Music.png'
 import pear from '../../images/pear2.png'
 import ReactPlayer from 'react-player'
 import './NavBar.css'
+import { thunkRemoveSong } from "../../store/queue";
 
 
 
@@ -29,6 +30,7 @@ function NavBar() {
   // const [albumTitle, setAlbumTitle] = useState(null)
   const [toggleIcon, setToggleIcon] = useState('fa-solid fa-play fa-xl')
 
+  const dispatch = useDispatch()
   //console logs start
 
   // console.log('ass',currentSong)
@@ -40,17 +42,11 @@ function NavBar() {
   // },[])
   //console logs end
 
-  // const advanceSongQueue = async () => {
-  //   // Logic to advance the song queue
-    
-  //   queue.shift()
-  //   console.log('asdasdasdsad',queue)
-  //   setSongUrl(queue[0].mp3file)
-  //   setSongTitle(queue[0].title)
-  //   setSongArtist(queue[0].artistName)
-  //   setCoverImage(queue[0].coverImage)
-  //   console.log(songUrl)
-  // }
+  const advanceSongQueue = async () => {
+    // Logic to advance the song queue
+    dispatch(thunkRemoveSong())
+    return (console.log('song removed'))
+  }
 
   useEffect(() => {
     if(queue[0]){
@@ -134,7 +130,7 @@ function NavBar() {
             played={currentTime}
             onDuration={(duration) => setDuration(duration)}
             style={{display: 'none'}}
-            onEnded={(e)=>queue.shift()}
+            onEnded={((e)=> advanceSongQueue())}
           />
           {hasPlayed
           ? <>
