@@ -1,5 +1,6 @@
 from flask import Blueprint
-from app.models import Playlist, User, db
+from flask_login import login_required, current_user
+from app.models import Playlist, User, Song, db
 
 playlist_routes = Blueprint('playlist', __name__)
 
@@ -14,7 +15,6 @@ def playlists():
     return {'playlists': [playlist.to_dict() for playlist in playlists]}
 
 
-
 @playlist_routes.route('/allPlaylists/<int:user_id>')
 def get_user_playlists(user_id):
     """
@@ -27,10 +27,41 @@ def get_user_playlists(user_id):
     playlists = Playlist.query.filter_by(owner_id=user_id).all()
     return {'playlists': [playlist.to_dict() for playlist in playlists]}
 
+
 @playlist_routes.route('/singlePlaylist/<int:playlist_id>')
 def get_single_playlist(playlist_id):
     playlist = Playlist.query.get(playlist_id)
     if not playlist:
         return {'error': 'Playlist not found'}, 404
 
+    return { 'playlist': playlist.to_dict() }
+
+@playlist_routes.route('/createPlaylist/<int:song_id>', methods=['POST'])
+@login_required
+def create_playlist_from_song(song_id):
+    song = Song.query.get(song_id)
+
+    if not song:
+        return {'message': 'Song not found'}, 404
+
+    # Get the user from the current session
+    user = current_user
+
+    # Create a new playlist with the user as the owner
+    playlist = Playlist(
+        title=song.title,
+        description='Add Description',
+        coverImage=song.coverImage,
+        owner_id=user.id
+    )
+    
+    # Add the song to the playlist
+    playlist.songs.append(song)
+
+
+    # Save the playlist to the database
+    db.session.add(playlist)
+    db.session.commit()
+
+    # Return the new playlist as JSON
     return { 'playlist': playlist.to_dict() }
