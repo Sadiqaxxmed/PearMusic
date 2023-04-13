@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkAllAlbums, thunkResetAlbums } from "../../store/album";
 import { thunkAllSongs, thunkResetSongs } from "../../store/song";
 import { thunkSingleSong } from "../../store/song";
+import { thunkAddSong, thunkNewQueue, thunkPlayNow } from "../../store/queue";
 
 import './Browse.css'
 import 'swiper/swiper.min.css'
@@ -49,8 +50,11 @@ function Browser() {
     }
   }, [songs, albums, loaded])
 
-  const songFunc = (song) =>  {
-    dispatch(thunkSingleSong(song))
+  const addSongToQeueueFunc = (song) =>  {
+    dispatch(thunkAddSong(song))
+  }
+  const playNowFunc = (song) => {
+    dispatch(thunkPlayNow(song))
   }
 
 
@@ -111,7 +115,7 @@ function Browser() {
           >
             {shuffledSongs.map(song =>
               <SwiperSlide key={song.id}>{/* come back. its targeting all the whitespace. add div container for songs and song info */}
-                <div className="BR-song-container" onClick={() => songFunc(song)}>
+                <div className="BR-song-container" onClick={() => playNowFunc(song)}>
                   <img className='BR-song-images' src={song.coverImage} alt='Song Cover'></img>
                   <div className="BR-song-title">
                     <h3 style={{ color: 'rgb(238, 238, 238)', fontSize: '15px', marginBottom: '2px' }}>{song.title}</h3>

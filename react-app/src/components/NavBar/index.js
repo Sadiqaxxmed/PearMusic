@@ -13,6 +13,7 @@ import './NavBar.css'
 function NavBar() {
   const sessionUser = useSelector(state => state.session.user);
   const currentSong = useSelector(state => state.songs.singleSong)
+  const queue = Object.values(useSelector(state => state.queue.queue))
   const playerRef = useRef(null); // Create a ref to the ReactPlayer component
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -31,20 +32,39 @@ function NavBar() {
   //console logs start
 
   // console.log('ass',currentSong)
+  // useEffect(() => {
+  //   if(ended){
 
+  //     setEnded(false)
+  //   }
+  // },[])
   //console logs end
 
+  // const advanceSongQueue = async () => {
+  //   // Logic to advance the song queue
+    
+  //   queue.shift()
+  //   console.log('asdasdasdsad',queue)
+  //   setSongUrl(queue[0].mp3file)
+  //   setSongTitle(queue[0].title)
+  //   setSongArtist(queue[0].artistName)
+  //   setCoverImage(queue[0].coverImage)
+  //   console.log(songUrl)
+  // }
+
   useEffect(() => {
-    if(currentSong.mp3file !== undefined) {
-      setHasPlayed(true)
-      setPlayPause(true)
+    if(queue[0]){
+      if(queue[0].mp3file !== undefined) {
+        setHasPlayed(true)
+        setPlayPause(true)
+      }
+      setSongUrl(queue[0].mp3file)
+      setSongTitle(queue[0].title)
+      setSongArtist(queue[0].artistName)
+      setCoverImage(queue[0].coverImage)
     }
-    setSongUrl(currentSong.mp3file)
-    setSongTitle(currentSong.title)
-    setSongArtist(currentSong.artistName)
-    setCoverImage(currentSong.coverImage)
-    // setAlbumTitle(currentSong.albumTitle) need to pass in album title to single song
-  },[currentSong, hasPlayed])
+    // setAlbumTitle(queue[0].albumTitle) 
+  },[queue[0]])
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -114,6 +134,7 @@ function NavBar() {
             played={currentTime}
             onDuration={(duration) => setDuration(duration)}
             style={{display: 'none'}}
+            onEnded={(e)=>queue.shift()}
           />
           {hasPlayed
           ? <>
