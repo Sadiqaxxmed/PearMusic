@@ -2,7 +2,7 @@
 const ADD_SONG = 'ADD_SONG'
 const PLAY_NOW = 'PLAY_NOW'
 const REMOVE_SONG = 'REMOVE_SONG'
-// const MOVE_SONG = 'MOVE_SONG'
+// const MOVE_SONG = 'MOVE_SONG' prolly leave this for LATERRRR
 const NEW_QUEUE = 'NEW_QUEUE'
 
 // ACTION CREATORS

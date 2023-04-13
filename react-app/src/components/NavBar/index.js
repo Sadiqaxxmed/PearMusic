@@ -13,7 +13,6 @@ import { thunkRemoveSong } from "../../store/queue";
 
 function NavBar() {
   const sessionUser = useSelector(state => state.session.user);
-  const currentSong = useSelector(state => state.songs.singleSong)
   const queue = Object.values(useSelector(state => state.queue.queue))
   const playerRef = useRef(null); // Create a ref to the ReactPlayer component
 
@@ -27,27 +26,20 @@ function NavBar() {
   const [songTitle, setSongTitle] = useState('')
   const [songArtist, setSongArtist] = useState('')
   const [coverImage, setCoverImage] = useState('')
-  // const [albumTitle, setAlbumTitle] = useState(null)
   const [toggleIcon, setToggleIcon] = useState('fa-solid fa-play fa-xl')
+  // const [albumTitle, setAlbumTitle] = useState(null)
+  
 
   const dispatch = useDispatch()
-  //console logs start
 
-  // console.log('ass',currentSong)
-  // useEffect(() => {
-  //   if(ended){
 
-  //     setEnded(false)
-  //   }
-  // },[])
-  //console logs end
-
+// Logic to advance the song queue
   const advanceSongQueue = async () => {
-    // Logic to advance the song queue
+    
     dispatch(thunkRemoveSong())
     return (console.log('song removed'))
   }
-
+// Updates useStates to reflect queue change whenever the queue is altered
   useEffect(() => {
     if(queue[0]){
       if(queue[0].mp3file !== undefined) {
@@ -58,14 +50,16 @@ function NavBar() {
       setSongTitle(queue[0].title)
       setSongArtist(queue[0].artistName)
       setCoverImage(queue[0].coverImage)
+       // setAlbumTitle(queue[0].albumTitle) 
     }
-    // setAlbumTitle(queue[0].albumTitle) 
   },[queue[0]])
 
+// LOGIC FOR TOP RIGHT MENU OPEN
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
 
+//FIX THIS... THE LOGIC IS WONKY
   function playPauseFunc(){
     setHasPlayed(true)
     if(!playPause) {
@@ -77,13 +71,14 @@ function NavBar() {
     }
   }
 
+// LOGIC TO HANDLE SKIP BUTTON CLICK
   const handleSeekUp = () => {
     if (playerRef.current) {
       const currentTime = playerRef.current.getCurrentTime(); // Get current time
       playerRef.current.seekTo(currentTime + 5); // Seek to current time + 5 seconds
     }
   };
-
+// LOGIC TO HANDLE REVERSE BUTTON CLICK
   const handleSeekDown = () => {
     if (playerRef.current) {
       const currentTime = playerRef.current.getCurrentTime(); // Get current time
@@ -91,12 +86,13 @@ function NavBar() {
     }
   };
 
+// UPDATES CURRENT TIME BASED ON PLAYER PROGRESS OUTPUT
   const handleProgressChange = (e) => {
     // console.log(e)
     playerRef.current.seekTo(e)
     setCurrentTime(e)
   }
-
+// FUNC TO CHANGE SECONDS TO MINUTES FOR PLAYER VIEW (NOT FOR ANY LOGIC IN THE CODE BESIDES AESTETIC AND USER EXPERIENCE)
   function convertDecimalToTime(decimalValue) {
     const minutes = Math.floor(decimalValue / 60); // Get minutes by dividing decimalValue by 60 and rounding down
     const seconds = Math.round(decimalValue % 60); // Get seconds by getting the remainder of decimalValue divided by 60 and rounding to nearest integer
@@ -145,7 +141,6 @@ function NavBar() {
                 <div className="NB-Player-CurrentTime">{convertDecimalToTime(currentTime)}</div>
                 <div className="NB-Player-TimeLeft">-{convertDecimalToTime(duration-currentTime)}</div>
               </div>
-              {/* onChange={(e)=> setCurrentTime(e.target.value)} */}
               <input className='NB-Progress' type="range" value={currentTime} min='0' max={duration} onChange={(e)=> handleProgressChange(e.target.value)}/>
             </>
           : <img className="NB-Pear" src={pear} alt='pear'/>
