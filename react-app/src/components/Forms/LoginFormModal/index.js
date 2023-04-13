@@ -13,7 +13,6 @@ function LoginFormModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email.length)
     let err = {};
     if (email.length > 1) err.email = 'Please provide a valid email';
     if (password.length < 5) err.password = 'Password must be atleast 5 characters';
@@ -41,7 +40,6 @@ function LoginFormModal() {
   const handleCloseModal = () => {
     setShowModal(false); // Set the state to close the modal
   }
-  console.log(errors)
   return (
     <>
       {showModal && (

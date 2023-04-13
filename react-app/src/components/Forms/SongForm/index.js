@@ -56,7 +56,7 @@ function SignupFormModal() {
         // console.log('gooboo', formData.get('genre'))
         // console.log('solja boy tell em', formData.get('songCoverImage'))
 
-        const res = await fetch('/songs/singleSong', {
+        const res = await fetch('/api/songs/singleSong', {
             method: "POST",
             body: formData
         });

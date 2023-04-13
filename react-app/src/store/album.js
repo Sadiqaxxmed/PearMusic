@@ -23,7 +23,6 @@ export const actionUserAlbums = (albums) => {
 // TODO: NORMALIZE DATA
 const normalizeAllAlbums = (albums) => {
   let normalize = {};
-  console.log('IM HERE GANGALANCHE   :     ', albums)
   albums.forEach(album => {
     normalize[album.id] = album;
   })

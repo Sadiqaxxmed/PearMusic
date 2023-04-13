@@ -123,7 +123,6 @@ export const thunkUpdateSong = ({songId,userId,title,genreValue}) => async dispa
     headers:{'content-type': 'application/json'},
     body:JSON.stringify({ title: title, genre: genreValue })
   })
-  console.log('ass',response)
   if (response.ok) {
     const updatedSong = await response.json();
     dispatch(thunkUserSongs(userId))
