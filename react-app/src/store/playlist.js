@@ -3,11 +3,18 @@ const ALL_PLAYLISTS = 'ALL_PLAYLISTS';
 const USER_PLAYLISTS = 'USER_PLAYLISTS';
 const SONGS_PLAYLIST = 'SONGS_PLAYLIST';
 const SINGLE_PLAYLIST = 'SINGLE_PLAYLIST';
+const CREATE_PLAYLIST = 'CREATE_PLAYLIST';
+const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
+const DELETE_PLAYLIST = 'DELETE_PLAYLIST';
 const RESET_PLAYLISTS = 'RESET_PLAYLISTS';
 
 // TODO: ACTION CREATORS
 export const actionAllPlaylists = (playlists) => {
   return { type: ALL_PLAYLISTS, playlists }
+}
+
+export const actionSinglePlaylist = (playlist) => {
+  return { type: SINGLE_PLAYLIST, playlist }
 }
 
 export const actionUserPlaylists = (playlists) => {
@@ -18,13 +25,22 @@ export const actionSongsPlaylist = (songs) => {
   return { type: SONGS_PLAYLIST, songs }
 }
 
-export const actionResetPlaylists = (reset) => {
-  return { type: RESET_PLAYLISTS, reset}
+export const actionCreatePlaylist = (song) => {
+  return { type: CREATE_PLAYLIST, song}
 }
 
-export const actionSinglePlaylist = (playlist) => {
-  return { type: SINGLE_PLAYLIST, playlist }
+export const actionUpdatePlaylist = (update) => {
+  return { type: UPDATE_PLAYLIST, update }
 }
+
+export const actionDeletePlaylist = (playlistId) => {
+  return { type: DELETE_PLAYLIST, playlistId }
+}
+
+export const actionResetPlaylists = (reset) => {
+  return { type: RESET_PLAYLISTS, reset }
+}
+
 
 // TODO: NORMALIZE DATA
 const normalizePlaylistSongs = (playlists) => {
