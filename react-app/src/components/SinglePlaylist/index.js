@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import './SinglePlaylist.css'
 import { thunkPlaylistSongs, thunkSinglePlaylist } from "../../store/playlist";
+import { thunkNewQueue } from "../../store/queue";
 
 function SinglePlaylist() {
   const dispatch = useDispatch()
   const { playlist_id } = useParams()
+  
   const songs = Object.values(useSelector(state => state.playlists.singlePlaylist))
   const playlist = Object.values(useSelector(state => state.playlists.playlistDetails))[0]
 
@@ -15,6 +17,9 @@ function SinglePlaylist() {
     dispatch(thunkSinglePlaylist(playlist_id))
   }, [dispatch])
 
+  function addQueue(){
+    dispatch(thunkNewQueue(playlist_id))
+  }
 
   function totalPlayTime(songs) {
     let minutes = 0;
@@ -53,9 +58,9 @@ function SinglePlaylist() {
             <p className="SGPL-Info">{songs.length} SONGS • {totalPlayTime(songs)}</p>
             <p className="SGPL-Description">{playlist?.description}</p>
             <div className="SGPL-Buttons">
-              <div className="SGPL-Play-Button">
+              <div className="SGPL-Play-Button" onClick={((e) => addQueue())}>
                 <i className="fa-solid fa-play fa-lrg SGPL-play"></i>
-                <p className="SGPL-Play-Text">Play</p>
+                <p className="SGPL-Play-Text" >Play</p>
               </div>
               <div className="SGPL-Shuffle-Button">
                 <i className="fa-solid fa-shuffle fa-lrg SGPL-Shuffle"></i>

@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ReactSelect from 'react-select';
 import './UpdateSong.css'
 
-const UpdateSong = () => {
+import { thunkUpdateSong } from "../../../../store/song";
+
+
+const UpdateSong = (song) => {
+    const dispatch = useDispatch()
     const GenreOptions = [
         { value: 'Pop', label: 'Pop' },
         { value: 'Rock', label: 'Rock' },
@@ -19,20 +24,20 @@ const UpdateSong = () => {
         { value: 'Trap', label: 'Trap' },
         { value: 'Grunge', label: 'Grunge' },
     ];
+    const [title, setTitle] = useState(song.songId.song.title)
+    const [genreValue, setGenreValue] = useState(song.songId.song.genre)
+    const songId = song.songId.song.id
+    const userId = useSelector(state => state.session.user.id)
 
-    const [title, setTitle] = useState('')
-    const [genreValue, setGenreValue] = useState(null)
+    
 
-    const handleUpdate = () => {
-        console.log('handle update func in update song modal')
-        console.log(title)
-        console.log(genreValue)
+    const handleUpdate = (e) => {
+        e.preventDefault()
+
+        dispatch(thunkUpdateSong({songId,userId,title,genreValue}))
     }
 
-    const handleGenreValueChange = (selectedOption) => {
-        //console.log(selectedOption.value)
-        setGenreValue(selectedOption.value);
-    }
+    const handleGenreValueChange = (selectedOption) => { setGenreValue(selectedOption.value); }
     return(
         <div className="US-Main-Wrapper">
             <div className="US-Title">Update Song</div>
@@ -41,6 +46,7 @@ const UpdateSong = () => {
                 className="US-Genre"
                 options={GenreOptions}
                 value={genreValue}
+                defaultInputValue={genreValue}
                 onChange={handleGenreValueChange}
             />
             <div className="US-Submit-Button" onClick={handleUpdate}>Update</div>

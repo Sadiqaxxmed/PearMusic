@@ -117,23 +117,26 @@ export const thunkSingleSong = (song) => async dispatch => {
   return;
 }
 
-export const thunkUpdateSong = (song) => async dispatch => {
-  const response = fetch('<whatever path sadiq sets up>')
-
+export const thunkUpdateSong = ({songId,userId,title,genreValue}) => async dispatch => {
+  const response = await fetch(`/api/songs/update/${songId}`, {
+    method:'PUT',
+    headers:{'content-type': 'application/json'},
+    body:JSON.stringify({ title: title, genre: genreValue })
+  })
+  console.log('ass',response)
   if (response.ok) {
     const updatedSong = await response.json();
-    // TODO: ADD NORMALIZATION IF NEEDED
-    return;
+    dispatch(thunkUserSongs(userId))
+    return updatedSong;
   }
   return { error: 'There was a problem updating the song', statusCode: response.status}
 }
 
-export const thunkDeleteSong = (songId, userId) => async dispatch => {
-  const response = fetch('<whatever path sadiq sets up>')
+export const thunkDeleteSong = ({songId, userId}) => async dispatch => {
+  const response = await fetch(`/api/songs/delete/${songId}`, {method:'DELETE'})
 
   if (response.ok) {
     const deletedSong = await response.json();
-    // TODO: FINISH THE REST OF ROUTE
     dispatch(thunkUserSongs(userId))
     return deletedSong;
   }

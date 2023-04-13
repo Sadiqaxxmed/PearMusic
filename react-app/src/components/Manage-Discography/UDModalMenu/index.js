@@ -7,7 +7,7 @@ import UpdateSong from "../UDModals/UpdateSongModal";
 import DeleteSong from "../UDModals/DeleteSongModal";
 
 
-const UDModal = ({songId}) => {
+const UDModal = (song) => {
     //prolly need for security later to double check if user owns music
     const sessionUser = useSelector(state => state.session.user)
 
@@ -26,7 +26,7 @@ const UDModal = ({songId}) => {
                 <OpenModalButton
                 buttonText="Update"
                 onButtonClick={handleInnerDivClick}
-                modalComponent={<UpdateSong songId={songId}/>}
+                modalComponent={<UpdateSong songId={song}/>}
                 />
                 <i class="fa-solid fa-pen-to-square" id='update-ico'/>
             </div>
@@ -35,7 +35,7 @@ const UDModal = ({songId}) => {
                 <OpenModalButton
                 buttonText="Delete"
                 onButtonClick={handleInnerDivClick}
-                modalComponent={<DeleteSong songId={songId}/>}
+                modalComponent={<DeleteSong songId={song}/>}
                 />
                 <i class="fa-solid fa-trash" id='delete-ico'/> 
             </div>
