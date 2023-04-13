@@ -18,7 +18,7 @@ export const actionSinglePlaylist = (playlist) => {
 }
 
 export const actionUserPlaylists = (playlists) => {
-  return { type: USER_PLAYLISTS, playlists}
+  return { type: USER_PLAYLISTS, playlists }
 }
 
 export const actionSongsPlaylist = (songs) => {
@@ -26,7 +26,7 @@ export const actionSongsPlaylist = (songs) => {
 }
 
 export const actionCreatePlaylist = (song) => {
-  return { type: CREATE_PLAYLIST, song}
+  return { type: CREATE_PLAYLIST, song }
 }
 
 export const actionUpdatePlaylist = (update) => {
@@ -94,6 +94,45 @@ export const thunkSinglePlaylist = (playlistId) => async dispatch => {
   }
 }
 
+export const thunkCreatePlaylist = (songId) => async dispatch => {
+  // TODO : NEED TO ADD ROUTE FOR FETCH, CHECK RESPONSE, RUN DISPATCH WITH PLAYLIST
+  const response = await fetch('some route', {
+    method: 'POST',
+    headers: 'application/json',
+    body: { songId: songId }
+  })
+
+  if (response.ok) {
+    const playlist = await response.json();
+    dispatch(thunkSinglePlaylist(playlist.id))
+    return;
+  }
+}
+
+export const thunkUpdatePlaylist = (playlistData, playlistId) => async dispatch => {
+  // TODO : NEED TO FIGURE OUT HOW WERE FORMATTING THE PLAYLISTDATA
+  // TODO CONT -- THAT WILL BE SENT OUT, FORMDATA? JSON?
+  const response = await fetch('', {
+    method: 'PUT',
+  })
+
+  if (response.ok) {
+    dispatch(thunkSinglePlaylist(playlistId))
+    return { message: 'Successfully updated playlist', status: 201 }
+  }
+}
+
+export const thunkDeletePlaylist = playlistId => async dispatch => {
+  const response = await fetch('some route', {
+    method: 'DELETE'
+  })
+
+  if (response.ok) {
+    // ? IF THEY DELETE THE PLAYLIST 
+    return;
+  }
+}
+
 export const thunkResetPlaylists = () => async dispatch => {
   dispatch(actionResetPlaylists)
   return;
@@ -109,16 +148,15 @@ const initialState = {
 
 // TODO: REDUCER
 const playlistReducer = (state = initialState, action) => {
-  //console.log('INSIDE REDUCER ',action.songs)
   switch (action.type) {
     case ALL_PLAYLISTS:
-      return { ...state, allPlaylists: { ...action.playlists }}
+      return { ...state, allPlaylists: { ...action.playlists } }
     case USER_PLAYLISTS:
-      return { ...state, allPlaylists: { ...action.playlists }}
+      return { ...state, allPlaylists: { ...action.playlists } }
     case SONGS_PLAYLIST:
-      return { ...state, singlePlaylist: { ...action.songs }}
+      return { ...state, singlePlaylist: { ...action.songs } }
     case SINGLE_PLAYLIST:
-      return { ...state, playlistDetails: { ...action.playlist }}
+      return { ...state, playlistDetails: { ...action.playlist } }
     default: return { ...state }
   }
 }

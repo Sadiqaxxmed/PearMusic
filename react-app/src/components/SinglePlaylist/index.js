@@ -17,7 +17,7 @@ function SinglePlaylist() {
     dispatch(thunkSinglePlaylist(playlist_id))
   }, [dispatch])
 
-  function addQueue(){
+  function addQueue() {
     dispatch(thunkNewQueue(playlist_id))
   }
 
@@ -96,6 +96,37 @@ function SinglePlaylist() {
               </div>
             </div>
           )}
+        </div>
+        <div className="SGPL-Comments-Container">
+          <div>
+            <p className="SGPL-Bottom-text">X# Comments</p>
+          </div>
+          <div className="SGPL-Comments-Area">
+            <div className="Profile-Pic-Section">
+              <div className="Profile-pic-Container">
+                <div className="Profile-pic">
+                M
+                </div>
+                </div>
+              <div className="Comment"></div>
+              <p>LOL</p>
+            </div>
+            <div className="Comments">
+              <p>Testing Area</p>
+            </div>
+            <div className="Comments">
+              <p>Testing Area</p>
+            </div>
+            <div className="Comments">
+              <p>Testing Area</p>
+            </div>
+            <div className="Comments">
+              <p>Testing Area</p>
+            </div>
+            <div className="Comments">
+              <p>Testing Area</p>
+            </div>
+          </div>
         </div>
       </div>
     </>
