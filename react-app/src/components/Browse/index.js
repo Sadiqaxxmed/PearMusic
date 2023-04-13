@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkAllAlbums, thunkResetAlbums } from "../../store/album";
 import { thunkAllSongs, thunkResetSongs, thunkLikedSongs, thunkLikeSongs, thunkDeleteLikedSongs } from "../../store/song";
-import { thunkSingleSong } from "../../store/song";
 import { thunkAddSong, thunkNewQueue, thunkPlayNow } from "../../store/queue";
 
 import './Browse.css'
@@ -25,12 +24,7 @@ function Browser() {
   const user = useSelector(state => state.session.user?.id)
   const albums = Object.values(useSelector(state => state.albums.allAlbums))
   const songs = Object.values(useSelector(state => state.songs.allSongs))
-  const likedSongs = Object.values(useSelector(state => state.songs.likedSongs)).map(song => song.id )
-
-
-  console.log(likedSongs)
-
-
+  const likedSongs = Object.values(useSelector(state => state.songs.likedSongs)).map(song => song.id)
 
   // Shuffle Albums/Songs (Adds nice dynamic element to browse page)
   const randomize = array => array.sort(() => 0.5 - Math.random())
@@ -58,16 +52,17 @@ function Browser() {
     }
   }, [songs, albums, loaded])
 
-  const addSongToQeueueFunc = (song) =>  {
+  const addSongToQeueueFunc = (song) => {
     dispatch(thunkAddSong(song))
   }
+
   const playNowFunc = (song) => {
     dispatch(thunkPlayNow(song))
   }
 
-  function isLikedSong (songId, userId) {
+  function isLikedSong(songId, userId) {
 
-    if (likedSongs.includes(songId)){
+    if (likedSongs.includes(songId)) {
       dispatch(thunkDeleteLikedSongs(songId, userId))
     } else dispatch(thunkLikeSongs(songId, userId))
 
@@ -125,7 +120,7 @@ function Browser() {
 <div className="BR-song-section">
   <div className="song-sec-div">
     <div className="song-art-cover">
-      <img className="art-cover" alt="temp" src={song.coverImage} onClick={() => songFunc(song)}></img>
+      <img className="art-cover" alt="temp" src={song.coverImage} onClick={() => playNowFunc(song)}></img>
     </div>
     <div className="song-info">
       <h3 className="song-info" id="song-name">
@@ -155,9 +150,6 @@ function Browser() {
             onSwiper={(swiper) => console.log(swiper)}
           >
             {shuffledSongs.map(song =>
-              <SwiperSlide key={song.id}>{/* come back. its targeting all the whitespace. add div container for songs and song info */}
-                <div className="BR-song-container" onClick={() => playNowFunc(song)}>
-                  <img className='BR-song-images' src={song.coverImage} alt='Song Cover'></img>
               <SwiperSlide key={song.id}> come back. its targeting all the whitespace. add div container for songs and song info
                 <div className="BR-song-container" >
                   <div className="BR-song-img-text">
@@ -184,5 +176,4 @@ function Browser() {
 
 }
 
-
-export default Browser;
+export default Browser
