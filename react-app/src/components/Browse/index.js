@@ -27,16 +27,13 @@ function Browser() {
   const likedSongs = Object.values(useSelector(state => state.songs.likedSongs)).map(song => song.id )
 
 
-  console.log(likedSongs)
-
-
 
   // Shuffle Albums/Songs (Adds nice dynamic element to browse page)
   const randomize = array => array.sort(() => 0.5 - Math.random())
 
-  const shuffledAlbums = randomize(albums)
-  const shuffledSongs = randomize(songs)
-  const shuffledBrowseCards = randomize(browseCards)
+  const shuffledAlbums = albums
+  const shuffledSongs = songs
+  const shuffledBrowseCards = browseCards
 
   useEffect(() => {
     dispatch(thunkAllSongs());
@@ -77,18 +74,6 @@ function Browser() {
           Browse
         </h1>
         <div className="BR-browse-container">
-          {/* <div className="BR-images-div">
-            <img className="BR-images" src={image} alt="Example GIF" onClick={() => alert('Feature Coming Soon!')} />
-          </div>
-          <div className="BR-images-div">
-            <img className="BR-images" src={image2} alt="Example GIF" onClick={() => alert('Feature Coming Soon!')} />
-          </div>
-          <div className="BR-images-div">
-            <img className="BR-images" src={image3} alt="Example GIF" onClick={() => alert('Feature Coming Soon!')} />
-          </div>
-          <div className="BR-images-div">
-            <img className="BR-images" src={image4} alt="Example GIF" onClick={() => alert('Feature Coming Soon!')} />
-          </div> */}
           {shuffledBrowseCards.map(browseCard =>
             <div className="BR-images-div">
               <img className="BR-images" src={browseCard} alt="Browse Card" onClick={() => alert('Feature Coming Soon!')} />
