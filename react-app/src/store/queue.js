@@ -90,13 +90,13 @@ const queueReducer = (state = initialState, action) => {
                 queue:[{...action.payload}]
             }
         case 'REMOVE_SONG':
-            // console.log('////////////////', Object.values(state.queue))
             const newQueue = Object.values(state.queue)
             newQueue.shift()
             return {
                 ...state,
                 queue: newQueue,
             };
+            // below is for removing specific songs from queue
             // {...state, queue: state.queue.filter((song) => song.id !== action.payload),};
         case 'NEW_QUEUE':
             return { ...state, queue: {...action.songs}}
