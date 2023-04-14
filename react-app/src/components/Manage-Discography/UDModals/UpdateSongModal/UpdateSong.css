@@ -1,21 +1,33 @@
 .US-Main-Wrapper{
     display: flex;
     flex-direction: column;
-    width: 60vw;
-    gap: 15px;
+    width: 25vw;
+    height: 350px;
+    gap: 20px;
+    border-radius: 5px;
     padding: 10px 0 10px 0;
     margin: 0 30px 0 30px;
 }
+
 .US-Title{
     display: flex;
     align-self: center;
     color: white;
+    font-size: 20px;
 }
-.US-TitleInput{
-
+.US-input-field{
+    color: white;
 }
 .US-Genre{
+    width: 350px;
+}
+.US-TitleInput {
+    height: 25px;
+    width: 350px;
+}
 
+.US-update-info {
+    display: flex;
 }
 .US-Submit-Button{
     display: flex;
