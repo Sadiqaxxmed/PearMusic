@@ -152,3 +152,19 @@ def get_playlists_comments(playlist_id):
         return {'message': 'There are no comments for this playlist'}, 404
 
     return {'comments': [comment.to_dict() for comment in comments]}
+
+
+@playlist_routes.route('/singlePlaylist/<int:playlist_id>/newComment/<int:user_id>', methods=['POST'])
+# @login_required
+def create_comment(playlist_id, user_id):
+    data = request.get_json()
+    comment = Comment(
+        comment=data['comment'],
+        owner_id=user_id,
+        comment_id=playlist_id
+    )
+
+    db.session.add(comment)
+    db.session.commit()
+
+    return { 'comment': comment.to_dict() }

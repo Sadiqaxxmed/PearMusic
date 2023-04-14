@@ -2,16 +2,26 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import './SinglePlaylist.css'
+
 import { thunkDeletePlaylist, thunkPlaylistSongs, thunkSinglePlaylist } from "../../store/playlist";
-import { thunkGetComments } from "../../store/comment";
+import { thunkGetComments, thunkCreateComment, thunkResetComments } from "../../store/comment";
+
 import { thunkNewQueue } from "../../store/queue";
 import ToolTip from "./ToolTip";
 import { func } from "prop-types";
 
 function SinglePlaylist() {
+
   const dispatch = useDispatch()
   const { playlist_id } = useParams()
   const history = useHistory()
+
+  const dispatch = useDispatch();
+  const { playlist_id } = useParams();
+  const [ comment, setComment ] = useState('');
+  const [ errors, setErrors ] = useState({});
+  const userId = useSelector(state => state.session.user?.id)
+
   const songs = Object.values(useSelector(state => state.playlists.singlePlaylist))
   const playlist = Object.values(useSelector(state => state.playlists.playlistDetails))[0]
   const comments = Object.values(useSelector(state => state.comments.playlistComments))
@@ -20,10 +30,15 @@ function SinglePlaylist() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [cardId, setCardId] = useState(null)
 
+
   useEffect(() => {
     dispatch(thunkPlaylistSongs(playlist_id))
     dispatch(thunkSinglePlaylist(playlist_id))
     dispatch(thunkGetComments(playlist_id))
+
+    return () => {
+      dispatch(thunkResetComments())
+    }
   }, [dispatch])
 
   function addQueue() {
@@ -49,10 +64,10 @@ function SinglePlaylist() {
 
     let duration = songs.duration;
     minutes = Math.floor(duration);
-    console.log(typeof parseInt(duration.toString().split('.')[1]))
     seconds = duration.toString().split('.')[1].toString().length < 2 ? seconds = `0${duration.toString().split('.')[1].toString()}` : seconds = duration.toString().split('.')[1].toString()
     return `${minutes}:${seconds}`
   }
+
 
   const DeletePlaylist = async (playlistId) => {
     console.log('we in here')
@@ -73,6 +88,22 @@ function SinglePlaylist() {
   }
 
   totalPlayTime(songs)
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    // ! POSSIBLY PUT VALIDATIONS?
+    let error = {}
+
+    if (comment.length > 125) error.length = 'Comment must be less than 125 characters'
+
+    if (error.length) setErrors(error)
+    dispatch(thunkCreateComment(comment, userId, playlist_id))
+  }
+
+  function isDisabled() {
+    if (comment.length <= 0) return true
+  }
+
   return (
     <>
       <div className="SGPL-Body">
@@ -127,19 +158,26 @@ function SinglePlaylist() {
         </div>
         <div className="SGPL-Comments-Container">
           <div>
-            <p className="SGPL-Bottom-text">{comments.length} Comments</p>
+            <p className="SGPL-Bottom-text">{comments.length} Comments {errors.length ? <span style={{color:'red', fontSize:'12px'}}> -- {errors.length}</span> : null }</p>
           </div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <span class="material-symbols-outlined">account_circle</span>
-            <input type='text' placeholder="Add a comment..." style={{ marginBottom: '20px' }}></input>
+            <input
+            type='text'
+            placeholder="Add a comment..."
+            className="SGPL-Input-Comment-Field"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            ></input>
+            <button disabled={isDisabled()}>Submit</button>
           </form>
           <div className="SGPL-Comments-Area">
             {comments.map(comment =>
               <>
-                <div>
+                <div className='SGPL-Profile-Comment-Container'>
                   <span class="material-symbols-outlined">account_circle</span>
                   <div>
-                    <p>{comment.comment}</p>
+                    <p className="SGPL-Comments">{comment.comment}</p>
                   </div>
                 </div>
               </>

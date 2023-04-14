@@ -206,9 +206,18 @@
   padding-left: 10px;
 }
 
+.SGPL-Input-Comment-Field {
+  margin-bottom: 40px;
+}
+
 .SGPL-Comments-Area {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+.SGPL-Comments {
+  color: rgb(255, 255, 255);
+  font-size: 12px;
 }
 
 .Profile-Pic-Section {
@@ -217,7 +226,6 @@
   font-size: .01em;
 }
 
-.Profile-pic {
-  background-color: red;
+.SGPL-Profile-Comment-Container {
   border-radius: 10px;
 }

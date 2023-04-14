@@ -1,10 +1,20 @@
 // TODO: CONSTANTS
 const GET_COMMENTS = 'GET_COMMENTS';
+const CREATE_COMMENT = 'CREATE_COMMENT';
+const RESET_COMMENTS = 'RESET_COMMENT';
 
 // TODO: ACTION CREATORS
-export const actionGetComments = (comments) => {
+export const actionGetComments = comments => {
   return { type: GET_COMMENTS, comments }
 };
+
+export const actionCreateComment = comment => {
+  return { type: CREATE_COMMENT, comment}
+}
+
+export const actionResetComment = reset => {
+  return { type: RESET_COMMENTS, reset}
+}
 
 // TODO: NORMALIZE
 const normalizeComments = comments => {
@@ -27,6 +37,28 @@ export const thunkGetComments = (playlistId) => async dispatch => {
   }
 }
 
+export const thunkCreateComment = (comment, userId, playlistId) => async dispatch => {
+  const response = await fetch(`/api/playlists/singlePlaylist/${playlistId}/newComment/${userId}`, {
+    method:'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      comment
+    })
+  })
+
+  if (response.ok) {
+    const data = await response.json()
+    console.log(data)
+    dispatch(thunkGetComments(data.comment.comment_id))
+  }
+  return;
+}
+
+export const thunkResetComments = () => async dispatch => {
+  dispatch(actionResetComment(initialState));
+  return { message: 'Successfully cleared state'}
+}
+
 // TODO: INITIAL SLICE STATE
 const initialState = {
   playlistComments: {}
@@ -38,6 +70,8 @@ const commentsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_COMMENTS:
       return { ...state, playlistComments: { ...action.comments }}
+    case RESET_COMMENTS:
+      return { ...action.reset }
     default: return { ...state }
   }
 }
