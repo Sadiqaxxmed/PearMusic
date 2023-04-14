@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactSelect from 'react-select';
 import './UpdateSong.css'
-
+import pearMusicIcon from '../../../../images/pearMusicIcon.png'
 import { thunkUpdateSong } from "../../../../store/song";
 
 
 const UpdateSong = (song) => {
+
     const dispatch = useDispatch()
+
     const GenreOptions = [
         { value: 'Pop', label: 'Pop' },
         { value: 'Rock', label: 'Rock' },
@@ -29,26 +31,40 @@ const UpdateSong = (song) => {
     const songId = song.songId.song.id
     const userId = useSelector(state => state.session.user.id)
 
-    
+
 
     const handleUpdate = (e) => {
         e.preventDefault()
-
         dispatch(thunkUpdateSong({songId,userId,title,genreValue}))
     }
 
     const handleGenreValueChange = (selectedOption) => { setGenreValue(selectedOption.value); }
-    return(
+    return (
         <div className="US-Main-Wrapper">
-            <div className="US-Title">Update Song</div>
-            <input className="US-TitleInput" type="text" placeholder={title} value={title} onChange={((e)=> setTitle(e.target.value))}/>
-            <ReactSelect 
+            <div className="US-Title">
+                <h3>Update Song</h3>
+            </div>
+            <label>
+                <p className="US-input-field">Song Title:</p>
+
+                <input className="US-TitleInput" type="text" placeholder={title} value={title} onChange={((e)=> setTitle(e.target.value))}/>
+            </label>
+
+            <div className="US-update-info">
+            <div className="US-Genre-div">
+            <label>
+                <p className="US-input-field">Genre:</p>
+
+            <ReactSelect
                 className="US-Genre"
                 options={GenreOptions}
                 value={genreValue}
                 defaultInputValue={genreValue}
                 onChange={handleGenreValueChange}
             />
+            </label>
+            </div>
+            </div>
             <div className="US-Submit-Button" onClick={handleUpdate}>Update</div>
         </div>
     )
