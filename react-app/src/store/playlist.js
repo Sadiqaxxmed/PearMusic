@@ -178,6 +178,7 @@ export const thunkResetPlaylists = () => async dispatch => {
 // TODO: INITIAL SLICE STATE
 const initialState = {
   allPlaylists: {},
+  userPlaylists: {},
   singlePlaylist: {},
   playlistDetails: {}
 }
@@ -189,7 +190,7 @@ const playlistReducer = (state = initialState, action) => {
     case ALL_PLAYLISTS:
       return { ...state, allPlaylists: { ...action.playlists } }
     case USER_PLAYLISTS:
-      return { ...state, allPlaylists: { ...action.playlists } }
+      return { ...state, userPlaylists: { ...action.playlists } }
     case SONGS_PLAYLIST:
       return { ...state, singlePlaylist: { ...action.songs } }
     case SINGLE_PLAYLIST:

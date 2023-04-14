@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkAllAlbums, thunkResetAlbums } from "../../store/album";
 import { thunkAllSongs, thunkResetSongs, thunkLikedSongs, thunkLikeSongs, thunkDeleteLikedSongs } from "../../store/song";
 import { thunkAddSong, thunkNewQueue, thunkPlayNow } from "../../store/queue";
+import { thunkUserPlaylists } from "../../store/playlist";
 import ToolTipMenu from "../ToolTip";
 
 import './Browse.css'
@@ -39,7 +40,8 @@ function Browser() {
   useEffect(() => {
     dispatch(thunkAllSongs());
     dispatch(thunkAllAlbums());
-    dispatch(thunkLikedSongs(user))
+    dispatch(thunkLikedSongs(user));
+    dispatch(thunkUserPlaylists(user));
 
     return () => {
       dispatch(thunkResetSongs());
@@ -97,9 +99,7 @@ function Browser() {
             slidesPerView={4}
             slidesPerGroup={4}
             navigation
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
-            style={{ overflow: 'hidden' }}
+            className="BR-Swiper"
           >
             {shuffledAlbums.map(album => (
               <SwiperSlide key={album.id}>

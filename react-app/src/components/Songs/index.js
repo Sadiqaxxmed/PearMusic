@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkLikedSongs, thunkDeleteLikedSongs } from "../../store/song";
+import { thunkUserPlaylists } from "../../store/playlist";
 
 
 import "./Songs.css";
@@ -8,11 +9,11 @@ import "./Songs.css";
 function Songs() {
   const dispatch = useDispatch();
   const user_id = useSelector((state) => state.session.user?.id);
-
   const songs = Object.values(useSelector((state) => state.songs.likedSongs));
 
   useEffect(() => {
     dispatch(thunkLikedSongs(user_id));
+    dispatch(thunkUserPlaylists(user_id));
   }, [dispatch]);
 
   function unlikeSong(e){
