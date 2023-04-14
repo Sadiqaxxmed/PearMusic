@@ -37,7 +37,7 @@ const UDModal = (song) => {
                 onButtonClick={handleInnerDivClick}
                 modalComponent={<DeleteSong songId={song}/>}
                 />
-                <i class="fa-solid fa-trash" id='delete-ico'/> 
+                <i class="fa-solid fa-trash" id='delete-ico'/>
             </div>
         </div>
     )
