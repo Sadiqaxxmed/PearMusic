@@ -52,6 +52,10 @@
   background-color: rgb(251, 45, 71);
 }
 
+.SGPL-Play-Button:hover {
+  cursor: pointer;
+}
+
 .SGPL-Play-Text {
   display: flex;
   align-self: center;
@@ -80,6 +84,10 @@
 
 }
 
+.SGPL-Shuffle-Button:hover {
+  cursor: pointer;
+}
+
 .SGPL-Shuffle-Text {
   display: flex;
   align-self: center;
@@ -96,6 +104,7 @@
   text-align: center;
   color: rgb(255, 255, 255);
 }
+
 
 .SGPL-Bottom-Title-Header {
   margin-top: 20px;
@@ -170,9 +179,9 @@
   background-color: rgb(44, 44, 44);
 }
 
-/* .SGPL-Darker-Shade:focus {
+.SGPL-Darker-Shade:focus {
   background-color: rgb(156, 30, 29);
-} */
+}
 
 .SGPL-No-Shade {
   height: 80px;
@@ -184,9 +193,9 @@
   background-color: rgb(44, 44, 44);
 }
 
-/* .SGPL-No-Shade:focus {
+.SGPL-No-Shade:focus {
   background-color: rgb(156, 30, 29);
-} */
+}
 
 .SGPL-icon-menu {
   color: rgb(251, 45, 71);
@@ -195,6 +204,21 @@
 .SGPL-icon-menu:hover {
   cursor: pointer;
 }
+
+.SGPL-Border-Top-Comments {
+  border-top: 1px solid rgb(42, 42, 42);
+  border-bottom: 1px solid rgb(42, 42, 42);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* .SGPL-User-Input-Comment-Container {
+  border: 1px solid red;
+}
+
+.SGPL-current-user-profile-pic {
+  background-color: blue
+} */
 
 .SGPL-Time {
   display: inline-flex;
@@ -207,7 +231,10 @@
 }
 
 .SGPL-Input-Comment-Field {
-  margin-bottom: 40px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 2.4em;
 }
 
 .SGPL-Comments-Area {
@@ -215,9 +242,24 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.SGPL-Comments {
+.SGPL-Comment-Container {
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.SGPL-Comment {
   color: rgb(255, 255, 255);
   font-size: 12px;
+}
+
+.SGPL-delete-comment-icon {
+  margin-right: 3%;
+  color: rgb(251, 45, 71);
+}
+
+.SGPL-delete-comment-icon:hover {
+  cursor: pointer;
 }
 
 .Profile-Pic-Section {
@@ -226,6 +268,14 @@
   font-size: .01em;
 }
 
+.SGPL-profile-pic-container {
+  margin-left: 2%;
+  margin-top: 1%;
+}
+
 .SGPL-Profile-Comment-Container {
   border-radius: 10px;
+  background-color: rgb(35, 35, 35);
+  border: 1px solid rgb(156, 30, 29);
+  margin: 5px;
 }

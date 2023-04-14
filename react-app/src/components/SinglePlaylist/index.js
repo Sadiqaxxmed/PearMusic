@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import './SinglePlaylist.css'
 import { thunkPlaylistSongs, thunkSinglePlaylist } from "../../store/playlist";
-import { thunkGetComments, thunkCreateComment, thunkResetComments } from "../../store/comment";
+import { thunkGetComments, thunkCreateComment, thunkResetComments, thunkDeleteComment } from "../../store/comment";
 import { thunkNewQueue } from "../../store/queue";
 
 function SinglePlaylist() {
   const dispatch = useDispatch();
   const { playlist_id } = useParams();
-  const [ comment, setComment ] = useState('');
-  const [ errors, setErrors ] = useState({});
+  const [comment, setComment] = useState('');
+  const [errors, setErrors] = useState({});
   const userId = useSelector(state => state.session.user?.id)
   const songs = Object.values(useSelector(state => state.playlists.singlePlaylist))
   const playlist = Object.values(useSelector(state => state.playlists.playlistDetails))[0]
@@ -68,6 +68,16 @@ function SinglePlaylist() {
     if (comment.length <= 0) return true
   }
 
+  function deleteComment(ownerId, commentId, playlistId) {
+    if (userId === ownerId) {
+      dispatch(thunkDeleteComment(commentId, playlistId))
+      dispatch(thunkResetComments())
+    }
+    else {
+      alert('This aint yours b')
+    }
+  }
+
   return (
     <>
       <div className="SGPL-Body">
@@ -84,7 +94,7 @@ function SinglePlaylist() {
                 <i className="fa-solid fa-play fa-lrg SGPL-play"></i>
                 <p className="SGPL-Play-Text" >Play</p>
               </div>
-              <div className="SGPL-Shuffle-Button">
+              <div className="SGPL-Shuffle-Button" onClick={() => alert('Feature Coming Soon!')}>
                 <i className="fa-solid fa-shuffle fa-lrg SGPL-Shuffle"></i>
                 <p className="SGPL-Shuffle-Text">Shuffle</p>
               </div>
@@ -120,27 +130,30 @@ function SinglePlaylist() {
           )}
         </div>
         <div className="SGPL-Comments-Container">
-          <div>
-            <p className="SGPL-Bottom-text">{comments.length} Comments {errors.length ? <span style={{color:'red', fontSize:'12px'}}> -- {errors.length}</span> : null }</p>
+          <div className="SGPL-Border-Top-Comments">
+            <p className="SGPL-Bottom-text">{comments.length} Comments {errors.length ? <span style={{ color: 'red', fontSize: '12px' }}> -- {errors.length}</span> : null}</p>
           </div>
-          <form onSubmit={handleSubmit}>
-            <span class="material-symbols-outlined">account_circle</span>
+          <form onSubmit={handleSubmit} className="SGPL-User-Input-Comment-Container">
+            <div style={{ display: 'flex' }}>
+              <span class="material-symbols-outlined SB-icons SGPL-current-user-profile-pic">account_circle</span>
+            </div>
             <input
-            type='text'
-            placeholder="Add a comment..."
-            className="SGPL-Input-Comment-Field"
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
+              type='text'
+              placeholder="Add a comment..."
+              className="SGPL-Input-Comment-Field"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
             ></input>
-            <button disabled={isDisabled()}>Submit</button>
+            <button disabled={isDisabled()} style={{ marginBottom: '10px' }}>Submit</button>
           </form>
           <div className="SGPL-Comments-Area">
             {comments.map(comment =>
               <>
                 <div className='SGPL-Profile-Comment-Container'>
-                  <span class="material-symbols-outlined">account_circle</span>
-                  <div>
-                    <p className="SGPL-Comments">{comment.comment}</p>
+                  <span class="material-symbols-outlined SB-icons SGPL-profile-pic-container">account_circle</span>
+                  <div className="SGPL-Comment-Container">
+                    <p className="SGPL-Comment">{comment.comment}</p>
+                    { userId == comment.owner_id ? <i class="fa-solid fa-xmark SGPL-delete-comment-icon" onClick={() => deleteComment(comment.owner_id, comment.id, playlist_id)}></i> : null}
                   </div>
                 </div>
               </>
