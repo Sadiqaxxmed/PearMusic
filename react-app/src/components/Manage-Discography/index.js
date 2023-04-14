@@ -23,7 +23,7 @@ function ManageDiscography() {
   const userId = useSelector(state => state.session.user?.id)
   const userSongs = Object.values(useSelector(state => state.songs.allSongs))
   const userAlbums = Object.values(useSelector(state => state.albums.allAlbums))
-  const userPlaylists = Object.values(useSelector(state => state.playlists.allPlaylists))
+  const userPlaylists = Object.values(useSelector(state => state.playlists.userPlaylists))
 
   useEffect(() => {
     dispatch(thunkUserSongs(userId))
