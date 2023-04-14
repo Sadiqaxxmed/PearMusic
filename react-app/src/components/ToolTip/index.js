@@ -15,7 +15,7 @@ function ToolTipMenu(song) {
     const userPlaylists = Object.values(useSelector(state => state.playlists.allPlaylists))
     const songId = song.song.id
 
-    const [outerDivClassName, setOuterDivClassName] = useState('TTM-Main-Wrapper');
+    const [outerDivClassName, setOuterDivClassName] = useState('TTM-Main-Wrapper-DIF');
     const [showPlaylists, setShowPlaylists] = useState(false)
 
     useEffect(() => {
