@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import './ToolTipMenu.css'
 
-import { thunkUserPlaylists,thunkResetPlaylists, thunkCreatePlaylist } from "../../store/playlist";
+import { thunkUserPlaylists,thunkResetPlaylists, thunkCreatePlaylist, thunkAddToPlaylist } from "../../store/playlist";
 import { func } from "prop-types";
 import { thunkAddSong } from "../../store/queue";
 
@@ -27,6 +27,8 @@ function ToolTipMenu(song) {
     function AddToPlaylist(songId,playlistId){
         console.log('songID=>>>>>>>>>>>', songId)
         console.log('playlistId=>>>>>>>>>>>', playlistId)
+        dispatch(thunkAddToPlaylist(songId,playlistId))
+        console.log('passed thunk')
     }
 
     // adds song to queue (need to add functionality to close menu once a button is clikced and an action is completed but for now its fine)

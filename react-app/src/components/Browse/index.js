@@ -55,10 +55,6 @@ function Browser() {
     }
   }, [songs, albums, loaded])
 
-  const addSongToQueueFunc = (song) => {
-    dispatch(thunkAddSong(song))
-  }
-
   const playNowFunc = (song) => {
     dispatch(thunkPlayNow(song))
   }
