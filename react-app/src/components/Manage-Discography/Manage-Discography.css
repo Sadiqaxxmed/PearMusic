@@ -96,3 +96,24 @@
 .MD-display-none {
   display: none;
 }
+
+.MD-songs-carousel-images-div{
+
+}
+.MD-Playlist-CoverImage{
+  height: 150px;
+  width: 150px;
+  border-radius: 10px;
+  margin-left: 60px;
+}
+.MD-playlist-Title{
+  margin-left: 50px;
+  color:rgb(238, 238, 238);
+  font-size: .8em;
+}
+
+#MD-eclipse-playlist{
+  padding-top: 15px;
+  padding-left: 10px;
+  color: rgb(226, 96, 106)
+}

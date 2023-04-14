@@ -1,0 +1,103 @@
+.TTM-Main-Wrapper-DIF {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(30, 30, 30);
+    border: solid rgb(75, 75, 75) 1px;
+    border-radius: 8px;
+    width: 110px;
+    color: rgb(214, 214, 214);
+    font-size: small;
+    position: absolute;
+}
+
+.pop-out-menu {
+    visibility: hidden;
+}
+
+.pop-out-menu-open {
+    flex-direction: column;
+    background-color: rgb(30, 30, 30);
+    border: solid rgb(75, 75, 75) 1px;
+    border-radius: 8px;
+    width: 200px;
+    color: rgb(214, 214, 214);
+    font-size: small;
+    position: relative;
+    right:-115px;
+}
+
+.POM-BTN-Wrapper-Title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom: 1px solid rgb(75, 75, 75);
+    padding: 5px 0px 5px 0px;
+}
+
+.POM-BTN-Wrapper {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(75, 75, 75);
+    padding: 5px 0px 5px 0px;
+    cursor: pointer;
+}
+
+.TTM-Btn-Wrapper {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(75, 75, 75);
+    padding: 5px 0px 5px 0px;
+    cursor: pointer;
+}
+
+.TTM-Btn-Wrapper-End {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0px 5px 0px;
+    cursor: pointer;
+}
+
+/* used to fix overflow issue with menu popup being hidden by swiper */
+/* div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden{
+    overflow: none;
+} */
+/* idk rn the menu is going under songs and chaning the z index doesnt do anything */
+/* img.MD-song-images{
+    z-index: -1;
+    overflow: visible;
+} */
+
+/* .UDM-Main-Wrapper-Hidden{
+    display: none;
+}
+
+.UDM-Update-Wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    width: 100%;
+    border-bottom: solid rgb(98, 98, 98) 1px;
+    cursor: pointer;
+    justify-content: space-between;
+    padding: 5px 0 5px 0;
+}
+.UDM-Delete-Wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    width: 100%;
+    cursor: pointer;
+    justify-content: space-between;
+    padding: 5px 0 5px 0;
+}
+#update-ico{
+    position: relative;
+    right: 5px;
+}
+#delete-ico{
+    position: relative;
+    right: 6px;
+}
+
+.UDM-Update{}
+.UDM-Delete{} */

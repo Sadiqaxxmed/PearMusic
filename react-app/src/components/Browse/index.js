@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkAllAlbums, thunkResetAlbums } from "../../store/album";
 import { thunkAllSongs, thunkResetSongs, thunkLikedSongs, thunkLikeSongs, thunkDeleteLikedSongs } from "../../store/song";
 import { thunkAddSong, thunkNewQueue, thunkPlayNow } from "../../store/queue";
+import ToolTipMenu from "../ToolTip";
 
 import './Browse.css'
 import 'swiper/swiper.min.css'
@@ -18,15 +19,17 @@ import image4 from '../../images/Fin-Cards(smaller)/r&b.gif'
 
 function Browser() {
   const dispatch = useDispatch();
-  const [loaded, setLoaded] = useState(false);
-
-  const browseCards = [image, image2, image3, image4]
   const user = useSelector(state => state.session.user?.id)
   const albums = Object.values(useSelector(state => state.albums.allAlbums))
   const songs = Object.values(useSelector(state => state.songs.allSongs))
   const likedSongs = Object.values(useSelector(state => state.songs.likedSongs)).map(song => song.id)
-
-  // Shuffle Albums/Songs (Adds nice dynamic element to browse page)
+  
+  const [loaded, setLoaded] = useState(false);
+  const browseCards = [image, image2, image3, image4]
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [cardId, setCardId] = useState(null)
+  
+// Shuffle Albums/Songs (Adds nice dynamic element to browse page)
   const randomize = array => array.sort(() => 0.5 - Math.random())
 
   const shuffledAlbums = albums
@@ -52,12 +55,23 @@ function Browser() {
     }
   }, [songs, albums, loaded])
 
-  const addSongToQeueueFunc = (song) => {
+  const addSongToQueueFunc = (song) => {
     dispatch(thunkAddSong(song))
   }
 
   const playNowFunc = (song) => {
     dispatch(thunkPlayNow(song))
+  }
+
+  function openMenuFunc(id) {
+    if(!menuOpen){
+      setMenuOpen(true)
+      setCardId(id)
+    }else{
+      setMenuOpen(false)
+      setCardId(null)
+    }
+    
   }
 
   function isLikedSong(songId, userId) {
@@ -80,7 +94,7 @@ function Browser() {
             <div className="BR-images-div">
               <img className="BR-images" src={browseCard} alt="Browse Card" onClick={() => alert('Feature Coming Soon!')} />
             </div>
-            )}
+          )}
         </div>
         <h1 className="BR-labels" style={{ marginBottom: '0' }}>Albums</h1>
         {albums && (
@@ -91,7 +105,7 @@ function Browser() {
             navigation
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => console.log(swiper)}
-            style={{overflow:'hidden'}}
+            style={{ overflow: 'hidden' }}
           >
             {shuffledAlbums.map(album => (
               <SwiperSlide key={album.id}>
@@ -106,59 +120,30 @@ function Browser() {
         <h1 className="BR-labels">Songs</h1>
         {songs.map((song) => (
 
-<div className="BR-song-section">
-  <div className="song-sec-div">
-    <div className="song-art-cover">
-      <img className="art-cover" alt="temp" src={song.coverImage} onClick={() => playNowFunc(song)}></img>
-    </div>
-    <div className="song-info">
-      <h3 className="song-info" id="song-name">
-        {song.title}
-      </h3>
-      <p className="song-info" id="artists-name">
-        {song.artistName}
-      </p>
-    </div>
-  </div>
-  <div className="icon-section">
-    <i id="song-icon-menu" className="fa-solid fa-ellipsis"></i>
-    {likedSongs.includes(song.id) ? <i id="song-icon-heart" className="fa-solid fa-heart" onClick={() => isLikedSong(song.id, user)}></i> : <i class="fa-regular fa-heart BR-heart-icon" onClick={() => isLikedSong(song.id, user)}></i> }
+          <div className="BR-song-section">
+            <div className="song-sec-div">
+              <div className="song-art-cover">
+                <img className="art-cover" alt="temp" src={song.coverImage} onClick={() => playNowFunc(song)}></img>
+              </div>
+              <div className="song-info">
+                <h3 className="song-info" id="song-name">
+                  {song.title}
+                </h3>
+                <p className="song-info" id="artists-name">
+                  {song.artistName}
+                </p>
+              </div>
+            </div>
+            <div className="icon-section">
+              <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e)=> openMenuFunc(song.id))}></i>
+              {menuOpen && (song.id == cardId) && <ToolTipMenu song={song}/>}
+              {likedSongs.includes(song.id) ? <i id="song-icon-heart" className="fa-solid fa-heart" onClick={() => isLikedSong(song.id, user)}></i> : <i class="fa-regular fa-heart BR-heart-icon" onClick={() => isLikedSong(song.id, user)}></i>}
 
-    {/* <i id="song-icon-heart" className="fa-solid fa-heart" data-songid={song.id}></i> */}
-  </div>
-</div>
+              {/* <i id="song-icon-heart" className="fa-solid fa-heart" data-songid={song.id}></i> */}
+            </div>
+          </div>
 
-))}
-        {/* {songs && (
-          <Swiper
-            modules={[Navigation, Pagination, Scrollbar]}
-            slidesPerView={3}
-            slidesPerGroup={3}
-            navigation
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
-          >
-            {shuffledSongs.map(song =>
-              <SwiperSlide key={song.id}> come back. its targeting all the whitespace. add div container for songs and song info
-                <div className="BR-song-container" >
-                  <div className="BR-song-img-text">
-                  <div className="BR-song-img">
-                    <img className='BR-song-images' src={song.coverImage} alt='Song Cover' onClick={() => songFunc(song)}></img>
-                    </div>
-
-                  <div className="BR-song-title">
-                    <h3 style={{ color: 'rgb(238, 238, 238)', fontSize: '15px', marginBottom: '2px' }}>{song.title}</h3>
-                    <h5 style={{ color: 'rgb(105, 105, 105)', fontSize: '10px', fontWeight: '600', margin: '0', }}>{song.genre}</h5>
-                  </div>
-                  </div>
-                  <div className="BR-song-icons">
-                    <i class="fa-regular fa-heart BR-heart-icon"></i>
-                  </div>
-                </div>
-              </SwiperSlide>
-            )}
-          </Swiper>
-        )} */}
+        ))}
       </div>
     )
   )
