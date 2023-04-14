@@ -6,6 +6,7 @@ const SINGLE_PLAYLIST = 'SINGLE_PLAYLIST';
 const CREATE_PLAYLIST = 'CREATE_PLAYLIST';
 const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
 const DELETE_PLAYLIST = 'DELETE_PLAYLIST';
+const DELETE_SONG_PLAYLIST = 'DELETE_SONG_PLAYLIST'
 const RESET_PLAYLISTS = 'RESET_PLAYLISTS';
 
 // TODO: ACTION CREATORS
@@ -41,6 +42,9 @@ export const actionResetPlaylists = (reset) => {
   return { type: RESET_PLAYLISTS, reset }
 }
 
+export const actionDeleteSongPlaylist = (songId) => {
+  return { type: DELETE_SONG_PLAYLIST, songId}
+}
 
 // TODO: NORMALIZE DATA
 const normalizePlaylistSongs = (playlists) => {
@@ -109,28 +113,44 @@ export const thunkCreatePlaylist = (songId) => async dispatch => {
   }
 }
 
-export const thunkUpdatePlaylist = (playlistData, playlistId) => async dispatch => {
+export const thunkUpdatePlaylist = ({title,description,coverImage}, playlistId) => async dispatch => {
   // TODO : NEED TO FIGURE OUT HOW WERE FORMATTING THE PLAYLISTDATA
   // TODO CONT -- THAT WILL BE SENT OUT, FORMDATA? JSON?
-  const response = await fetch('', {
+  console.log(playlistId)
+  const response = await fetch(`/api/playlists/update/${playlistId}`, {
     method: 'PUT',
+    headers:{'content-type': 'application/json'},
+    body:JSON.stringify({ title: title, description: description, coverImage: coverImage })
   })
 
   if (response.ok) {
-    dispatch(thunkSinglePlaylist(playlistId))
+    dispatch(thunkAllPlaylists(playlistId))
     return { message: 'Successfully updated playlist', status: 201 }
   }
 }
 
 export const thunkDeletePlaylist = playlistId => async dispatch => {
-  const response = await fetch('some route', {
+  const response = await fetch(`/api/playlists/singlePlaylist/${playlistId}/delete`, {
     method: 'DELETE'
   })
 
   if (response.ok) {
-    // ? IF THEY DELETE THE PLAYLIST 
+    dispatch(thunkAllPlaylists())
     return;
   }
+}
+
+export const thunkDeleteSongPlaylist = (songId,playlistId) => async dispatch => {
+  const response = await fetch(`/api/playlists/${playlistId}/songs/${songId}`,{
+    method:'DELETE'
+  })
+
+  if(response.ok){
+    dispatch(thunkSinglePlaylist(playlistId))
+    
+    return
+  }
+
 }
 
 export const thunkResetPlaylists = () => async dispatch => {

@@ -1,20 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import './SinglePlaylist.css'
-import { thunkPlaylistSongs, thunkSinglePlaylist } from "../../store/playlist";
+
+import { thunkDeletePlaylist, thunkPlaylistSongs, thunkSinglePlaylist } from "../../store/playlist";
 import { thunkGetComments, thunkCreateComment, thunkResetComments } from "../../store/comment";
+
 import { thunkNewQueue } from "../../store/queue";
+import ToolTip from "./ToolTip";
+import { func } from "prop-types";
 
 function SinglePlaylist() {
+
+  const dispatch = useDispatch()
+  const { playlist_id } = useParams()
+  const history = useHistory()
+
   const dispatch = useDispatch();
   const { playlist_id } = useParams();
   const [ comment, setComment ] = useState('');
   const [ errors, setErrors ] = useState({});
   const userId = useSelector(state => state.session.user?.id)
+
   const songs = Object.values(useSelector(state => state.playlists.singlePlaylist))
   const playlist = Object.values(useSelector(state => state.playlists.playlistDetails))[0]
   const comments = Object.values(useSelector(state => state.comments.playlistComments))
+
+  console.log('INSIDE THE COMPONENT', comments)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [cardId, setCardId] = useState(null)
+
 
   useEffect(() => {
     dispatch(thunkPlaylistSongs(playlist_id))
@@ -53,6 +68,27 @@ function SinglePlaylist() {
     return `${minutes}:${seconds}`
   }
 
+
+  const DeletePlaylist = async (playlistId) => {
+    console.log('we in here')
+    dispatch(thunkDeletePlaylist(playlistId))
+    console.log('we out here')
+    history.push('/allPlaylist')
+  }
+
+  function openMenuFunc(id) {
+    if (!menuOpen) {
+      setMenuOpen(true)
+      setCardId(id)
+    } else {
+      setMenuOpen(false)
+      setCardId(null)
+    }
+
+  }
+
+  totalPlayTime(songs)
+
   function handleSubmit(e) {
     e.preventDefault()
     // ! POSSIBLY PUT VALIDATIONS?
@@ -82,11 +118,11 @@ function SinglePlaylist() {
             <div className="SGPL-Buttons">
               <div className="SGPL-Play-Button" onClick={((e) => addQueue())}>
                 <i className="fa-solid fa-play fa-lrg SGPL-play"></i>
-                <p className="SGPL-Play-Text" >Play</p>
+                <p className="SGPL-Play-Text">Play</p>
               </div>
               <div className="SGPL-Shuffle-Button">
                 <i className="fa-solid fa-shuffle fa-lrg SGPL-Shuffle"></i>
-                <p className="SGPL-Shuffle-Text">Shuffle</p>
+                <p className="SGPL-Shuffle-Text" onClick={((e)=>DeletePlaylist(playlist.id))}>Delete</p> {/* Change back to shuffle when crud is complete */}
               </div>
             </div>
           </div>
@@ -112,7 +148,8 @@ function SinglePlaylist() {
                 <div className="SGPL-Time">
                   <p className="SGPL-Bottom-text" id="SGPL-Bottom-Info-Text">{songTotalPlayTime(song)}</p>
                   <div className="SGPL-icon-menu-div">
-                    <i className="fa-solid fa-ellipsis SGPL-icon-menu"></i>
+                    <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(song.id))}></i>
+                    {menuOpen && (song.id == cardId) && <ToolTip song={song} playlistId={playlist.id} />}
                   </div>
                 </div>
               </div>
