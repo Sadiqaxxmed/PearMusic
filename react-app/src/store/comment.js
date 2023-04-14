@@ -2,6 +2,7 @@
 const GET_COMMENTS = 'GET_COMMENTS';
 const CREATE_COMMENT = 'CREATE_COMMENT';
 const RESET_COMMENTS = 'RESET_COMMENT';
+const DELETE_COMMENT = 'DELETE_COMMENT';
 
 // TODO: ACTION CREATORS
 export const actionGetComments = comments => {
@@ -14,6 +15,10 @@ export const actionCreateComment = comment => {
 
 export const actionResetComment = reset => {
   return { type: RESET_COMMENTS, reset}
+}
+
+export const actionDeleteComment = comment => {
+  return { type: DELETE_COMMENT, comment }
 }
 
 // TODO: NORMALIZE
@@ -53,6 +58,19 @@ export const thunkCreateComment = (comment, userId, playlistId) => async dispatc
   }
   return;
 }
+
+export const thunkDeleteComment = (commentId, playlistId) => async dispatch => {
+  const response = await fetch(`/api/playlists/singlePlaylist/deleteComment/${commentId}`, {
+    method:'DELETE'
+  })
+
+  if (response.ok) {
+    dispatch(thunkGetComments(playlistId));
+    return { message: 'Comment Successfully Deleted' };
+  }
+  return { message : 'There was an error deleting the message', status: response.status }
+}
+
 
 export const thunkResetComments = () => async dispatch => {
   dispatch(actionResetComment(initialState));

@@ -21,7 +21,7 @@ const UpdatePlaylist = ({playlistId}) => {
 
     return (
         <div className='UP-Main-Wrapper' >
-            <img className='UP-Icon' src={pearMusicIcon} alt='Pear Music Icon' style={{ width: '55px' }} />
+            {/* <img className='UP-Icon' src={pearMusicIcon} alt='Pear Music Icon' style={{ width: '55px' }} /> */}
             <div className="UP-Main-Wrapper">
                 <div className="UP-Title">Update Playlist</div>
                     <input className="UP-Title" type="text" placeholder={title} value={title} onChange={((e) => setTitle(e.target.value))} />

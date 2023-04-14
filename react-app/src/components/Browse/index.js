@@ -23,12 +23,12 @@ function Browser() {
   const albums = Object.values(useSelector(state => state.albums.allAlbums))
   const songs = Object.values(useSelector(state => state.songs.allSongs))
   const likedSongs = Object.values(useSelector(state => state.songs.likedSongs)).map(song => song.id)
-  
+
   const [loaded, setLoaded] = useState(false);
   const browseCards = [image, image2, image3, image4]
   const [menuOpen, setMenuOpen] = useState(false)
   const [cardId, setCardId] = useState(null)
-  
+
 // Shuffle Albums/Songs (Adds nice dynamic element to browse page)
   const randomize = array => array.sort(() => 0.5 - Math.random())
 
@@ -67,7 +67,7 @@ function Browser() {
       setMenuOpen(false)
       setCardId(null)
     }
-    
+
   }
 
   function isLikedSong(songId, userId) {
@@ -87,10 +87,8 @@ function Browser() {
         </h1>
         <div className="BR-browse-container">
           {shuffledBrowseCards.map(browseCard =>
-            <div className="BR-images-div">
               <img className="BR-images" src={browseCard} alt="Browse Card" onClick={() => alert('Feature Coming Soon!')} />
-            </div>
-          )}
+              )}
         </div>
         <h1 className="BR-labels" style={{ marginBottom: '0' }}>Albums</h1>
         {albums && (

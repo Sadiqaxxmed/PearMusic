@@ -168,3 +168,14 @@ def create_comment(playlist_id, user_id):
     db.session.commit()
 
     return { 'comment': comment.to_dict() }
+
+
+@playlist_routes.route('/singlePlaylist/deleteComment/<int:comment_id>', methods=['DELETE'])
+def delete_comment(comment_id):
+    comment = Comment.query.get(comment_id)
+    if comment:
+        db.session.delete(comment)
+        db.session.commit()
+        return {'message': 'Comment deleted successfully', 'status': 200}
+    else:
+        return {'error': 'Comment not found', 'status': 404}
