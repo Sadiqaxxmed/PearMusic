@@ -16,8 +16,6 @@ function SinglePlaylist() {
   const { playlist_id } = useParams()
   const history = useHistory()
 
-  const dispatch = useDispatch();
-  const { playlist_id } = useParams();
   const [ comment, setComment ] = useState('');
   const [ errors, setErrors ] = useState({});
   const userId = useSelector(state => state.session.user?.id)
