@@ -6,6 +6,5 @@ __pycache__/
 .vscode/
 *.db
 instance/dev.db
-migrations/
 instance/
 instance/dev.db
