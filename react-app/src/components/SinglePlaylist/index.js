@@ -16,8 +16,8 @@ function SinglePlaylist() {
   const { playlist_id } = useParams()
   const history = useHistory()
 
-  const [ comment, setComment ] = useState('');
-  const [ errors, setErrors ] = useState({});
+  const [comment, setComment] = useState('');
+  const [errors, setErrors] = useState({});
   const userId = useSelector(state => state.session.user?.id)
 
   const songs = Object.values(useSelector(state => state.playlists.singlePlaylist))
@@ -74,10 +74,12 @@ function SinglePlaylist() {
     history.push('/allPlaylist')
   }
 
-  const DeleteSong = async (songId,playlistId) => {
-    dispatch(thunkDeleteSongPlaylist(songId,playlistId))
-    return
+
+  const DeleteSong = (songId, playlistId) => {
+    dispatch(thunkDeleteSongPlaylist(songId, playlistId))
+    history.push(`/singlePlaylist/${playlistId}`)
   }
+  
 
   function openMenuFunc(id) {
     if (!menuOpen) {
@@ -125,7 +127,7 @@ function SinglePlaylist() {
               </div>
               <div className="SGPL-Shuffle-Button">
                 <i className="fa-solid fa-shuffle fa-lrg SGPL-Shuffle"></i>
-                <p className="SGPL-Shuffle-Text" onClick={((e)=>DeletePlaylist(playlist.id))}>Delete</p> {/* Change back to shuffle when crud is complete */}
+                <p className="SGPL-Shuffle-Text" onClick={((e) => DeletePlaylist(playlist.id))}>Delete</p> {/* Change back to shuffle when crud is complete */}
               </div>
             </div>
           </div>
@@ -153,7 +155,7 @@ function SinglePlaylist() {
                   <div className="SGPL-icon-menu-div">
                     <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(song.id))}></i>
                     {menuOpen && (song.id == cardId) && <ToolTip song={song} playlistId={playlist.id} />}
-                    {<i class="fa-solid fa-xmark SGPL-delete-comment-icon" onClick={((e)=> DeleteSong(song.id, playlist_id))}></i>}
+                    {<i class="fa-solid fa-xmark SGPL-delete-comment-icon" onClick={((e) => DeleteSong(song.id, playlist_id))}></i>}
                   </div>
                 </div>
               </div>
@@ -162,16 +164,16 @@ function SinglePlaylist() {
         </div>
         <div className="SGPL-Comments-Container">
           <div>
-            <p className="SGPL-Bottom-text">{comments.length} Comments {errors.length ? <span style={{color:'red', fontSize:'12px'}}> -- {errors.length}</span> : null }</p>
+            <p className="SGPL-Bottom-text">{comments.length} Comments {errors.length ? <span style={{ color: 'red', fontSize: '12px' }}> -- {errors.length}</span> : null}</p>
           </div>
           <form onSubmit={handleSubmit}>
             <span class="material-symbols-outlined">account_circle</span>
             <input
-            type='text'
-            placeholder="Add a comment..."
-            className="SGPL-Input-Comment-Field"
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
+              type='text'
+              placeholder="Add a comment..."
+              className="SGPL-Input-Comment-Field"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
             ></input>
             <button disabled={isDisabled()}>Submit</button>
           </form>

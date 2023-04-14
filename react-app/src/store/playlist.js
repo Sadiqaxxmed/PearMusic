@@ -151,7 +151,9 @@ export const thunkDeleteSongPlaylist = (songId,playlistId) => async dispatch => 
   })
 
   if(response.ok){
-    dispatch(thunkSinglePlaylist(playlistId))
+    const data = await response.json()
+    console.log(data)
+    dispatch(thunkPlaylistSongs(playlistId))
     return
   }
 
@@ -169,7 +171,7 @@ export const thunkAddToPlaylist = (songId,playlistId) => async dispatch => {
 }
 
 export const thunkResetPlaylists = () => async dispatch => {
-  dispatch(actionResetPlaylists)
+  dispatch(actionResetPlaylists(initialState))
   return;
 }
 
@@ -192,6 +194,8 @@ const playlistReducer = (state = initialState, action) => {
       return { ...state, singlePlaylist: { ...action.songs } }
     case SINGLE_PLAYLIST:
       return { ...state, playlistDetails: { ...action.playlist } }
+    case RESET_PLAYLISTS:
+      return {...action.reset}
     default: return { ...state }
   }
 }
