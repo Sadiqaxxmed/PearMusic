@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import './UpdatePlaylist.css'
 import pearMusicIcon from '../../../../images/pearMusicIcon.png'
+import { thunkUpdatePlaylist } from "../../../../store/playlist";
 
-const UpdatePlaylist = (playlist) => {
+const UpdatePlaylist = ({playlistId}) => {
     const dispatch = useDispatch();
-    const playlistId = playlist.id
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -15,7 +15,7 @@ const UpdatePlaylist = (playlist) => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
-
+        dispatch(thunkUpdatePlaylist({title,description,coverImage}, playlistId))
 
     }
 

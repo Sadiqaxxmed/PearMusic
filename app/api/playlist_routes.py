@@ -132,7 +132,7 @@ def add_song_to_playlist(song_id, playlist_id):
 def update_playlist(playlist_id):
     playlist = Playlist.query.get(playlist_id)
     data = request.json
-
+    print(data)
     if playlist:
         playlist.title = data.get('title')
         playlist.description = data.get('description')
