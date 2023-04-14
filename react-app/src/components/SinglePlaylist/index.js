@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import './SinglePlaylist.css'
 
-import { thunkDeletePlaylist, thunkPlaylistSongs, thunkSinglePlaylist } from "../../store/playlist";
+import { thunkAllPlaylists, thunkDeletePlaylist, thunkDeleteSongPlaylist, thunkPlaylistSongs, thunkSinglePlaylist } from "../../store/playlist";
 import { thunkGetComments, thunkCreateComment, thunkResetComments } from "../../store/comment";
 
 import { thunkNewQueue } from "../../store/queue";
@@ -72,6 +72,11 @@ function SinglePlaylist() {
     dispatch(thunkDeletePlaylist(playlistId))
     console.log('we out here')
     history.push('/allPlaylist')
+  }
+
+  const DeleteSong = async (songId,playlistId) => {
+    dispatch(thunkDeleteSongPlaylist(songId,playlistId))
+    return
   }
 
   function openMenuFunc(id) {
@@ -148,6 +153,7 @@ function SinglePlaylist() {
                   <div className="SGPL-icon-menu-div">
                     <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(song.id))}></i>
                     {menuOpen && (song.id == cardId) && <ToolTip song={song} playlistId={playlist.id} />}
+                    {<i class="fa-solid fa-xmark SGPL-delete-comment-icon" onClick={((e)=> DeleteSong(song.id, playlist_id))}></i>}
                   </div>
                 </div>
               </div>

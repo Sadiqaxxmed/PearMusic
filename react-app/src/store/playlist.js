@@ -8,6 +8,7 @@ const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
 const DELETE_PLAYLIST = 'DELETE_PLAYLIST';
 const DELETE_SONG_PLAYLIST = 'DELETE_SONG_PLAYLIST'
 const RESET_PLAYLISTS = 'RESET_PLAYLISTS';
+const ADD_TO_PLAYLIST  = 'ADD_TO_PLAYLIST'
 
 // TODO: ACTION CREATORS
 export const actionAllPlaylists = (playlists) => {
@@ -44,6 +45,10 @@ export const actionResetPlaylists = (reset) => {
 
 export const actionDeleteSongPlaylist = (songId) => {
   return { type: DELETE_SONG_PLAYLIST, songId}
+}
+
+export const actionAddToPlaylist  =(songId,playlistId) => {
+  return { type: ADD_TO_PLAYLIST, songId, playlistId}
 }
 
 // TODO: NORMALIZE DATA
@@ -147,10 +152,20 @@ export const thunkDeleteSongPlaylist = (songId,playlistId) => async dispatch => 
 
   if(response.ok){
     dispatch(thunkSinglePlaylist(playlistId))
-    
     return
   }
 
+}
+
+export const thunkAddToPlaylist = (songId,playlistId) => async dispatch => {
+  const response = await fetch(`/api/playlists/${playlistId}/songs/${songId}`,{
+    method:'POST'
+  })
+  
+  if(response.ok){
+    dispatch(thunkSinglePlaylist(playlistId))
+    return console.log('added to playlist')
+  }
 }
 
 export const thunkResetPlaylists = () => async dispatch => {
