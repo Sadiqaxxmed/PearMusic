@@ -137,7 +137,7 @@ function SinglePlaylist() {
                 <i className="fa-solid fa-play fa-lrg SGPL-play"></i>
                 <p className="SGPL-Play-Text">Play</p>
               </div>
-              <div className="SGPL-Shuffle-Button" onClick={() => alert('Feature Coming Soon!')}>
+              <div className="SGPL-Shuffle-Button">
                 <i className="fa-solid fa-shuffle fa-lrg SGPL-Shuffle"></i>
                 <p className="SGPL-Shuffle-Text" onClick={((e) => DeletePlaylist(playlist.id))}>Delete</p> {/* Change back to shuffle when crud is complete */}
               </div>
