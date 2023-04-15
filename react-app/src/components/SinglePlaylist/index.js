@@ -81,7 +81,7 @@ function SinglePlaylist() {
     dispatch(thunkDeleteSongPlaylist(songId, playlistId))
     history.push(`/singlePlaylist/${playlistId}`)
   }
-  
+
 
   function openMenuFunc(id) {
     if (!menuOpen) {
