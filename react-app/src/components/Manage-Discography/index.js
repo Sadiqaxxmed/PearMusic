@@ -177,8 +177,8 @@ function ManageDiscography() {
         </div>
       </div>
 
-      <div className={userAlbums.length ? 'MD-section-container' : 'MD-display-none'}>
-        <h3 className='MD-sub-labels'>Albums</h3>
+      <div className={userAlbums.length ? 'MD-section-container' : 'MD-display-none'} onClick={((e) => alert('Albums Feature Coming soon'))}>
+        <h3 className='MD-sub-labels'>{`🛠️ Albums (FEATURE COMING SOON) 🛠️`}</h3>
         <div className='MD-playlists-container-div'>
           <Swiper
             modules={[Navigation]}
