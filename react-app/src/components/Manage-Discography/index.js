@@ -65,13 +65,14 @@ function ManageDiscography() {
       setPlaylistCardId(id)
     } else {
       setPlaylistCardId(null)
+      setMenuOpen(false)
     }
   }
 
   return (
     <div className="MD-body">
       <h1 className='MD-label'>Manage Discography</h1>
-      {/* <div className={userSongs.length ? 'MD-section-container' : 'MD-display-none'}>
+      <div className={userSongs.length ? 'MD-section-container' : 'MD-display-none'}>
         <h3 className='MD-sub-labels'>Songs</h3>
         <div>
           <Swiper
@@ -105,7 +106,7 @@ function ManageDiscography() {
           </Swiper>
         </div>
       </div> 
-*/}
+
       <div className={userPlaylists.length ? 'MD-section-container' : 'MD-display-none'}>
         <h3 className='MD-sub-labels'>Playlists</h3>
         <div className='MD-playlists-container-div'>
@@ -128,7 +129,7 @@ function ManageDiscography() {
                   <div>
                     <h3 className='MD-playlist-Title'>{playlist.title}<i id='MD-eclipse-playlist' className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(playlist.id))} onClose={((e) => setPlaylistCardId(null))}></i></h3>
                     {menuOpen && (playlistCardId == playlist.id) &&
-                      <div >
+                      <div key={playlistCardId}>
                         <div className='TTM-Main-Wrapper'>
                           <div className="TTM-Btn-Wrapper"> {/* dispatch add to queue thunk */}
                             <OpenModalButton
@@ -153,7 +154,7 @@ function ManageDiscography() {
         </div>
       </div>
 
-      {/* <div className={userAlbums.length ? 'MD-section-container' : 'MD-display-none'}>
+      <div className={userAlbums.length ? 'MD-section-container' : 'MD-display-none'}>
         <h3 className='MD-sub-labels'>Albums</h3>
         <div className='MD-playlists-container-div'>
           <Swiper
@@ -169,7 +170,7 @@ function ManageDiscography() {
               <div className='MD-albums-carousel-images-div' key={`album_${album.idx}_${idx}`}>
                 <SwiperSlide >
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <img className='MD-album-images' key={album.id} src={album.coverImage} alt='Album Cover' />
+                    <img className='MD-album-images' src={album.coverImage} alt='Album Cover' />
                     <div style={{ display: 'flex' }}>
                       <h3 style={{ color: 'rgb(238, 238, 238)', marginLeft: '60px' }}>{album.title}</h3>
                       <i id='MD-eclipse' className="fa-solid fa-ellipsis"></i>
@@ -180,7 +181,7 @@ function ManageDiscography() {
             )}
           </Swiper>
         </div>
-      </div> */}
+      </div>
     </div>
   )
 }
