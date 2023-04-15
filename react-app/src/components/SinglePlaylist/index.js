@@ -11,6 +11,8 @@ import { thunkGetComments, thunkCreateComment, thunkResetComments, thunkDeleteCo
 import { thunkNewQueue } from "../../store/queue";
 import ToolTip from "./ToolTip";
 import { func } from "prop-types";
+import OpenModalButton from "../OpenModalButton";
+import UpdatePlaylist from "../Manage-Discography/UDModals/UpdatePlaylist";
 
 function SinglePlaylist() {
   const dispatch = useDispatch();
@@ -28,7 +30,7 @@ function SinglePlaylist() {
   console.log('INSIDE THE COMPONENT', playlist)
   const [menuOpen, setMenuOpen] = useState(false)
   const [cardId, setCardId] = useState(null)
-
+  const [openUDM, setOpenUDM] = useState(false)
 
   useEffect(() => {
     dispatch(thunkPlaylistSongs(playlist_id))
@@ -78,7 +80,6 @@ function SinglePlaylist() {
 
   const DeleteSong = (songId, playlistId) => {
     dispatch(thunkDeleteSongPlaylist(songId, playlistId))
-    history.push(`/singlePlaylist/${playlistId}`)
   }
 
 
@@ -116,7 +117,7 @@ function SinglePlaylist() {
       dispatch(thunkResetComments())
     }
     else {
-      alert('This aint yours b')
+      alert('This aint yours bud')
     }
   }
 
@@ -137,14 +138,27 @@ function SinglePlaylist() {
                 <p className="SGPL-Play-Text">Play</p>
               </div>
               <div className="SGPL-Shuffle-Button">
-                    <p className="SGPL-Shuffle-Text" onClick={((e) => alert('***SHUFFLE FEATURE COMING SOON***'))}>Shuffle</p> {/* Change back to shuffle when crud is complete */}
+                <p className="SGPL-Shuffle-Text" onClick={((e) => alert('***SHUFFLE FEATURE COMING SOON***'))}>Shuffle</p> {/* Change back to shuffle when crud is complete */}
               </div>
-                { (userId == playlist?.owner_id) && 
+              {(userId == playlist?.owner_id) &&
                 <div className="SGPL-Owner-Buttons">
-                  <div className="SGPL-Delete-Button">
-                    <p className="SGPL-Delete-Text" onClick={((e) => DeletePlaylist(playlist.id))}>Delete</p> {/* Change back to shuffle when crud is complete */}
-                  </div>
-                  <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => '')}></i>
+                  <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openUDM ? setOpenUDM(false) : setOpenUDM(true))}></i>
+                  {openUDM &&
+                    <div >
+                      <div className='SGPL-Main-Wrapper'>
+                        <div className="SGPL-Btn-Wrapper"> {/* dispatch add to queue thunk */}
+                          <OpenModalButton
+                            buttonText="Update"
+                            onButtonClick={((e) => setMenuOpen(false))}
+                            modalComponent={<UpdatePlaylist playlist={playlist} />}
+                          />
+                        </div>
+                        <div className="SGPL-Btn-Wrapper" > {/* open extra menu with all user playlists */}
+                          <div className='SGPL-Delete' onClick={((e) => DeletePlaylist(playlist.id))}>&nbsp;Delete</div>
+                        </div>
+                      </div>
+                    </div>
+                  }
                 </div>
               }
             </div>

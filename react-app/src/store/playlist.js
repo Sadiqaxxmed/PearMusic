@@ -130,6 +130,7 @@ export const thunkUpdatePlaylist = ({title,description,coverImage},playlistId,us
 
   if (response.ok) {
     dispatch(thunkUserPlaylists(userId))
+    dispatch(thunkSinglePlaylist(playlistId))
     return { message: 'Successfully updated playlist', status: 201 }
   }
 }
