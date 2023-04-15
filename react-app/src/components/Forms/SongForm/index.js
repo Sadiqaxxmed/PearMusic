@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import { useSelector, useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
-import "./SongForm.css";
 import { thunkAllSongs } from "../../../store/song";
+import "./SongForm.css";
 
 function SignupFormModal() {
     const history = useHistory();
@@ -34,6 +34,34 @@ function SignupFormModal() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        let err = {};
+
+        const imageFormat = [
+            ".jpg", ".jpeg", ".png", ".gif",
+            ".bmp", ".tiff", ".psd", ".ai",
+            ".eps", ".svg", ".pdf", ".ico",
+            ".raw", ".webp"]
+
+        const audioFormat = [
+            ".mp3", ".wav", ".flac", ".aac",
+            ".wma", ".ogg", ".m4a", ".amr",
+            ".aiff", ".mid", ".midi", ".mpa",
+            ".ra", ".ram", ".rpm", ".snd",
+            ".au", ".dct", ".dvf", ".m4p",
+            ".mpc", ".msv", ".sln", ".vox",
+            ".webm"
+        ]
+
+        if (!imageFormat.some(ext => songCoverImage.name.endsWith(ext))) {
+            err.coverImage = 'Please provide a valid image file'
+        }
+
+        if (!audioFormat.some(ext => songMp3.name.endsWith(ext))) {
+            err.songFile = 'Please provide a valid audio file'
+        }
+
+        if (Object.values(err).length) return setErrors(err)
+
         const formData = new FormData();
 
         formData.append('songMp3', songMp3)
@@ -83,16 +111,11 @@ function SignupFormModal() {
                 <div className="SF-Wrapper">
                     <i className="fa-solid fa-xmark" onClick={() => handleCloseModal()} id='x' />
                     <h1 className="SF-Title">Upload Song</h1>
-
                     <form className='SF-Form' onSubmit={handleSubmit} method="POST" encType="multipart/form-data">
-                        <div className="SF-Errors">
-                            {errors.map((error, idx) => (
-                                <p key={idx}>{error}</p>
-                            ))}
-                        </div>
                         <div className="SF-Song-Title-Lable">Song Title:
                             <input type='text' className="SF-Song-Title" value={songTitle} onChange={(e) => setSongTitle(e.target.value)} required />
                         </div>
+                        { errors.coverImage ? <div className="SF-Errors">* {errors.coverImage}</div> : null}
                         <div> Cover Image:
                             <input className="SF-CoverImage" type='file' accept='image/*' onChange={handleCoverFileChange} required />
 
@@ -105,6 +128,7 @@ function SignupFormModal() {
                                 onChange={handleGenreValueChange}
                             />
                         </div>
+                        { errors.songFile ? <div className="SF-Errors">* {errors.songFile}</div> : null }
                         <div className="SF-Mp3-Wrapper"> Song File:
                             <input type='file' accept="audio/*" onChange={handleFileChange} required />
                         </div>
