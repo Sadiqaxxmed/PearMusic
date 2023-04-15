@@ -42,7 +42,7 @@ def get_single_playlist(playlist_id):
 @login_required
 def create_playlist_from_song(song_id):
     song = Song.query.get(song_id)
-
+    print('//////////////////', song)
     if not song:
         return {'message': 'Song not found'}, 404
 

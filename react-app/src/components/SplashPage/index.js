@@ -25,7 +25,7 @@ function SplashPage({ isLoaded }) {
   }, [])
 
   return (
-    <div style={{ backgroundColor: 'white' }}>
+    <div className='HP-Body' style={{ backgroundColor: 'white' }}>
       <div className="HP-Main-Wrapper">
         <div className="HP-Wrapper-Wrapper">
           <div className="HP-Wrapper">
@@ -66,7 +66,9 @@ function SplashPage({ isLoaded }) {
         <div className="HP-Headline-Wrapper">
           <p className="HP-Headline">Hear sound all around.</p>
         </div>
-
+        <div className="HP-Other-Wrapper">
+          <Link exact="true" to="/browse" className="HP-Other-NavBtn">Go to Pear Music</Link>
+        </div>
         <div ref={divRef} className="HP-PhoneImgs-Wrapper">
           <img className='HP-Image' src={blue} alt='' />
           <img className='HP-Image' src={silverLock} alt='' />
