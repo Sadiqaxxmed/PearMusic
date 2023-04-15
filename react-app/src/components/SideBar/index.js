@@ -37,7 +37,7 @@ function SideBar() {
                     <span className="material-symbols-outlined SB-icons  pink-icons">
                         grid_view
                     </span>
-                    <p> <Link exact="true" to="/" style={{ textDecoration: 'none', color: 'white' }}> Browse  </Link> </p></li>
+                    <p> <Link exact="true" to="/browse" style={{ textDecoration: 'none', color: 'white' }}> Browse  </Link> </p></li>
                 <li className='SB-Library'>
                     <span className="material-symbols-outlined SB-icons pink-icons">
                         music_note
