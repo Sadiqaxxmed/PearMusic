@@ -1,15 +1,17 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
+import { thunkExploreQueue } from "../../store/queue";
+import { thunkGetExploreGenre, thunkUserPlaylists } from "../../store/playlist";
 
 import "./ExploreGenre.css"
-import { useEffect } from "react";
-import { thunkExploreQueue, thunkNewQueue } from "../../store/queue";
-import { thunkGetExploreGenre } from "../../store/playlist";
+
 
 function ExploreGenre() {
   const { genre_type } = useParams();
   const dispatch = useDispatch();
-  const exploreGenre = Object.values(useSelector(state => state.playlists.exploreGenre))
+  const exploreGenre = Object.values(useSelector(state => state.playlists.exploreGenre));
+  const userId = useSelector(state => state.session.user.id);
 
   const descriptions = {
     'K-Pop': "Explore and dive into this amazing mix of K-Pop singles that are trending!",
@@ -20,6 +22,7 @@ function ExploreGenre() {
 
   useEffect(() => {
     dispatch(thunkGetExploreGenre(genre_type))
+    dispatch(thunkUserPlaylists(userId))
   }, [dispatch])
 
   function addQueue() {

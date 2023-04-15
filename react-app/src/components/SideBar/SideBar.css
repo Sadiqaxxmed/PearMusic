@@ -30,6 +30,7 @@
 }
 
 .SB-icons {
+  align-items: center;
   color: rgb(226 96 106);
 }
 
@@ -87,7 +88,9 @@ div.SB-Library {
 
 .SB-user-single-playlist {
   color: white;
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 300;
+  margin-top: 20px;
 }
 
 a {
