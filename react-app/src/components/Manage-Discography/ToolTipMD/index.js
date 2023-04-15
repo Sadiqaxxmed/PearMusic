@@ -14,7 +14,7 @@ function ToolTipMD(playlist) {
     //     dispatch(thunkAddSong(song.song))
     //     return console.log('song added to queue')
     // }
-    console.log(playlist.playlistId)
+    console.log(playlist)
     const deletePlaylist = async (playlistId) => {
         console.log('hit')
         dispatch(thunkDeletePlaylist(playlistId))
@@ -32,7 +32,7 @@ function ToolTipMD(playlist) {
                     <OpenModalButton
                         buttonText="Update"
                         onButtonClick={''}
-                        modalComponent={<UpdatePlaylist playlistId={playlist.playlistId} />}
+                        modalComponent={<UpdatePlaylist playlist={playlist} />}
                     />
                 </div>
                 <div className="TTM-Btn-Wrapper" > {/* open extra menu with all user playlists */}

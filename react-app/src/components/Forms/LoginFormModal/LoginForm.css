@@ -28,7 +28,7 @@
     flex-direction: column;
 }
 
-.LogIn-Button {
+.LogIn-Button-enabled {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,9 +44,23 @@
 
 }
 
-.LogIn-Button:hover {
+.LogIn-Button-disabled {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 60%;
+    border-radius: 4px;
+    padding: 8px 0px 8px 0px;
+    margin-top: 10px;
+    border: 0 solid;
+    color: grey;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.LogIn-Button-enabled:hover {
     cursor: pointer;
-    box-shadow: 3px 3px 5px black;
+    box-shadow: 5px 5px 5px black;
 }
 
 #form-input:focus {

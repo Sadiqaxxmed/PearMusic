@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { thunkResetSongs, thunkUserSongs } from '../../store/song';
 import { thunkResetAlbums, thunkUserAlbums } from '../../store/album';
-import { thunkAllPlaylists, thunkResetPlaylists, thunkUserPlaylists } from '../../store/playlist';
+import { thunkResetPlaylists, thunkUserPlaylists, thunkAllPlaylists } from '../../store/playlist';
+import { thunkDeletePlaylist, thunkDeleteSongPlaylist } from "../../store/playlist";
+import UpdatePlaylist from './UDModals/UpdatePlaylist'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 
 import './Manage-Discography.css'
 import UDModal from './UDModalMenu'
 import ToolTipMD from './ToolTipMD';
+import OpenModalButton from '../OpenModalButton';
 
 function ManageDiscography() {
   const dispatch = useDispatch();
@@ -41,20 +44,26 @@ function ManageDiscography() {
 
   }, [dispatch, userId, history])
 
-
+  console.log(menuOpen)
   function toggleUDM(id) { //opens da meat ta ball menu
     if (!isUDMOpen) setIsUDMOpen(true)
     else setIsUDMOpen(false)
     setCardId(id)
   }
 
+  const deletePlaylist = (playlistId) => {
+    console.log('hit')
+    dispatch(thunkDeletePlaylist(playlistId,userId))
+
+    setMenuOpen(false)
+  }
+
   function openMenuFunc(id) {
-    console.log('ass')
+    console.log('here')
     if (!menuOpen) {
       setMenuOpen(true)
       setPlaylistCardId(id)
     } else {
-      setMenuOpen(false)
       setPlaylistCardId(null)
     }
   }
@@ -62,7 +71,7 @@ function ManageDiscography() {
   return (
     <div className="MD-body">
       <h1 className='MD-label'>Manage Discography</h1>
-      <div className={userSongs.length ? 'MD-section-container' : 'MD-display-none'}>
+      {/* <div className={userSongs.length ? 'MD-section-container' : 'MD-display-none'}>
         <h3 className='MD-sub-labels'>Songs</h3>
         <div>
           <Swiper
@@ -75,11 +84,11 @@ function ManageDiscography() {
             style={{ overflow: 'hidden' }}
           >
             <div >
-              {userSongs.map(song =>
-                <SwiperSlide key={song.id} className='MD-swiper-slide-songs' >
+              {userSongs.map((song, idx) =>
+                <SwiperSlide key={`song_${song.id}_${idx}`} className='MD-swiper-slide-songs' >
                   <div className='MD-song-container-div'>
                     <div>
-                      <img className='MD-song-images' key={song.id} src={song.coverImage} alt='Song Cover' />
+                      <img className='MD-song-images' src={song.coverImage} alt='Song Cover' />
                     </div>
                     <div className='MD-song-description-div'>
                       <h3>{song.title}</h3>
@@ -92,13 +101,11 @@ function ManageDiscography() {
                   </div>
                 </SwiperSlide>
               )}
-              {/* Render Jennie Pics lol */}
-              {/* {MyComponent(30, albumsAndplaylistCSS)} */}
             </div>
           </Swiper>
         </div>
-      </div>
-
+      </div> 
+*/}
       <div className={userPlaylists.length ? 'MD-section-container' : 'MD-display-none'}>
         <h3 className='MD-sub-labels'>Playlists</h3>
         <div className='MD-playlists-container-div'>
@@ -113,25 +120,40 @@ function ManageDiscography() {
           >
             <div className='MD-songs-carousel-images-div'>
               {/* {MyComponent(30, albumsAndplaylistCSS)} */}
-              {userPlaylists.map(playlist =>
+              {userPlaylists.map((playlist, idx) =>
                 // <SwiperSlide className='MD-songs-carousel-images-div'><img className='MD-songs-test-css' key={playlist.id} src={playlist.coverImage} alt={`Image ${playlist.id + 1}`} /></SwiperSlide>
-                <div key={playlist.id}>
-                  <SwiperSlide className='MD-songs-carousel-images-div'>
-                    <img src={playlist.coverImage} alt='playlist img' className='MD-Playlist-CoverImage' />
-                    <div>
-                      <h3 className='MD-playlist-Title'>{playlist.title}<i id='MD-eclipse-playlist' className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(playlist.id))} onClose={((e) => setPlaylistCardId(null))}></i></h3>
-                      {menuOpen && (playlistCardId == playlist.id) && <ToolTipMD playlistId={playlist.id} />}
-                    </div>
-                  </SwiperSlide>
 
-                </div>
+                <SwiperSlide className='MD-songs-carousel-images-div' key={`playlist_${playlist.id}_${idx}`}>
+                  <img src={playlist.coverImage} alt='playlist img' className='MD-Playlist-CoverImage' />
+                  <div>
+                    <h3 className='MD-playlist-Title'>{playlist.title}<i id='MD-eclipse-playlist' className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(playlist.id))} onClose={((e) => setPlaylistCardId(null))}></i></h3>
+                    {menuOpen && (playlistCardId == playlist.id) &&
+                      <div >
+                        <div className='TTM-Main-Wrapper'>
+                          <div className="TTM-Btn-Wrapper"> {/* dispatch add to queue thunk */}
+                            <OpenModalButton
+                              buttonText="Update"
+                              onButtonClick={((e) => setMenuOpen(false))}
+                              modalComponent={<UpdatePlaylist playlist={playlist} />}
+                            />
+                          </div>
+                          <div className="TTM-Btn-Wrapper" > {/* open extra menu with all user playlists */}
+                            <div className='TTM-Delete' onClick={((e) => deletePlaylist(playlist.id))}>&nbsp;Delete</div>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                </SwiperSlide>
+
+
               )}
             </div>
           </Swiper>
         </div>
       </div>
 
-      <div className={userAlbums.length ? 'MD-section-container' : 'MD-display-none'}>
+      {/* <div className={userAlbums.length ? 'MD-section-container' : 'MD-display-none'}>
         <h3 className='MD-sub-labels'>Albums</h3>
         <div className='MD-playlists-container-div'>
           <Swiper
@@ -143,8 +165,8 @@ function ManageDiscography() {
             onSwiper={(swiper) => console.log(swiper)}
             style={{ overflow: 'hidden' }}
           >
-            {userAlbums.map(album =>
-              <div className='MD-albums-carousel-images-div'>
+            {userAlbums.map((album, idx) =>
+              <div className='MD-albums-carousel-images-div' key={`album_${album.idx}_${idx}`}>
                 <SwiperSlide >
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <img className='MD-album-images' key={album.id} src={album.coverImage} alt='Album Cover' />
@@ -158,7 +180,7 @@ function ManageDiscography() {
             )}
           </Swiper>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
