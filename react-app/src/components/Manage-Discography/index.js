@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { thunkResetSongs, thunkUserSongs } from '../../store/song';
+import { thunkResetSongs, thunkUserSongs, thunkAllSongs } from '../../store/song';
 import { thunkResetAlbums, thunkUserAlbums } from '../../store/album';
 import { thunkResetPlaylists, thunkUserPlaylists, thunkAllPlaylists } from '../../store/playlist';
 import { thunkDeletePlaylist, thunkDeleteSongPlaylist } from "../../store/playlist";
@@ -25,11 +25,12 @@ function ManageDiscography() {
   const [playlistCardId, setPlaylistCardId] = useState(null)
 
   const userId = useSelector(state => state.session.user?.id)
-  const userSongs = Object.values(useSelector(state => state.songs.allSongs))
+  const userSongs = Object.values(useSelector(state => state.songs.userSongs))
   const userAlbums = Object.values(useSelector(state => state.albums.allAlbums))
   const userPlaylists = Object.values(useSelector(state => state.playlists.userPlaylists))
 
   useEffect(() => {
+    // dispatch(thunkAllSongs());
     dispatch(thunkUserSongs(userId))
     dispatch(thunkUserAlbums(userId))
     dispatch(thunkUserPlaylists(userId))

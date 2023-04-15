@@ -75,6 +75,7 @@ export const thunkUserSongs = (userId) => async dispatch => {
   const response = await fetch(`/api/songs/allSongs/${userId}`)
   if (response.ok) {
     const allUserSongs = await response.json();
+    console.log('IF STAT',allUserSongs)
     const normalized = normalizeAllSongs(allUserSongs.songs)
     dispatch(actionUserSongs(normalized))
     return;
@@ -152,9 +153,10 @@ export const thunkResetSongs = () => async dispatch => {
 
 // TODO: INITIAL SLICE STATE
 const initialState = {
-  allSongs: {},
+  allSongs:   {},
   singleSong: {},
-  likedSongs: {}
+  likedSongs: {},
+  userSongs:  {}
 }
 
 
@@ -168,7 +170,7 @@ const songsReducer = (state = initialState, action) => {
     case RESET_SONGS:
       return action.reset
     case USER_SONGS:
-      return { ...state, allSongs: { ...action.songs }}
+      return { ...state, userSongs: { ...action.songs }}
     case LIKED_SONGS:
       return { ...state, likedSongs: { ...action.songs }}
     default: return { ...state }
