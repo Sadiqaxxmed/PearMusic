@@ -28,7 +28,7 @@ function App() {
   return (
     <>
       <Switch>
-        <Route exact path='/' component={SplashPage} />
+        {isLoaded && <Route exact path='/' component={SplashPage} />}
         {isLoaded && (
           <>
             <ScrollToTop />
