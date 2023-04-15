@@ -17,6 +17,7 @@ function SignupFormModal() {
     const { closeModal } = useModal()
 
     const artistName = useSelector(state => state.session.user.username)
+    const user = useSelector(state => state.session.user.id)
 
 
     const handleGenreValueChange = (selectedOption) => {
@@ -69,6 +70,8 @@ function SignupFormModal() {
         formData.append('title', songTitle)
         formData.append('genre', genreValue)
         formData.append('artistName', artistName)
+
+        formData.append('User', user)
 
         const res = await fetch('/api/songs/singleSong', {
             method: "POST",

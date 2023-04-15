@@ -4,7 +4,7 @@ import { Navigation, Pagination, Scrollbar } from 'swiper';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkAllAlbums, thunkResetAlbums } from "../../store/album";
-import { thunkAllSongs, thunkResetSongs, thunkLikedSongs, thunkLikeSongs, thunkDeleteLikedSongs } from "../../store/song";
+import { thunkAllSongs, thunkResetSongs, thunkLikedSongs, thunkLikeSongs, thunkDeleteLikedSongs, thunkUserSongs } from "../../store/song";
 import { thunkAddSong, thunkNewQueue, thunkPlayNow } from "../../store/queue";
 import { thunkAllPlaylists, thunkUserPlaylists } from "../../store/playlist";
 import ToolTipMenu from "../ToolTip";
@@ -38,6 +38,7 @@ function Browser() {
   const shuffledBrowseCards = browseCards
 
   useEffect(() => {
+    // dispatch(thunkUserSongs())
     dispatch(thunkAllSongs());
     dispatch(thunkAllAlbums());
     dispatch(thunkLikedSongs(user));

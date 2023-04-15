@@ -27,12 +27,15 @@ def songs():
 def create_song():
     data = request.files
 
+    user = current_user
+    print('HEYYYY', user.id)
     form = SongForm(
         title=data.get('title'),
         genre=data.get('genre'),
         coverImage=data.get('songCoverImage'),
         mp3File=data.get('songMp3'),
         artistName=data.get('artistName'),
+        user_id=user.id,
         # Is this right? Not sure if we should be generating a new
         # token or grabbing the token from the client
         csrf_token=generate_csrf()
@@ -93,7 +96,8 @@ def create_song():
             coverImage=imageURL,
             mp3file=songURL,
             duration=float(songDuration),
-            artistName=form.data['artistName']
+            artistName=form.data['artistName'],
+            user_id=user.id
         )
         db.session.add(new_song)
         db.session.commit()
@@ -114,6 +118,7 @@ def get_user_songs(user_id):
         return {'error': 'User not found'}, 404
 
     songs = Song.query.filter_by(user_id=user_id).all()
+    print("HEYYYYYYYYYYYYY", songs)
     return {'songs': [song.to_dict() for song in songs]}
 
 
