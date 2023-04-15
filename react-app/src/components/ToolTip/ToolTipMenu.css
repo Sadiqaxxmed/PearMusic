@@ -8,6 +8,12 @@
     color: rgb(214, 214, 214);
     font-size: small;
     position: absolute;
+    bottom: 45%;
+    padding: 0;
+}
+
+.div {
+    position: absolute;
 }
 
 .pop-out-menu {
@@ -23,7 +29,10 @@
     color: rgb(214, 214, 214);
     font-size: small;
     position: relative;
-    right:-115px;
+    left:-100%;
+    margin-bottom: 158px;
+    padding: 0;
+
 }
 
 .POM-BTN-Wrapper-Title {

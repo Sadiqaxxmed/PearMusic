@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { thunkResetSongs, thunkUserSongs } from '../../store/song';
 import { thunkResetAlbums, thunkUserAlbums } from '../../store/album';
-import { thunkResetPlaylists, thunkUserPlaylists } from '../../store/playlist';
+import { thunkResetPlaylists, thunkUserPlaylists, thunkAllPlaylists } from '../../store/playlist';
 import { thunkDeletePlaylist, thunkDeleteSongPlaylist } from "../../store/playlist";
 import UpdatePlaylist from './UDModals/UpdatePlaylist'
 import { Swiper, SwiperSlide } from 'swiper/react';

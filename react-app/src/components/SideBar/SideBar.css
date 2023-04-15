@@ -84,3 +84,12 @@ div.SB-Library {
   list-style-type: none;
   padding-bottom: 7px;
 }
+
+.SB-user-single-playlist {
+  color: white;
+  font-size: 10px;
+}
+
+a {
+  text-decoration: none;
+}
