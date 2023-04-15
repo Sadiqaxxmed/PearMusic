@@ -17,6 +17,10 @@
   font-size: 30px;
 }
 
+.UP-Title-Input {
+  resize: none;
+}
+
 .UP-Title-Input-Wrapper{
   display: flex;
   flex-direction: column;
@@ -53,7 +57,7 @@
   color: white;
   cursor: pointer;
 }
-/* 
+/*
 .UP-Submit-Button{
   display: flex;
   justify-content: center;

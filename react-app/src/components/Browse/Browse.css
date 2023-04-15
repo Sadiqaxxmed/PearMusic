@@ -21,8 +21,9 @@
 }
 
 .art-cover:hover {
-  cursor:pointer;
+  cursor: pointer;
 }
+
 /* Can use this media screen to fix resize for browse cards*/
 /* @media screen and (max-width: 1300px) {
   .BR-browse-container {
@@ -60,6 +61,7 @@
   height: 150px;
   border-radius: 10px;
   margin-left: 60px;
+  padding: 0;
 }
 
 .BR-album-images:hover {
@@ -87,6 +89,7 @@
   /* border-top: 3px solid rgb(42, 42, 42);
   border-bottom: 3px solid rgb(42, 42, 42); */
 }
+
 .BR-song-images {
   height: 50px;
   width: 50px;
@@ -98,6 +101,39 @@
 .BR-song-title {
   margin-top: 10px;
   margin-left: 10px;
+}
+
+/* .BR-album-title-container-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 50px;
+  width: fit-content;
+} */
+
+#Swiper-Slide-container:first-child {
+  margin: none;
+}
+
+#Swiper-Slide-container:not(:first-child) {
+  margin: none;
+  padding: none;
+}
+
+#Swiper-Slide-container {
+  display: flex;
+  margin-top: 2%;
+  margin-right: none;
+  padding: none;
+  flex-direction: column;
+  /* justify-content: center; */
+}
+
+.BR-album-title {
+  color: rgb(238, 238, 238);
+  font-size: 12px;
+  width: fit-content;
+  margin-left: 60px;
 }
 
 .BR-heart-icon {
@@ -118,13 +154,7 @@
   cursor: pointer;
 }
 
-
-/* .BR-song-img-text{
-  display: flex;
-  min-width: 50%;
-} */
 .swiper-button-prev::after,
 .swiper-button-next::after {
   color: rgb(222, 222, 222);
-  /* width: 40%; */
 }

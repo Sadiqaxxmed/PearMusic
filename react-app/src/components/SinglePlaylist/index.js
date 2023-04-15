@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import BadWords from 'bad-words';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+
 import './SinglePlaylist.css'
 
 
@@ -9,12 +11,11 @@ import { thunkGetComments, thunkCreateComment, thunkResetComments, thunkDeleteCo
 
 
 import { thunkNewQueue } from "../../store/queue";
-import ToolTip from "./ToolTip";
-import { func } from "prop-types";
 import OpenModalButton from "../OpenModalButton";
 import UpdatePlaylist from "../Manage-Discography/UDModals/UpdatePlaylist";
 
 function SinglePlaylist() {
+  const badWords = new BadWords();
   const dispatch = useDispatch();
   const { playlist_id } = useParams();
   const [comment, setComment] = useState('');
@@ -100,10 +101,12 @@ function SinglePlaylist() {
     // ! POSSIBLY PUT VALIDATIONS?
     let error = {}
 
-    if (comment.length > 125) error.length = 'Comment must be less than 125 characters'
-
-    if (error.length) setErrors(error)
+    if (comment.length > 125) error.length = 'Comment must be less than 125 characters';
+    if (badWords.isProfane(comment)) error.profanity = "Keegster doesn't approve of this language!"
+    console.log({error})
+    if (Object.values(error).length) return setErrors(error)
     dispatch(thunkCreateComment(comment, userId, playlist_id))
+    return setComment('')
   }
 
   function isDisabled() {
@@ -215,8 +218,9 @@ function SinglePlaylist() {
 
           {/* comments */}
           <div className="SGPL-Border-Top-Comments">
-
-            <p className="SGPL-Bottom-text">{comments.length} Comments {errors.length ? <span style={{ color: 'red', fontSize: '12px' }}> -- {errors.length}</span> : null}</p>
+            <p className="SGPL-Bottom-text">{comments.length} Comments</p>
+            {errors.length ? <p style={{ color: 'red', fontSize: '12px' }}> {`* ${errors.length}`}</p> : null}
+            {errors.profanity ? <p style={{ color: 'red', fontSize: '12px'}}> {`* ${errors.profanity}`}</p> : null}
           </div>
           <form onSubmit={handleSubmit} className="SGPL-User-Input-Comment-Container">
             <div style={{ display: 'flex' }}>
@@ -229,7 +233,7 @@ function SinglePlaylist() {
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             ></input>
-            <button disabled={isDisabled()} style={{ marginBottom: '10px' }}>Submit</button>
+            <button disabled={isDisabled()} className="SGPL-Comment-Button">Submit</button>
           </form>
           <div className="SGPL-Comments-Area">
             {comments.map(comment =>
