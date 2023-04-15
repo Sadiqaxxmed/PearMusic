@@ -118,10 +118,10 @@ export const thunkCreatePlaylist = (songId) => async dispatch => {
   }
 }
 
-export const thunkUpdatePlaylist = ({title,description,coverImage}, playlistId) => async dispatch => {
+export const thunkUpdatePlaylist = ({title,description,coverImage},playlistId,userId) => async dispatch => {
   // TODO : NEED TO FIGURE OUT HOW WERE FORMATTING THE PLAYLISTDATA
   // TODO CONT -- THAT WILL BE SENT OUT, FORMDATA? JSON?
-  console.log(playlistId)
+  console.log('here here here',playlistId)
   const response = await fetch(`/api/playlists/update/${playlistId}`, {
     method: 'PUT',
     headers:{'content-type': 'application/json'},
@@ -129,18 +129,19 @@ export const thunkUpdatePlaylist = ({title,description,coverImage}, playlistId) 
   })
 
   if (response.ok) {
-    dispatch(thunkAllPlaylists(playlistId))
+    dispatch(thunkUserPlaylists(userId))
     return { message: 'Successfully updated playlist', status: 201 }
   }
 }
 
-export const thunkDeletePlaylist = playlistId => async dispatch => {
+export const thunkDeletePlaylist = (playlistId, userId) => async dispatch => {
   const response = await fetch(`/api/playlists/singlePlaylist/${playlistId}/delete`, {
     method: 'DELETE'
   })
 
   if (response.ok) {
     dispatch(thunkAllPlaylists())
+    dispatch(thunkUserPlaylists(userId))
     return;
   }
 }
