@@ -10,8 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 
 import './Manage-Discography.css'
-import UDModal from './UDModalMenu'
-import ToolTipMD from './ToolTipMD';
+
 import OpenModalButton from '../OpenModalButton';
 import UpdateSong from "./UDModals/UpdateSongModal";
 import DeleteSong from "./UDModals/DeleteSongModal";
@@ -169,8 +168,6 @@ function ManageDiscography() {
                     }
                   </div>
                 </SwiperSlide>
-
-
               )}
             </div>
           </Swiper>
