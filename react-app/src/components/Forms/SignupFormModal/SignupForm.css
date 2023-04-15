@@ -16,11 +16,11 @@
 }
 
 .SignUp-Errors{ /* errors wrapper */
-
+    color: red;
 }
 
 .SignUp-Error{ /* individual errors */
-
+    color: red;
 }
 
 .SignUp-Form{
@@ -78,13 +78,7 @@ input{
     color: white;
 }
 
-.SignUp-Demo-Btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.SignUp-Demo-Btn > p:hover {
+.SignUp-Button:hover {
     cursor: pointer;
-    color: rgb(218, 15, 72);
+    box-shadow: 5px 5px 5px black;
 }

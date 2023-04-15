@@ -11,15 +11,25 @@ function SignupFormModal() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
-	const [errors, setErrors] = useState([]);
+	const [errors, setErrors] = useState({});
 	const { closeModal } = useModal();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		let err = {}
+
+		if (username.length < 4) err.username = "Username must be at least 4 characters";
+		if (password.length < 6) err.password = "Password must be at least 6 characters";
+		if (password !== confirmPassword) err.match = "Passwords must match";
+		if (Object.values(err).length) return setErrors(err);
+
 		if (password === confirmPassword) {
 			const data = await dispatch(signUp(username, email, password));
 			if (data) {
-				setErrors(data);
+				let dataErr = {};
+				if (data.some(err => err.includes('username'))) dataErr.username = "Username is already in use"
+				if (data.some(err => err.includes('email'))) dataErr.email = "Email address is already in use"
+				setErrors(dataErr);
 			} else {
 				closeModal();
 			}
@@ -44,15 +54,15 @@ function SignupFormModal() {
 			<h1 className="SignUp-Title">Sign Up</h1>
 			<form className='SignUp-Form' onSubmit={handleSubmit}>
 				<div className="SignUp-Errors">
-					{errors.map((error, idx) => (
-						<p className='SignUp-Error' key={idx}>{error}</p>
+					{Object.values(errors).map((error, idx) => (
+						<p className='SignUp-Error' key={idx}>{`* ${error}`}</p>
 					))}
 				</div>
 				<label className="SignUp-Form-Top-Text">
 					Email:
 					<input
 						id='form-input'
-						type="text"
+						type="email"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
@@ -90,7 +100,6 @@ function SignupFormModal() {
 				</label>
 				<div className="SignUp-Buttons-Div">
 					<button className='SignUp-Button' type="submit">Sign Up</button>
-					<div className="SignUp-Demo-Btn">Demo User</div>
 				</div>
 			</form>
 		</div>

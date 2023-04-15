@@ -61,7 +61,7 @@ function LoginFormModal() {
           <i className="fa-solid fa-xmark" onClick={() => handleCloseModal()} id='x' />
           <h1 className="LogIn-Title">Login</h1>
           <form className='LogIn-Form' onSubmit={handleSubmit}>
-            { Object.values(errors).length ? <p style={{color:'red'}}> {`- ${errors.message}`}</p> : null }
+            { Object.values(errors).length ? <p style={{color:'red'}}> {`* ${errors.message}`}</p> : null }
             <label className="LogIn-Form-Top-Text">
               Email:
               <input
