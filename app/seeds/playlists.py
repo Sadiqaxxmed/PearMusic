@@ -4,12 +4,6 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_playlists():
-    # demo = User(
-    #     username='Demo', email='demo@aa.io', password='password')
-    # marnie = User(
-    #     username='marnie', email='marnie@aa.io', password='password')
-    # bobbie = User(
-    #     username='bobbie', email='bobbie@aa.io', password='password')
     playlist1 = Playlist(
         title='DRAKE ESSENTIALS 🦉',
         description='Drake is the GOAT 🫶🏽',
@@ -31,19 +25,19 @@ def seed_playlists():
     playlist4 = Playlist(
         title='TRAVIS ESSENTIALS 🌵',
         description='ITSSSS LITTTT!!!!',
-        owner_id=1,
+        owner_id=2,
         coverImage='https://is1-ssl.mzstatic.com/image/thumb/Video112/v4/9a/9e/89/9a9e89a5-d5bb-8962-6e49-891a86c62699/Jobeb24ed35-0a10-413b-a8a1-0bd81becf087-140527798-PreviewImage_preview_image_nonvideo_sdr-Time1670625381682.png/540x540cc.webp'
     )
     playlist5 = Playlist(
         title='PLAYBOI CARTI ESSENTIALS 🧛🏾',
         description='CARTiii is VIBESS',
-        owner_id=1,
+        owner_id=2,
         coverImage='https://is2-ssl.mzstatic.com/image/thumb/Features112/v4/6e/3f/94/6e3f946b-7539-dc88-e556-674482d8d557/mzl.nlqqapzi.jpg/540x540SC.FPESS03.webp?l=en-US'
     )
     playlist6 = Playlist(
         title='LIL UZI VERT ESSENTIALS 👁️',
         description='UZI IS HIM!',
-        owner_id=1,
+        owner_id=2,
         coverImage='https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/52/cd/3d/52cd3d0e-47c6-3bf4-d81c-b86bd4468d10/pr_source.png/540x540SC.FPESS03.webp?l=en-US'
     )
     db.session.add(playlist1)
