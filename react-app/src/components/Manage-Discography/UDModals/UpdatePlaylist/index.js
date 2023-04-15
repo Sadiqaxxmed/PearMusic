@@ -8,7 +8,6 @@ import { thunkAllPlaylists, thunkSinglePlaylist, thunkUpdatePlaylist, thunkUserP
 import { useModal } from "../../../../context/Modal";
 
 const UpdatePlaylist = ({ playlist }) => {
-    console.log(playlist)
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.user?.id)
     const [title, setTitle] = useState(playlist ? playlist.title : '')
@@ -19,11 +18,7 @@ const UpdatePlaylist = ({ playlist }) => {
 
     useEffect(() => {
         dispatch(thunkSinglePlaylist(playlistId))
-        console.log('1111111111111')
     }, [dispatch])
-
-    console.log('there' , playlistId)
-
 
     const handleUpdate = (e) => {
         e.preventDefault();

@@ -53,7 +53,6 @@ export const thunkCreateComment = (comment, userId, playlistId) => async dispatc
 
   if (response.ok) {
     const data = await response.json()
-    console.log(data)
     dispatch(thunkGetComments(data.comment.comment_id))
   }
   return;

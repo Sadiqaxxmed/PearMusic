@@ -37,7 +37,7 @@ function NavBar() {
   const advanceSongQueue = async () => {
 
     dispatch(thunkRemoveSong())
-    return (console.log('song removed'))
+    return
   }
 // Updates useStates to reflect queue change whenever the queue is altered
   useEffect(() => {
@@ -92,7 +92,6 @@ function NavBar() {
 
 // UPDATES CURRENT TIME BASED ON PLAYER PROGRESS OUTPUT
   const handleProgressChange = (e) => {
-    // console.log(e)
     playerRef.current.seekTo(e)
     setCurrentTime(e)
   }

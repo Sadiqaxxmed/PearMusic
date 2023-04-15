@@ -31,12 +31,11 @@ function ToolTipMenu(song) {
     // adds song to queue (need to add functionality to close menu once a button is clikced and an action is completed but for now its fine)
     function addToQueue(song){
         dispatch(thunkAddSong(song.song))
-        return console.log('song added to queue')
+        return;
     }
 
     const createPlaylist = async (songId,userId) => {
         const playlistId = await dispatch(thunkCreatePlaylist(songId,userId))
-        console.log('CREATED PLAYLIST', playlistId)
         history.push(`/SinglePlaylist/${playlistId}`)
     }
 

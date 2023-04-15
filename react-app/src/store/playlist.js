@@ -104,15 +104,13 @@ export const thunkSinglePlaylist = (playlistId) => async dispatch => {
 }
 
 export const thunkCreatePlaylist = (songId,userId) => async dispatch => {
-  // TODO : NEED TO ADD ROUTE FOR FETCH, CHECK RESPONSE, RUN DISPATCH WITH PLAYLIST
-  console.log(songId)
+
   const response = await fetch(`/api/playlists/createPlaylist/${songId}`, {
     method: 'POST'
   })
 
   if (response.ok) {
     const playlist = await response.json();
-    console.log('daiuaohsfipuashfiapu',playlist.playlist.id)
     dispatch(thunkSinglePlaylist(playlist.playlist.id))
     dispatch(thunkUserPlaylists(userId))
     dispatch(thunkAllPlaylists())
@@ -121,9 +119,6 @@ export const thunkCreatePlaylist = (songId,userId) => async dispatch => {
 }
 
 export const thunkUpdatePlaylist = ({title,description,coverImage},playlistId,userId) => async dispatch => {
-  // TODO : NEED TO FIGURE OUT HOW WERE FORMATTING THE PLAYLISTDATA
-  // TODO CONT -- THAT WILL BE SENT OUT, FORMDATA? JSON?
-  console.log('here here here',playlistId)
   const response = await fetch(`/api/playlists/update/${playlistId}`, {
     method: 'PUT',
     headers:{'content-type': 'application/json'},
@@ -156,7 +151,6 @@ export const thunkDeleteSongPlaylist = (songId,playlistId) => async dispatch => 
 
   if(response.ok){
     const data = await response.json()
-    console.log(data)
     dispatch(thunkPlaylistSongs(playlistId))
     return
   }
@@ -167,10 +161,10 @@ export const thunkAddToPlaylist = (songId,playlistId) => async dispatch => {
   const response = await fetch(`/api/playlists/${playlistId}/songs/${songId}`,{
     method:'POST'
   })
-  
+
   if(response.ok){
     dispatch(thunkSinglePlaylist(playlistId))
-    return console.log('added to playlist')
+    return;
   }
 }
 
