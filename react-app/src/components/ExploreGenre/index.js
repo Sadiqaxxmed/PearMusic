@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
 import { thunkExploreQueue } from "../../store/queue";
-import { thunkGetExploreGenre, thunkUserPlaylists } from "../../store/playlist";
+import { thunkGetExploreGenre, thunkResetPlaylists, thunkUserPlaylists } from "../../store/playlist";
 
 import "./ExploreGenre.css"
 
@@ -23,6 +23,10 @@ function ExploreGenre() {
   useEffect(() => {
     dispatch(thunkGetExploreGenre(genre_type))
     dispatch(thunkUserPlaylists(userId))
+
+    return (() => {
+      dispatch(thunkResetPlaylists());
+    })
   }, [dispatch])
 
   function addQueue() {
