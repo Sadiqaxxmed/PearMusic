@@ -30,7 +30,7 @@ function Browser() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [cardId, setCardId] = useState(null)
 
-// Shuffle Albums/Songs (Adds nice dynamic element to browse page)
+  // Shuffle Albums/Songs (Adds nice dynamic element to browse page)
   const randomize = array => array.sort(() => 0.5 - Math.random())
 
   const shuffledAlbums = albums
@@ -63,10 +63,10 @@ function Browser() {
   }
 
   function openMenuFunc(id) {
-    if(!menuOpen){
+    if (!menuOpen) {
       setMenuOpen(true)
       setCardId(id)
-    }else{
+    } else {
       setMenuOpen(false)
       setCardId(null)
     }
@@ -90,31 +90,12 @@ function Browser() {
         </h1>
         <div className="BR-browse-container">
           {shuffledBrowseCards.map(browseCard =>
-              <img className="BR-images" src={browseCard} alt="Browse Card" onClick={() => alert('Feature Coming Soon!')} />
-              )}
+            <img className="BR-images" src={browseCard} alt="Browse Card" onClick={() => alert('Feature Coming Soon!')} />
+          )}
         </div>
-        <h1 className="BR-labels" style={{ marginBottom: '0' }}>Albums</h1>
-        {albums && (
-          <Swiper
-            modules={[Navigation, Pagination, Scrollbar]}
-            slidesPerView={4}
-            slidesPerGroup={4}
-            navigation
-            className="BR-Swiper"
-          >
-            {shuffledAlbums.map(album => (
-              <SwiperSlide key={album.id}>
-                <div style={{ marginTop: '50px' }}>
-                  <img className='BR-album-images' src={album.coverImage} alt='Album Cover' onClick={() => alert('Feature Coming Soon!')}/>
-                  <h3 style={{ color: 'rgb(238, 238, 238)', textAlign: 'center' }}>{album.title}</h3>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        )}
+
         <h1 className="BR-labels">Songs</h1>
         {songs.map((song) => (
-
           <div className="BR-song-section">
             <div className="song-sec-div">
               <div className="song-art-cover">
@@ -130,15 +111,33 @@ function Browser() {
               </div>
             </div>
             <div className="icon-section">
-              <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e)=> openMenuFunc(song.id))}></i>
-              {menuOpen && (song.id == cardId) && <ToolTipMenu song={song}/>}
+              <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(song.id))}></i>
+              {menuOpen && (song.id == cardId) && <ToolTipMenu song={song} />}
               {likedSongs.includes(song.id) ? <i id="song-icon-heart" className="fa-solid fa-heart" onClick={() => isLikedSong(song.id, user)}></i> : <i class="fa-regular fa-heart BR-heart-icon" onClick={() => isLikedSong(song.id, user)}></i>}
-
-              {/* <i id="song-icon-heart" className="fa-solid fa-heart" data-songid={song.id}></i> */}
             </div>
           </div>
-
         ))}
+
+
+        <h1 className="BR-labels" style={{ marginBottom: '0' }}>Albums</h1>
+        {albums && (
+          <Swiper
+            modules={[Navigation, Pagination, Scrollbar]}
+            slidesPerView={4}
+            slidesPerGroup={4}
+            navigation
+            className="BR-Swiper"
+          >
+            {shuffledAlbums.map(album => (
+              <SwiperSlide key={album.id}>
+                <div style={{ marginTop: '50px' }}>
+                  <img className='BR-album-images' src={album.coverImage} alt='Album Cover' onClick={() => alert('Feature Coming Soon!')} />
+                  <h3 style={{ color: 'rgb(238, 238, 238)', textAlign: 'center' }}>{album.title}</h3>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
       </div>
     )
   )

@@ -28,14 +28,14 @@ function NavBar() {
   const [coverImage, setCoverImage] = useState('')
   const [toggleIcon, setToggleIcon] = useState('fa-solid fa-play fa-xl')
   // const [albumTitle, setAlbumTitle] = useState(null)
-  
+
 
   const dispatch = useDispatch()
 
 
 // Logic to advance the song queue
   const advanceSongQueue = async () => {
-    
+
     dispatch(thunkRemoveSong())
     return (console.log('song removed'))
   }
@@ -50,13 +50,13 @@ function NavBar() {
       setSongTitle(queue[0].title)
       setSongArtist(queue[0].artistName)
       setCoverImage(queue[0].coverImage)
-       // setAlbumTitle(queue[0].albumTitle) 
+       // setAlbumTitle(queue[0].albumTitle)
     }
     if (songUrl) {
       setToggleIcon('fa-solid fa-pause fa-xl icon-hover-pointer')
     }
     // setAlbumTitle(currentSong.albumTitle) need to pass in album title to single song
-  },[queue[0]])
+  },[queue[0], songUrl])
 
 // LOGIC FOR TOP RIGHT MENU OPEN
   const toggleMenu = () => {
