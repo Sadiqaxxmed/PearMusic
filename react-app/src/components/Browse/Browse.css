@@ -20,10 +20,12 @@
   object-fit: cover;
   opacity: 1;
   transition: all 0.3s ease;
+  transition: transform 2s;
+  transform-style: preserve-3d;
 }
 
+
 .art-cover {
-  /* transform: translate(-50%, -50%); */
   opacity: 1;
   transition: all 0.3s ease;
   background-image: url('../../images/play_arrow.png');
@@ -36,22 +38,11 @@
   background-image: url('../../images/play_arrow.png');
 }
 
-/* Can use this media screen to fix resize for browse cards*/
-/* @media screen and (max-width: 1300px) {
-  .BR-browse-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-gap: 10px;
-    height: auto;
-    width: 50%;
-  }
-} */
-
 .BR-images:hover {
   cursor: pointer;
   box-shadow: 10px 10px 10px black;
   opacity: .8;
+  transform: rotateY(360deg);
 }
 
 .BR-labels {

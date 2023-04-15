@@ -179,7 +179,7 @@ function ManageDiscography() {
           >
             {userAlbums.map((album, idx) =>
               <div className='MD-albums-carousel-images-div' key={`album_${album.idx}_${idx}`}>
-                <SwiperSlide >
+                <SwiperSlide>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <img className='MD-album-images' src={album.coverImage} alt='Album Cover' />
                     <div style={{ display: 'flex' }}>
