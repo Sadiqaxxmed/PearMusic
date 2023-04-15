@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkAllAlbums, thunkResetAlbums } from "../../store/album";
 import { thunkAllSongs, thunkResetSongs, thunkLikedSongs, thunkLikeSongs, thunkDeleteLikedSongs } from "../../store/song";
 import { thunkAddSong, thunkNewQueue, thunkPlayNow } from "../../store/queue";
-import { thunkUserPlaylists } from "../../store/playlist";
+import { thunkAllPlaylists, thunkUserPlaylists } from "../../store/playlist";
 import ToolTipMenu from "../ToolTip";
 
 import './Browse.css'
@@ -41,6 +41,7 @@ function Browser() {
     dispatch(thunkAllSongs());
     dispatch(thunkAllAlbums());
     dispatch(thunkLikedSongs(user));
+    dispatch(thunkAllPlaylists())
     dispatch(thunkUserPlaylists(user));
 
     return () => {
@@ -104,7 +105,7 @@ function Browser() {
             {shuffledAlbums.map(album => (
               <SwiperSlide key={album.id}>
                 <div style={{ marginTop: '50px' }}>
-                  <img className='BR-album-images' src={album.coverImage} alt='Album Cover' />
+                  <img className='BR-album-images' src={album.coverImage} alt='Album Cover' onClick={() => alert('Feature Coming Soon!')}/>
                   <h3 style={{ color: 'rgb(238, 238, 238)', textAlign: 'center' }}>{album.title}</h3>
                 </div>
               </SwiperSlide>

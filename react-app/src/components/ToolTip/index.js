@@ -53,13 +53,13 @@ function ToolTipMenu(song) {
     }
 
     return (
-        <div>
+        <div className="div">
             <div className={outerDivClassName}>
                 <div className="TTM-Btn-Wrapper"> {/* create playlist and redirect user to that new playlist */}
                     <div className='TTM-Create-Playlist' onClick={((e) => createPlaylist(songId))}>&nbsp;Create playlist</div>
                 </div>
                 <div className="TTM-Btn-Wrapper" > {/* open extra menu with all user playlists */}
-                    <div className='TTM-AddToPlaylist' onClick={((e) => handlePopOut())}>&nbsp;Add to playlist{`->`} </div>
+                    <div className='TTM-AddToPlaylist' onClick={((e) => handlePopOut())}>&nbsp;{`<-`}Add to playlist</div>
                 </div>
                 <div className="TTM-Btn-Wrapper"> {/* dispatch add to queue thunk */}
                     <div className='TTM-AddToQueue' onClick={((e) => addToQueue(song))}>&nbsp;Add to queue</div>
@@ -74,7 +74,7 @@ function ToolTipMenu(song) {
             {/* pop out menu for user playlists to add song to a specific playlist */}
             <div className={`pop-out-menu${showPlaylists ? '-open' : ''}`}>
                 <div className="POM-BTN-Wrapper-Title">Playlists</div>
-                {userPlaylists.map(playlist => 
+                {userPlaylists.map(playlist =>
                     <div className="POM-BTN-Wrapper" key={playlist.id} onClick={((e)=>AddToPlaylist(songId,playlist.id))}>{playlist.title}</div>
                 )}
             </div>

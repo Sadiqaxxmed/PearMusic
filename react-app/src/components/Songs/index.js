@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkLikedSongs, thunkDeleteLikedSongs } from "../../store/song";
-import { thunkUserPlaylists } from "../../store/playlist";
+import { thunkAllPlaylists, thunkUserPlaylists } from "../../store/playlist";
 
 
 import "./Songs.css";
@@ -14,6 +14,7 @@ function Songs() {
   useEffect(() => {
     dispatch(thunkLikedSongs(user_id));
     dispatch(thunkUserPlaylists(user_id));
+    // dispatch(thunkAllPlaylists())
   }, [dispatch]);
 
   function unlikeSong(e){
@@ -23,7 +24,7 @@ function Songs() {
   return (
     <>
       <div className="song-body">
-        <h1 className="SG-labels">Songs</h1>
+        <h1 className="SG-labels">Liked Songs</h1>
         <div className="song-div">
           {songs.map((song) => (
 
@@ -42,7 +43,7 @@ function Songs() {
                 </div>
               </div>
               <div className="icon-section">
-                <i id="song-icon-menu" className="fa-solid fa-ellipsis"></i>
+                {/* <i id="song-icon-menu" className="fa-solid fa-ellipsis"></i> */}
                 <i id="song-icon-heart" className="fa-solid fa-heart" data-songid={song.id} onClick={((e) => unlikeSong(e))} ></i>
               </div>
             </div>

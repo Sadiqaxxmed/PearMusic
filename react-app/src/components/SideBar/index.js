@@ -42,12 +42,12 @@ function SideBar() {
                     <span className="material-symbols-outlined SB-icons pink-icons">
                         music_note
                     </span>
-                    <p> <Link exact="true" to="/songs" style={{ textDecoration: 'none', color: 'white' }}> Songs  </Link> </p></li>
+                    <p> <Link exact="true" to="/songs" style={{ textDecoration: 'none', color: 'white' }}>Liked Songs  </Link> </p></li>
                 <li className='SB-Library'>
                     <span className="material-symbols-outlined SB-icons pink-icons">
                         home_storage
                     </span>
-                    <p> <Link exact="true" to="/albums" style={{ textDecoration: 'none', color: 'white' }}>Albums</Link> </p></li>
+                    <p> <Link exact="true" to="/albums" style={{ textDecoration: 'none', color: 'white' }} onClick={() => alert('Feature Coming Soon!')}>Albums</Link> </p></li>
             </div>
             <div className='SB-Playlists'>
                 <ul className='SB-Playlists-Title' />
@@ -58,27 +58,14 @@ function SideBar() {
                             list
                         </span>
                         <p> <Link exact="true" to="/allPlaylist" style={{ textDecoration: 'none', color: 'white' }}> All Playlists  </Link> </p></li>
-                    {/* <li className='SB-User-Playlist-li'>
-                        <span className="material-symbols-outlined SB-icons pink-icons">
-                            queue_music
-                        </span>
-                        <p>gym</p></li>
-                    <li className='SB-User-Playlist-li'>
-                        <span className="material-symbols-outlined SB-icons pink-icons">
-                            queue_music
-                        </span>
-                        <p>body adi adi</p></li>
-                    <li className='SB-User-Playlist-li'>
-                        <span className="material-symbols-outlined SB-icons pink-icons">
-                            queue_music
-                        </span>
-                        <p>ya ya ya ya</p></li> */}
                     {userPlaylists.map(playlist =>
                         <li className='SB-User-Playlist-li'>
-                            <span className="material-symbols-outlined SB-icons pink-icons">queue_music</span>
-                            <NavLink to={`/SinglePlaylist/${playlist.id}`}>
-                            <p style={{fontSize:'15px'}}>{playlist.title}</p>
-                            </NavLink>
+                            <span className="material-symbols-outlined SB-icons pink-icons">
+                                queue_music
+                            </span>
+                            <Link  to={`/SinglePlaylist/${playlist.id}`}>
+                            <p className='SB-user-single-playlist'>{playlist.title}</p>
+                            </Link>
                         </li>
                     )}
                 </div>

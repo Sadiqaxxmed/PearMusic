@@ -114,6 +114,11 @@
   cursor: pointer;
 }
 
+#song-icon-menu:hover {
+  cursor: pointer;
+}
+
+
 /* .BR-song-img-text{
   display: flex;
   min-width: 50%;
