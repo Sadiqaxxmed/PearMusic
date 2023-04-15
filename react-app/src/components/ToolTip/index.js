@@ -37,8 +37,8 @@ function ToolTipMenu(song) {
         return console.log('song added to queue')
     }
 
-    const createPlaylist = async (songId) => {
-        const playlistId = await dispatch(thunkCreatePlaylist(songId))
+    const createPlaylist = async (songId,userId) => {
+        const playlistId = await dispatch(thunkCreatePlaylist(songId,userId))
         console.log('CREATED PLAYLIST', playlistId)
         history.push(`/SinglePlaylist/${playlistId}`)
     }
@@ -56,19 +56,13 @@ function ToolTipMenu(song) {
         <div>
             <div className={outerDivClassName}>
                 <div className="TTM-Btn-Wrapper"> {/* create playlist and redirect user to that new playlist */}
-                    <div className='TTM-Create-Playlist' onClick={((e) => createPlaylist(songId))}>&nbsp;Create playlist</div>
+                    <div className='TTM-Create-Playlist' onClick={((e) => createPlaylist(songId,userId))}>&nbsp;Create playlist</div>
                 </div>
                 <div className="TTM-Btn-Wrapper" > {/* open extra menu with all user playlists */}
                     <div className='TTM-AddToPlaylist' onClick={((e) => handlePopOut())}>&nbsp;Add to playlist{`->`} </div>
                 </div>
                 <div className="TTM-Btn-Wrapper"> {/* dispatch add to queue thunk */}
                     <div className='TTM-AddToQueue' onClick={((e) => addToQueue(song))}>&nbsp;Add to queue</div>
-                </div>
-                <div className="TTM-Btn-Wrapper" > {/* redirect to a page of jennies or a jennie only playlist */}
-                    <div className='TTM-Jennie' onClick={((e) => console.log("JENNIE JENNIE JENNIE JENNIE"))}>&nbsp;JENNIE</div>
-                </div>
-                <div className="TTM-Btn-Wrapper-End">  {/* redirect to keegsters playlist */}
-                    <div className='TTM-Keegster' onClick={((e) => console.log('KEEGSTER KEEGSTER KEEGSTER KEEGSTER'))}>&nbsp;KEEGSTER</div>
                 </div>
             </div>
             {/* pop out menu for user playlists to add song to a specific playlist */}

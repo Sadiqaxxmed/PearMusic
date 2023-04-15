@@ -307,3 +307,33 @@
   font-size: 14px;
   color: rgb(255, 255, 255);
 }
+
+.SGPL-Menu-Wrapper{
+  background-color: rgb(30,30,30);
+  border: solid rgb(75, 75, 75) 1px;
+  border-radius: 8px;
+  width: 80px;
+  color: rgb(214, 214, 214);
+  font-size: small;
+}
+
+.SGPL-Menu-Btn-Wrapper{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  width: 100%;
+  border-bottom: solid rgb(98, 98, 98) 1px;
+  cursor: pointer;
+  justify-content: space-between;
+  padding: 5px 0 5px 0;
+}
+
+.SGPL-Menu-Btn-Wrapper-End{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  width: 100%;
+  cursor: pointer;
+  justify-content: space-between;
+  padding: 5px 0 5px 0;
+}

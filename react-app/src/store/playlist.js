@@ -103,7 +103,7 @@ export const thunkSinglePlaylist = (playlistId) => async dispatch => {
   }
 }
 
-export const thunkCreatePlaylist = (songId) => async dispatch => {
+export const thunkCreatePlaylist = (songId,userId) => async dispatch => {
   // TODO : NEED TO ADD ROUTE FOR FETCH, CHECK RESPONSE, RUN DISPATCH WITH PLAYLIST
   console.log(songId)
   const response = await fetch(`/api/playlists/createPlaylist/${songId}`, {
@@ -114,6 +114,8 @@ export const thunkCreatePlaylist = (songId) => async dispatch => {
     const playlist = await response.json();
     console.log('daiuaohsfipuashfiapu',playlist.playlist.id)
     dispatch(thunkSinglePlaylist(playlist.playlist.id))
+    dispatch(thunkUserPlaylists(userId))
+    dispatch(thunkAllPlaylists())
     return await playlist.playlist.id;
   }
 }

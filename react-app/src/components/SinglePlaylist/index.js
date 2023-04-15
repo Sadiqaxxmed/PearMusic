@@ -34,6 +34,7 @@ function SinglePlaylist() {
 
   useEffect(() => {
     dispatch(thunkPlaylistSongs(playlist_id))
+    dispatch(thunkAllPlaylists())
     dispatch(thunkSinglePlaylist(playlist_id))
     dispatch(thunkGetComments(playlist_id))
 
@@ -70,16 +71,15 @@ function SinglePlaylist() {
   }
 
 
-  const DeletePlaylist = async (playlistId) => {
-    console.log('we in here')
-    dispatch(thunkDeletePlaylist(playlistId))
-    console.log('we out here')
+  const DeletePlaylist = async (playlistId,userId) => {
+    dispatch(thunkDeletePlaylist(playlistId,userId))
     history.push('/allPlaylist')
   }
 
 
   const DeleteSong = (songId, playlistId) => {
     dispatch(thunkDeleteSongPlaylist(songId, playlistId))
+    setOpenUDM(false)
   }
 
 
@@ -145,16 +145,17 @@ function SinglePlaylist() {
                   <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openUDM ? setOpenUDM(false) : setOpenUDM(true))}></i>
                   {openUDM &&
                     <div >
-                      <div className='SGPL-Main-Wrapper'>
-                        <div className="SGPL-Btn-Wrapper"> {/* dispatch add to queue thunk */}
+                      <div className='SGPL-Menu-Wrapper'>
+                        <div className="SGPL-Menu-Btn-Wrapper"> {/* dispatch add to queue thunk */}
                           <OpenModalButton
-                            buttonText="Update"
-                            onButtonClick={((e) => setMenuOpen(false))}
+                            className='SGPL-Menu-Btn-Update'
+                            buttonText={`Update`}
+                            onButtonClick={((e) => setOpenUDM(false))}
                             modalComponent={<UpdatePlaylist playlist={playlist} />}
                           />
                         </div>
-                        <div className="SGPL-Btn-Wrapper" > {/* open extra menu with all user playlists */}
-                          <div className='SGPL-Delete' onClick={((e) => DeletePlaylist(playlist.id))}>&nbsp;Delete</div>
+                        <div className="SGPL-Menu-Btn-Wrapper-End" > {/* open extra menu with all user playlists */}
+                          <div className='SGPL-Menu-Delete' onClick={((e) => DeletePlaylist(playlist.id,userId))}>&nbsp;&nbsp;Delete</div>
                         </div>
                       </div>
                     </div>
