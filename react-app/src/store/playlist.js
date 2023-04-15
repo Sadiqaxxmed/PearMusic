@@ -213,7 +213,7 @@ const playlistReducer = (state = initialState, action) => {
     case GET_EXPLORE_GENRE:
       return { ...state, exploreGenre: { ...action.songs }}
     case RESET_PLAYLISTS:
-      return {...action.reset, exploreGenre: { ...action.reset.exploreGenre } }
+      return {...action.reset,singlePlaylist:{...action.reset.singlePlaylist}, exploreGenre: { ...action.reset.exploreGenre } }
     default: return { ...state }
   }
 }
