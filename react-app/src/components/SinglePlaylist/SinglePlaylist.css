@@ -38,6 +38,7 @@
 }
 
 .SGPL-Buttons {
+  display: flex;
   position: relative;
   top: 60px;
 }
@@ -278,4 +279,72 @@
   background-color: rgb(35, 35, 35);
   border: 1px solid rgb(156, 30, 29);
   margin: 5px;
+}
+
+.SGPL-Owner-Buttons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.SGPL-Delete-Button{
+  display: inline-flex;
+  justify-content: center;
+  margin-left: 20px;
+  height: 25px;
+  width: 100px;
+  border-radius: 5px;
+  background-color: rgb(251, 45, 71);
+  cursor: pointer;
+}
+
+.SGPL-Delete-Text{
+  display: flex;
+  align-self: center;
+  text-align: center;
+  padding-left: 5px;
+  font-weight: 700;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+}
+
+.SGPL-Menu-Wrapper{
+  background-color: rgb(30,30,30);
+  border: solid rgb(75, 75, 75) 1px;
+  border-radius: 8px;
+  width: 80px;
+  color: rgb(214, 214, 214);
+  font-size: small;
+}
+
+.SGPL-Menu-Btn-Wrapper{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  width: 100%;
+  border-bottom: solid rgb(98, 98, 98) 1px;
+  cursor: pointer;
+  justify-content: space-between;
+  padding: 5px 0 5px 0;
+}
+
+.SGPL-Menu-Btn-Wrapper-End{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  width: 100%;
+  cursor: pointer;
+  justify-content: space-between;
+  padding: 5px 0 5px 0;
+}
+
+.SGPL-Delete-Div{
+  display: inline-flex;
+  width: fit-content;
+}
+
+.fa-solid.fa-xmark.SGPL-delete-comment-icon{
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
 }

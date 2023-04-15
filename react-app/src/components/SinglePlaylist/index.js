@@ -11,9 +11,10 @@ import { thunkGetComments, thunkCreateComment, thunkResetComments, thunkDeleteCo
 import { thunkNewQueue } from "../../store/queue";
 import ToolTip from "./ToolTip";
 import { func } from "prop-types";
+import OpenModalButton from "../OpenModalButton";
+import UpdatePlaylist from "../Manage-Discography/UDModals/UpdatePlaylist";
 
 function SinglePlaylist() {
-
   const dispatch = useDispatch();
   const { playlist_id } = useParams();
   const [comment, setComment] = useState('');
@@ -26,13 +27,14 @@ function SinglePlaylist() {
   const playlist = Object.values(useSelector(state => state.playlists.playlistDetails))[0]
   const comments = Object.values(useSelector(state => state.comments.playlistComments))
 
-  console.log('INSIDE THE COMPONENT', comments)
+  console.log('INSIDE THE COMPONENT', playlist)
   const [menuOpen, setMenuOpen] = useState(false)
   const [cardId, setCardId] = useState(null)
-
+  const [openUDM, setOpenUDM] = useState(false)
 
   useEffect(() => {
     dispatch(thunkPlaylistSongs(playlist_id))
+    dispatch(thunkAllPlaylists())
     dispatch(thunkSinglePlaylist(playlist_id))
     dispatch(thunkGetComments(playlist_id))
 
@@ -69,17 +71,15 @@ function SinglePlaylist() {
   }
 
 
-  const DeletePlaylist = async (playlistId) => {
-    console.log('we in here')
-    dispatch(thunkDeletePlaylist(playlistId))
-    console.log('we out here')
+  const DeletePlaylist = async (playlistId, userId) => {
+    dispatch(thunkDeletePlaylist(playlistId, userId))
     history.push('/allPlaylist')
   }
 
 
   const DeleteSong = (songId, playlistId) => {
     dispatch(thunkDeleteSongPlaylist(songId, playlistId))
-    history.push(`/singlePlaylist/${playlistId}`)
+    setOpenUDM(false)
   }
 
 
@@ -117,8 +117,13 @@ function SinglePlaylist() {
       dispatch(thunkResetComments())
     }
     else {
-      alert('This aint yours b')
+      alert('This aint yours bud')
     }
+  }
+
+  const deleteSong = async (songId, playlistId) => {
+    console.log('hit')
+    dispatch(thunkDeleteSongPlaylist(songId, playlistId))
   }
 
   return (
@@ -138,9 +143,30 @@ function SinglePlaylist() {
                 <p className="SGPL-Play-Text">Play</p>
               </div>
               <div className="SGPL-Shuffle-Button">
-                <i className="fa-solid fa-shuffle fa-lrg SGPL-Shuffle"></i>
-                <p className="SGPL-Shuffle-Text" onClick={((e) => DeletePlaylist(playlist.id))}>Delete</p> {/* Change back to shuffle when crud is complete */}
+                <p className="SGPL-Shuffle-Text" onClick={((e) => alert('***SHUFFLE FEATURE COMING SOON***'))}>Shuffle</p> {/* Change back to shuffle when crud is complete */}
               </div>
+              {(userId == playlist?.owner_id) &&
+                <div className="SGPL-Owner-Buttons">
+                  <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openUDM ? setOpenUDM(false) : setOpenUDM(true))}></i>
+                  {openUDM &&
+                    <div >
+                      <div className='SGPL-Menu-Wrapper'>
+                        <div className="SGPL-Menu-Btn-Wrapper"> {/* dispatch add to queue thunk */}
+                          <OpenModalButton
+                            className='SGPL-Menu-Btn-Update'
+                            buttonText={`Update`}
+                            onButtonClick={((e) => setOpenUDM(false))}
+                            modalComponent={<UpdatePlaylist playlist={playlist} />}
+                          />
+                        </div>
+                        <div className="SGPL-Menu-Btn-Wrapper-End" > {/* open extra menu with all user playlists */}
+                          <div className='SGPL-Menu-Delete' onClick={((e) => DeletePlaylist(playlist.id, userId))}>&nbsp;&nbsp;Delete</div>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </div>
+              }
             </div>
           </div>
         </div>
@@ -164,11 +190,23 @@ function SinglePlaylist() {
                 <div className="SGPL-Bottom-Album-Header"> <p className="SGPL-Bottom-text" id="SGPL-Bottom-Info-Text">{song.genre}</p> </div>
                 <div className="SGPL-Time">
                   <p className="SGPL-Bottom-text" id="SGPL-Bottom-Info-Text">{songTotalPlayTime(song)}</p>
-                  <div className="SGPL-icon-menu-div">
-                    <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(song.id))}></i>
-                    {menuOpen && (song.id == cardId) && <ToolTip song={song} playlistId={playlist.id} />}
-                    {<i class="fa-solid fa-xmark SGPL-delete-comment-icon" onClick={((e) => DeleteSong(song.id, playlist_id))}></i>}
-                  </div>
+                </div>
+                <div className="SGPL-Delete-Div">
+                {userId == playlist?.owner_id && <i class="fa-solid fa-xmark SGPL-delete-comment-icon" id="SGPL-Bottom-Info-Text"onClick={((e) => DeleteSong(song.id, playlist_id))}></i>}
+                  {/*<i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(song.id))}></i>
+                      {menuOpen && (song.id == cardId) &&
+                      <div>
+                        <div className='TTM-Main-Wrapper'>
+                          <div className="TTM-Btn-Wrapper"> 
+                            <div className='TTM-AddToQueue' onClick={((e) => console.log('bass'))}>&nbsp;Add to queue</div>
+                          </div>
+                          <div className="TTM-Btn-Wrapper" >
+                            <div className='TTM-Delete' onClick={((e) => deleteSong(song.id, playlist.id))}>&nbsp;Remove from playlist</div>
+                          </div>
+                        </div>
+                      </div>
+                    } 
+                    */}
                 </div>
               </div>
             </div>
@@ -177,7 +215,7 @@ function SinglePlaylist() {
         <div className="SGPL-Comments-Container">
 
 
-
+          {/* comments */}
           <div className="SGPL-Border-Top-Comments">
 
             <p className="SGPL-Bottom-text">{comments.length} Comments {errors.length ? <span style={{ color: 'red', fontSize: '12px' }}> -- {errors.length}</span> : null}</p>
@@ -202,7 +240,7 @@ function SinglePlaylist() {
                   <span class="material-symbols-outlined SB-icons SGPL-profile-pic-container">account_circle</span>
                   <div className="SGPL-Comment-Container">
                     <p className="SGPL-Comment">{comment.comment}</p>
-                    { userId == comment.owner_id ? <i class="fa-solid fa-xmark SGPL-delete-comment-icon" onClick={() => deleteComment(comment.owner_id, comment.id, playlist_id)}></i> : null}
+                    {userId == comment.owner_id ? <i class="fa-solid fa-xmark SGPL-delete-comment-icon" onClick={() => deleteComment(comment.owner_id, comment.id, playlist_id)}></i> : null}
                   </div>
                 </div>
               </>

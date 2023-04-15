@@ -4,7 +4,7 @@ import ReactSelect from 'react-select';
 import './UpdateSong.css'
 import pearMusicIcon from '../../../../images/pearMusicIcon.png'
 import { thunkUpdateSong } from "../../../../store/song";
-
+import { useModal } from "../../../../context/Modal";
 
 const UpdateSong = (song) => {
 
@@ -26,16 +26,19 @@ const UpdateSong = (song) => {
         { value: 'Trap', label: 'Trap' },
         { value: 'Grunge', label: 'Grunge' },
     ];
-    const [title, setTitle] = useState(song.songId.song.title)
-    const [genreValue, setGenreValue] = useState(song.songId.song.genre)
-    const songId = song.songId.song.id
+    const [title, setTitle] = useState(song.song.title)
+    const [genreValue, setGenreValue] = useState(song.song.genre)
+    const songId = song.song.id
     const userId = useSelector(state => state.session.user.id)
+    const { closeModal } = useModal();
+
 
 
 
     const handleUpdate = (e) => {
         e.preventDefault()
         dispatch(thunkUpdateSong({songId,userId,title,genreValue}))
+        closeModal()
     }
 
     const handleGenreValueChange = (selectedOption) => { setGenreValue(selectedOption.value); }
