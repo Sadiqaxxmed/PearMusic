@@ -13,7 +13,6 @@ import ToolTip from "./ToolTip";
 import { func } from "prop-types";
 
 function SinglePlaylist() {
-
   const dispatch = useDispatch();
   const { playlist_id } = useParams();
   const [comment, setComment] = useState('');
@@ -26,7 +25,7 @@ function SinglePlaylist() {
   const playlist = Object.values(useSelector(state => state.playlists.playlistDetails))[0]
   const comments = Object.values(useSelector(state => state.comments.playlistComments))
 
-  console.log('INSIDE THE COMPONENT', comments)
+  console.log('INSIDE THE COMPONENT', playlist)
   const [menuOpen, setMenuOpen] = useState(false)
   const [cardId, setCardId] = useState(null)
 
@@ -138,9 +137,16 @@ function SinglePlaylist() {
                 <p className="SGPL-Play-Text">Play</p>
               </div>
               <div className="SGPL-Shuffle-Button">
-                <i className="fa-solid fa-shuffle fa-lrg SGPL-Shuffle"></i>
-                <p className="SGPL-Shuffle-Text" onClick={((e) => DeletePlaylist(playlist.id))}>Delete</p> {/* Change back to shuffle when crud is complete */}
+                    <p className="SGPL-Shuffle-Text" onClick={((e) => alert('***SHUFFLE FEATURE COMING SOON***'))}>Shuffle</p> {/* Change back to shuffle when crud is complete */}
               </div>
+                { (userId == playlist?.owner_id) && 
+                <div className="SGPL-Owner-Buttons">
+                  <div className="SGPL-Delete-Button">
+                    <p className="SGPL-Delete-Text" onClick={((e) => DeletePlaylist(playlist.id))}>Delete</p> {/* Change back to shuffle when crud is complete */}
+                  </div>
+                  <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => '')}></i>
+                </div>
+              }
             </div>
           </div>
         </div>
@@ -202,7 +208,7 @@ function SinglePlaylist() {
                   <span class="material-symbols-outlined SB-icons SGPL-profile-pic-container">account_circle</span>
                   <div className="SGPL-Comment-Container">
                     <p className="SGPL-Comment">{comment.comment}</p>
-                    { userId == comment.owner_id ? <i class="fa-solid fa-xmark SGPL-delete-comment-icon" onClick={() => deleteComment(comment.owner_id, comment.id, playlist_id)}></i> : null}
+                    {userId == comment.owner_id ? <i class="fa-solid fa-xmark SGPL-delete-comment-icon" onClick={() => deleteComment(comment.owner_id, comment.id, playlist_id)}></i> : null}
                   </div>
                 </div>
               </>
