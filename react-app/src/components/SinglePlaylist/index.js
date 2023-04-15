@@ -6,13 +6,14 @@ import { useHistory, useParams } from "react-router-dom";
 import './SinglePlaylist.css'
 
 
-import { thunkAllPlaylists, thunkDeletePlaylist, thunkDeleteSongPlaylist, thunkPlaylistSongs, thunkSinglePlaylist } from "../../store/playlist";
+import { thunkAllPlaylists, thunkDeletePlaylist, thunkDeleteSongPlaylist, thunkPlaylistSongs, thunkResetPlaylists, thunkSinglePlaylist } from "../../store/playlist";
 import { thunkGetComments, thunkCreateComment, thunkResetComments, thunkDeleteComment } from "../../store/comment";
 
 
 import { thunkNewQueue } from "../../store/queue";
 import OpenModalButton from "../OpenModalButton";
 import UpdatePlaylist from "../Manage-Discography/UDModals/UpdatePlaylist";
+import { thunkResetSongs } from "../../store/song";
 
 function SinglePlaylist() {
   const badWords = new BadWords();
@@ -71,9 +72,11 @@ function SinglePlaylist() {
   }
 
 
-  const DeletePlaylist = async (playlistId, userId) => {
+  const DeletePlaylist = (playlistId, userId) => {
     dispatch(thunkDeletePlaylist(playlistId, userId))
-    history.push('/allPlaylist')
+    dispatch(thunkResetPlaylists())
+    dispatch(thunkResetSongs())
+    return history.push('/allPlaylist')
   }
 
 

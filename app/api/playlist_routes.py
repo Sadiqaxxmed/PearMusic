@@ -61,21 +61,21 @@ def create_playlist_from_song(song_id):
     db.session.add(playlist)
     db.session.commit()
 
-
     # # Add the song to the playlist
     playlistId = playlist.id
     playlist.songs.append(song)
     db.session.commit()
 
     # Add entry to playlist_songs table
-    db.session.execute(playlist_songs.insert().values(playlist_id=playlistId, song_id=song_id))
+    db.session.execute(playlist_songs.insert().values(
+        playlist_id=playlistId, song_id=song_id))
     db.session.commit()
     # song_playlist = song_playlist(playlist_id=playlist_id, song_id=song_id)
     # db.session.add(song_playlist)
     # db.session.commit()
     # Return the new playlist as JSON
 
-    return { 'playlist': playlist.to_dict() }
+    return {'playlist': playlist.to_dict()}
 
 
 @playlist_routes.route('/singlePlaylist/<int:playlist_id>/delete', methods=['DELETE'])
@@ -84,6 +84,10 @@ def delete_playlist(playlist_id):
     if not playlist:
         return {'error': 'Playlist not found'}, 404
 
+    # Delete all songs associated with the playlist from the playlist_songs table
+    db.session.query(playlist_songs).filter_by(playlist_id=playlist_id).delete()
+
+    # Delete the playlist itself from the playlists table
     db.session.delete(playlist)
     db.session.commit()
 
@@ -99,6 +103,7 @@ def delete_song_from_playlist(playlist_id, song_id):
     db.session.commit()
 
     return {'message': 'Song deleted successfully'}, 200
+
 
 @playlist_routes.route('/<int:playlist_id>/songs/<int:song_id>', methods=['POST'])
 def add_song_to_playlist(song_id, playlist_id):
@@ -122,7 +127,8 @@ def add_song_to_playlist(song_id, playlist_id):
     db.session.commit()
 
     # Add entry to playlist_songs table
-    db.session.execute(playlist_songs.insert().values(playlist_id=playlist_id, song_id=song_id))
+    db.session.execute(playlist_songs.insert().values(
+        playlist_id=playlist_id, song_id=song_id))
     db.session.commit()
 
     return {'message': 'Song added to playlist successfully'}
@@ -141,7 +147,6 @@ def update_playlist(playlist_id):
         return {'message': 'Playlist updated successfully', 'status': 200}
     else:
         return {'error': 'Song not found', 'status': 404}
-
 
 
 @playlist_routes.route('/singlePlaylist/<int:playlist_id>/comments')
@@ -167,7 +172,7 @@ def create_comment(playlist_id, user_id):
     db.session.add(comment)
     db.session.commit()
 
-    return { 'comment': comment.to_dict() }
+    return {'comment': comment.to_dict()}
 
 
 @playlist_routes.route('/singlePlaylist/deleteComment/<int:comment_id>', methods=['DELETE'])

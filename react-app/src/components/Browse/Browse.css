@@ -107,6 +107,10 @@
   margin-left: 10px;
 }
 
+#song-name {
+  font-weight: 300; 
+}
+
 /* .BR-album-title-container-div {
   display: flex;
   flex-direction: column;

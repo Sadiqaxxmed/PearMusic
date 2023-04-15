@@ -35,7 +35,7 @@ function ManageDiscography() {
     dispatch(thunkUserAlbums(userId))
     dispatch(thunkUserPlaylists(userId))
     if (!userId) {
-      return history.push('/')
+      return history.push('/browse')
     }
 
     return () => {

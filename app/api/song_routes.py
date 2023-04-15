@@ -28,7 +28,7 @@ def create_song():
     data = request.files
 
     user = current_user
-    print('HEYYYY', user.id)
+
     form = SongForm(
         title=data.get('title'),
         genre=data.get('genre'),
@@ -145,8 +145,8 @@ def update_song(song_id):
 @song_routes.route('/delete/<int:song_id>', methods=['DELETE'])
 @login_required
 def delete_song(song_id):
-    # print(song_id)
     song = Song.query.get(song_id)
+    
     if song:
         db.session.delete(song)
         db.session.commit()

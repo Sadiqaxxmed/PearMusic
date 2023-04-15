@@ -145,6 +145,7 @@ export const thunkDeletePlaylist = (playlistId, userId) => async dispatch => {
   if (response.ok) {
     dispatch(thunkAllPlaylists())
     dispatch(thunkUserPlaylists(userId))
+    dispatch(thunkResetPlaylists())
     return;
   }
 }
