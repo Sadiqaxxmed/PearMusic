@@ -46,6 +46,11 @@
     color: white;
 }
 
+.SF-Submit-Btn:hover {
+    cursor: pointer;
+    box-shadow: 5px 5px 5px black;
+}
+
 .SF-Genre{
     color: black;
 }

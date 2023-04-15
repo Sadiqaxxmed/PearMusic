@@ -65,7 +65,7 @@ input{
     padding-top: 10px;
 }
 
-.SignUp-Button{
+.SignUp-Button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,4 +81,15 @@ input{
 .SignUp-Button:hover {
     cursor: pointer;
     box-shadow: 5px 5px 5px black;
+}
+
+.SignUp-Demo-Btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.SignUp-Demo-Btn > p:hover {
+    cursor: pointer;
+    color: rgb(218, 15, 72);
 }
