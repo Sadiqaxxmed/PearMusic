@@ -5,20 +5,20 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_songs():
     song1 = Song(
-        title='Respect Ya Passion',
-        genre='Rap/Hip-Hop',
-        coverImage='https://images.squarespace-cdn.com/content/v1/5bb52768d86cc94c8613ccf9/1557940709042-A3JRMIA2TN0WT5GMPYSL/Nipsey-Hussle-Casey-Lynn-Hancock-Painting-2small.jpg',
-        mp3file='https://www.youtube.com/watch?v=dmqwI1zKoU4&ab_channel=kvshmvsic',
-        duration=2.50,
+        title='Is There Someone Else?',
+        genre='Pop',
+        coverImage='https://images.genius.com/e302445fd7858455c4ae44690356d476.1000x1000x1.jpg',
+        mp3file='https://www.youtube.com/watch?v=i4ZuseKFBF0&ab_channel=TheWeekndVEVO',
+        duration=3.19,
         user_id=1,
         artistName='Demo'
     )
     song2 = Song(
-        title='Bikini Bottom',
-        genre='Rap/Hip-Hop',
-        coverImage='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsC4HgFu9j1QDKSNZdekFCEE5iBhBD3-b8iQ&usqp=CAU',
-        mp3file='https://www.youtube.com/watch?v=s8bHLBqnOMQ',
-        duration=2.50,
+        title='Never Been',
+        genre='Rap',
+        coverImage='https://upload.wikimedia.org/wikipedia/en/e/ea/TheIncredibleTrueStory.jpg',
+        mp3file='https://www.youtube.com/watch?v=maENVrd7Y0k&list=PLy48iUF99hDGhs-MVMzCkn9nJIxqNPZaQ&index=15&ab_channel=VisionaryMusicGroup',
+        duration=4.07,
         user_id=1,
         artistName='Demo'
     )
@@ -42,7 +42,7 @@ def seed_songs():
     )
     song5 = Song(
         title='Whats Next',
-        genre='Rap/Hip-Hop',
+        genre='Rap',
         coverImage='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRutoQr73RIvghrgN5AxuDfBCVQLLVehJ9_JA&usqp=CAU',
         mp3file='https://www.youtube.com/watch?v=7EUVJaKJtBY',
         duration=2.50,
@@ -51,21 +51,21 @@ def seed_songs():
     )
     song6 = Song(
         title='XO Tour Life',
-        genre='Rap/Hip-Hop',
-        coverImage='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTesOhbn7d2kGpZNXGY7TUz1TpcxJN8GBiETA&usqp=CAU',
+        genre='Rap',
+        coverImage='https://i1.sndcdn.com/artworks-JP1tzUizbOmgwn4o-pEwDPg-t500x500.jpg',
         mp3file='https://www.youtube.com/watch?v=VcyFfcJbyeM',
-        duration=2.50,
+        duration=3.01,
         user_id=1,
         artistName='Demo'
     )
     song7 = Song(
         title='OMG',
         genre='K-Pop',
-        coverImage='https://i.ytimg.com/vi/sVTy_wmn5SU/maxresdefault.jpg',
+        coverImage='https://www.nme.com/wp-content/uploads/2023/01/newjeans-ador-hybe-090123.jpg',
         mp3file='https://www.youtube.com/watch?v=sVTy_wmn5SU&ab_channel=HYBELABELS',
         duration=3.40,
-        user_id=1,
-        artistName='Demo'
+        user_id=8,
+        artistName='Mike'
     )
     song8 = Song(
         title='How You Like That',
@@ -73,17 +73,71 @@ def seed_songs():
         coverImage='https://i.ytimg.com/vi/ioNng23DkIM/maxresdefault.jpg',
         mp3file='https://www.youtube.com/watch?v=ioNng23DkIM&ab_channel=BLACKPINK',
         duration=3.03,
-        user_id=1,
-        artistName='Demo'
+        user_id=8,
+        artistName='Mike'
     )
-    song9 = Song (
+    song9 = Song(
         title='Cupid',
         genre='K-Pop',
         coverImage='https://upload.wikimedia.org/wikipedia/en/a/a6/Fifty_Fifty_-_The_Beginning_Cupid.png',
         mp3file='https://www.youtube.com/watch?v=6uvUTu716rU&ab_channel=FIFTYFIFTYOfficial',
         duration=2.59,
-        user_id=1,
-        artistName='Demo'
+        user_id=8,
+        artistName='Mike'
+    )
+    song10 = Song(
+        title='Shelter',
+        genre='EDM',
+        coverImage='https://i.ytimg.com/vi/fzQ6gRAEoy0/maxresdefault.jpg',
+        mp3file='https://www.youtube.com/watch?v=HQnC1UHBvWA&ab_channel=Madeon',
+        duration=3.38,
+        user_id=8,
+        artistName='Mike'
+    )
+    song11 = Song(
+        title='Hypeboy',
+        genre='K-Pop',
+        coverImage='https://images.genius.com/0cc17757cbe6c7934352f1d2ce021a34.1000x1000x1.jpg',
+        mp3file='https://www.youtube.com/watch?v=T--6HBX2K4g&ab_channel=KMUSIC',
+        duration=3.01,
+        user_id=8,
+        artistName='Mike'
+    )
+    song12 = Song(
+        title='Butter',
+        genre='K-Pop',
+        coverImage='https://upload.wikimedia.org/wikipedia/en/d/db/BTS_-_Butter.png',
+        mp3file='https://www.youtube.com/watch?v=Uz0PppyT7Cc&ab_channel=LQKPOP',
+        duration=2.45,
+        user_id=8,
+        artistName='Mike'
+    )
+    song13 = Song(
+        title='Kill This Love',
+        genre='K-Pop',
+        coverImage='https://www.billboard.com/wp-content/uploads/media/blackpink-kill-this-love-MV-2019-billboard-1548.jpg',
+        mp3file='https://www.youtube.com/watch?v=2S24-y0Ij3Y&ab_channel=BLACKPINK',
+        duration=3.13,
+        user_id=8,
+        artistName='Mike'
+    )
+    song14 = Song(
+        title='Hurt From Mercury',
+        genre='R&B',
+        coverImage='https://i1.sndcdn.com/artworks-YfXbYJtJ1DBq-0-t500x500.jpg',
+        mp3file="https://www.youtube.com/watch?v=VcsqCiMrtkc&ab_channel=ToryLanez",
+        duration=3.23,
+        user_id=8,
+        artistName='Mike'
+    )
+    song15 = Song(
+        title="550's & Leon Dore",
+        genre='R&B',
+        coverImage='https://i1.sndcdn.com/artworks-Y0AJaOJ1j7CZMDq7-AEAYOA-t240x240.jpg',
+        mp3file="https://www.youtube.com/watch?v=k7tQAKkK3GY&ab_channel=Karri",
+        duration=2.03,
+        user_id=8,
+        artistName='Mike'
     )
     db.session.add(song1)
     db.session.add(song2)
@@ -94,6 +148,12 @@ def seed_songs():
     db.session.add(song7)
     db.session.add(song8)
     db.session.add(song9)
+    db.session.add(song10)
+    db.session.add(song11)
+    db.session.add(song12)
+    db.session.add(song13)
+    db.session.add(song14)
+    db.session.add(song15)
     db.session.commit()
 
 

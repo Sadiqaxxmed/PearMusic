@@ -12,7 +12,10 @@ function ExploreGenre() {
   const exploreGenre = Object.values(useSelector(state => state.playlists.exploreGenre))
 
   const descriptions = {
-    'K-Pop': "Explore and dive into this amazing mix of K-Pop singles that are trending!"
+    'K-Pop': "Explore and dive into this amazing mix of K-Pop singles that are trending!",
+    'Rap': "Nothing like rap music to get you into the mood for the evening!",
+    'Pop': "How about you take a load off and 'Pop' in some pop music into your day!",
+    'RnB': "Who can't deny the best genre to exist? Come check out this amazing R&B playlist!"
   }
 
   useEffect(() => {
