@@ -71,6 +71,11 @@ export const thunkNewQueue = (playlistId) => async dispatch => {
     }
 }
 
+export const thunkExploreQueue = (songs) => dispatch => {
+    const normalized = normalizePlaylistSongs(songs)
+    dispatch(actionNewQueue(normalized))
+}
+
 // reducers
 const initialState = {
     queue: [{}],
