@@ -45,7 +45,6 @@ function ManageDiscography() {
 
   }, [dispatch, userId, history])
 
-  console.log(menuOpen)
   function toggleUDM(id) { //opens da meat ta ball menu
     if (!isUDMOpen) setIsUDMOpen(true)
     else setIsUDMOpen(false)
@@ -53,14 +52,12 @@ function ManageDiscography() {
   }
 
   const deletePlaylist = (playlistId) => {
-    console.log('hit')
     dispatch(thunkDeletePlaylist(playlistId, userId))
 
     setMenuOpen(false)
   }
 
   function openMenuFunc(id) {
-    console.log('here')
     if (!menuOpen) {
       setMenuOpen(true)
       setPlaylistCardId(id)
@@ -81,8 +78,6 @@ function ManageDiscography() {
             slidesPerView={2}
             slidesPerGroup={1}
             navigation
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
             style={{ overflow: 'hidden' }}
           >
             <div >
@@ -137,8 +132,6 @@ function ManageDiscography() {
             slidesPerView={3}
             slidesPerGroup={1}
             navigation
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
             style={{ overflow: 'hidden' }}
           >
             <div className='MD-songs-carousel-images-div'>
@@ -182,8 +175,6 @@ function ManageDiscography() {
             slidesPerView={4}
             slidesPerGroup={1}
             navigation
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
             style={{ overflow: 'hidden' }}
           >
             {userAlbums.map((album, idx) =>

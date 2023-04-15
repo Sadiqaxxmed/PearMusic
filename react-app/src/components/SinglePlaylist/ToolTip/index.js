@@ -16,7 +16,6 @@ function ToolTip({song,playlistId}) {
     // }
 
     const deleteSong = async (songId,playlistId) => {
-        console.log('hit')
         dispatch(thunkDeleteSongPlaylist(songId,playlistId))
     }
 

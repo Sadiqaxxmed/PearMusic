@@ -27,7 +27,6 @@ function SinglePlaylist() {
   const playlist = Object.values(useSelector(state => state.playlists.playlistDetails))[0]
   const comments = Object.values(useSelector(state => state.comments.playlistComments))
 
-  console.log('INSIDE THE COMPONENT', playlist)
   const [menuOpen, setMenuOpen] = useState(false)
   const [cardId, setCardId] = useState(null)
   const [openUDM, setOpenUDM] = useState(false)
@@ -122,7 +121,6 @@ function SinglePlaylist() {
   }
 
   const deleteSong = async (songId, playlistId) => {
-    console.log('hit')
     dispatch(thunkDeleteSongPlaylist(songId, playlistId))
   }
 
@@ -197,7 +195,7 @@ function SinglePlaylist() {
                       {menuOpen && (song.id == cardId) &&
                       <div>
                         <div className='TTM-Main-Wrapper'>
-                          <div className="TTM-Btn-Wrapper"> 
+                          <div className="TTM-Btn-Wrapper">
                             <div className='TTM-AddToQueue' onClick={((e) => console.log('bass'))}>&nbsp;Add to queue</div>
                           </div>
                           <div className="TTM-Btn-Wrapper" >
@@ -205,7 +203,7 @@ function SinglePlaylist() {
                           </div>
                         </div>
                       </div>
-                    } 
+                    }
                     */}
                 </div>
               </div>
