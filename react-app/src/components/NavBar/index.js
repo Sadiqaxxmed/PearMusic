@@ -79,14 +79,14 @@ function NavBar() {
   const handleSeekUp = () => {
     if (playerRef.current) {
       const currentTime = playerRef.current.getCurrentTime(); // Get current time
-      playerRef.current.seekTo(currentTime + 5); // Seek to current time + 5 seconds
+      playerRef.current.seekTo(currentTime + 10); // Seek to current time + 5 seconds
     }
   };
 // LOGIC TO HANDLE REVERSE BUTTON CLICK
   const handleSeekDown = () => {
     if (playerRef.current) {
       const currentTime = playerRef.current.getCurrentTime(); // Get current time
-      playerRef.current.seekTo(currentTime - 5); // Seek to current time - 5 seconds
+      playerRef.current.seekTo(currentTime - 10); // Seek to current time - 5 seconds
     }
   };
 
