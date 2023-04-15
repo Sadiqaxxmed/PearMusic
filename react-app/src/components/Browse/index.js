@@ -85,13 +85,10 @@ function Browser() {
           Browse
         </h1>
         <div className="BR-browse-container">
-          {/* {shuffledBrowseCards.map(browseCard =>
-            <img className="BR-images" src={browseCard} alt="Browse Card" onClick={() => alert('Feature Coming Soon!')} />
-          )} */}
           <img className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
-          <img className="BR-images" src={Pop} alt="Browse Card" onClick={() => alert('Feature Coming Soon!')} />
-          <img className="BR-images" src={Rap} alt="Browse Card" onClick={() => alert('Feature Coming Soon!')} />
-          <img className="BR-images" src={RnB} alt="Browse Card" onClick={() => alert('Feature Coming Soon!')} />
+          <img className="BR-images" src={Pop} alt="Browse Card" onClick={() =>  history.push('/explore/Pop')} />
+          <img className="BR-images" src={Rap} alt="Browse Card" onClick={() =>  history.push('/explore/Rap')} />
+          <img className="BR-images" src={RnB} alt="Browse Card" onClick={() =>  history.push('/explore/RnB')} />
         </div>
 
         <h1 className="BR-labels">Songs</h1>

@@ -18,10 +18,22 @@
   box-shadow: 3px 3px 5px black;
   transition: box-shadow 0.3s ease-in-out;
   object-fit: cover;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.art-cover {
+  /* transform: translate(-50%, -50%); */
+  opacity: 1;
+  transition: all 0.3s ease;
+  background-image: url('../../images/play_arrow.png');
+  background-size: cover;
 }
 
 .art-cover:hover {
   cursor: pointer;
+  opacity: .5;
+  background-image: url('../../images/play_arrow.png');
 }
 
 /* Can use this media screen to fix resize for browse cards*/
@@ -39,6 +51,7 @@
 .BR-images:hover {
   cursor: pointer;
   box-shadow: 10px 10px 10px black;
+  opacity: .8;
 }
 
 .BR-labels {

@@ -90,7 +90,7 @@ function SignupFormModal() {
         { value: 'Pop', label: 'Pop' },
         { value: 'Rock', label: 'Rock' },
         { value: 'R&B', label: 'R&B' },
-        { value: 'Hip-Hop', label: 'Hip-Hop' },
+        { value: 'Rap', label: 'Rap' },
         { value: 'K-Pop', label: 'K-Pop' },
         { value: 'Country', label: 'Country' },
         { value: 'Folk', label: 'Folk' },
