@@ -4,20 +4,20 @@ import { thunkDeleteSong } from "../../../../store/song";
 
 import './DeleteSong.css'
 import pearMusicIcon from '../../../../images/pearMusicIcon.png'
+import { useModal } from "../../../../context/Modal";
 
 const DeleteSong = (song) => {
     const dispatch = useDispatch();
-
-    const songTitle = song.songId.song.title
+    const {closeModal} = useModal()
     const userId = useSelector(state => state.session.user.id)
-    const songId = song.songId.song.id
+    
+    const songTitle = song.song.title
+    const songId = song.song.id
 
     const handleDelete = (e) => {
         e.preventDefault();
-        // console.log('delete song start')
-        // console.log({songId, userId})
         dispatch(thunkDeleteSong({songId, userId}))
-        // console.log('delete song end')
+        closeModal()
     }
 
     return(

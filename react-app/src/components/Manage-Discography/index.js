@@ -13,6 +13,8 @@ import './Manage-Discography.css'
 import UDModal from './UDModalMenu'
 import ToolTipMD from './ToolTipMD';
 import OpenModalButton from '../OpenModalButton';
+import UpdateSong from "./UDModals/UpdateSongModal";
+import DeleteSong from "./UDModals/DeleteSongModal";
 
 function ManageDiscography() {
   const dispatch = useDispatch();
@@ -53,7 +55,7 @@ function ManageDiscography() {
 
   const deletePlaylist = (playlistId) => {
     console.log('hit')
-    dispatch(thunkDeletePlaylist(playlistId,userId))
+    dispatch(thunkDeletePlaylist(playlistId, userId))
 
     setMenuOpen(false)
   }
@@ -98,14 +100,35 @@ function ManageDiscography() {
                   </div>
                   <div>
                     <i id='MD-eclipse' className="fa-solid fa-ellipsis" onClick={((e) => toggleUDM(song.id))} onClose={((e) => setCardId(null))}></i>
-                    {isUDMOpen && (song.id == cardId) && <UDModal song={song} />}
+                    {isUDMOpen && (song.id == cardId) &&
+                      <div className='UDM-Main-Wrapper'>
+                        <div className="UDM-Update-Wrapper">
+                          {/* <div className="UDM-Update">&nbsp;Update</div> */}
+                          <OpenModalButton
+                            buttonText="Update"
+                            onButtonClick={''}
+                            modalComponent={<UpdateSong song={song} />}
+                          />
+                          <i class="fa-solid fa-pen-to-square" id='update-ico' />
+                        </div>
+                        <div className="UDM-Delete-Wrapper" >
+                          {/* <div className="UDM-Delete">&nbsp;Delete</div> */}
+                          <OpenModalButton
+                            buttonText="Delete"
+                            onButtonClick={''}
+                            modalComponent={<DeleteSong song={song} />}
+                          />
+                          <i class="fa-solid fa-trash" id='delete-ico' />
+                        </div>
+                      </div>
+                    }
                   </div>
                 </SwiperSlide>
               )}
             </div>
           </Swiper>
         </div>
-      </div> 
+      </div>
 
       <div className={userPlaylists.length ? 'MD-section-container' : 'MD-display-none'}>
         <h3 className='MD-sub-labels'>Playlists</h3>
@@ -129,7 +152,7 @@ function ManageDiscography() {
                   <div>
                     <h3 className='MD-playlist-Title'>{playlist.title}<i id='MD-eclipse-playlist' className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(playlist.id))} onClose={((e) => setPlaylistCardId(null))}></i></h3>
                     {menuOpen && (playlistCardId == playlist.id) &&
-                      <div key={playlistCardId}>
+                      <div >
                         <div className='TTM-Main-Wrapper'>
                           <div className="TTM-Btn-Wrapper"> {/* dispatch add to queue thunk */}
                             <OpenModalButton
