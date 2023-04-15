@@ -129,11 +129,11 @@ function Browser() {
             className="BR-Swiper"
           >
             {shuffledAlbums.map(album => (
-              <SwiperSlide key={album.id}>
-                <div style={{ marginTop: '50px' }}>
+              <SwiperSlide key={album.id} id="Swiper-Slide-container">
                   <img className='BR-album-images' src={album.coverImage} alt='Album Cover' onClick={() => alert('Feature Coming Soon!')} />
-                  <h3 style={{ color: 'rgb(238, 238, 238)', textAlign: 'center' }}>{album.title}</h3>
-                </div>
+                  <div>
+                  <p className="BR-album-title">{album.title}</p>
+                  </div>
               </SwiperSlide>
             ))}
           </Swiper>
