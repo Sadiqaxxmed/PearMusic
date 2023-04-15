@@ -337,3 +337,14 @@
   justify-content: space-between;
   padding: 5px 0 5px 0;
 }
+
+.SGPL-Delete-Div{
+  display: inline-flex;
+  width: fit-content;
+}
+
+.fa-solid.fa-xmark.SGPL-delete-comment-icon{
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+}
