@@ -29,11 +29,27 @@
 }
 
 .song-div {
-  display: flex;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   padding-top: 20px;
-  flex-wrap: wrap;
+  margin-left: 50px;
+}
 
+@media only screen and (max-width: 1350px) {
+  .song-div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .song-div {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-top: 20px;
+    margin: 0;
+  }
 }
 
 .SG-labels {

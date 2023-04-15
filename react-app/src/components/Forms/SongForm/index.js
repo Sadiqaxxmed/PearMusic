@@ -36,7 +36,6 @@ function SignupFormModal() {
 
 
     const handleSubmit = async (e) => {
-        setLoading('SF-Loading-GIF')
         e.preventDefault();
         let err = {};
 
@@ -66,6 +65,8 @@ function SignupFormModal() {
 
         if (Object.values(err).length) return setErrors(err)
 
+        setLoading('SF-Loading-GIF')
+        
         const formData = new FormData();
 
         formData.append('songMp3', songMp3)
@@ -85,7 +86,7 @@ function SignupFormModal() {
         if (res.ok) {
             closeModal();
             dispatch(thunkAllSongs());
-            return history.push('/');
+            return history.push('/browse');
         }
     };
 
@@ -122,7 +123,7 @@ function SignupFormModal() {
                         <div className="SF-Song-Title-Lable">Song Title:
                             <input type='text' className="SF-Song-Title" value={songTitle} onChange={(e) => setSongTitle(e.target.value)} required />
                         </div>
-                        { errors.coverImage ? <div className="SF-Errors">* {errors.coverImage}</div> : null}
+                        {errors.coverImage ? <div className="SF-Errors">* {errors.coverImage}</div> : null}
                         <div> Cover Image:
                             <input className="SF-CoverImage" type='file' accept='image/*' onChange={handleCoverFileChange} required />
 
@@ -135,13 +136,13 @@ function SignupFormModal() {
                                 onChange={handleGenreValueChange}
                             />
                         </div>
-                        { errors.songFile ? <div className="SF-Errors">* {errors.songFile}</div> : null }
+                        {errors.songFile ? <div className="SF-Errors">* {errors.songFile}</div> : null}
                         <div className="SF-Mp3-Wrapper"> Song File:
                             <input type='file' accept="audio/*" onChange={handleFileChange} required />
                         </div>
                         <button className='SF-Submit-Btn' type="submit">Submit</button>
                         <div className="SF-Loading-GIF-Container">
-                        <img src={loadingGif} alt='loading-gif' className={loading}></img>
+                            <img src={loadingGif} alt='loading-gif' className={loading}></img>
                         </div>
                     </form>
                 </div>

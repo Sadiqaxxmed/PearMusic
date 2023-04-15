@@ -145,6 +145,7 @@ export const thunkDeletePlaylist = (playlistId, userId) => async dispatch => {
   if (response.ok) {
     dispatch(thunkAllPlaylists())
     dispatch(thunkUserPlaylists(userId))
+    dispatch(thunkResetPlaylists())
     return;
   }
 }
@@ -213,7 +214,7 @@ const playlistReducer = (state = initialState, action) => {
     case GET_EXPLORE_GENRE:
       return { ...state, exploreGenre: { ...action.songs }}
     case RESET_PLAYLISTS:
-      return {...action.reset, exploreGenre: { ...action.reset.exploreGenre } }
+      return {...action.reset, exploreGenre: { ...action.reset.exploreGenre }, singlePlaylist: { ...action.reset.singlePlaylist }, allPlaylists: { ...action.reset.allPlaylist } }
     default: return { ...state }
   }
 }

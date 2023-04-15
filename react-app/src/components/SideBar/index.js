@@ -58,7 +58,7 @@ function SideBar() {
                             list
                         </span>
                         <p> <Link exact="true" to="/allPlaylist" style={{ textDecoration: 'none', color: 'white' }}> All Playlists  </Link> </p></li>
-                    {userPlaylists.map(playlist =>
+                    {/* {userPlaylists.map(playlist =>
                         <li className='SB-User-Playlist-li'>
                             <span className="material-symbols-outlined SB-icons pink-icons">
                                 queue_music
@@ -67,7 +67,7 @@ function SideBar() {
                             <p className='SB-user-single-playlist'>{playlist.title}</p>
                             </Link>
                         </li>
-                    )}
+                    )} */}
                 </div>
             </div>
         </div>

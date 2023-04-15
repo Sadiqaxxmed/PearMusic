@@ -101,9 +101,9 @@ function Browser() {
                 <img className="art-cover" alt="temp" src={song.coverImage} onClick={() => playNowFunc(song)}></img>
               </div>
               <div className="song-info">
-                <h3 className="song-info" id="song-name">
+                <p className="song-info" id="song-name">
                   {song.title}
-                </h3>
+                </p>
                 <p className="song-info" id="artists-name">
                   {song.artistName}
                 </p>

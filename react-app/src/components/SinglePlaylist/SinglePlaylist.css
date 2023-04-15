@@ -335,6 +335,7 @@
   width: 80px;
   color: rgb(214, 214, 214);
   font-size: small;
+  position: absolute;
 }
 
 .SGPL-Menu-Btn-Wrapper{
