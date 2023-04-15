@@ -1,0 +1,224 @@
+/* body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+} */
+
+.HP-Wrapper {
+  display: flex;
+  justify-content: center;
+  height: 54px;
+}
+
+.HP-Main-Wrapper {
+  /* display: grid; */
+  height: 100vw;
+}
+
+.HP-Nav {
+  display: flex;
+  flex-direction: row;
+  width: 1027px;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: yellow; */
+}
+
+/* need to impliment the swipe up from red to shadow white */
+/* .HP-Apple-Subscription {
+  animation: colorChange 2s forwards;
+  color: white;
+  height: 54px;
+  font-size: 1em;
+  font-weight: 400;
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+} */
+
+.HP-GoTo-Button {
+  display: flex;
+  background-color: rgb(250, 35, 61);
+  color: white;
+  height: 24px;
+  width: 125px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: .7em;
+}
+
+.HP-Title {
+  display: flex;
+  font-size: 1.5em;
+}
+
+.HP-TitleAndLogo {
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  align-items: center;
+}
+
+.HP-Pear-Logo-Black {
+  display: flex;
+  height: 20px;
+}
+
+.HP-Apple-Subscription-Wrapper {
+  position: relative;
+  width: 100%;
+  height: 54px;
+  overflow: hidden;
+}
+
+.HP-Apple-Subscription-Red,
+.HP-Apple-Subscription-White {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: rgb(250, 35, 61);
+  color: white;
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.HP-Apple-Subscription-Red{
+  opacity: 1;
+  transform: translateY(0);
+  font-weight: 400;
+  font-size: .9em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.HP-Apple-Subscription-White {
+  opacity: 0;
+  background-color: rgb(245, 245, 247);
+  color: black;
+  font-weight: 300;
+  font-size: .9em;
+  transform: translateY(100%);
+  transition-delay: 0s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@keyframes contentMoveUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.HP-Icon-Wrapper-Wrapper {
+  display: flex;
+  width: 980px;
+  height: 124px;
+  overflow: visible;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* Add margin: 0 auto; to horizontally center the element */
+} 
+
+.HP-Icon-Wrapper{
+  display: flex;
+  align-self: center;
+  position: absolute;
+  height: 100px;
+  top: 10px;  
+  animation: shrink 3.5s forwards;
+  display: flex;
+}
+
+.HP-Icon {}
+
+@keyframes shrink {
+  0% {
+    transform: scale(1.2) translate(0%,100%);
+  }
+
+  50% {
+    transform: scale() translate();
+  }
+
+  100% {
+    transform: scale(0.27) translate(0,400px);
+  }
+}
+
+
+.HP-Bottom-Text-Wrapper{
+  display: flex;
+  justify-content: center;
+  margin-top: 17px;
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+.HP-Headline-Wrapper{
+  display: flex;
+  justify-content: center;
+  height: 200px;
+}
+
+.HP-Headline{
+  display: flex;
+  align-items: center;
+  height: auto;
+  width: auto;
+  font-size: 7em;
+  font-weight: 500;
+  position:absolute;
+  top: 190px;
+}
+
+/* .HP-PhoneImgs-Wrapper{
+  display: flex;
+  flex-direction: row;
+  height: 600px;
+  overflow: hidden;
+} */
+
+.HP-PhoneImgs-Wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 250px; /* set the desired height of the container */
+  overflow: visible; /* hide overflowing content */
+  align-items: center;
+  justify-content: space-around;
+  animation: moveUp 6s ease-in-out;
+  z-index: -100;
+}
+
+.HP-Image{
+  z-index: 1;
+  opacity: .9;
+}
+
+@keyframes moveUp {
+  0%{
+    transform: translate(2000px,0px);
+  }
+  100%{
+    transform: translate(0,0);
+  }
+}
