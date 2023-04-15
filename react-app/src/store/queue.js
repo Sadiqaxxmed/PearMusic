@@ -71,6 +71,11 @@ export const thunkNewQueue = (playlistId) => async dispatch => {
     }
 }
 
+export const thunkExploreQueue = (songs) => dispatch => {
+    const normalized = normalizePlaylistSongs(songs)
+    dispatch(actionNewQueue(normalized))
+}
+
 // reducers
 const initialState = {
     queue: [{}],
@@ -79,8 +84,6 @@ const initialState = {
 const queueReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_SONG':
-            //NOT WORKING
-            console.log((state.queue), 'asofnaio;psfno;aisnf')
             if (!(Object.values(state.queue).length === 0)) {
                 const queue = Object.values(state.queue)
                 queue.push(action.payload)

@@ -55,6 +55,20 @@
     color: black;
 }
 
+.SF-Loading-GIF-Container {
+    display: flex;
+    justify-content: center;
+}
+
+.SF-Loading-GIF {
+    width: 10%;
+    height: auto;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
 #form-input:focus{
     border: 2px solid red;
 }

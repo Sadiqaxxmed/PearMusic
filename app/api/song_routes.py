@@ -200,3 +200,11 @@ def add_liked_song(song_id):
     db.session.commit()
 
     return jsonify(message='Song added to liked songs')
+
+
+@song_routes.route('/explore/<string:genre_type>')
+def get_explore_genre(genre_type):
+    songs = Song.query.filter(Song.genre == genre_type).all()
+    if not songs:
+        return jsonify(message='No Songs for this Genre'), 404
+    return {'exploreGenre': [song.to_dict() for song in songs]}

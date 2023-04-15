@@ -43,7 +43,6 @@ function LoginFormModal() {
 
   const isDisabled = () => {
     if (email.length < 4 || password.length < 6) {
-      console.log('im here')
       return true;
     };
     return false;

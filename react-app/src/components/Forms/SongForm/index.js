@@ -4,6 +4,7 @@ import ReactSelect from 'react-select';
 import { useSelector, useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { thunkAllSongs } from "../../../store/song";
+import loadingGif from "../../../images/pearloading.gif";
 import "./SongForm.css";
 
 function SignupFormModal() {
@@ -14,6 +15,7 @@ function SignupFormModal() {
     const [songCoverImage, setSongCoverImage] = useState(null)
     const [songMp3, setSongMp3] = useState(null)
     const [genreValue, setGenreValue] = useState(null)
+    const [loading, setLoading] = useState('hidden')
     const { closeModal } = useModal()
 
     const artistName = useSelector(state => state.session.user.username)
@@ -34,6 +36,7 @@ function SignupFormModal() {
 
 
     const handleSubmit = async (e) => {
+        setLoading('SF-Loading-GIF')
         e.preventDefault();
         let err = {};
 
@@ -78,6 +81,7 @@ function SignupFormModal() {
             body: formData
         });
 
+
         if (res.ok) {
             closeModal();
             dispatch(thunkAllSongs());
@@ -89,7 +93,7 @@ function SignupFormModal() {
         { value: 'Pop', label: 'Pop' },
         { value: 'Rock', label: 'Rock' },
         { value: 'R&B', label: 'R&B' },
-        { value: 'Hip-Hop', label: 'Hip-Hop' },
+        { value: 'Rap', label: 'Rap' },
         { value: 'K-Pop', label: 'K-Pop' },
         { value: 'Country', label: 'Country' },
         { value: 'Folk', label: 'Folk' },
@@ -136,6 +140,9 @@ function SignupFormModal() {
                             <input type='file' accept="audio/*" onChange={handleFileChange} required />
                         </div>
                         <button className='SF-Submit-Btn' type="submit">Submit</button>
+                        <div className="SF-Loading-GIF-Container">
+                        <img src={loadingGif} alt='loading-gif' className={loading}></img>
+                        </div>
                     </form>
                 </div>
             )}
