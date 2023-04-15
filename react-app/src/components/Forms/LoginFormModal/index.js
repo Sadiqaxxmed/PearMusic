@@ -61,7 +61,7 @@ function LoginFormModal() {
           <i className="fa-solid fa-xmark" onClick={() => handleCloseModal()} id='x' />
           <h1 className="LogIn-Title">Login</h1>
           <form className='LogIn-Form' onSubmit={handleSubmit}>
-            {<p style={{color:'red'}}>- {errors.message}</p>}
+            { Object.values(errors).length ? <p style={{color:'red'}}> {`* ${errors.message}`}</p> : null }
             <label className="LogIn-Form-Top-Text">
               Email:
               <input
@@ -81,8 +81,8 @@ function LoginFormModal() {
               />
             </label>
             <button className={loginBtn} type="submit" disabled={isDisabled()}>Log In</button>
-            <div className="SignUp-Demo-Btn" onClick={() => loginDemoUser()}>
-              <p>Demo User</p>
+            <div className="SignUp-Demo-Btn">
+              <p onClick={() => loginDemoUser()}>Demo User</p>
             </div>
           </form>
         </div>
