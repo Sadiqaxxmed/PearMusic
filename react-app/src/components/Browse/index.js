@@ -88,9 +88,8 @@ function Browser() {
           <img className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
           <img className="BR-images" src={Pop} alt="Browse Card" onClick={() =>  history.push('/explore/Pop')} />
           <img className="BR-images" src={Rap} alt="Browse Card" onClick={() =>  history.push('/explore/Rap')} />
-          <img className="BR-images" src={RnB} alt="Browse Card" onClick={() =>  history.push('/explore/RnB')} />
+          <img className="BR-images" src={RnB} alt="Browse Card" onClick={() =>  history.push('/explore/R&B')} />
         </div>
-
         <h1 className="BR-labels">Songs</h1>
         {songs.map((song) => (
           <div className="BR-song-section">

@@ -35,7 +35,10 @@ function ExploreGenre() {
       minutes += Math.floor(duration);
       duration.toString().split('.').forEach((second, i) => i % 2 != 0 ? seconds += parseInt(second) : false)
     }
-
+    if (seconds >= 60) {
+      minutes += Math.floor(seconds / 60)
+      seconds = seconds % 60;
+    }
     return `${minutes} MINUTES, ${seconds} SECONDS`
   }
 
@@ -46,6 +49,10 @@ function ExploreGenre() {
     let duration = songs.duration;
     minutes = Math.floor(duration);
     seconds = duration.toString().split('.')[1].toString().length < 2 ? seconds = `0${duration.toString().split('.')[1].toString()}` : seconds = duration.toString().split('.')[1].toString()
+    if (seconds >= 60) {
+      minutes += Math.floor(seconds / 60)
+      seconds = seconds % 60;
+    }
     return `${minutes}:${seconds}`
   }
 
