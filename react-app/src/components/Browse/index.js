@@ -3,39 +3,35 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar } from 'swiper';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { thunkAllAlbums, thunkResetAlbums } from "../../store/album";
 import { thunkAllSongs, thunkResetSongs, thunkLikedSongs, thunkLikeSongs, thunkDeleteLikedSongs } from "../../store/song";
-import { thunkAddSong, thunkNewQueue, thunkPlayNow } from "../../store/queue";
+import { thunkPlayNow } from "../../store/queue";
 import { thunkAllPlaylists, thunkUserPlaylists } from "../../store/playlist";
 import ToolTipMenu from "../ToolTip";
 
 import './Browse.css'
 import 'swiper/swiper.min.css'
 import 'swiper/modules/navigation/navigation.min.css'
-import image from '../../images/Fin-Cards(smaller)/kpop.gif'
-import image2 from '../../images/Fin-Cards(smaller)/pop.gif'
-import image3 from '../../images/Fin-Cards(smaller)/rap.gif'
-import image4 from '../../images/Fin-Cards(smaller)/r&b.gif'
+import KPop from '../../images/Fin-Cards(smaller)/kpop.gif'
+import Pop from '../../images/Fin-Cards(smaller)/pop.gif'
+import Rap from '../../images/Fin-Cards(smaller)/rap.gif'
+import RnB from '../../images/Fin-Cards(smaller)/r&b.gif'
 
 
 function Browser() {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.session.user?.id)
-  const albums = Object.values(useSelector(state => state.albums.allAlbums))
-  const songs = Object.values(useSelector(state => state.songs.allSongs))
-  const likedSongs = Object.values(useSelector(state => state.songs.likedSongs)).map(song => song.id)
+  const history = useHistory();
+  const user = useSelector(state => state.session.user?.id);
+  const albums = Object.values(useSelector(state => state.albums.allAlbums));
+  const songs = Object.values(useSelector(state => state.songs.allSongs));
+  const likedSongs = Object.values(useSelector(state => state.songs.likedSongs)).map(song => song.id);
 
   const [loaded, setLoaded] = useState(false);
-  const browseCards = [image, image2, image3, image4]
   const [menuOpen, setMenuOpen] = useState(false)
   const [cardId, setCardId] = useState(null)
 
-  // Shuffle Albums/Songs (Adds nice dynamic element to browse page)
-  const randomize = array => array.sort(() => 0.5 - Math.random())
-
   const shuffledAlbums = albums
-  const shuffledSongs = songs
-  const shuffledBrowseCards = browseCards
 
   useEffect(() => {
     dispatch(thunkAllSongs());
@@ -89,9 +85,13 @@ function Browser() {
           Browse
         </h1>
         <div className="BR-browse-container">
-          {shuffledBrowseCards.map(browseCard =>
+          {/* {shuffledBrowseCards.map(browseCard =>
             <img className="BR-images" src={browseCard} alt="Browse Card" onClick={() => alert('Feature Coming Soon!')} />
-          )}
+          )} */}
+          <img className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
+          <img className="BR-images" src={Pop} alt="Browse Card" onClick={() => alert('Feature Coming Soon!')} />
+          <img className="BR-images" src={Rap} alt="Browse Card" onClick={() => alert('Feature Coming Soon!')} />
+          <img className="BR-images" src={RnB} alt="Browse Card" onClick={() => alert('Feature Coming Soon!')} />
         </div>
 
         <h1 className="BR-labels">Songs</h1>
@@ -130,10 +130,10 @@ function Browser() {
           >
             {shuffledAlbums.map(album => (
               <SwiperSlide key={album.id} id="Swiper-Slide-container">
-                  <img className='BR-album-images' src={album.coverImage} alt='Album Cover' onClick={() => alert('Feature Coming Soon!')} />
-                  <div>
+                <img className='BR-album-images' src={album.coverImage} alt='Album Cover' onClick={() => alert('Feature Coming Soon!')} />
+                <div>
                   <p className="BR-album-title">{album.title}</p>
-                  </div>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>

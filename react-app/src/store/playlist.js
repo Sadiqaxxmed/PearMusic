@@ -6,9 +6,10 @@ const SINGLE_PLAYLIST = 'SINGLE_PLAYLIST';
 const CREATE_PLAYLIST = 'CREATE_PLAYLIST';
 const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
 const DELETE_PLAYLIST = 'DELETE_PLAYLIST';
-const DELETE_SONG_PLAYLIST = 'DELETE_SONG_PLAYLIST'
+const DELETE_SONG_PLAYLIST = 'DELETE_SONG_PLAYLIST';
 const RESET_PLAYLISTS = 'RESET_PLAYLISTS';
-const ADD_TO_PLAYLIST  = 'ADD_TO_PLAYLIST'
+const ADD_TO_PLAYLIST  = 'ADD_TO_PLAYLIST';
+const GET_EXPLORE_GENRE = 'GET_EXPLORE_GENRE';
 
 // TODO: ACTION CREATORS
 export const actionAllPlaylists = (playlists) => {
@@ -44,11 +45,15 @@ export const actionResetPlaylists = (reset) => {
 }
 
 export const actionDeleteSongPlaylist = (songId) => {
-  return { type: DELETE_SONG_PLAYLIST, songId}
+  return { type: DELETE_SONG_PLAYLIST, songId }
 }
 
-export const actionAddToPlaylist  =(songId,playlistId) => {
-  return { type: ADD_TO_PLAYLIST, songId, playlistId}
+export const actionAddToPlaylist = (songId,playlistId) => {
+  return { type: ADD_TO_PLAYLIST, songId, playlistId }
+}
+
+export const actionGetExploreGenre = (songs) => {
+  return { type: GET_EXPLORE_GENRE, songs }
 }
 
 // TODO: NORMALIZE DATA
@@ -173,12 +178,24 @@ export const thunkResetPlaylists = () => async dispatch => {
   return;
 }
 
+export const thunkGetExploreGenre = (genre) => async dispatch => {
+  const response = await fetch(`/api/songs/explore/${genre}`)
+
+  if (response.ok) {
+    const data = await response.json();
+    const normalized = normalizePlaylistSongs(data.exploreGenre);
+    dispatch(actionGetExploreGenre(normalized));
+    return;
+  }
+}
+
 // TODO: INITIAL SLICE STATE
 const initialState = {
   allPlaylists: {},
   userPlaylists: {},
   singlePlaylist: {},
-  playlistDetails: {}
+  playlistDetails: {},
+  exploreGenre: {}
 }
 
 
@@ -193,6 +210,8 @@ const playlistReducer = (state = initialState, action) => {
       return { ...state, singlePlaylist: { ...action.songs } }
     case SINGLE_PLAYLIST:
       return { ...state, playlistDetails: { ...action.playlist } }
+    case GET_EXPLORE_GENRE:
+      return { ...state, exploreGenre: { ...action.songs }}
     case RESET_PLAYLISTS:
       return {...action.reset}
     default: return { ...state }

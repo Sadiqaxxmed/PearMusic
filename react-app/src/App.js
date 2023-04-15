@@ -13,6 +13,7 @@ import SinglePlaylist from "./components/SinglePlaylist";
 import Albums from "./components/Albums";
 import ManageDiscography from "./components/Manage-Discography";
 import ScrollToTop from './components/ScrollToTop.js'
+import ExploreGenre from "./components/ExploreGenre";
 
 
 function App() {
@@ -54,6 +55,9 @@ function App() {
           </Route>
           <Route path="/manage-discography">
             <ManageDiscography />
+          </Route>
+          <Route path="/explore/:genre_type">
+            <ExploreGenre />
           </Route>
         </Switch>
       )}
