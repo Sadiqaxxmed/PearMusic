@@ -198,13 +198,6 @@
   font-size: .9em;
 }
 
-/* .HP-PhoneImgs-Wrapper{
-  display: flex;
-  flex-direction: row;
-  height: 600px;
-  overflow: hidden;
-} */
-
 .HP-PhoneImgs-Wrapper {
   display: flex;
   flex-direction: row;
@@ -215,11 +208,13 @@
   justify-content: space-around;
   animation: moveUp 6s ease-in-out;
   z-index: -100;
+
 }
 
 .HP-Image{
   z-index: 1;
   opacity: .9;
+  filter: drop-shadow(0 0 1.2rem black);
 }
 
 @keyframes moveUp {
@@ -245,7 +240,10 @@
   width: 367px;
   height: 360px;
   border-radius: 40px;
-  background-color: rgb(245, 245, 247);
+  background-image: url('../../images/Dev-Background/haku.png');
+  background-size: cover; /* Adjust the image size to cover the entire element */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-position: right 0px top 0px;
 }
 .HP-Yasiney-Wrapper{
   display: flex;
@@ -254,7 +252,10 @@
   width: 367px;
   height: 360px;
   border-radius: 40px;
-  background-color: rgb(245, 245, 247);
+  background-image: url('../../images/Dev-Background/kiki-2.jpeg');
+  background-size: cover; /* Adjust the image size to cover the entire element */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-position: center center;
 }
 .HP-Sadiqey-Wrapper{
   display: flex;
@@ -263,19 +264,49 @@
   width: 367px;
   height: 360px;
   border-radius: 40px;
-  background-color: rgb(245, 245, 247);
+  background-image: url('../../images/Dev-Background/purple.png');
+  background-size: cover; /* Adjust the image size to cover the entire element */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-position: center center;
+}
+
+.HP-Sadiqey-Wrapper:hover{
+  filter: drop-shadow(0 0 1rem rgba(0,0,0,.5));
+  animation: grow-shrink 4s infinite;
+}
+.HP-Mikey-Wrapper:hover{
+  filter: drop-shadow(0 0 1rem rgba(0,0,0,.5));
+  animation: grow-shrink 4s infinite;
+}
+.HP-Yasiney-Wrapper:hover{
+  filter: drop-shadow(0 0 1rem rgba(0,0,0,.5));
+  animation: grow-shrink 4s infinite;
+}
+
+@keyframes grow-shrink {
+  0%,100%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.15);
+  }
 }
 
 .HP-Mikey{
-  /* transform: scale(.8); */
+  filter: drop-shadow(0 0 1rem rgba(0,0,0,.5));
+  padding-top: 100px;
+  padding-left: 41px;
 }
 .HP-Yasiney{
-  transform: scale(1.4);
+  filter: drop-shadow(0 0 1rem rgba(0,0,0,.5));
+  transform: scale(1.2);
+  padding-right: 1700px;
 }
 .HP-Sadiqey{
-  /* transform: scale(.8); */
+  filter: drop-shadow(0 0 1rem rgba(0,0,0,.5));
+  padding-top: 90px;
+  padding-left: 190px;
 }
-
 
 .HP-ImgAndIcons-Wrapper{
   display: flex;
