@@ -1,11 +1,18 @@
 import React, { useEffect, useRef } from "react";
 import { NavLink, Link } from 'react-router-dom';
+
 import icon from '../../images/SplashPagePhones/pmi.png'
 import icon2 from '../../images/SplashPagePhones/blackPear.png'
+
 import silver from '../../images/SplashPagePhones/silver.png'
 import silverLock from '../../images/SplashPagePhones/silver-lock.png'
 import blue from '../../images/SplashPagePhones/blue.png'
 import blueLock from '../../images/SplashPagePhones/blue-lock.png'
+
+import sadiq from '../../images/Devs/sadiqie.png'
+import mikey from '../../images/Devs/mikey.png'
+import yasiney from '../../images/Devs/yasiney.png'
+
 import './SplashPage.css'
 
 function SplashPage({ isLoaded }) {
@@ -75,7 +82,60 @@ function SplashPage({ isLoaded }) {
           <img className='HP-Image' src={blueLock} alt='' />
         </div>
 
+        <div className="HP-Devs-Wrapper">
 
+          <div className="HP-ImgAndIcons-Wrapper">
+            <div className="HP-Yasiney-Wrapper">
+              <img className='HP-Yasiney' src={yasiney} alt='Site Dev Yasine' />
+            </div>
+            <div className="HP-Dev-Name-Wrapper">
+              <p className="HP-Dev-Name">Yasine Benzekri</p>
+            </div>
+            <a href='https://github.com/Yasine-ben' className="HP-Github">
+              <p className="HP-Github-Title">Github&nbsp;</p>
+              <i id='HP-Github-Icon' className="fa-brands fa-github"/>
+            </a>
+            <a href='https://www.linkedin.com/in/yasine-benzekri-389457271/' className="HP-LinkedIn">
+              <p className="HP-LinkedIn-Title">LinkedIn&nbsp;</p>
+              <i id='HP-LinkedIn-Icon'  className="fa-brands fa-linkedin"/>
+            </a>
+          </div>
+
+          <div className="HP-ImgAndIcons-Wrapper">
+            <div className="HP-Sadiqey-Wrapper">
+              <img className="HP-Sadiqey" src={sadiq} alt='Site Dev Sadiq' />
+            </div>
+            <div className="HP-Dev-Name-Wrapper">
+              <p className="HP-Dev-Name">Sadiq Ahmed</p>
+            </div>
+            <a href='https://github.com/Sadiqaxxmed' className="HP-Github">
+              <p className="HP-Github-Title">Github&nbsp;</p>
+              <i id='HP-Github-Icon' className="fa-brands fa-github"/>
+            </a>
+            <a href='https://www.linkedin.com/in/sadiqaxxmed/' className="HP-LinkedIn">
+              <p className="HP-LinkedIn-Title">LinkedIn&nbsp;</p>
+              <i id='HP-LinkedIn-Icon'  className="fa-brands fa-linkedin"/>
+            </a>
+          </div>
+
+          <div className="HP-ImgAndIcons-Wrapper">
+            <div className="HP-Mikey-Wrapper">
+              <img className="HP-Mikey" src={mikey} alt='Site Dev Mike' />
+            </div>
+            <div className="HP-Dev-Name-Wrapper">
+              <p className="HP-Dev-Name">Michael Salariosa</p>
+            </div>
+            <a href='https://github.com/mike-650' className="HP-Github">
+              <p className="HP-Github-Title">Github&nbsp;</p>
+              <i id='HP-Github-Icon' className="fa-brands fa-github"/>
+            </a>
+            <a href='https://www.linkedin.com/in/michael-s-688653118/' className="HP-LinkedIn">
+              <p className="HP-LinkedIn-Title">LinkedIn&nbsp;</p>
+              <i id='HP-LinkedIn-Icon' className="fa-brands fa-linkedin" />
+            </a>
+          </div>
+
+        </div>
       </div>
     </div>
   )
