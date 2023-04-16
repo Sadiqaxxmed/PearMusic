@@ -77,11 +77,32 @@
 .BR-album-images:hover {
   cursor: pointer;
 }
-
+/*
 .BR-song-container {
-  display: flex;
-  justify-content: center;
-  justify-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+} */
+
+.BR-song-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media only screen and (max-width: 1350px) {
+  .BR-song-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .BR-song-grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-top: 20px;
+    margin: 0;
+  }
 }
 
 .BR-song-section {
