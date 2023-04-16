@@ -1,6 +1,6 @@
 # WELCOME TO PEAR MUSIC 
 
-Pear Music is a music streaming application that allows users to upload & connect with their favorite artists and discover new music. As an Apple Music clone, it offers a comprehensive online platform for uploading & streaming music, creating personalized playlists, and accessing exclusive content from top musicians. With a user-friendly interface Pear Music provides a seamless and personalized music experience for all types of music lovers.
+Pear Music is a music streaming application that allows users to upload & connect with their favorite artists & discover new music. As an Apple Music clone, it offers a comprehensive online platform for uploading & streaming music, creating personalized playlists, & accessing exclusive content from top musicians. With a user-friendly interface Pear Music provides a seamless & personalized music experience for all types of music lovers.
 
 [Click here to experience Pear Music.](https://pearmusic.onrender.com/)
 
