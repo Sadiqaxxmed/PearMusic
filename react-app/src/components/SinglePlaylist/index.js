@@ -24,6 +24,7 @@ function SinglePlaylist() {
 
   const history = useHistory()
   const userId = useSelector(state => state.session.user?.id)
+  const userName = useSelector(state => state.session.user.username)
 
   const songs = Object.values(useSelector(state => state.playlists.singlePlaylist))
   const playlist = Object.values(useSelector(state => state.playlists.playlistDetails))[0]
