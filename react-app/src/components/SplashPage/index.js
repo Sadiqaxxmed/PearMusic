@@ -16,8 +16,8 @@ import yasiney from '../../images/Devs/yasiney.png'
 import './SplashPage.css'
 
 function SplashPage({ isLoaded }) {
-  const divRef = useRef(null);
 
+  const divRef = useRef(null);
   useEffect(() => {
     setTimeout(function () {
       let oldContent = document?.querySelector('.HP-Apple-Subscription-Red');
@@ -93,11 +93,11 @@ function SplashPage({ isLoaded }) {
             </div>
             <a href='https://github.com/Yasine-ben' className="HP-Github">
               <p className="HP-Github-Title">Github&nbsp;</p>
-              <i id='HP-Github-Icon' className="fa-brands fa-github"/>
+              <i id='HP-Github-Icon' className="fa-brands fa-github" />
             </a>
             <a href='https://www.linkedin.com/in/yasine-benzekri-389457271/' className="HP-LinkedIn">
               <p className="HP-LinkedIn-Title">LinkedIn&nbsp;</p>
-              <i id='HP-LinkedIn-Icon'  className="fa-brands fa-linkedin"/>
+              <i id='HP-LinkedIn-Icon' className="fa-brands fa-linkedin" />
             </a>
           </div>
 
@@ -110,11 +110,11 @@ function SplashPage({ isLoaded }) {
             </div>
             <a href='https://github.com/Sadiqaxxmed' className="HP-Github">
               <p className="HP-Github-Title">Github&nbsp;</p>
-              <i id='HP-Github-Icon' className="fa-brands fa-github"/>
+              <i id='HP-Github-Icon' className="fa-brands fa-github" />
             </a>
             <a href='https://www.linkedin.com/in/sadiqaxxmed/' className="HP-LinkedIn">
               <p className="HP-LinkedIn-Title">LinkedIn&nbsp;</p>
-              <i id='HP-LinkedIn-Icon'  className="fa-brands fa-linkedin"/>
+              <i id='HP-LinkedIn-Icon' className="fa-brands fa-linkedin" />
             </a>
           </div>
 
@@ -127,7 +127,7 @@ function SplashPage({ isLoaded }) {
             </div>
             <a href='https://github.com/mike-650' className="HP-Github">
               <p className="HP-Github-Title">Github&nbsp;</p>
-              <i id='HP-Github-Icon' className="fa-brands fa-github"/>
+              <i id='HP-Github-Icon' className="fa-brands fa-github" />
             </a>
             <a href='https://www.linkedin.com/in/michael-s-688653118/' className="HP-LinkedIn">
               <p className="HP-LinkedIn-Title">LinkedIn&nbsp;</p>
