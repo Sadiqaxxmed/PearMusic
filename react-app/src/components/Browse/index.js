@@ -93,6 +93,7 @@ function Browser() {
           <img className="BR-images" src={RnB} alt="Browse Card" onClick={() =>  history.push('/explore/R&B')} />
         </div>
         <h1 className="BR-labels">Songs</h1>
+        <div className="BR-song-grid-container">
         {songs.map((song) => (
           <div className="BR-song-section BR-song-container-div">
             <div className="song-sec-div" style={{marginTop:'10px', marginBottom:'0'}}>
@@ -115,6 +116,7 @@ function Browser() {
             </div>
           </div>
         ))}
+        </div>
 
 
         <h1 className="BR-labels" style={{ marginBottom: '0' }}>Albums</h1>
