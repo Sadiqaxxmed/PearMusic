@@ -39,10 +39,15 @@ function SideBar() {
                     </span>
                     <p> <Link exact="true" to="/browse" style={{ textDecoration: 'none', color: 'white' }}> Browse  </Link> </p></li>
                 <li className='SB-Library'>
-                    <span className="material-symbols-outlined SB-icons pink-icons">
-                        music_note
-                    </span>
-                    <p> <Link exact="true" to="/songs" style={{ textDecoration: 'none', color: 'white' }}>Liked Songs  </Link> </p></li>
+                    {userId ?
+                        <>
+                            <span className="material-symbols-outlined SB-icons pink-icons">
+                                music_note
+                            </span>
+                            <p> <Link exact="true" to="/songs" style={{ textDecoration: 'none', color: 'white' }}>Liked Songs </Link> </p>
+                        </>
+                        : null}
+                </li>
                 <li className='SB-Library'>
                     <span className="material-symbols-outlined SB-icons pink-icons">
                         home_storage

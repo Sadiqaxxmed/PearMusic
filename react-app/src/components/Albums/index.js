@@ -5,7 +5,7 @@ import { thunkUserPlaylists } from "../../store/playlist";
 
 function Albums() {
   const dispatch = useDispatch()
-  const user = useSelector(state => state.session.user.id)
+  const user = useSelector(state => state.session?.user.id)
 
   useEffect(() => {
     dispatch(thunkUserPlaylists(user));
