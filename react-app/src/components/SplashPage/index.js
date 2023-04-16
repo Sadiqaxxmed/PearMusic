@@ -19,8 +19,6 @@ function SplashPage({ isLoaded }) {
 
   const divRef = useRef(null);
   useEffect(() => {
-
-    if (isLoaded) {
       setTimeout(function () {
       let oldContent = document?.querySelector('.HP-Apple-Subscription-Red');
       let newContent = document?.querySelector('.HP-Apple-Subscription-White');
@@ -30,8 +28,8 @@ function SplashPage({ isLoaded }) {
         newContent.style.transform = 'translateY(0)';
         newContent.style.opacity = '1';
       }
-    }, 3500)}; // 5 seconds in milliseconds
-  }, [])
+    }, 4000); // 5 seconds in milliseconds
+  }, [isLoaded])
 
   return (
     <div className='HP-Body' style={{ backgroundColor: 'white' }}>

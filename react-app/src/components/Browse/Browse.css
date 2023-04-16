@@ -1,6 +1,6 @@
 .BR-body {
   z-index: -1;
-  height: 2000px;
+  height: 100vw; /* changed */
   padding-top: 65px;
   padding-left: 300px;
   padding-right: 50px;
