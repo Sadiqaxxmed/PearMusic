@@ -17,12 +17,38 @@ Pear Music is a music streaming application that allows users to upload & connec
 
 ## Dev Team: 
 
-[Sadiq Ahmed](https://github.com/Sadiqaxxmed)
+**Sadiq Ahmed**
 
-[Michael Salariosa](https://github.com/mike-650)
+<a href="url"><img src="https://user-images.githubusercontent.com/43020644/232276720-dadec5e8-ce0d-4d6a-bf6a-9880d6501e95.png" align="left" height="100" width="100" ></a>
 
-[Yasine Benzekri](https://github.com/Yasine-ben)
+[Github](https://github.com/Sadiqaxxmed)
 
+[Linkedin](https://www.linkedin.com/in/sadiqaxxmed/)
+
+<br/>
+<br/>
+
+**Mike Salariosa**
+
+<a href="url"><img src="https://user-images.githubusercontent.com/43020644/232277141-81ffcafc-f5e5-4ea8-a545-15f674cd78b6.png" align="left" height="100" width="100" ></a>
+
+[Github](https://github.com/mike-650)
+
+[Linkedin](https://www.linkedin.com/in/michael-s-688653118/)
+
+<br/>
+<br/>
+
+**Yasine Benzekri**
+
+<a href="url"><img src="https://user-images.githubusercontent.com/43020644/232277185-808ea9ab-a5df-482a-8cba-38c34c847071.png" align="left" height="100" width="100" ></a>
+
+[Github](https://github.com/Yasine-ben)
+
+[Linkedin](https://www.linkedin.com/in/yasine-benzekri-389457271/)
+
+<br/>
+<br/>
 
 ## Preview Of Pear Music (More in Repo Wiki) 
 
