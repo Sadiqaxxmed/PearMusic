@@ -1,12 +1,30 @@
-# Pear Music (Apple Music Inspired)
+# WELCOME TO PEAR MUSIC 
 
-## LiveLink : 
-**https://pearmusic.onrender.com**
+Pear Music is a music streaming application that allows users to upload & connect with their favorite artists and discover new music. As an Apple Music clone, it offers a comprehensive online platform for uploading & streaming music, creating personalized playlists, and accessing exclusive content from top musicians. With a user-friendly interface Pear Music provides a seamless and personalized music experience for all types of music lovers.
 
-## Site Description
-***Apple Music inspired full stack app for artists to upload their music and for users to listen**
+[Click here to experience Pear Music.](https://pearmusic.onrender.com/)
 
-## Site Preview (More in Repo Wiki) 
+### The languages & frameworks we used to complete this project are as follows:
+
+![Python](https://img.shields.io/badge/Python-%233776AB.svg?style=for-the-badge&logo=python&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-%23FCA121.svg?style=for-the-badge&logo=sqlalchemy&logoColor=white)
+
+## Dev Team: 
+
+[Sadiq Ahmed](https://github.com/Sadiqaxxmed)
+
+[Michael Salariosa](https://github.com/mike-650)
+
+[Yasine Benzekri](https://github.com/Yasine-ben)
+
+
+## Preview Of Pear Music (More in Repo Wiki) 
 
 **Splash Page:**
 
@@ -16,10 +34,6 @@
 
 ![Alt Text](https://media.giphy.com/media/EsBrlpQi1hjW33KUYw/giphy.gif)
 
-## Dev Team: 
-Sadiq Ahmed -> https://github.com/Sadiqaxxmed
-Michael Salariosa -> https://github.com/mike-650
-Yasine Benzekri -> https://github.com/Yasine-ben
 
 ### How to Build/Run Site Locally -> 
 To install and run Pear Music, follow these steps:
@@ -57,12 +71,7 @@ flask run
 cd react-app
 npm start
 ```
-## Languages:
-**Python** 🐍  || **JavaScript** ☕️ || **Html5** 📃 || **CSS** 🧿
-## Backend:
-**Flask**🧑🏾‍🔬 || **Sequelize**🗂️ || **Sequelite**🗂️ || **PostgressSQL**🗂️
-## Frontend:
-**React**⚗️ || **Redux**💊
+
 ## Api's & plugins Used:
 **react-player** || **bad-words** 
 ## Additional Features Planned:
