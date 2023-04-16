@@ -91,6 +91,7 @@
 
 .MD-section-container {
   margin-bottom: 50px;
+
 }
 
 .MD-display-none {
@@ -134,15 +135,18 @@
   margin-left: 60px;
 }
 
-#MD-eclipse-playlist{
+#MD-eclipse-playlist {
   /* padding-top: 15px; */
   padding-left: 10px;
   color: rgb(226, 96, 106)
 }
 
+#MD-eclipse-playlist:hover {
+  cursor: pointer;
+}
+
 
 .TTM-Main-Wrapper {
-
   background-color: rgb(30,30,30);
   border: solid rgb(75, 75, 75) 1px;
   border-radius: 8px;
@@ -151,16 +155,18 @@
   font-size: small;
   position: absolute;
   top: 100px;
-  right: 200px;
+  left: 100px;
 }
 
 .UDM-Main-Wrapper{
   background-color: rgb(30,30,30);
+  /* background-color: red; */
   border: solid rgb(75, 75, 75) 1px;
   border-radius: 8px;
   width: 80px;
   color: rgb(214, 214, 214);
   font-size: small;
+
 }
 /* used to fix overflow issue with menu popup being hidden by swiper */
 div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden{
@@ -180,10 +186,10 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden{
   display: flex;
   flex-direction: row;
   align-items:center;
-  width: 100%;
-  border-bottom: solid rgb(98, 98, 98) 1px;
+  width: 100px;
+  /* border-bottom: solid rgb(98, 98, 98) 1px; */
   cursor: pointer;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 5px 0 5px 0;
 }
 .UDM-Delete-Wrapper{
@@ -197,12 +203,9 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden{
 }
 #update-ico{
   position: relative;
-  right: 5px;
+  left: 9.5px;
 }
 #delete-ico{
   position: relative;
   right: 6px;
 }
-
-.UDM-Update{}
-.UDM-Delete{}

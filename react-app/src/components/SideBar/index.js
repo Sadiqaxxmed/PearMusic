@@ -8,11 +8,10 @@ import { thunkUserPlaylists } from '../../store/playlist';
 function SideBar() {
     const dispatch = useDispatch()
     const userId = useSelector(state => state.session.user?.id)
-    const userPlaylists = Object.values(useSelector(state => state.playlists.userPlaylists))
 
     useEffect(() => {
         dispatch(thunkUserPlaylists(userId))
-    }, [dispatch])
+    }, [dispatch, userId])
 
 
     return (

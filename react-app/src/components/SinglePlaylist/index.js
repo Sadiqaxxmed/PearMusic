@@ -154,7 +154,7 @@ function SinglePlaylist() {
               </div>
               {(userId == playlist?.owner_id) &&
                 <div className="SGPL-Owner-Buttons">
-                  <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openUDM ? setOpenUDM(false) : setOpenUDM(true))}></i>
+                  <i id="song-icon-menu" className={ openUDM ? "fa-solid fa-xmark" : "fa-solid fa-ellipsis" } onClick={((e) => openUDM ? setOpenUDM(false) : setOpenUDM(true))}></i>
                   {openUDM &&
                     <div >
                       <div className='SGPL-Menu-Wrapper'>

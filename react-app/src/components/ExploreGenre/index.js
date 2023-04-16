@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
 import { thunkExploreQueue } from "../../store/queue";
-import { thunkGetExploreGenre, thunkResetPlaylists, thunkUserPlaylists } from "../../store/playlist";
+import { thunkGetExploreGenre, thunkResetPlaylists } from "../../store/playlist";
 
 import "./ExploreGenre.css"
 
@@ -11,7 +11,6 @@ function ExploreGenre() {
   const { genre_type } = useParams();
   const dispatch = useDispatch();
   const exploreGenre = Object.values(useSelector(state => state.playlists.exploreGenre));
-  // const userId = useSelector(state => state.session.user.id);
 
   const descriptions = {
     'K-Pop': "Explore and dive into this amazing mix of K-Pop singles that are trending!",
@@ -22,12 +21,11 @@ function ExploreGenre() {
 
   useEffect(() => {
     dispatch(thunkGetExploreGenre(genre_type))
-    // dispatch(thunkUserPlaylists(userId))
 
     return (() => {
       dispatch(thunkResetPlaylists());
     })
-  }, [dispatch])
+  }, [dispatch, genre_type])
 
   function addQueue() {
     dispatch(thunkExploreQueue(exploreGenre))
@@ -40,7 +38,7 @@ function ExploreGenre() {
     for (let i = 0; i < songs.length; i++) {
       let duration = songs[i].duration;
       minutes += Math.floor(duration);
-      duration.toString().split('.').forEach((second, i) => i % 2 != 0 ? seconds += parseInt(second) : false)
+      duration.toString().split('.').forEach((second, i) => i % 2 !== 0 ? seconds += parseInt(second) : false)
     }
     if (seconds >= 60) {
       minutes += Math.floor(seconds / 60)
@@ -93,7 +91,7 @@ function ExploreGenre() {
             <div className="SGPL-Bottom-Time-Header"> <p className="SGPL-Bottom-text" id="SGPL-Bottom-Time-text">Time</p> </div>
           </div>
           {exploreGenre.map((song, i) =>
-            <div className={i % 2 == 0 ? "SGPL-Darker-Shade" : 'SGPL-No-Shade'} tabindex="0">
+            <div className={i % 2 === 0 ? "SGPL-Darker-Shade" : 'SGPL-No-Shade'} tabindex="0">
               <div className="SGPL-Bottom-Title-Header">
                 <div className="SGPL-Bottom-Song-Header">
                   <div className="SGPL-Bottom-Song">

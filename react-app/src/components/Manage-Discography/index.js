@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { thunkResetSongs, thunkUserSongs, thunkAllSongs } from '../../store/song';
+import { thunkResetSongs, thunkUserSongs } from '../../store/song';
 import { thunkResetAlbums, thunkUserAlbums } from '../../store/album';
-import { thunkResetPlaylists, thunkUserPlaylists, thunkAllPlaylists } from '../../store/playlist';
-import { thunkDeletePlaylist, thunkDeleteSongPlaylist } from "../../store/playlist";
+import { thunkResetPlaylists, thunkUserPlaylists } from '../../store/playlist';
+import { thunkDeletePlaylist } from "../../store/playlist";
 import UpdatePlaylist from './UDModals/UpdatePlaylist'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
@@ -24,6 +24,7 @@ function ManageDiscography() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [playlistCardId, setPlaylistCardId] = useState(null)
 
+
   const userId = useSelector(state => state.session.user?.id)
   const userSongs = Object.values(useSelector(state => state.songs.userSongs))
   const userAlbums = Object.values(useSelector(state => state.albums.allAlbums))
@@ -42,7 +43,6 @@ function ManageDiscography() {
       dispatch(thunkResetAlbums())
       dispatch(thunkResetPlaylists())
     }
-
   }, [dispatch, userId, history])
 
   function toggleUDM(id) { //opens da meat ta ball menu
@@ -71,49 +71,49 @@ function ManageDiscography() {
     <div className="MD-body">
       <h1 className='MD-label'>Manage Discography</h1>
       <h1 className="BR-labels">Songs</h1>
-        {userSongs.map((song) => (
-          <div className="BR-song-section">
-            <div className="song-sec-div">
-              <div className="song-art-cover">
-                <img className="art-cover" alt="temp" src={song.coverImage}></img>
-              </div>
-              <div className="song-info">
-                <p className="song-info" id="song-name">
-                  {song.title}
-                </p>
-                <p className="song-info" id="artists-name">
-                  {song.artistName}
-                </p>
-              </div>
+      {userSongs.map((song) => (
+        <div className="BR-song-section">
+          <div className="song-sec-div">
+            <div className="song-art-cover">
+              <img className="art-cover" alt="temp" src={song.coverImage}></img>
             </div>
-            <div className="icon-section">
-            <i id='MD-eclipse' className="fa-solid fa-ellipsis" onClick={((e) => toggleUDM(song.id))} onClose={((e) => setCardId(null))}></i>
-                    {isUDMOpen && (song.id == cardId) &&
-                      <div className='UDM-Main-Wrapper'>
-                        <div className="UDM-Update-Wrapper">
-                          <OpenModalButton
-                            buttonText="Update"
-                            onButtonClick={''}
-                            modalComponent={<UpdateSong song={song} />}
-                          />
-                          <i class="fa-solid fa-pen-to-square" id='update-ico' />
-                        </div>
-                        <div className="UDM-Delete-Wrapper" >
-                          <OpenModalButton
-                            buttonText="Delete"
-                            onButtonClick={''}
-                            modalComponent={<DeleteSong song={song} />}
-                          />
-                          <i class="fa-solid fa-trash" id='delete-ico' />
-                        </div>
-                      </div>
-                    }
-              {/* <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(song.id))}></i> */}
-              {/* {menuOpen && (song.id == cardId) && <ToolTipMenu song={song} />}
-              {likedSongs.includes(song.id) ? <i id="song-icon-heart" className="fa-solid fa-heart" onClick={() => isLikedSong(song.id, user)}></i> : <i class="fa-regular fa-heart BR-heart-icon" onClick={() => isLikedSong(song.id, user)}></i>} */}
+            <div className="song-info">
+              <p className="song-info" id="song-name">
+                {song.title}
+              </p>
+              <p className="song-info" id="artists-name">
+                {song.artistName}
+              </p>
             </div>
           </div>
-        ))}
+          <div className="icon-section">
+            <i id='MD-eclipse' className={ isUDMOpen && song.id === cardId ? "fa-solid fa-xmark" : "fa-solid fa-ellipsis" } onClick={((e) => toggleUDM(song.id))} onClose={((e) => setCardId(null))}></i>
+            {isUDMOpen && (song.id === cardId) &&
+              <div className='UDM-Main-Wrapper'>
+                <div className="UDM-Update-Wrapper">
+                  <OpenModalButton
+                    buttonText="Update"
+                    onButtonClick={''}
+                    modalComponent={<UpdateSong song={song} />}
+                  />
+                  <i class="fa-solid fa-pen-to-square" id='update-ico' />
+                </div>
+                <div className="UDM-Delete-Wrapper" >
+                  <OpenModalButton
+                    buttonText="Delete"
+                    onButtonClick={''}
+                    modalComponent={<DeleteSong song={song} />}
+                  />
+                  <i class="fa-solid fa-trash" id='delete-ico' />
+                </div>
+              </div>
+            }
+            {/* <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(song.id))}></i> */}
+            {/* {menuOpen && (song.id == cardId) && <ToolTipMenu song={song} />}
+              {likedSongs.includes(song.id) ? <i id="song-icon-heart" className="fa-solid fa-heart" onClick={() => isLikedSong(song.id, user)}></i> : <i class="fa-regular fa-heart BR-heart-icon" onClick={() => isLikedSong(song.id, user)}></i>} */}
+          </div>
+        </div>
+      ))}
       {/* <div className={userSongs.length ? 'MD-section-container' : 'MD-display-none'}>
         <h3 className='MD-sub-labels'>Songs</h3>
         <div>
@@ -186,14 +186,14 @@ function ManageDiscography() {
                   <div>
                     <div className='MD-Playlist-Info'>
 
-                    <h3 className='MD-playlist-Title'>{playlist.title}</h3>
-                    <div className='MD-Playlist-Icon'>
-                    <i id='MD-eclipse-playlist' className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(playlist.id))} onClose={((e) => setPlaylistCardId(null))}></i>
+                      <h3 className='MD-playlist-Title'>{playlist.title}</h3>
+                      <div className='MD-Playlist-Icon'>
+                        <i id='MD-eclipse-playlist' className={ menuOpen && playlist.id === playlistCardId ? "fa-solid fa-xmark" : "fa-solid fa-ellipsis"} onClick={((e) => openMenuFunc(playlist.id))} onClose={((e) => setPlaylistCardId(null))}></i>
+                      </div>
                     </div>
-                    </div>
-                    {menuOpen && (playlistCardId == playlist.id) &&
+                    {menuOpen && (playlistCardId === playlist.id) &&
                       <div id='MD-Main-Wrapper'>
-                        <div  className='TTM-Main-Wrapper'>
+                        <div className='TTM-Main-Wrapper'>
                           <div className="TTM-Btn-Wrapper"> {/* dispatch add to queue thunk */}
                             <OpenModalButton
                               buttonText="Update"

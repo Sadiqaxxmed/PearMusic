@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import './AllPlaylist.css'
 import { useDispatch, useSelector } from "react-redux";
-import { thunkAllPlaylists, thunkResetPlaylists, thunkResetSinglePlaylist } from "../../store/playlist";
+import { thunkAllPlaylists, thunkResetSinglePlaylist } from "../../store/playlist";
 import { thunkResetComments } from "../../store/comment";
 
 function AllPlaylist() {
