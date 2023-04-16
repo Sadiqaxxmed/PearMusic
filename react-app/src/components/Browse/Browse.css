@@ -19,17 +19,29 @@
   transition: box-shadow 0.3s ease-in-out;
   object-fit: cover;
   opacity: 1;
-  transition: all 0.3s ease;
-  transition: transform 2s;
-  transform-style: preserve-3d;
+  transition: transform 0.3s ease-in-out;
 }
 
+.BR-images:hover {
+  cursor: pointer;
+  box-shadow: 10px 10px 10px black;
+  opacity: .8;
+  animation: up-down 1s ease-in-out infinite alternate;
+}
+
+
+@keyframes up-down {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
 
 .art-cover {
   opacity: 1;
   transition: all 0.3s ease;
-  background-image: url('../../images/play_arrow.png');
-  background-size: cover;
 }
 
 .art-cover:hover {
@@ -38,19 +50,13 @@
   background-image: url('../../images/play_arrow.png');
 }
 
-.BR-images:hover {
-  cursor: pointer;
-  box-shadow: 10px 10px 10px black;
-  opacity: .8;
-  transform: rotateY(360deg);
-}
 
 .BR-labels {
   color: rgb(238, 238, 238);
   font-size: 34px;
   font-weight: 500;
   padding-bottom: 12px;
-  border-bottom: 1px solid rgb(42, 42, 42);
+  border-bottom: 1.4px solid rgb(54, 54, 54);
 }
 
 .BR-browse-images {
@@ -76,8 +82,6 @@
   display: flex;
   justify-content: center;
   justify-items: center;
-  /* border-top: 1px solid black;
-  border-bottom: 1px solid black; */
 }
 
 .BR-song-section {
@@ -90,8 +94,13 @@
   padding-left: 10px;
   padding-bottom: 10px;
   margin-bottom: 50px;
-  /* border-top: 3px solid rgb(42, 42, 42);
-  border-bottom: 3px solid rgb(42, 42, 42); */
+}
+
+.BR-song-container-div {
+  border-top: 1px solid rgb(54, 54, 54);
+  margin-right: 4%;
+  margin-bottom: 10px;
+  padding-bottom: 0;
 }
 
 .BR-song-images {
@@ -108,16 +117,8 @@
 }
 
 #song-name {
-  font-weight: 300; 
+  font-weight: 300;
 }
-
-/* .BR-album-title-container-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 50px;
-  width: fit-content;
-} */
 
 #Swiper-Slide-container:first-child {
   margin: none;
@@ -134,7 +135,6 @@
   margin-right: none;
   padding: none;
   flex-direction: column;
-  /* justify-content: center; */
 }
 
 .BR-album-title {

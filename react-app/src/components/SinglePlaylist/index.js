@@ -33,11 +33,15 @@ function SinglePlaylist() {
   const [cardId, setCardId] = useState(null)
   const [openUDM, setOpenUDM] = useState(false)
 
-  useEffect(() => {
+  useEffect(async () => {
     dispatch(thunkPlaylistSongs(playlist_id))
     dispatch(thunkAllPlaylists())
-    dispatch(thunkSinglePlaylist(playlist_id))
     dispatch(thunkGetComments(playlist_id))
+
+    let res = await dispatch(thunkSinglePlaylist(playlist_id))
+    if (res?.error) {
+      history.push('/');
+    }
 
     return () => {
       dispatch(thunkResetComments())
@@ -106,7 +110,6 @@ function SinglePlaylist() {
 
     if (comment.length > 125) error.length = 'Comment must be less than 125 characters';
     if (badWords.isProfane(comment)) error.profanity = "Keegster doesn't approve of this language!"
-    console.log({error})
     if (Object.values(error).length) return setErrors(error)
     dispatch(thunkCreateComment(comment, userId, playlist_id))
     return setComment('')
@@ -196,7 +199,7 @@ function SinglePlaylist() {
                   <p className="SGPL-Bottom-text" id="SGPL-Bottom-Info-Text">{songTotalPlayTime(song)}</p>
                 </div>
                 <div className="SGPL-Delete-Div">
-                {userId == playlist?.owner_id && <i class="fa-solid fa-xmark SGPL-delete-comment-icon" id="SGPL-Bottom-Info-Text"onClick={((e) => DeleteSong(song.id, playlist_id))}></i>}
+                  {userId == playlist?.owner_id && <i class="fa-solid fa-xmark SGPL-delete-comment-icon" id="SGPL-Bottom-Info-Text" onClick={((e) => DeleteSong(song.id, playlist_id))}></i>}
                   {/*<i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(song.id))}></i>
                       {menuOpen && (song.id == cardId) &&
                       <div>
@@ -223,7 +226,7 @@ function SinglePlaylist() {
           <div className="SGPL-Border-Top-Comments">
             <p className="SGPL-Bottom-text">{comments.length} Comments</p>
             {errors.length ? <p style={{ color: 'red', fontSize: '12px' }}> {`* ${errors.length}`}</p> : null}
-            {errors.profanity ? <p style={{ color: 'red', fontSize: '12px'}}> {`* ${errors.profanity}`}</p> : null}
+            {errors.profanity ? <p style={{ color: 'red', fontSize: '12px' }}> {`* ${errors.profanity}`}</p> : null}
           </div>
           <form onSubmit={handleSubmit} className="SGPL-User-Input-Comment-Container">
             <div style={{ display: 'flex' }}>

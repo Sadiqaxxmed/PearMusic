@@ -105,7 +105,11 @@ export const thunkSinglePlaylist = (playlistId) => async dispatch => {
     const playlist = await response.json();
     dispatch(actionSinglePlaylist(playlist));
     return;
+  } else {
+    const res = await response.json();
+    return { 'error' : res.error, status: res.status }
   }
+
 }
 
 export const thunkCreatePlaylist = (songId,userId) => async dispatch => {

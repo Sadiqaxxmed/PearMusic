@@ -26,6 +26,7 @@ function ToolTipMenu(song) {
     // adds song to playlist (need to make menu close after action is complete)
     function AddToPlaylist(songId,playlistId){
         dispatch(thunkAddToPlaylist(songId,playlistId))
+        setShowPlaylists(false)
     }
 
     // adds song to queue (need to add functionality to close menu once a button is clikced and an action is completed but for now its fine)

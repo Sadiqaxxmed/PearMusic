@@ -36,7 +36,6 @@ function Browser() {
   const shuffledAlbums = albums
 
   useEffect(() => {
-    // dispatch(thunkUserSongs())
     dispatch(thunkAllSongs());
     dispatch(thunkAllAlbums());
     dispatch(thunkLikedSongs(user));
@@ -95,8 +94,8 @@ function Browser() {
         </div>
         <h1 className="BR-labels">Songs</h1>
         {songs.map((song) => (
-          <div className="BR-song-section">
-            <div className="song-sec-div">
+          <div className="BR-song-section BR-song-container-div">
+            <div className="song-sec-div" style={{marginTop:'10px', marginBottom:'0'}}>
               <div className="song-art-cover">
                 <img className="art-cover" alt="temp" src={song.coverImage} onClick={() => playNowFunc(song)}></img>
               </div>
