@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkAllAlbums, thunkResetAlbums } from "../../store/album";
-
 import { thunkAllSongs, thunkResetSongs, thunkLikedSongs, thunkLikeSongs, thunkDeleteLikedSongs, thunkUserSongs } from "../../store/song";
 import { thunkAddSong, thunkNewQueue, thunkPlayNow } from "../../store/queue";
 
 import { thunkAllPlaylists, thunkUserPlaylists } from "../../store/playlist";
 import ToolTipMenu from "../ToolTip";
+
 
 import './Browse.css'
 import 'swiper/swiper.min.css'
@@ -46,7 +46,7 @@ function Browser() {
       dispatch(thunkResetSongs());
       dispatch(thunkResetAlbums());
     }
-  }, [dispatch])
+  }, [dispatch, user])
 
   useEffect(() => {
     if (songs && albums) {
@@ -88,34 +88,53 @@ function Browser() {
         </h1>
         <div className="BR-browse-container">
           <img className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
-          <img className="BR-images" src={Pop} alt="Browse Card" onClick={() =>  history.push('/explore/Pop')} />
-          <img className="BR-images" src={Rap} alt="Browse Card" onClick={() =>  history.push('/explore/Rap')} />
-          <img className="BR-images" src={RnB} alt="Browse Card" onClick={() =>  history.push('/explore/R&B')} />
+          <img className="BR-images" src={Pop} alt="Browse Card" onClick={() => history.push('/explore/Pop')} />
+          <img className="BR-images" src={Rap} alt="Browse Card" onClick={() => history.push('/explore/Rap')} />
+          <img className="BR-images" src={RnB} alt="Browse Card" onClick={() => history.push('/explore/R&B')} />
         </div>
         <h1 className="BR-labels">Songs</h1>
         <div className="BR-song-grid-container">
-        {songs.map((song) => (
-          <div className="BR-song-section BR-song-container-div">
-            <div className="song-sec-div" style={{marginTop:'10px', marginBottom:'0'}}>
-              <div className="song-art-cover">
-                <img className="art-cover" alt="temp" src={song.coverImage} onClick={() => playNowFunc(song)}></img>
+          {songs.map((song) => (
+            <div className="BR-song-section BR-song-container-div">
+              <div className="song-sec-div" style={{ marginTop: '10px', marginBottom: '0' }}>
+                <div className="song-art-cover">
+                  <img className="art-cover" alt="temp" src={song.coverImage} onClick={() => playNowFunc(song)}></img>
+                </div>
+                <div className="song-info">
+                  <p className="song-info" id="song-name">
+                    {song.title}
+                  </p>
+                  <p className="song-info" id="artists-name">
+                    {song.artistName}
+                  </p>
+                </div>
               </div>
-              <div className="song-info">
-                <p className="song-info" id="song-name">
-                  {song.title}
-                </p>
-                <p className="song-info" id="artists-name">
-                  {song.artistName}
-                </p>
+              <div className="icon-section">
+                {user ? (
+                  <>
+                    <i
+                      id="song-icon-menu"
+                      className="fa-solid fa-ellipsis"
+                      onClick={(e) => openMenuFunc(song.id)}
+                    ></i>
+                    {menuOpen && song.id === cardId && <ToolTipMenu song={song} />}
+                    {likedSongs.includes(song.id) ? (
+                      <i
+                        id="song-icon-heart"
+                        className="fa-solid fa-heart"
+                        onClick={() => isLikedSong(song.id, user)}
+                      ></i>
+                    ) : (
+                      <i
+                        className="fa-regular fa-heart BR-heart-icon"
+                        onClick={() => isLikedSong(song.id, user)}
+                      ></i>
+                    )}
+                  </>
+                ) : null}
               </div>
             </div>
-            <div className="icon-section">
-              <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(song.id))}></i>
-              {menuOpen && (song.id == cardId) && <ToolTipMenu song={song} />}
-              {likedSongs.includes(song.id) ? <i id="song-icon-heart" className="fa-solid fa-heart" onClick={() => isLikedSong(song.id, user)}></i> : <i class="fa-regular fa-heart BR-heart-icon" onClick={() => isLikedSong(song.id, user)}></i>}
-            </div>
-          </div>
-        ))}
+          ))}
         </div>
 
 

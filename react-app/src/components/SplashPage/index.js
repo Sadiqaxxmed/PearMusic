@@ -19,7 +19,9 @@ function SplashPage({ isLoaded }) {
 
   const divRef = useRef(null);
   useEffect(() => {
-    setTimeout(function () {
+
+    if (isLoaded) {
+      setTimeout(function () {
       let oldContent = document?.querySelector('.HP-Apple-Subscription-Red');
       let newContent = document?.querySelector('.HP-Apple-Subscription-White');
       if (oldContent && newContent) {
@@ -28,7 +30,7 @@ function SplashPage({ isLoaded }) {
         newContent.style.transform = 'translateY(0)';
         newContent.style.opacity = '1';
       }
-    }, 3500); // 5 seconds in milliseconds
+    }, 3500)}; // 5 seconds in milliseconds
   }, [])
 
   return (
@@ -143,4 +145,3 @@ function SplashPage({ isLoaded }) {
 
 
 export default SplashPage
-

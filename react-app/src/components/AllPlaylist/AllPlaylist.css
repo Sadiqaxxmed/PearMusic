@@ -41,7 +41,17 @@
   height: 225px;
   width: 225px;
   border-radius: 10px;
-  padding-bottom: 5px;
+  /* padding-bottom: 5px; */
+  transition: .2s ease-in;
+}
+
+#test:hover {
+  box-shadow: 10px 10px 10px black;
+  opacity: 0.7;
+}
+
+.PL-Img:hover {
+  box-shadow: 3px 3px 3px black;
 }
 
 .PL-Bottom-Sec {

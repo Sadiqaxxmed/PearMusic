@@ -153,6 +153,10 @@
   margin-left: 10px;
 }
 
+.SG-Bottom-PL-Img:hover {
+  cursor: pointer;
+}
+
 .SGPL-Comment-Button {
   margin-bottom: 10px;
   display: flex;

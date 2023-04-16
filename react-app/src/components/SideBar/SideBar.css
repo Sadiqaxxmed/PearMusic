@@ -68,6 +68,7 @@ div.SB-Library {
 .SB-lib-play-headers {
   font-weight: 400;
   color: rgb(110, 110, 108);
+  margin-bottom: 5px;
 }
 
 .SB-User-Playlist-li {

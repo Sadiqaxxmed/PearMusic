@@ -75,7 +75,6 @@ export const thunkUserSongs = (userId) => async dispatch => {
   const response = await fetch(`/api/songs/allSongs/${userId}`)
   if (response.ok) {
     const allUserSongs = await response.json();
-    console.log('IF STAT',allUserSongs)
     const normalized = normalizeAllSongs(allUserSongs.songs)
     dispatch(actionUserSongs(normalized))
     return;

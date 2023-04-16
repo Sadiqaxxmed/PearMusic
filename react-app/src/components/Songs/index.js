@@ -1,24 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkLikedSongs, thunkDeleteLikedSongs } from "../../store/song";
-import { thunkAllPlaylists, thunkUserPlaylists } from "../../store/playlist";
-
+import { thunkUserPlaylists } from "../../store/playlist";
+import { thunkPlayNow } from "../../store/queue";
 
 import "./Songs.css";
 
 function Songs() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user_id = useSelector((state) => state.session.user?.id);
   const songs = Object.values(useSelector((state) => state.songs.likedSongs));
 
   useEffect(() => {
+    if (!user_id) return history.push('/browse')
     dispatch(thunkLikedSongs(user_id));
     dispatch(thunkUserPlaylists(user_id));
-    // dispatch(thunkAllPlaylists())
   }, [dispatch]);
 
   function unlikeSong(e){
     dispatch(thunkDeleteLikedSongs(e.currentTarget.dataset.songid, user_id));
+  }
+
+  const playNowFunc = (song) => {
+    dispatch(thunkPlayNow(song))
   }
 
   return (
@@ -27,11 +33,10 @@ function Songs() {
         <h1 className="SG-labels">Liked Songs</h1>
         <div className="song-div">
           {songs.map((song) => (
-
             <div className="song-section">
               <div className="song-sec-div">
                 <div className="song-art-cover">
-                  <img className="art-cover" alt="temp" src={song.coverImage}></img>
+                  <img className="art-cover" alt="temp" src={song.coverImage} onClick={() => playNowFunc(song)} ></img>
                 </div>
                 <div className="song-info">
                   <h3 className="song-info" id="song-name">

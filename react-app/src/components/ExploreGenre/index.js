@@ -11,7 +11,7 @@ function ExploreGenre() {
   const { genre_type } = useParams();
   const dispatch = useDispatch();
   const exploreGenre = Object.values(useSelector(state => state.playlists.exploreGenre));
-  const userId = useSelector(state => state.session.user.id);
+  // const userId = useSelector(state => state.session.user.id);
 
   const descriptions = {
     'K-Pop': "Explore and dive into this amazing mix of K-Pop singles that are trending!",
@@ -22,7 +22,7 @@ function ExploreGenre() {
 
   useEffect(() => {
     dispatch(thunkGetExploreGenre(genre_type))
-    dispatch(thunkUserPlaylists(userId))
+    // dispatch(thunkUserPlaylists(userId))
 
     return (() => {
       dispatch(thunkResetPlaylists());
