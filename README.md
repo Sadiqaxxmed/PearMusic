@@ -32,8 +32,11 @@ Pear Music is a music streaming application that allows users to upload & connec
 
 **Browse Page:**
 
-![Alt Text](https://media.giphy.com/media/EsBrlpQi1hjW33KUYw/giphy.gif)
+![Alt Text](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDI1NjFkYjBlMzU5NzA2NDIwYTIxMjg1ZmFjMmNiYWU3MjE1ZWQ0NCZjdD1n/65vUWRRj4jxMLZJuui/giphy.gif)
 
+**Single Playlist Page:**
+
+![Alt Text](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTJlNWRlMzU0N2Y5ZTE3ODRlYzJkOTAyNjc4ODUyYzBiN2Y2MmFkNCZjdD1n/HmUK1cjKdszAAgH1kx/giphy.gif)
 
 ### How to Build/Run Site Locally -> 
 To install and run Pear Music, follow these steps:
