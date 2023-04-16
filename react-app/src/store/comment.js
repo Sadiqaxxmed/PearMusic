@@ -72,7 +72,7 @@ export const thunkDeleteComment = (commentId, playlistId) => async dispatch => {
 
 
 export const thunkResetComments = () => async dispatch => {
-  dispatch(actionResetComment(initialState));
+  dispatch(actionResetComment({ playlistComments: {} }));
   return { message: 'Successfully cleared state'}
 }
 
@@ -88,7 +88,7 @@ const commentsReducer = (state = initialState, action) => {
     case GET_COMMENTS:
       return { ...state, playlistComments: { ...action.comments }}
     case RESET_COMMENTS:
-      return { ...action.reset }
+      return { ...action.reset, playlistComments: { ...action.comments } }
     default: return { ...state }
   }
 }
