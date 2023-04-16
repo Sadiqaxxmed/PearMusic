@@ -1,6 +1,6 @@
 .MD-body {
   z-index: -1;
-  height: 2000px;
+  height: 1200px;
   padding-top: 65px;
   padding-left: 300px;
   padding-right: 50px;
@@ -60,8 +60,8 @@
 }
 
 #MD-eclipse {
-  padding-top: 15px;
-  /* padding-left: 100px; */
+  padding-bottom: 20px;
+  padding-left: 100px;
   color: rgb(226, 96, 106)
 }
 
@@ -97,8 +97,8 @@
   display: none;
 }
 
-.MD-songs-carousel-images-div{
-
+.MD-Playlist-Info {
+  display: inline-flex;
 }
 .MD-Playlist-CoverImage{
   height: 150px;
@@ -106,14 +106,36 @@
   border-radius: 10px;
   margin-left: 60px;
 }
+
+#MD-Main-Wapper {
+  position: absolute;
+  right: -250px;
+}
+
 .MD-playlist-Title{
-  margin-left: 50px;
-  color:rgb(238, 238, 238);
-  font-size: .8em;
+  color: rgb(238, 238, 238);
+  font-size: 12px;
+  font-weight: 300;
+  width: fit-content;
+  margin-left: 60px;
+  max-width: 130px;
+}
+
+.MD-Playlist-Icon {
+  position: absolute;
+  padding-top: 10px;
+  right: 65px;
+}
+.MD-Album-Title {
+  color: rgb(238, 238, 238);
+  font-size: 12px;
+  font-weight: 300;
+  width: fit-content;
+  margin-left: 60px;
 }
 
 #MD-eclipse-playlist{
-  padding-top: 15px;
+  /* padding-top: 15px; */
   padding-left: 10px;
   color: rgb(226, 96, 106)
 }

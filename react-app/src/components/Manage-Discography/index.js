@@ -71,7 +71,51 @@ function ManageDiscography() {
   return (
     <div className="MD-body">
       <h1 className='MD-label'>Manage Discography</h1>
-      <div className={userSongs.length ? 'MD-section-container' : 'MD-display-none'}>
+      <h1 className="BR-labels">Songs</h1>
+        {userSongs.map((song) => (
+          <div className="BR-song-section">
+            <div className="song-sec-div">
+              <div className="song-art-cover">
+                <img className="art-cover" alt="temp" src={song.coverImage}></img>
+              </div>
+              <div className="song-info">
+                <p className="song-info" id="song-name">
+                  {song.title}
+                </p>
+                <p className="song-info" id="artists-name">
+                  {song.artistName}
+                </p>
+              </div>
+            </div>
+            <div className="icon-section">
+            <i id='MD-eclipse' className="fa-solid fa-ellipsis" onClick={((e) => toggleUDM(song.id))} onClose={((e) => setCardId(null))}></i>
+                    {isUDMOpen && (song.id == cardId) &&
+                      <div className='UDM-Main-Wrapper'>
+                        <div className="UDM-Update-Wrapper">
+                          <OpenModalButton
+                            buttonText="Update"
+                            onButtonClick={''}
+                            modalComponent={<UpdateSong song={song} />}
+                          />
+                          <i class="fa-solid fa-pen-to-square" id='update-ico' />
+                        </div>
+                        <div className="UDM-Delete-Wrapper" >
+                          <OpenModalButton
+                            buttonText="Delete"
+                            onButtonClick={''}
+                            modalComponent={<DeleteSong song={song} />}
+                          />
+                          <i class="fa-solid fa-trash" id='delete-ico' />
+                        </div>
+                      </div>
+                    }
+              {/* <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(song.id))}></i> */}
+              {/* {menuOpen && (song.id == cardId) && <ToolTipMenu song={song} />}
+              {likedSongs.includes(song.id) ? <i id="song-icon-heart" className="fa-solid fa-heart" onClick={() => isLikedSong(song.id, user)}></i> : <i class="fa-regular fa-heart BR-heart-icon" onClick={() => isLikedSong(song.id, user)}></i>} */}
+            </div>
+          </div>
+        ))}
+      {/* <div className={userSongs.length ? 'MD-section-container' : 'MD-display-none'}>
         <h3 className='MD-sub-labels'>Songs</h3>
         <div>
           <Swiper
@@ -98,7 +142,6 @@ function ManageDiscography() {
                     {isUDMOpen && (song.id == cardId) &&
                       <div className='UDM-Main-Wrapper'>
                         <div className="UDM-Update-Wrapper">
-                          {/* <div className="UDM-Update">&nbsp;Update</div> */}
                           <OpenModalButton
                             buttonText="Update"
                             onButtonClick={''}
@@ -107,7 +150,6 @@ function ManageDiscography() {
                           <i class="fa-solid fa-pen-to-square" id='update-ico' />
                         </div>
                         <div className="UDM-Delete-Wrapper" >
-                          {/* <div className="UDM-Delete">&nbsp;Delete</div> */}
                           <OpenModalButton
                             buttonText="Delete"
                             onButtonClick={''}
@@ -123,14 +165,14 @@ function ManageDiscography() {
             </div>
           </Swiper>
         </div>
-      </div>
+      </div> */}
 
       <div className={userPlaylists.length ? 'MD-section-container' : 'MD-display-none'}>
         <h3 className='MD-sub-labels'>Playlists</h3>
         <div className='MD-playlists-container-div'>
           <Swiper
             modules={[Navigation]}
-            slidesPerView={3}
+            slidesPerView={4}
             slidesPerGroup={1}
             navigation
             style={{ overflow: 'hidden' }}
@@ -143,10 +185,16 @@ function ManageDiscography() {
                 <SwiperSlide className='MD-songs-carousel-images-div' key={`playlist_${playlist.id}_${idx}`}>
                   <img src={playlist.coverImage} alt='playlist img' className='MD-Playlist-CoverImage' />
                   <div>
-                    <h3 className='MD-playlist-Title'>{playlist.title}<i id='MD-eclipse-playlist' className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(playlist.id))} onClose={((e) => setPlaylistCardId(null))}></i></h3>
+                    <div className='MD-Playlist-Info'>
+
+                    <h3 className='MD-playlist-Title'>{playlist.title}</h3>
+                    <div className='MD-Playlist-Icon'>
+                    <i id='MD-eclipse-playlist' className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(playlist.id))} onClose={((e) => setPlaylistCardId(null))}></i>
+                    </div>
+                    </div>
                     {menuOpen && (playlistCardId == playlist.id) &&
-                      <div >
-                        <div className='TTM-Main-Wrapper'>
+                      <div id='MD-Main-Wrapper'>
+                        <div  className='TTM-Main-Wrapper'>
                           <div className="TTM-Btn-Wrapper"> {/* dispatch add to queue thunk */}
                             <OpenModalButton
                               buttonText="Update"
@@ -169,7 +217,7 @@ function ManageDiscography() {
       </div>
 
       <div className={userAlbums.length ? 'MD-section-container' : 'MD-display-none'} onClick={((e) => alert('Albums Feature Coming soon'))}>
-        <h3 className='MD-sub-labels'>{`🛠️ Albums (FEATURE COMING SOON) 🛠️`}</h3>
+        <h3 className='MD-sub-labels'>{`Albums`}</h3>
         <div className='MD-playlists-container-div'>
           <Swiper
             modules={[Navigation]}
@@ -184,8 +232,8 @@ function ManageDiscography() {
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <img className='MD-album-images' src={album.coverImage} alt='Album Cover' />
                     <div style={{ display: 'flex' }}>
-                      <h3 style={{ color: 'rgb(238, 238, 238)', marginLeft: '60px' }}>{album.title}</h3>
-                      <i id='MD-eclipse' className="fa-solid fa-ellipsis"></i>
+                      <h3 className='MD-Album-Title'>{album.title}</h3>
+                      {/* <i id='MD-eclipse' className="fa-solid fa-ellipsis"></i> */}
                     </div>
                   </div>
                 </SwiperSlide>
