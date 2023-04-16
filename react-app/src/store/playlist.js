@@ -1,15 +1,16 @@
 // TODO: CONSTANTS
-const ALL_PLAYLISTS = 'ALL_PLAYLISTS';
-const USER_PLAYLISTS = 'USER_PLAYLISTS';
-const SONGS_PLAYLIST = 'SONGS_PLAYLIST';
-const SINGLE_PLAYLIST = 'SINGLE_PLAYLIST';
-const CREATE_PLAYLIST = 'CREATE_PLAYLIST';
-const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
-const DELETE_PLAYLIST = 'DELETE_PLAYLIST';
-const DELETE_SONG_PLAYLIST = 'DELETE_SONG_PLAYLIST';
-const RESET_PLAYLISTS = 'RESET_PLAYLISTS';
-const ADD_TO_PLAYLIST  = 'ADD_TO_PLAYLIST';
-const GET_EXPLORE_GENRE = 'GET_EXPLORE_GENRE';
+const ALL_PLAYLISTS         = 'ALL_PLAYLISTS';
+const USER_PLAYLISTS        = 'USER_PLAYLISTS';
+const SONGS_PLAYLIST        = 'SONGS_PLAYLIST';
+const SINGLE_PLAYLIST       = 'SINGLE_PLAYLIST';
+const CREATE_PLAYLIST       = 'CREATE_PLAYLIST';
+const UPDATE_PLAYLIST       = 'UPDATE_PLAYLIST';
+const DELETE_PLAYLIST       = 'DELETE_PLAYLIST';
+const DELETE_SONG_PLAYLIST  = 'DELETE_SONG_PLAYLIST';
+const RESET_PLAYLISTS       = 'RESET_PLAYLISTS';
+const RESET_SINGLE_PLAYLIST = 'RESET_SINGLE_PLAYLIST'
+const ADD_TO_PLAYLIST       = 'ADD_TO_PLAYLIST';
+const GET_EXPLORE_GENRE     = 'GET_EXPLORE_GENRE';
 
 // TODO: ACTION CREATORS
 export const actionAllPlaylists = (playlists) => {
@@ -50,6 +51,10 @@ export const actionDeleteSongPlaylist = (songId) => {
 
 export const actionAddToPlaylist = (songId,playlistId) => {
   return { type: ADD_TO_PLAYLIST, songId, playlistId }
+}
+
+export const actionResetSinglePlaylist = (reset) => {
+  return { type: RESET_SINGLE_PLAYLIST, reset }
 }
 
 export const actionGetExploreGenre = (songs) => {
@@ -183,6 +188,12 @@ export const thunkResetPlaylists = () => async dispatch => {
   return;
 }
 
+export const thunkResetSinglePlaylist = () => async dispatch => {
+  let reset = { singlePlaylist: {}, playlistDetails: {} }
+  dispatch(actionResetSinglePlaylist(reset))
+  return;
+}
+
 export const thunkGetExploreGenre = (genre) => async dispatch => {
   const response = await fetch(`/api/songs/explore/${genre}`)
 
@@ -218,7 +229,9 @@ const playlistReducer = (state = initialState, action) => {
     case GET_EXPLORE_GENRE:
       return { ...state, exploreGenre: { ...action.songs }}
     case RESET_PLAYLISTS:
-      return {...action.reset,singlePlaylist:{...action.reset.singlePlaylist}, exploreGenre: { ...action.reset.exploreGenre } }
+      return { ...action.reset, singlePlaylist:{...action.reset.singlePlaylist}, exploreGenre: { ...action.reset.exploreGenre } }
+    case RESET_SINGLE_PLAYLIST:
+      return { ...state, singlePlaylist: { ...action.reset.singlePlaylist }, playlistDetails: { ...action.reset.playlistDetails }}
     default: return { ...state }
   }
 }

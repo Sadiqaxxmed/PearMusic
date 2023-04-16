@@ -77,18 +77,12 @@ def create_song():
         # Pass the file contents to the MP3() function using BytesIO()
         audio = MP3(BytesIO(response.content))
 
-        # audio = MP3(songURL)
-        print('AUDIO', audio)
-        print('AUDIO LENGTH', audio.info.length)
-        print('AUDIO BIT-RATE', audio.info.bitrate)
-
         audio_info = audio.info
 
         length = int(audio_info.length)
         mins, seconds = audio_duration(length)
         songDuration = f'{mins}.{seconds}'
 
-        print(songDuration)
 
         new_song = Song(
             title=form.data['title'],
@@ -104,7 +98,6 @@ def create_song():
         return {"message": "Succesfully Uploaded Song", "status": 201}
 
     if form.errors:
-        print(form.errors)
         return {"message": "Invalid Data", "status": 403}
 
 
@@ -118,7 +111,7 @@ def get_user_songs(user_id):
         return {'error': 'User not found'}, 404
 
     songs = Song.query.filter_by(user_id=user_id).all()
-    print("HEYYYYYYYYYYYYY", songs)
+
     return {'songs': [song.to_dict() for song in songs]}
 
 
@@ -146,7 +139,7 @@ def update_song(song_id):
 @login_required
 def delete_song(song_id):
     song = Song.query.get(song_id)
-    
+
     if song:
         db.session.delete(song)
         db.session.commit()

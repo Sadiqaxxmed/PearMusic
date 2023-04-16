@@ -13,13 +13,12 @@
   display: inline-flex;
   flex-direction: row;
   justify-content: space-evenly;
-  padding-right: 50px;
   text-align: left;
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 50px;
-  border-top: 3px solid rgb(42, 42, 42);
-  border-bottom: 3px solid rgb(42, 42, 42);
+  border-top: 1.5px solid rgb(42, 42, 42);
+  border-bottom: 1.5px solid rgb(42, 42, 42);
 }
 
 .song-sec-div {

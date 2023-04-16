@@ -39,36 +39,40 @@ function SideBar() {
                     </span>
                     <p> <Link exact="true" to="/browse" style={{ textDecoration: 'none', color: 'white' }}> Browse  </Link> </p></li>
                 <li className='SB-Library'>
-                    <span className="material-symbols-outlined SB-icons pink-icons">
-                        music_note
-                    </span>
-                    <p> <Link exact="true" to="/songs" style={{ textDecoration: 'none', color: 'white' }}>Liked Songs  </Link> </p></li>
+                    {userId ?
+                        <>
+                            <span className="material-symbols-outlined SB-icons pink-icons">
+                                music_note
+                            </span>
+                            <p> <Link exact="true" to="/songs" style={{ textDecoration: 'none', color: 'white' }}>Liked Songs </Link> </p>
+                        </>
+                        : null}
+                </li>
                 <li className='SB-Library'>
-                    <span className="material-symbols-outlined SB-icons pink-icons">
-                        home_storage
-                    </span>
-                    <p> <Link exact="true" to="/albums" style={{ textDecoration: 'none', color: 'white' }} onClick={() => alert('Feature Coming Soon!')}>Albums</Link> </p></li>
+                    {userId ?
+                        <>
+                            <span className="material-symbols-outlined SB-icons pink-icons">
+                                home_storage
+                            </span>
+                            <p> <Link exact="true" to="/browse" style={{ textDecoration: 'none', color: 'white' }} onClick={() => alert('Feature Coming Soon!')}>Albums</Link> </p>
+                        </>
+                        : null}
+                </li>
             </div>
             <div className='SB-Playlists'>
                 <ul className='SB-Playlists-Title' />
-                <h3 className='SB-lib-play-headers'>Playlists</h3>
-                <div className='SB-Playlist-div'>
-                    <li className='SB-User-Playlist-li'>
-                        <span className="material-symbols-outlined SB-icons pink-icons">
-                            list
-                        </span>
-                        <p> <Link exact="true" to="/allPlaylist" style={{ textDecoration: 'none', color: 'white' }}> All Playlists  </Link> </p></li>
-                    {/* {userPlaylists.map(playlist =>
-                        <li className='SB-User-Playlist-li'>
-                            <span className="material-symbols-outlined SB-icons pink-icons">
-                                queue_music
-                            </span>
-                            <Link  to={`/SinglePlaylist/${playlist.id}`}>
-                            <p className='SB-user-single-playlist'>{playlist.title}</p>
-                            </Link>
-                        </li>
-                    )} */}
-                </div>
+                {userId ?
+                    <>
+                        <h3 className='SB-lib-play-headers'>Playlists</h3>
+                        <div className='SB-Playlist-div'>
+                            <li className='SB-User-Playlist-li'>
+                                <span className="material-symbols-outlined SB-icons pink-icons">
+                                    list
+                                </span>
+                                <p> <Link exact="true" to="/allPlaylist" style={{ textDecoration: 'none', color: 'white' }}> All Playlists  </Link> </p></li>
+                        </div>
+                    </>
+                    : null}
             </div>
         </div>
     )

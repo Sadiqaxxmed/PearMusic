@@ -16,6 +16,8 @@
     font-size: 20px;
 }
 .US-input-field{
+    padding-top: 0;
+    margin-top: 0;
     color: white;
 }
 .US-Genre{
@@ -24,6 +26,8 @@
 .US-TitleInput {
     height: 25px;
     width: 350px;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .US-update-info {

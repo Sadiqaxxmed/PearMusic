@@ -39,34 +39,26 @@
   align-self: center;
 }
 
-.UP-Tag{
+.UP-Tag {
   display: flex;
   color: white;
+  /* margin-top: 0; */
 }
 
-.UP-Submit-Button{
+.UP-Submit-Button {
   display: flex;
   justify-content: center;
   align-items: center;
   align-self: center;
   background-color: rgb(191, 30, 34);
-  /* border: 1px solid white; */
   width: 115px;
   border-radius: 6px;
   padding: 6px 0px 6px 0px;
   color: white;
   cursor: pointer;
+  transition: .2s ease-in;
 }
-/*
-.UP-Submit-Button{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  background-color: rgb(218, 15, 72);
-  width: 60%;
-  border-radius: 4px;
-  padding: 8px 0px 8px 0px;
-  color: white;
-  cursor: pointer;
-} */
+
+.UP-Submit-Button:hover {
+  box-shadow: 3px 3px 3px black;
+}

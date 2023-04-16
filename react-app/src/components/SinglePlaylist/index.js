@@ -10,7 +10,7 @@ import { thunkAllPlaylists, thunkDeletePlaylist, thunkDeleteSongPlaylist, thunkP
 import { thunkGetComments, thunkCreateComment, thunkResetComments, thunkDeleteComment } from "../../store/comment";
 
 
-import { thunkNewQueue } from "../../store/queue";
+import { thunkNewQueue, thunkPlayNow } from "../../store/queue";
 import OpenModalButton from "../OpenModalButton";
 import UpdatePlaylist from "../Manage-Discography/UDModals/UpdatePlaylist";
 import { thunkResetSongs } from "../../store/song";
@@ -43,10 +43,7 @@ function SinglePlaylist() {
       history.push('/');
     }
 
-    return () => {
-      dispatch(thunkResetComments())
-    }
-  }, [dispatch])
+  }, [dispatch, playlist_id])
 
   function addQueue() {
     dispatch(thunkNewQueue(playlist_id))
@@ -59,7 +56,7 @@ function SinglePlaylist() {
     for (let i = 0; i < songs.length; i++) {
       let duration = songs[i].duration;
       minutes += Math.floor(duration);
-      duration.toString().split('.').forEach((second, i) => i % 2 != 0 ? seconds += parseInt(second) : false)
+      duration?.toString().split('.').forEach((second, i) => i % 2 != 0 ? seconds += parseInt(second) : false)
     }
 
     return `${minutes} MINUTES, ${seconds} SECONDS`
@@ -71,7 +68,7 @@ function SinglePlaylist() {
 
     let duration = songs.duration;
     minutes = Math.floor(duration);
-    seconds = duration.toString().split('.')[1].toString().length < 2 ? seconds = `0${duration.toString().split('.')[1].toString()}` : seconds = duration.toString().split('.')[1].toString()
+    seconds = duration?.toString().split('.')[1].toString().length < 2 ? seconds = `0${duration?.toString().split('.')[1].toString()}` : seconds = duration?.toString().split('.')[1].toString()
     return `${minutes}:${seconds}`
   }
 
@@ -105,7 +102,6 @@ function SinglePlaylist() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    // ! POSSIBLY PUT VALIDATIONS?
     let error = {}
 
     if (comment.length > 125) error.length = 'Comment must be less than 125 characters';
@@ -117,6 +113,10 @@ function SinglePlaylist() {
 
   function isDisabled() {
     if (comment.length <= 0) return true
+  }
+
+  const playNowFunc = (song) => {
+    dispatch(thunkPlayNow(song))
   }
 
   function deleteComment(ownerId, commentId, playlistId) {
@@ -185,11 +185,11 @@ function SinglePlaylist() {
             <div className="SGPL-Bottom-Time-Header"> <p className="SGPL-Bottom-text" id="SGPL-Bottom-Time-text">Time</p> </div>
           </div>
           {songs.map((song, i) =>
-            <div className={i % 2 == 0 ? "SGPL-Darker-Shade" : 'SGPL-No-Shade'} tabindex="0">
+            <div className={i % 2 == 0 ? "SGPL-Darker-Shade" : 'SGPL-No-Shade'} tabIndex="0">
               <div className="SGPL-Bottom-Title-Header">
                 <div className="SGPL-Bottom-Song-Header">
                   <div className="SGPL-Bottom-Song">
-                    <img className="SG-Bottom-PL-Img" alt='temp' src={song.coverImage}></img>
+                    <img className="SG-Bottom-PL-Img" alt='temp' src={song.coverImage} onClick={() => playNowFunc(song)}></img>
                     <p className="SGPL-Bottom-Song-text">{song.title}</p>
                   </div>
                 </div>
@@ -199,29 +199,13 @@ function SinglePlaylist() {
                   <p className="SGPL-Bottom-text" id="SGPL-Bottom-Info-Text">{songTotalPlayTime(song)}</p>
                 </div>
                 <div className="SGPL-Delete-Div">
-                  {userId == playlist?.owner_id && <i class="fa-solid fa-xmark SGPL-delete-comment-icon" id="SGPL-Bottom-Info-Text" onClick={((e) => DeleteSong(song.id, playlist_id))}></i>}
-                  {/*<i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openMenuFunc(song.id))}></i>
-                      {menuOpen && (song.id == cardId) &&
-                      <div>
-                        <div className='TTM-Main-Wrapper'>
-                          <div className="TTM-Btn-Wrapper">
-                            <div className='TTM-AddToQueue' onClick={((e) => console.log('bass'))}>&nbsp;Add to queue</div>
-                          </div>
-                          <div className="TTM-Btn-Wrapper" >
-                            <div className='TTM-Delete' onClick={((e) => deleteSong(song.id, playlist.id))}>&nbsp;Remove from playlist</div>
-                          </div>
-                        </div>
-                      </div>
-                    }
-                    */}
+                  {userId == playlist?.owner_id && <i className="fa-solid fa-xmark SGPL-delete-comment-icon" id="SGPL-Bottom-Info-Text" onClick={((e) => DeleteSong(song.id, playlist_id))}></i>}
                 </div>
               </div>
             </div>
           )}
         </div>
         <div className="SGPL-Comments-Container">
-
-
           {/* comments */}
           <div className="SGPL-Border-Top-Comments">
             <p className="SGPL-Bottom-text">{comments.length} Comments</p>
@@ -230,7 +214,7 @@ function SinglePlaylist() {
           </div>
           <form onSubmit={handleSubmit} className="SGPL-User-Input-Comment-Container">
             <div style={{ display: 'flex' }}>
-              <span class="material-symbols-outlined SB-icons SGPL-current-user-profile-pic">account_circle</span>
+              <span className="material-symbols-outlined SB-icons SGPL-current-user-profile-pic">account_circle</span>
             </div>
             <input
               type='text'
@@ -248,7 +232,7 @@ function SinglePlaylist() {
                   <span class="material-symbols-outlined SB-icons SGPL-profile-pic-container">account_circle</span>
                   <div className="SGPL-Comment-Container">
                     <p className="SGPL-Comment">{comment.comment}</p>
-                    {userId == comment.owner_id ? <i class="fa-solid fa-xmark SGPL-delete-comment-icon" onClick={() => deleteComment(comment.owner_id, comment.id, playlist_id)}></i> : null}
+                    {userId == comment.owner_id ? <i className="fa-solid fa-xmark SGPL-delete-comment-icon" onClick={() => deleteComment(comment.owner_id, comment.id, playlist_id)}></i> : null}
                   </div>
                 </div>
               </>

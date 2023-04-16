@@ -10,7 +10,7 @@ import "./SongForm.css";
 function SignupFormModal() {
     const history = useHistory();
     const dispatch = useDispatch();
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState({});
     const [songTitle, setSongTitle] = useState('')
     const [songCoverImage, setSongCoverImage] = useState(null)
     const [songMp3, setSongMp3] = useState(null)
@@ -55,6 +55,8 @@ function SignupFormModal() {
             ".webm"
         ]
 
+        if (songTitle.length >= 16) err.titleLength = 'Song Title must be less than 16 characters'
+
         if (!imageFormat.some(ext => songCoverImage.name.endsWith(ext))) {
             err.coverImage = 'Please provide a valid image file'
         }
@@ -63,10 +65,11 @@ function SignupFormModal() {
             err.songFile = 'Please provide a valid audio file'
         }
 
+
         if (Object.values(err).length) return setErrors(err)
 
         setLoading('SF-Loading-GIF')
-        
+
         const formData = new FormData();
 
         formData.append('songMp3', songMp3)
@@ -120,6 +123,7 @@ function SignupFormModal() {
                     <i className="fa-solid fa-xmark" onClick={() => handleCloseModal()} id='x' />
                     <h1 className="SF-Title">Upload Song</h1>
                     <form className='SF-Form' onSubmit={handleSubmit} method="POST" encType="multipart/form-data">
+                        {errors.titleLength ? <div className="SF-Errors">* {errors.titleLength}</div> : null}
                         <div className="SF-Song-Title-Lable">Song Title:
                             <input type='text' className="SF-Song-Title" value={songTitle} onChange={(e) => setSongTitle(e.target.value)} required />
                         </div>

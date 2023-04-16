@@ -28,6 +28,7 @@ const UpdateSong = (song) => {
     ];
     const [title, setTitle] = useState(song.song.title)
     const [genreValue, setGenreValue] = useState(song.song.genre)
+    const [errors, setErrors] = useState({});
     const songId = song.song.id
     const userId = useSelector(state => state.session.user.id)
     const { closeModal } = useModal();
@@ -37,6 +38,10 @@ const UpdateSong = (song) => {
 
     const handleUpdate = (e) => {
         e.preventDefault()
+        let err = {};
+        if (title.length >= 16) err.title = '* Song Title must be less than 16 characters'
+        if (err.title) return setErrors(err)
+
         dispatch(thunkUpdateSong({songId,userId,title,genreValue}))
         closeModal()
     }
@@ -48,6 +53,7 @@ const UpdateSong = (song) => {
                 <h3>Update Song</h3>
             </div>
             <label>
+                { errors.title ? <p style={{color:'red', marginBottom:'10px', marginTop:'0'}}>{errors.title}</p> : null }
                 <p className="US-input-field">Song Title:</p>
 
                 <input className="US-TitleInput" type="text" placeholder={title} value={title} onChange={((e)=> setTitle(e.target.value))}/>
@@ -55,14 +61,14 @@ const UpdateSong = (song) => {
 
             <div className="US-update-info">
             <div className="US-Genre-div">
-            <label>
+            <label className="US-Genre-label">
                 <p className="US-input-field">Genre:</p>
 
             <ReactSelect
                 className="US-Genre"
                 options={GenreOptions}
-                value={genreValue}
-                defaultInputValue={genreValue}
+                value={GenreOptions.value}
+                defaultInputValue={genreValue}   
                 onChange={handleGenreValueChange}
             />
             </label>
