@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 import './UpdatePlaylist.css'
-import pearMusicIcon from '../../../../images/pearMusicIcon.png'
-import { thunkAllPlaylists, thunkSinglePlaylist, thunkUpdatePlaylist, thunkUserPlaylists } from "../../../../store/playlist";
+import { thunkSinglePlaylist, thunkUpdatePlaylist } from "../../../../store/playlist";
 import { useModal } from "../../../../context/Modal";
 
 const UpdatePlaylist = ({ playlist }) => {
@@ -19,7 +18,7 @@ const UpdatePlaylist = ({ playlist }) => {
 
     useEffect(() => {
         dispatch(thunkSinglePlaylist(playlistId))
-    }, [dispatch])
+    }, [dispatch, playlistId])
 
     const handleUpdate = (e) => {
         e.preventDefault();

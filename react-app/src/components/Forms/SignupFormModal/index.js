@@ -18,9 +18,15 @@ function SignupFormModal() {
 		e.preventDefault();
 		let err = {}
 
+		if (email.length >= 45) err.email = "Email must be less than 45 characters";
+
 		if (username.length < 4) err.username = "Username must be at least 4 characters";
+		if (username.length >= 12) err.maxUsername = "Username must be less than 12 characters";
+
+		if (password.length >= 20) err.maxPassword = "Password must be less than 20 characters";
 		if (password.length < 6) err.password = "Password must be at least 6 characters";
 		if (password !== confirmPassword) err.match = "Passwords must match";
+
 		if (Object.values(err).length) return setErrors(err);
 
 		if (password === confirmPassword) {

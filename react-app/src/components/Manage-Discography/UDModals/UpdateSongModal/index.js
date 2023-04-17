@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactSelect from 'react-select';
 import './UpdateSong.css'
-import pearMusicIcon from '../../../../images/pearMusicIcon.png'
 import { thunkUpdateSong } from "../../../../store/song";
 import { useModal } from "../../../../context/Modal";
 
@@ -68,7 +67,7 @@ const UpdateSong = (song) => {
                 className="US-Genre"
                 options={GenreOptions}
                 value={GenreOptions.value}
-                defaultInputValue={genreValue}   
+                defaultInputValue={genreValue}
                 onChange={handleGenreValueChange}
             />
             </label>

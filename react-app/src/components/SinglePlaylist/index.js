@@ -24,6 +24,7 @@ function SinglePlaylist() {
 
   const history = useHistory()
   const userId = useSelector(state => state.session.user?.id)
+  const userName = useSelector(state => state.session.user.username)
 
   const songs = Object.values(useSelector(state => state.playlists.singlePlaylist))
   const playlist = Object.values(useSelector(state => state.playlists.playlistDetails))[0]
@@ -154,7 +155,7 @@ function SinglePlaylist() {
               </div>
               {(userId == playlist?.owner_id) &&
                 <div className="SGPL-Owner-Buttons">
-                  <i id="song-icon-menu" className="fa-solid fa-ellipsis" onClick={((e) => openUDM ? setOpenUDM(false) : setOpenUDM(true))}></i>
+                  <i id="song-icon-menu" className={ openUDM ? "fa-solid fa-xmark" : "fa-solid fa-ellipsis" } onClick={((e) => openUDM ? setOpenUDM(false) : setOpenUDM(true))}></i>
                   {openUDM &&
                     <div >
                       <div className='SGPL-Menu-Wrapper'>

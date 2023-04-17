@@ -9,7 +9,7 @@ function Albums() {
 
   useEffect(() => {
     dispatch(thunkUserPlaylists(user));
-  }, [dispatch])
+  }, [dispatch, user])
   return (
       <div className="AL-Body">
           <h1 className="AL-labels">Albums</h1>

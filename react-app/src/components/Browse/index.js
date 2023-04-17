@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkAllAlbums, thunkResetAlbums } from "../../store/album";
-import { thunkAllSongs, thunkResetSongs, thunkLikedSongs, thunkLikeSongs, thunkDeleteLikedSongs, thunkUserSongs } from "../../store/song";
-import { thunkAddSong, thunkNewQueue, thunkPlayNow } from "../../store/queue";
+import { thunkAllSongs, thunkResetSongs, thunkLikedSongs, thunkLikeSongs, thunkDeleteLikedSongs } from "../../store/song";
+import { thunkPlayNow } from "../../store/queue";
 
 import { thunkAllPlaylists, thunkUserPlaylists } from "../../store/playlist";
 import ToolTipMenu from "../ToolTip";
@@ -30,8 +30,8 @@ function Browser() {
   const likedSongs = Object.values(useSelector(state => state.songs.likedSongs)).map(song => song.id);
 
   const [loaded, setLoaded] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [cardId, setCardId] = useState(null)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [cardId, setCardId] = useState(null);
 
   const shuffledAlbums = albums
 
@@ -98,7 +98,7 @@ function Browser() {
             <div className="BR-song-section BR-song-container-div">
               <div className="song-sec-div" style={{ marginTop: '10px', marginBottom: '0' }}>
                 <div className="song-art-cover">
-                  <img className="art-cover" alt="temp" src={song.coverImage} onClick={() => playNowFunc(song)}></img>
+                  <img className="art-cover" alt="temp" src={song.coverImage} onClick={() => playNowFunc(song)} key={song.id}></img>
                 </div>
                 <div className="song-info">
                   <p className="song-info" id="song-name">
@@ -117,7 +117,7 @@ function Browser() {
                       className="fa-solid fa-ellipsis"
                       onClick={(e) => openMenuFunc(song.id)}
                     ></i>
-                    {menuOpen && song.id === cardId && <ToolTipMenu song={song} />}
+                    {menuOpen && song.id === cardId && <ToolTipMenu song={song} setMenuOpen={setMenuOpen} />}
                     {likedSongs.includes(song.id) ? (
                       <i
                         id="song-icon-heart"

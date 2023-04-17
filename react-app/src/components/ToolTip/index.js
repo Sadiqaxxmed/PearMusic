@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import './ToolTipMenu.css'
 
-import { thunkUserPlaylists,thunkResetPlaylists, thunkCreatePlaylist, thunkAddToPlaylist } from "../../store/playlist";
-import { func } from "prop-types";
+import { thunkUserPlaylists, thunkCreatePlaylist, thunkAddToPlaylist } from "../../store/playlist";
 import { thunkAddSong } from "../../store/queue";
 
 
-function ToolTipMenu(song) {
+function ToolTipMenu({ song, setMenuOpen }) {
     const dispatch = useDispatch()
     const history = useHistory()
+    const ulRef = useRef(null);
     const userId = useSelector(state => state.session.user?.id)
     const userPlaylists = Object.values(useSelector(state => state.playlists.allPlaylists))
-    const songId = song.song.id
+    const songId = song.id
 
     const [outerDivClassName, setOuterDivClassName] = useState('TTM-Main-Wrapper-DIF');
     const [showPlaylists, setShowPlaylists] = useState(false)
@@ -21,22 +21,31 @@ function ToolTipMenu(song) {
     useEffect(() => {
         dispatch(thunkUserPlaylists(userId))
 
+        const handleClickOutside = (event) => {
+            if (ulRef.current && !ulRef.current.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside);
+
     }, [dispatch, userId])
 
     // adds song to playlist (need to make menu close after action is complete)
-    function AddToPlaylist(songId,playlistId){
-        dispatch(thunkAddToPlaylist(songId,playlistId))
-        setShowPlaylists(false)
+    function AddToPlaylist(songId, playlistId) {
+        dispatch(thunkAddToPlaylist(songId, playlistId));
+        setShowPlaylists(false);
+        setMenuOpen(false);
     }
 
     // adds song to queue (need to add functionality to close menu once a button is clikced and an action is completed but for now its fine)
-    function addToQueue(song){
-        dispatch(thunkAddSong(song.song))
+    function addToQueue(song) {
+        dispatch(thunkAddSong(song))
         return;
     }
 
-    const createPlaylist = async (songId,userId) => {
-        const playlistId = await dispatch(thunkCreatePlaylist(songId,userId))
+    const createPlaylist = async (songId, userId) => {
+        const playlistId = await dispatch(thunkCreatePlaylist(songId, userId))
         history.push(`/SinglePlaylist/${playlistId}`)
     }
 
@@ -50,10 +59,10 @@ function ToolTipMenu(song) {
     }
 
     return (
-        <div className="div">
+        <div className="TTM-container-div" ref={ulRef}>
             <div className={outerDivClassName}>
                 <div className="TTM-Btn-Wrapper"> {/* create playlist and redirect user to that new playlist */}
-                    <div className='TTM-Create-Playlist' onClick={((e) => createPlaylist(songId,userId))}>&nbsp;Create playlist</div>
+                    <div className='TTM-Create-Playlist' onClick={((e) => createPlaylist(songId, userId))}>&nbsp;Create playlist</div>
                 </div>
                 <div className="TTM-Btn-Wrapper" > {/* open extra menu with all user playlists */}
                     <div className='TTM-AddToPlaylist' onClick={((e) => handlePopOut())}>&nbsp;{`<-`}Add to playlist</div>
@@ -66,7 +75,7 @@ function ToolTipMenu(song) {
             <div className={`pop-out-menu${showPlaylists ? '-open' : ''}`}>
                 <div className="POM-BTN-Wrapper-Title">Playlists</div>
                 {userPlaylists.map(playlist =>
-                    <div className="POM-BTN-Wrapper" key={playlist.id} onClick={((e)=>AddToPlaylist(songId,playlist.id))}>{playlist.title}</div>
+                    <div className="POM-BTN-Wrapper" key={playlist.id} onClick={((e) => AddToPlaylist(songId, playlist.id))}>{playlist.title}</div>
                 )}
             </div>
         </div>

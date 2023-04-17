@@ -56,7 +56,7 @@ function NavBar() {
       setToggleIcon('fa-solid fa-pause fa-xl icon-hover-pointer')
     }
     // setAlbumTitle(currentSong.albumTitle) need to pass in album title to single song
-  },[queue[0], songUrl])
+  },[songUrl, queue[0]])
 
 // LOGIC FOR TOP RIGHT MENU OPEN
   const toggleMenu = () => {
@@ -69,9 +69,11 @@ function NavBar() {
     if(!playPause) {
       setToggleIcon('fa-solid fa-pause fa-xl icon-hover-pointer')
       setPlayPause(true)
+      return;
     } else {
       setToggleIcon('fa-solid fa-play fa-xl icon-hover-pointer')
       setPlayPause(false)
+      return;
     }
   }
 
