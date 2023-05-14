@@ -102,7 +102,7 @@ npm start
 ```
 
 ## Api's & plugins Used:
-**react-player** || **bad-words** 
+**react-player** || **bad-words** || **email-validator**
 ## Additional Features Planned:
 ```
 1. Album Functionality
