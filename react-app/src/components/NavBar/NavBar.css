@@ -1,7 +1,7 @@
 .NB-body {
   display: flex;
   background-color: rgb(44, 44, 44);
-  /* opacity: 0.91; */
+  opacity: 0.98;
   height: 54px;
   position: fixed;
   left: 260px;

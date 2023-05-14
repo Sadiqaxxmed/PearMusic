@@ -105,15 +105,14 @@ function SinglePlaylist() {
     e.preventDefault()
     let error = {}
 
+    if (comment.length === 0) error.length = 'Please provide a comment!'
     if (comment.length > 125) error.length = 'Comment must be less than 125 characters';
     if (badWords.isProfane(comment)) error.profanity = "Keegster doesn't approve of this language!"
     if (Object.values(error).length) return setErrors(error)
     dispatch(thunkCreateComment(comment, userId, playlist_id))
-    return setComment('')
-  }
-
-  function isDisabled() {
-    if (comment.length <= 0) return true
+    setErrors({});
+    setComment('');
+    return
   }
 
   const playNowFunc = (song) => {
@@ -224,7 +223,7 @@ function SinglePlaylist() {
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             ></input>
-            <button disabled={isDisabled()} className="SGPL-Comment-Button">Submit</button>
+            <button className="SGPL-Comment-Button">Submit</button>
           </form>
           <div className="SGPL-Comments-Area">
             {comments.map(comment =>
