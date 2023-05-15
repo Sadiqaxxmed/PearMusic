@@ -181,6 +181,6 @@ def delete_comment(comment_id):
     if comment:
         db.session.delete(comment)
         db.session.commit()
-        return {'message': 'Comment deleted successfully', 'status': 200}
+        return { 'message': 'Comment deleted successfully', 'status': 200 }
     else:
-        return {'error': 'Comment not found', 'status': 404}
+        return { 'error': 'Comment not found', 'status': 404 }
