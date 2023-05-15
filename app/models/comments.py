@@ -10,10 +10,8 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer(), primary_key=True)
     comment = db.Column(db.String(1000), nullable=False)
-    owner_id = db.Column(db.Integer, ForeignKey(
-        add_prefix_for_prod('users.id')))
-    comment_id = db.Column(db.Integer, ForeignKey(
-        add_prefix_for_prod('playlists.id')))
+    owner_id = db.Column(db.Integer, ForeignKey (add_prefix_for_prod('users.id')))
+    comment_id = db.Column(db.Integer, ForeignKey (add_prefix_for_prod('playlists.id')))
 
     user = db.relationship('User', back_populates='comments')
     playlist = db.relationship('Playlist', back_populates='comments')

@@ -36,7 +36,7 @@ def seed_songs():
         genre='Alternative',
         coverImage='https://s.yimg.com/ny/api/res/1.2/DuJgkQetGhmVmIcp_sMITQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTk2MDtjZj13ZWJw/https://media.zenfs.com/en/udiscovermusic_435/6c064427dd17d256ced8ec2c9b3fd747',
         mp3file='https://www.youtube.com/watch?v=JdR0ls28KNE',
-        duration=2.50,
+        duration=3.15,
         user_id=1,
         artistName='Demo'
     )
@@ -45,7 +45,7 @@ def seed_songs():
         genre='Rap',
         coverImage='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRutoQr73RIvghrgN5AxuDfBCVQLLVehJ9_JA&usqp=CAU',
         mp3file='https://www.youtube.com/watch?v=7EUVJaKJtBY',
-        duration=2.50,
+        duration=3.20,
         user_id=1,
         artistName='Demo'
     )
@@ -54,7 +54,7 @@ def seed_songs():
         genre='Rap',
         coverImage='https://i1.sndcdn.com/artworks-JP1tzUizbOmgwn4o-pEwDPg-t500x500.jpg',
         mp3file='https://www.youtube.com/watch?v=VcyFfcJbyeM',
-        duration=3.01,
+        duration=3.00,
         user_id=1,
         artistName='Demo'
     )
@@ -90,25 +90,25 @@ def seed_songs():
         genre='EDM',
         coverImage='https://i.ytimg.com/vi/fzQ6gRAEoy0/maxresdefault.jpg',
         mp3file='https://www.youtube.com/watch?v=HQnC1UHBvWA&ab_channel=Madeon',
-        duration=3.38,
+        duration=3.37,
         user_id=8,
-        artistName='Mike'
+        artistName='Porter Robinson'
     )
     song11 = Song(
         title='Hypeboy',
         genre='K-Pop',
         coverImage='https://images.genius.com/0cc17757cbe6c7934352f1d2ce021a34.1000x1000x1.jpg',
         mp3file='https://www.youtube.com/watch?v=T--6HBX2K4g&ab_channel=KMUSIC',
-        duration=3.01,
+        duration=3.37,
         user_id=8,
-        artistName='Mike'
+        artistName='New Jeans'
     )
     song12 = Song(
         title='Butter',
         genre='K-Pop',
         coverImage='https://upload.wikimedia.org/wikipedia/en/d/db/BTS_-_Butter.png',
         mp3file='https://www.youtube.com/watch?v=Uz0PppyT7Cc&ab_channel=LQKPOP',
-        duration=2.45,
+        duration=3.00,
         user_id=8,
         artistName='Mike'
     )
@@ -139,6 +139,24 @@ def seed_songs():
         user_id=8,
         artistName='Mike'
     )
+    song16 = Song(
+        title="Major ft. Key Glock",
+        genre='R&B',
+        coverImage='',
+        mp3file="https://www.youtube.com/watch?v=SdMW1Ya0nHM",
+        duration=4.53,
+        user_id=1,
+        artistName='Young Daplh'
+    )
+    song17 = Song(
+        title="Talking To My Scale",
+        genre='Rap',
+        coverImage='',
+        mp3file="https://www.youtube.com/watch?v=KymiqOr5So4",
+        duration=4.46,
+        user_id=1,
+        artistName='Young Dalph'
+    )
     db.session.add(song1)
     db.session.add(song2)
     db.session.add(song3)
@@ -154,6 +172,8 @@ def seed_songs():
     db.session.add(song13)
     db.session.add(song14)
     db.session.add(song15)
+    db.session.add(song16)
+    db.session.add(song17)
     db.session.commit()
 
 

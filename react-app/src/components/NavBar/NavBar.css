@@ -10,6 +10,24 @@
   justify-content: space-between;
 }
 
+@media only screen and (max-width: 1000px) {
+  .NB-body {
+    display: flex;
+    background-color: rgb(44, 44, 44);
+    /* opacity: 0.91; */
+    height: 54px;
+    position: fixed;
+    left: 0px;
+    width:100%;
+    z-index: 10;
+    justify-content: space-between;
+  }
+}
+.music-player-container-wrapper{
+  display: flex;
+
+}
+
 .music-player-container{
   display: flex;
   padding-left: 50px;
@@ -84,6 +102,13 @@
   padding-bottom: 7px;
 }
 
+#myslider.slider {
+  -webkit-appearance: none;
+  width: 100px;
+  background-color: rgb(44, 44, 44);
+  margin-right: 50px;
+}
+
 .NB-MUSIC-BLOCK{
   background-color: rgba(105, 105, 105,.5);
   display: flex;
@@ -95,6 +120,47 @@
   margin-right: 30px; /* come back */
   overflow: hidden;
 }
+
+@media only screen and (max-width: 700px) {
+  .NB-MUSIC-BLOCK {
+    display: flex;
+    justify-content: center;
+    width: 60vw;
+  }
+  .NB-Wrapper{
+    display: flex;
+    justify-content: center;
+  }
+  .music-player-container-wrapper{
+    width: 100%;
+    height: 65px;
+    position: fixed;
+    bottom:0px;
+    left: 0px;
+    background-color: black;
+    display: flex;
+  }
+  .music-player-container{
+    display: flex;
+    justify-content: center;
+    
+  }
+  .NB-Volume-Slider{
+    position: fixed;
+    bottom: 24px;
+    right: -20px;
+    display: flex;
+    
+  }
+  #myslider.slider {
+    -webkit-appearance: none;
+    width: 100px;
+    background-color: black;
+    margin-right: 50px;
+  }
+}
+
+
 
 .NB-Player-CurrentSong-Wrapper{
   font-size: .5em;
@@ -198,12 +264,7 @@ input.NB-Progress::-webkit-slider-thumb {
   padding-right: 10px;
 }
 
-#myslider.slider {
-  -webkit-appearance: none;
-  width: 100px;
-  background-color: rgb(44, 44, 44);
-  margin-right: 50px;
-}
+
 #myslider.slider:focus {
   outline: none;
 }
