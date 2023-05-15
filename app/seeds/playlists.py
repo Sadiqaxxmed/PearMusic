@@ -8,43 +8,37 @@ def seed_playlists():
         title='DRAKE ESSENTIALS 🦉',
         description='Drake is the GOAT 🫶🏽',
         owner_id=1,
-        coverImage='https://mypearmusicbucket.s3.us-west-1.amazonaws.com/draykeee.png'
+        coverImage='https://i.ibb.co/r6LRwTQ/draykeee.png'
     )
     playlist2 = Playlist(
         title='JCOLE ESSENTIALS 👑',
         description='Cole is to real',
         owner_id=1,
-        coverImage='https://mypearmusicbucket.s3.us-west-1.amazonaws.com/jcole.png'
+        coverImage='https://i.ibb.co/sKpmNLT/jcole.png'
     )
     playlist3 = Playlist(
         title='KENDRICK ESSENTIALS 💭',
         description='Kendrick just be spittin facts',
         owner_id=1,
-        coverImage='https://mypearmusicbucket.s3.us-west-1.amazonaws.com/brown.png'
+        coverImage='https://i.ibb.co/D9vnjGW/brown.png'
     )
     playlist4 = Playlist(
         title='TRAVIS ESSENTIALS 🌵',
         description='ITSSSS LITTTT!!!!',
         owner_id=2,
-        coverImage='https://mypearmusicbucket.s3.us-west-1.amazonaws.com/purple.png'
+        coverImage='https://i.ibb.co/fpzCK4Z/purple.png'
     )
     playlist5 = Playlist(
         title='PLAYBOI CARTI ESSENTIALS 🧛🏾',
         description='CARTiii is VIBESS',
         owner_id=2,
-        coverImage='https://mypearmusicbucket.s3.us-west-1.amazonaws.com/grey.png'
+        coverImage='https://i.ibb.co/x28mts6/grey.png'
     )
     playlist6 = Playlist(
         title='LIL UZI VERT ESSENTIALS 👁️',
         description='UZI IS HIM!',
         owner_id=2,
-        coverImage='https://mypearmusicbucket.s3.us-west-1.amazonaws.com/tealEssentials.png'
-    )
-    playlist7 = Playlist(
-        title='Keegster Essentials',
-        description='Keegster approved!',
-        owner_id=2,
-        coverImage='https://mypearmusicbucket.s3.us-west-1.amazonaws.com/tealEssentials.png'
+        coverImage='https://i.ibb.co/cwRdJyY/teal-Essentials.png'
     )
     db.session.add(playlist1)
     db.session.add(playlist2)
@@ -52,7 +46,6 @@ def seed_playlists():
     db.session.add(playlist4)
     db.session.add(playlist5)
     db.session.add(playlist6)
-    db.session.add(playlist7)
     db.session.commit()
 
 
