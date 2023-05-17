@@ -13,13 +13,17 @@ import sadiq from '../../images/Devs/sadiqie.png'
 import mikey from '../../images/Devs/mikey.png'
 import yasiney from '../../images/Devs/yasiney.png'
 
+import YasineCard from "./devs/y";
+import SadiqCard from "./devs/s";
+import MikeCard from "./devs/m";
+
 import './SplashPage.css'
 
 function SplashPage({ isLoaded }) {
 
   const divRef = useRef(null);
   useEffect(() => {
-      setTimeout(function () {
+    setTimeout(function () {
       let oldContent = document?.querySelector('.HP-Apple-Subscription-Red');
       let newContent = document?.querySelector('.HP-Apple-Subscription-White');
       if (oldContent && newContent) {
@@ -30,6 +34,7 @@ function SplashPage({ isLoaded }) {
       }
     }, 4000); // 5 seconds in milliseconds
   }, [isLoaded])
+
 
   return (
     <div className='HP-Body' style={{ backgroundColor: 'white' }}>
@@ -84,7 +89,7 @@ function SplashPage({ isLoaded }) {
 
         <div className="HP-Devs-Wrapper">
 
-          <div className="HP-ImgAndIcons-Wrapper">
+          {/* <div className="HP-ImgAndIcons-Wrapper">
             <div className="HP-Yasiney-Wrapper">
               <img className='HP-Yasiney' src={yasiney} alt='Site Dev Yasine' />
             </div>
@@ -133,8 +138,12 @@ function SplashPage({ isLoaded }) {
               <p className="HP-LinkedIn-Title">LinkedIn&nbsp;</p>
               <i id='HP-LinkedIn-Icon' className="fa-brands fa-linkedin" />
             </a>
-          </div>
-
+          </div> */}
+          <>
+            <YasineCard yasiney={yasiney} />
+            <SadiqCard sadiq={sadiq} />
+            <MikeCard mikey={mikey} />
+          </>
         </div>
       </div>
     </div>
