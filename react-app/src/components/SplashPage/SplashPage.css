@@ -1,7 +1,11 @@
 .HP-Body {
-  height: 1700px; /* Set height to 100% of viewport height */
-  width: 100%; /* Set width to 100% of parent element */
-  max-height: 1700px; /* Set maximum height to 800 pixels */
+  height: 100%;
+  /* Set height to 100% of viewport height */
+  width: 100vw;
+  /* Set width to 100% of parent element */
+  max-height: 1700px;
+  /* Set maximum height to 800 pixels */
+  overflow-x: hidden;
 }
 
 .HP-Wrapper {
@@ -12,7 +16,7 @@
 
 .HP-Main-Wrapper {
   /* display: grid; */
-  height: 100vw;
+  height: 100%;
 }
 
 .HP-Nav {
@@ -41,7 +45,7 @@
 
 .HP-Title {
   display: flex;
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 .HP-TitleAndLogo {
@@ -61,6 +65,7 @@
   width: 100%;
   height: 54px;
   overflow: hidden;
+  
 }
 
 .HP-Apple-Subscription-Red,
@@ -76,7 +81,7 @@
   transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 }
 
-.HP-Apple-Subscription-Red{
+.HP-Apple-Subscription-Red {
   opacity: 1;
   transform: translateY(0);
   font-weight: 400;
@@ -105,6 +110,7 @@
     transform: translateY(0);
     opacity: 1;
   }
+
   100% {
     transform: translateY(-100%);
     opacity: 0;
@@ -113,33 +119,40 @@
 
 .HP-Icon-Wrapper-Wrapper {
   display: flex;
-  width: 980px;
-  height: 124px;
+  height: 100px;
+  width: 100vw;
   overflow: visible;
-  flex-direction: column;
+  position: relative;
   align-items: center;
   justify-content: center;
   align-items: center;
-  margin: 0 auto; /* Add margin: 0 auto; to horizontally center the element */
-} 
+  margin: 0 auto;
+  top: 20px;
+  /* Add margin: 0 auto; to horizontally center the element */
+}
 
-.HP-Icon-Wrapper{
+.HP-Icon-Wrapper {
   display: flex;
-  align-self: center;
-  position: absolute;
-  height: 100px;
-  top: 10px;  
-  animation: shrink 3.5s forwards;
-  display: flex;
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+  position: relative;
+  top: 0px;
+  left: 0;
+  /* Optional: Adjust the left position if necessary */
+  right: 0;
+  /* Optional: Adjust the right position if necessary */
+  animation: shrink 4.5s forwards;
 }
 
 .HP-Icon {
-  filter: drop-shadow(0 0 1rem rgba(0,0,0,.5));
+  filter: drop-shadow(0 0 1rem rgba(0, 0, 0, .5));
 }
 
 @keyframes shrink {
   0% {
-    transform: scale(1.2) translate(0%,100%);
+    transform: scale(1.2) translate(0%, 100%);
   }
 
   50% {
@@ -147,12 +160,13 @@
   }
 
   100% {
-    transform: scale(0.27) translate(0,400px);
+    transform: scale(0.27) translate(0, 0px);
   }
 }
 
 
-.HP-Bottom-Text-Wrapper{
+
+.HP-Bottom-Text-Wrapper {
   display: flex;
   justify-content: center;
   margin-top: 17px;
@@ -160,30 +174,82 @@
   font-weight: 500;
 }
 
-.HP-Headline-Wrapper{
+
+
+.HP-Headline-Wrapper {
   display: flex;
   justify-content: center;
-  height: 100px;
+  height: fit-content;
+  padding-top: 10px;
 }
 
-.HP-Headline{
+.HP-Headline {
   display: flex;
   align-items: center;
   height: auto;
   width: auto;
   font-size: 7em;
   font-weight: 500;
-  position:absolute;
-  top: 190px;
+  position: relative;
+
+  margin: 0;
 }
 
-.HP-Other-Wrapper{
+@media only screen and (max-width: 1090px) {
+  .HP-Headline {
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: auto;
+    font-size: 5em;
+    font-weight: 500;
+    position: relative
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .HP-Headline {
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: auto;
+    font-size: 4em;
+    font-weight: 500;
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 630px) {
+  .HP-Headline {
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: auto;
+    font-size: 3em;
+    font-weight: 500;
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .HP-Headline {
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: auto;
+    font-size: 2em;
+    font-weight: 500;
+    position: relative;
+  }
+}
+
+.HP-Other-Wrapper {
   display: flex;
   justify-content: center;
   padding-top: 30px;
 }
 
-.HP-Other-NavBtn{
+.HP-Other-NavBtn {
   display: flex;
   background-color: rgb(250, 35, 61);
   color: white;
@@ -202,8 +268,10 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 500px; /* set the desired height of the container */
-  overflow: visible; /* hide overflowing content */
+  height: 500px;
+  /* set the desired height of the container */
+  overflow: visible;
+  /* hide overflowing content */
   align-items: center;
   justify-content: space-around;
   animation: moveUp 6s ease-in-out;
@@ -211,29 +279,74 @@
 
 }
 
-.HP-Image{
+.HP-Image {
   z-index: 1;
   opacity: .9;
   filter: drop-shadow(0 0 1.2rem black);
 }
 
 @keyframes moveUp {
-  0%{
-    transform: translate(2000px,0px);
+  0% {
+    transform: translate(2000px, 0px);
   }
-  100%{
-    transform: translate(0,0);
+
+  100% {
+    transform: translate(0, 0);
   }
 }
 
-.HP-Devs-Wrapper{
+@media only screen and (max-width: 880px) {
+  .HP-PhoneImgs-Wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-top: 60px;
+    height: 50vw;
+    /* set the desired height of the container */
+    overflow: visible;
+    /* hide overflowing content */
+    align-items: center;
+    justify-content: space-around;
+    animation: moveUp 6s ease-in-out;
+    z-index: -100;
+  }
+
+  .HP-Image {
+    z-index: 1;
+    opacity: .9;
+    height: 50vw;
+    filter: drop-shadow(0 0 1.2rem black);
+  }
+}
+
+.HP-Devs-Wrapper {
   display: flex;
   flex-direction: row;
+  position: relative;
   justify-content: space-evenly;
   transform: scale(.8);
 }
 
-.HP-Mikey-Wrapper{
+@media only screen and (max-width: 1150px) {
+  .HP-Devs-Wrapper {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-evenly;
+    transform: scale(.7);
+    width: 100vw;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .HP-Devs-Wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.HP-Mikey-Wrapper {
   display: flex;
   overflow: hidden;
   border: 1px solid black;
@@ -241,11 +354,14 @@
   height: 360px;
   border-radius: 40px;
   background-image: url('../../images/Dev-Background/haku.png');
-  background-size: cover; /* Adjust the image size to cover the entire element */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-size: cover;
+  /* Adjust the image size to cover the entire element */
+  background-repeat: no-repeat;
+  /* Prevent the image from repeating */
   background-position: right 0px top 0px;
 }
-.HP-Yasiney-Wrapper{
+
+.HP-Yasiney-Wrapper {
   display: flex;
   overflow: hidden;
   border: 1px solid black;
@@ -253,11 +369,14 @@
   height: 360px;
   border-radius: 40px;
   background-image: url('../../images/Dev-Background/kiki-2.jpeg');
-  background-size: cover; /* Adjust the image size to cover the entire element */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-size: cover;
+  /* Adjust the image size to cover the entire element */
+  background-repeat: no-repeat;
+  /* Prevent the image from repeating */
   background-position: center center;
 }
-.HP-Sadiqey-Wrapper{
+
+.HP-Sadiqey-Wrapper {
   display: flex;
   overflow: hidden;
   border: 1px solid black;
@@ -265,66 +384,78 @@
   height: 360px;
   border-radius: 40px;
   background-image: url('../../images/Dev-Background/purple.png');
-  background-size: cover; /* Adjust the image size to cover the entire element */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-size: cover;
+  /* Adjust the image size to cover the entire element */
+  background-repeat: no-repeat;
+  /* Prevent the image from repeating */
   background-position: center center;
 }
 
-.HP-Sadiqey-Wrapper:hover{
-  filter: drop-shadow(0 0 1rem rgba(0,0,0,.5));
+.HP-Sadiqey-Wrapper:hover {
+  filter: drop-shadow(0 0 1rem rgba(0, 0, 0, .5));
   animation: grow-shrink 4s infinite;
 }
-.HP-Mikey-Wrapper:hover{
-  filter: drop-shadow(0 0 1rem rgba(0,0,0,.5));
+
+.HP-Mikey-Wrapper:hover {
+  filter: drop-shadow(0 0 1rem rgba(0, 0, 0, .5));
   animation: grow-shrink 4s infinite;
 }
-.HP-Yasiney-Wrapper:hover{
-  filter: drop-shadow(0 0 1rem rgba(0,0,0,.5));
+
+.HP-Yasiney-Wrapper:hover {
+  filter: drop-shadow(0 0 1rem rgba(0, 0, 0, .5));
   animation: grow-shrink 4s infinite;
 }
 
 @keyframes grow-shrink {
-  0%,100%{
+
+  0%,
+  100% {
     transform: scale(1);
   }
-  50%{
+
+  50% {
     transform: scale(1.15);
   }
 }
 
-.HP-Mikey{
-  filter: drop-shadow(0 0 1rem rgba(0,0,0,.5));
-  padding-top: 100px;
-  padding-left: 41px;
-}
-.HP-Yasiney{
-  filter: drop-shadow(0 0 1rem rgba(0,0,0,.5));
-  transform: scale(1.2);
-  padding-right: 1700px;
-}
-.HP-Sadiqey{
-  filter: drop-shadow(0 0 1rem rgba(0,0,0,.5));
-  padding-top: 90px;
-  padding-left: 190px;
+.HP-Mikey {
+  filter: drop-shadow(0 0 1rem rgba(0, 0, 0, .5));
+  position: relative;
+  right: 0px;
+  top: 95px;
 }
 
-.HP-ImgAndIcons-Wrapper{
+.HP-Yasiney {
+  filter: drop-shadow(0 0 1rem rgba(0, 0, 0, .5));
+  transform: scale(1.2);
+  position: relative;
+  right: 160px;
+}
+
+.HP-Sadiqey {
+  filter: drop-shadow(0 0 1rem rgba(0, 0, 0, .5));
+  position: relative;
+  top: 140px;
+  left: 140px;
+}
+
+.HP-ImgAndIcons-Wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap:10px
+  gap: 10px
 }
 
-.HP-Dev-Name-Wrapper{
+.HP-Dev-Name-Wrapper {
   text-align: center;
   width: 360px;
 }
 
-.HP-Dev-Name{
+.HP-Dev-Name {
   font-size: 1.8em;
 }
 
-.HP-Github{
+.HP-Github {
   display: flex;
   background-color: rgb(250, 35, 61);
   color: white;
@@ -338,7 +469,7 @@
   font-size: 1.3em;
 }
 
-.HP-LinkedIn{
+.HP-LinkedIn {
   display: flex;
   background-color: rgb(250, 35, 61);
   color: white;
