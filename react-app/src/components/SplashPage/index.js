@@ -88,13 +88,12 @@ function SplashPage({ isLoaded }) {
         </div>
         <div className="HP-Apple-Subscription-Wrapper">
           <div className="HP-Apple-Subscription-Red">
-            Introducing the Pear Music Classical app.
-            Included with an Pear Music subscription.
+            Listen and discover. In perfect harmony.
           </div>
           <div className='HP-Apple-Subscription-White'>
-          <img src={arrow} alt='arrow' className="HP-MeetTheDevs-Arrow"/>
-            Meet The Devs
-            <img src={arrow} alt='arrow' className="HP-MeetTheDevs-Arrow"/>
+            <img src={arrow} alt='arrow' className="HP-MeetTheDevs-Arrow" />
+            Meet The Pear Music Devs
+            <img src={arrow} alt='arrow' className="HP-MeetTheDevs-Arrow" />
           </div>
         </div>
         {/* <div className="HP-Icon-Wrapper">
