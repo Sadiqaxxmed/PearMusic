@@ -15,7 +15,7 @@ import Albums from "./components/Albums";
 import ManageDiscography from "./components/Manage-Discography";
 import ScrollToTop from './components/ScrollToTop.js'
 import ExploreGenre from "./components/ExploreGenre";
-
+import NotFound from "./components/NotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,84 +25,41 @@ function App() {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
-      <Switch>
-        {isLoaded && <Route exact path='/' component={SplashPage} isLoaded={isLoaded}/>}
-        {isLoaded && (
-          <>
-            <ScrollToTop />
-            <SideBar />
-            <NavBar isLoaded={isLoaded} />
-            <Navigation />
+      <ScrollToTop />
 
-            <Route exact path="/browse">
-              <Browser />
-            </Route>
-            <Route path="/songs">
-              <Songs />
-            </Route>
-            <Route path="/allPlaylist">
-              <AllPlaylist />
-            </Route>
-            <Route path="/SinglePlaylist/:playlist_id">
-              <SinglePlaylist />
-            </Route>
-            <Route path="/albums">
-              <Albums />
-            </Route>
-            <Route path="/manage-discography">
-              <ManageDiscography />
-            </Route>
-            <Route path="/explore/:genre_type">
-              <ExploreGenre />
-            </Route>
-          </>
-        )}
+      <Switch>
+        <Route exact path="/" component={SplashPage} />
+
+        <Route path="/">
+          {isLoaded && (
+            <>
+              <SideBar />
+              <NavBar isLoaded={isLoaded} />
+              <Navigation />
+            </>
+          )}
+
+          <Switch>
+            <Route exact path="/browse" component={Browser} />
+            <Route path="/songs" component={Songs} />
+            <Route path="/allPlaylist" component={AllPlaylist} />
+            <Route path="/SinglePlaylist/:playlist_id" component={SinglePlaylist} />
+            <Route path="/albums" component={Albums} />
+            <Route path="/manage-discography" component={ManageDiscography} />
+            <Route path="/explore/:genre_type" component={ExploreGenre} />
+
+            <Route component={NotFound} />
+          </Switch>
+        </Route>
       </Switch>
     </>
-  )
-  // return (
-  //   <>
-  //     <ScrollToTop />
-  //     <SideBar />
-  //     <NavBar isLoaded={isLoaded} />
-  //     <Navigation />
-  //     {isLoaded && (
-  //       <Switch>
-
-  //         {/* <Route path="/login" >
-  //           <LoginFormPage />
-  //         </Route>
-  //         <Route path="/signup">
-  //           <SignupFormPage />
-  //         </Route> */}
-  //         <Route exact path="/browse">
-  //           <Browser />
-  //         </Route>
-  //         <Route path="/songs">
-  //           <Songs />
-  //         </Route>
-  //         <Route path="/allPlaylist">
-  //           <AllPlaylist />
-  //         </Route>
-  //         <Route path="/SinglePlaylist/:playlist_id">
-  //           <SinglePlaylist />
-  //         </Route>
-  //         <Route path="/albums">
-  //           <Albums />
-  //         </Route>
-  //         <Route path="/manage-discography">
-  //           <ManageDiscography />
-  //         </Route>
-  //         <Route path="/explore/:genre_type">
-  //           <ExploreGenre />
-  //         </Route>
-  //       </Switch>
-  //     )}
-  //   </>
-  // );
-
+  );
 }
 
 export default App;
