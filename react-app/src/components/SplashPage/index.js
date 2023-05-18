@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink, Link } from 'react-router-dom';
 
 import icon from '../../images/SplashPagePhones/pmi.png'
@@ -8,18 +8,18 @@ import silver from '../../images/SplashPagePhones/silver.png'
 import silverLock from '../../images/SplashPagePhones/silver-lock.png'
 import blue from '../../images/SplashPagePhones/blue.png'
 import blueLock from '../../images/SplashPagePhones/blue-lock.png'
+import arrow from '../../images/arrows.gif'
 
-import sadiq from '../../images/Devs/sadiqie.png'
-import mikey from '../../images/Devs/mikey.png'
-import yasiney from '../../images/Devs/yasiney.png'
-
-import YasineCard from "./devs/y";
-import SadiqCard from "./devs/s";
-import MikeCard from "./devs/m";
+import YasineCard from "./devs/YasineCard";
+import SadiqCard from "./devs/SadiqCard";
+import MikeCard from "./devs/MikeCard";
 
 import './SplashPage.css'
 
 function SplashPage({ isLoaded }) {
+
+  const [devList, setDevList] = useState([])
+  const [showFooter, setShowFooter] = useState(true)
 
   const divRef = useRef(null);
   useEffect(() => {
@@ -35,7 +35,43 @@ function SplashPage({ isLoaded }) {
     }, 4000); // 5 seconds in milliseconds
   }, [isLoaded])
 
+  const devs = [YasineCard, SadiqCard, MikeCard]
 
+  const devRand = (devs) => {
+    let randDevs = []
+
+    //make a copy (it is not good practice to mutate data passed into the function)
+    let tempList = devs.slice()
+
+    //pick devs at random
+    while (tempList.length > 0) {
+      let randomIdx = Math.floor(Math.random() * tempList.length);
+      let randomEle = tempList.splice(randomIdx, 1)[0]
+      randDevs.push(randomEle)
+    }
+    return randDevs
+  }
+
+  useEffect(() => {
+    setDevList(devRand(devs))
+
+    // let prevScrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+    // const handleScroll = () => {
+    //   const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+    //   const isScrollingUp = currentScrollY > prevScrollY;
+    //   prevScrollY = currentScrollY;
+
+    //   setShowFooter(!isScrollingUp);
+    // };
+
+    // window.addEventListener('scroll', handleScroll);
+    // return () => {
+    //   window.removeEventListener('scroll', handleScroll);
+    // };
+  }, [])
+
+  // console.log(card1)
   return (
     <div className='HP-Body' style={{ backgroundColor: 'white' }}>
       <div className="HP-Main-Wrapper">
@@ -56,8 +92,9 @@ function SplashPage({ isLoaded }) {
             Included with an Pear Music subscription.
           </div>
           <div className='HP-Apple-Subscription-White'>
-            Introducing the Pear Music Classical app.
-            Included with an Pear Music subscription.
+          <img src={arrow} alt='arrow' className="HP-MeetTheDevs-Arrow"/>
+            Meet The Devs
+            <img src={arrow} alt='arrow' className="HP-MeetTheDevs-Arrow"/>
           </div>
         </div>
         {/* <div className="HP-Icon-Wrapper">
@@ -87,63 +124,18 @@ function SplashPage({ isLoaded }) {
           <img className='HP-Image' src={blueLock} alt='' />
         </div>
 
+        {/* {showFooter && (
+          <div className="HP-MeetTheDevs-Wrapper">
+            <img src={arrow} alt='arrow' className="HP-MeetTheDevs-Arrow"/>
+            <p className="HP-MeetTheDevs">Meet the Devs</p>
+            <img src={arrow} alt='arrow' className="HP-MeetTheDevs-Arrow"/>
+          </div>
+        )} */}
+
         <div className="HP-Devs-Wrapper">
-
-          {/* <div className="HP-ImgAndIcons-Wrapper">
-            <div className="HP-Yasiney-Wrapper">
-              <img className='HP-Yasiney' src={yasiney} alt='Site Dev Yasine' />
-            </div>
-            <div className="HP-Dev-Name-Wrapper">
-              <p className="HP-Dev-Name">Yasine Benzekri</p>
-            </div>
-            <a href='https://github.com/Yasine-ben' className="HP-Github">
-              <p className="HP-Github-Title">Github&nbsp;</p>
-              <i id='HP-Github-Icon' className="fa-brands fa-github" />
-            </a>
-            <a href='https://www.linkedin.com/in/yasine-benzekri-389457271/' className="HP-LinkedIn">
-              <p className="HP-LinkedIn-Title">LinkedIn&nbsp;</p>
-              <i id='HP-LinkedIn-Icon' className="fa-brands fa-linkedin" />
-            </a>
-          </div>
-
-          <div className="HP-ImgAndIcons-Wrapper">
-            <div className="HP-Sadiqey-Wrapper">
-              <img className="HP-Sadiqey" src={sadiq} alt='Site Dev Sadiq' />
-            </div>
-            <div className="HP-Dev-Name-Wrapper">
-              <p className="HP-Dev-Name">Sadiq Ahmed</p>
-            </div>
-            <a href='https://github.com/Sadiqaxxmed' className="HP-Github">
-              <p className="HP-Github-Title">Github&nbsp;</p>
-              <i id='HP-Github-Icon' className="fa-brands fa-github" />
-            </a>
-            <a href='https://www.linkedin.com/in/sadiqaxxmed/' className="HP-LinkedIn">
-              <p className="HP-LinkedIn-Title">LinkedIn&nbsp;</p>
-              <i id='HP-LinkedIn-Icon' className="fa-brands fa-linkedin" />
-            </a>
-          </div>
-
-          <div className="HP-ImgAndIcons-Wrapper">
-            <div className="HP-Mikey-Wrapper">
-              <img className="HP-Mikey" src={mikey} alt='Site Dev Mike' />
-            </div>
-            <div className="HP-Dev-Name-Wrapper">
-              <p className="HP-Dev-Name">Michael Salariosa</p>
-            </div>
-            <a href='https://github.com/mike-650' className="HP-Github">
-              <p className="HP-Github-Title">Github&nbsp;</p>
-              <i id='HP-Github-Icon' className="fa-brands fa-github" />
-            </a>
-            <a href='https://www.linkedin.com/in/michael-s-688653118/' className="HP-LinkedIn">
-              <p className="HP-LinkedIn-Title">LinkedIn&nbsp;</p>
-              <i id='HP-LinkedIn-Icon' className="fa-brands fa-linkedin" />
-            </a>
-          </div> */}
-          <>
-            <YasineCard yasiney={yasiney} />
-            <SadiqCard sadiq={sadiq} />
-            <MikeCard mikey={mikey} />
-          </>
+          {devList.map((Card, index) => (
+            <Card key={index} />
+          ))}
         </div>
       </div>
     </div>

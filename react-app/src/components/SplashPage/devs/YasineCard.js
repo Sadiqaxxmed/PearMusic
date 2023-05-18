@@ -1,4 +1,5 @@
-const YasineCard = ({ yasiney }) => {
+import yasiney from '../../../images/Devs/yasiney.png'
+const YasineCard = () => {
     return (
         <div className="HP-ImgAndIcons-Wrapper">
             <div className="HP-Yasiney-Wrapper">
