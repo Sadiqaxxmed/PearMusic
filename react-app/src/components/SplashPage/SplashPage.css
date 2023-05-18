@@ -101,11 +101,11 @@
   justify-content: space-around;
   align-items: center;
   position: relative;
-  bottom: 8px;
+  bottom: 3px;
 }
 
 .HP-MeetTheDevs-Arrow{
-  height: 30px;
+  height: 20px;
   opacity: .3;
 }
 
