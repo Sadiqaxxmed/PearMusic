@@ -1,9 +1,8 @@
 .HP-Body {
-  height: 100%;
   /* Set height to 100% of viewport height */
   width: 100vw;
   /* Set width to 100% of parent element */
-  max-height: 1700px;
+  /* max-height: 1700px; */
   /* Set maximum height to 800 pixels */
   overflow-x: hidden;
 }
