@@ -57,6 +57,11 @@ function App() {
             <Route path="/explore/:genre_type">
               <ExploreGenre />
             </Route>
+
+            /* 404 */
+            <Route>
+              <h1 className="ERR">The page you're looking for can't be found</h1>
+            </Route>
           </>
         )}
       </Switch>

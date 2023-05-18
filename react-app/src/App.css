@@ -6,6 +6,15 @@ body {
 
 }
 
+.ERR{
+  color: white;
+  position: fixed;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  font-size: 1em;
+}
+
 /* right side webpage scroll bar css made it look a lil btr */
 
 /* body::-webkit-scrollbar {
