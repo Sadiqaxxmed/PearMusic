@@ -428,7 +428,7 @@ input.NB-Progress::-webkit-slider-thumb {
 .Mobile-music-player-container{
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 10px; 
   padding-left: 10px;
 }
 
