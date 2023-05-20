@@ -8,13 +8,16 @@ import { thunkAllAlbums, thunkResetAlbums } from "../../store/album";
 import { thunkAllSongs, thunkResetSongs, thunkLikedSongs, thunkLikeSongs, thunkDeleteLikedSongs } from "../../store/song";
 import { thunkPlayNow } from "../../store/queue";
 
+
+
+
 import { thunkAllPlaylists, thunkUserPlaylists } from "../../store/playlist";
 import ToolTipMenu from "../ToolTip";
 
 
 import './Browse.css'
 import 'swiper/swiper.min.css'
-import 'swiper/modules/navigation/navigation.min.css'
+// import 'swiper/modules/navigation/navigation.min.css'
 import KPop from '../../images/Fin-Cards(smaller)/kpop.gif'
 import Pop from '../../images/Fin-Cards(smaller)/pop.gif'
 import Rap from '../../images/Fin-Cards(smaller)/rap.gif'
@@ -33,6 +36,7 @@ function Browser() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cardId, setCardId] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+
   // const shuffledAlbums = albums
 
   useEffect(() => {

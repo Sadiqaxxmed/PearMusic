@@ -7,14 +7,15 @@
 }
 
 @media only screen and (max-width: 1000px) {
-  .BR-body{
+  .BR-body {
     z-index: -1;
     padding-top: 65px;
     padding-left: 3%;
     padding-right: 3%;
     padding-bottom: 100px;
     align-items: center;
-    min-height: calc(100% + 50px); /* Adjust the value to control the amount of extra space */
+    min-height: calc(100% + 50px);
+    /* Adjust the value to control the amount of extra space */
   }
 }
 
@@ -35,7 +36,7 @@
 }
 
 @media only screen and (max-width: 1000px) {
-  .BR-images{
+  .BR-images {
     width: 30.5vw;
   }
 }
@@ -51,6 +52,7 @@
   from {
     transform: translateY(0);
   }
+
   to {
     transform: translateY(-10px);
   }
@@ -67,7 +69,7 @@
   background-image: url('../../images/play_arrow.png');
 }
 
-.BR-Top{
+.BR-Top {
   color: rgb(238, 238, 238);
   font-size: 34px;
   font-weight: 500;
@@ -110,13 +112,14 @@
 .BR-album-images:hover {
   cursor: pointer;
 }
+
 /*
 .BR-song-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 } */
 
-.BR-song-grid-container-wrapper{
+.BR-song-grid-container-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -126,23 +129,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 20px;
-}
-
-@media only screen and (max-width: 1400px) {
-  .BR-song-grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 20px;
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  .BR-song-grid-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    padding-top: 20px;
-    margin: 0;
-  }
 }
 
 .BR-song-section {
@@ -215,6 +201,25 @@
     width: fit-content;
     margin-left: 60px;
   }
+}
+
+
+@media only screen and (max-width: 1400px) {
+  .BR-song-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .BR-song-grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-top: 20px;
+    margin: 0;
+  }
+
 }
 
 .BR-heart-icon {
