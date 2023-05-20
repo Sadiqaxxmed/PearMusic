@@ -1,6 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar } from 'swiper';
+import { Navigation, Pagination, Scrollbar, EffectCoverflow } from 'swiper';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -32,8 +32,21 @@ function Browser() {
   const [loaded, setLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [cardId, setCardId] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  // const shuffledAlbums = albums
 
-  const shuffledAlbums = albums
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust the value according to your mobile range
+    };
+
+    checkScreenSize();
+
+    window.addEventListener('resize', checkScreenSize);
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+    };
+  }, []);
 
   useEffect(() => {
     dispatch(thunkAllSongs());
@@ -83,15 +96,48 @@ function Browser() {
   return (
     setLoaded && (
       <div className="BR-body">
-        <h1 className="BR-labels">
-          Browse
+        <h1 className="BR-Top">
+          Listen Now
         </h1>
-        <div className="BR-browse-container">
-          <img className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
-          <img className="BR-images" src={Pop} alt="Browse Card" onClick={() => history.push('/explore/Pop')} />
-          <img className="BR-images" src={Rap} alt="Browse Card" onClick={() => history.push('/explore/Rap')} />
-          <img className="BR-images" src={RnB} alt="Browse Card" onClick={() => history.push('/explore/R&B')} />
-        </div>
+        {!isMobile ? (
+          <div className="BR-browse-container">
+            <img className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
+            <img className="BR-images" src={Pop} alt="Browse Card" onClick={() => history.push('/explore/Pop')} />
+            <img className="BR-images" src={Rap} alt="Browse Card" onClick={() => history.push('/explore/Rap')} />
+            <img className="BR-images" src={RnB} alt="Browse Card" onClick={() => history.push('/explore/R&B')} />
+          </div>)
+          :
+          <div className="BR-Rec-Cards">
+            <Swiper
+              effect={"coverflow"}
+              grabCursor={true}
+              centeredSlides={false}
+              slidesPerView={2.1}
+              coverflowEffect={{
+                rotate: 0,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              pagination={true}
+              modules={[EffectCoverflow, Pagination]}
+              className="mySwiper"
+            >
+              <SwiperSlide>
+                <img className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img className="BR-images" src={Pop} alt="Browse Card" onClick={() => history.push('/explore/Pop')} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img className="BR-images" src={Rap} alt="Browse Card" onClick={() => history.push('/explore/Rap')} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img className="BR-images" src={RnB} alt="Browse Card" onClick={() => history.push('/explore/R&B')} />
+              </SwiperSlide>
+            </Swiper>
+          </div>}
         <h1 className="BR-labels">Songs</h1>
         <div className="BR-song-grid-container-wrapper">
           <div className="BR-song-grid-container">
@@ -140,7 +186,7 @@ function Browser() {
         </div>
 
 
-        <h1 className="BR-labels" style={{ marginBottom: '0' }}>Albums</h1>
+        {/* <h1 className="BR-labels" style={{ marginBottom: '0' }}>Albums</h1>
         {albums && (
           <Swiper
             modules={[Navigation, Pagination, Scrollbar]}
@@ -158,7 +204,7 @@ function Browser() {
               </SwiperSlide>
             ))}
           </Swiper>
-        )}
+        )} */}
       </div>
     )
   )

@@ -33,6 +33,12 @@
   transition: transform 0.3s ease-in-out;
 }
 
+@media only screen and (max-width: 1000px) {
+  .BR-images{
+    width: 30.5vw;
+  }
+}
+
 .BR-images:hover {
   cursor: pointer;
   box-shadow: 10px 10px 10px black;
@@ -60,6 +66,12 @@
   background-image: url('../../images/play_arrow.png');
 }
 
+.BR-Top{
+  color: rgb(238, 238, 238);
+  font-size: 34px;
+  font-weight: 500;
+  padding-bottom: 12px;
+}
 
 .BR-labels {
   color: rgb(238, 238, 238);
