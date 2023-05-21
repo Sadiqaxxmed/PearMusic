@@ -24,10 +24,12 @@
   justify-content: space-evenly;
 }
 
+
+
 .BR-images {
   margin-right: 2rem;
   border-radius: 10px;
-  width: 17.5%;
+  width: 15.5%;
   box-shadow: 3px 3px 5px black;
   transition: box-shadow 0.3s ease-in-out;
   object-fit: cover;
@@ -35,17 +37,20 @@
   transition: transform 0.3s ease-in-out;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 768px) {
   .BR-images {
-    width: 30.5vw;
+    display: flex;
+    width: 30vw;
+    max-height: 50vw;
+    
   }
 }
 
 .BR-images:hover {
   cursor: pointer;
   box-shadow: 10px 10px 10px black;
-  opacity: .8;
-  animation: up-down 1s ease-in-out infinite alternate;
+  /* opacity: .8; */
+  /* animation: up-down 1s ease-in-out infinite alternate; */
 }
 
 @keyframes up-down {
