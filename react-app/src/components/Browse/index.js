@@ -31,13 +31,14 @@ function Browser() {
   const albums = Object.values(useSelector(state => state.albums.allAlbums));
   const songs = Object.values(useSelector(state => state.songs.allSongs));
   const likedSongs = Object.values(useSelector(state => state.songs.likedSongs)).map(song => song.id);
+  const allPlaylists = Object.values(useSelector(state => state.playlists.allPlaylists));
 
   const [loaded, setLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [cardId, setCardId] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
 
-  // const shuffledAlbums = albums
+  const shuffledAlbums = albums
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -103,14 +104,14 @@ function Browser() {
         <h1 className="BR-Top">
           Listen Now
         </h1>
-        {!isMobile ? (
+        {/* {!isMobile ? (
           <div className="BR-browse-container">
             <img className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
             <img className="BR-images" src={Pop} alt="Browse Card" onClick={() => history.push('/explore/Pop')} />
             <img className="BR-images" src={Rap} alt="Browse Card" onClick={() => history.push('/explore/Rap')} />
             <img className="BR-images" src={RnB} alt="Browse Card" onClick={() => history.push('/explore/R&B')} />
-          </div>)
-          :
+          </div>) */}
+          {/* : */}
           <div className="BR-Rec-Cards">
             <Swiper
               effect={"coverflow"}
@@ -129,15 +130,6 @@ function Browser() {
               pagination={true}
               modules={[EffectCoverflow, Pagination]}
               className="mySwiper-BR"
-              // slidesPerView={3}
-              // spaceBetween={30}
-              // loop={true}
-              // pagination={{
-              //   clickable: true,
-              // }}
-              // navigation={true}
-              // modules={[Pagination, Navigation]}
-              // className="mySwiper"
             >
               <SwiperSlide>
                 <img className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
@@ -163,8 +155,10 @@ function Browser() {
               <SwiperSlide>
                 <img className="BR-images" src={RnB} alt="Browse Card" onClick={() => history.push('/explore/R&B')} />
               </SwiperSlide>
+              
             </Swiper>
-          </div>}
+          </div>
+          {/* } */}
         <h1 className="BR-labels">Songs</h1>
         <div className="BR-song-grid-container-wrapper">
           <div className="BR-song-grid-container">
@@ -213,8 +207,8 @@ function Browser() {
         </div>
 
 
-        {/* <h1 className="BR-labels" style={{ marginBottom: '0' }}>Albums</h1>
-        {albums && (
+        {/* <h1 className="BR-labels" style={{ marginBottom: '0' }}>Albums</h1> */}
+        {/* {albums && (
           <Swiper
             modules={[Navigation, Pagination, Scrollbar]}
             slidesPerView={4}
