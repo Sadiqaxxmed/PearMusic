@@ -117,8 +117,8 @@ function Browser() {
               grabCursor={true}
               centeredSlides={true}
               loop={true}
-              slidesPerView={2}
-              spaceBetween={1}
+              slidesPerView={3}
+              spaceBetween={0}
               coverflowEffect={{
                 rotate: 0,
                 stretch: 0,
@@ -139,6 +139,18 @@ function Browser() {
               // modules={[Pagination, Navigation]}
               // className="mySwiper"
             >
+              <SwiperSlide>
+                <img className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img className="BR-images" src={Pop} alt="Browse Card" onClick={() => history.push('/explore/Pop')} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img className="BR-images" src={Rap} alt="Browse Card" onClick={() => history.push('/explore/Rap')} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img className="BR-images" src={RnB} alt="Browse Card" onClick={() => history.push('/explore/R&B')} />
+              </SwiperSlide>
               <SwiperSlide>
                 <img className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
               </SwiperSlide>

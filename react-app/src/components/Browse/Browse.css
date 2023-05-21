@@ -40,9 +40,10 @@
 @media only screen and (max-width: 768px) {
   .BR-images {
     display: flex;
-    width: 30vw;
-    max-height: 50vw;
-    
+    width: 35vw;
+    max-width: 200px;
+    justify-content: center;
+    align-items: center;
   }
 }
 
