@@ -1,6 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, EffectCoverflow } from 'swiper';
+import { Navigation, Pagination, Scrollbar, EffectCoverflow, EffectCards } from 'swiper';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -115,18 +115,29 @@ function Browser() {
             <Swiper
               effect={"coverflow"}
               grabCursor={true}
-              centeredSlides={false}
-              slidesPerView={2.1}
+              centeredSlides={true}
+              loop={true}
+              slidesPerView={2}
+              spaceBetween={1}
               coverflowEffect={{
                 rotate: 0,
                 stretch: 0,
                 depth: 100,
                 modifier: 1,
-                slideShadows: true,
+                slideShadows: false,
               }}
               pagination={true}
               modules={[EffectCoverflow, Pagination]}
-              className="mySwiper"
+              className="mySwiper-BR"
+              // slidesPerView={3}
+              // spaceBetween={30}
+              // loop={true}
+              // pagination={{
+              //   clickable: true,
+              // }}
+              // navigation={true}
+              // modules={[Pagination, Navigation]}
+              // className="mySwiper"
             >
               <SwiperSlide>
                 <img className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
