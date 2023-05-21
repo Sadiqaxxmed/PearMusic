@@ -57,7 +57,11 @@ function SinglePlaylist() {
     for (let i = 0; i < songs.length; i++) {
       let duration = songs[i].duration;
       minutes += Math.floor(duration);
-      duration?.toString().split('.').forEach((second, i) => i % 2 != 0 ? seconds += parseInt(second) : false)
+      duration?.toString().split('.').forEach((second, i) => {
+        if (i % 2 !== 0) {
+          seconds += parseInt(second);
+        }
+      });
     }
 
     return `${minutes} MINUTES, ${seconds} SECONDS`
