@@ -15,7 +15,9 @@
     padding-bottom: 100px;
     align-items: center;
     min-height: calc(100% + 50px);
-    /* Adjust the value to control the amount of extra space */
+  }
+  .mySwiper-BR{
+    height: 320px;
   }
 }
 
@@ -24,12 +26,11 @@
   justify-content: space-evenly;
 }
 
-
-
 .BR-images {
   margin-right: 2rem;
   border-radius: 10px;
-  width: 15.5%;
+  width: 35vw;
+  max-width: 200px;
   box-shadow: 3px 3px 5px black;
   transition: box-shadow 0.3s ease-in-out;
   object-fit: cover;
@@ -37,7 +38,7 @@
   transition: transform 0.3s ease-in-out;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1000px) {
   .BR-images {
     display: flex;
     width: 35vw;
