@@ -38,7 +38,15 @@ function Browser() {
   const [cardId, setCardId] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
 
+  const mIcon = 'M-icon-section'
+  const dIcon = 'icon-section'
   const shuffledAlbums = albums
+
+  function checkM(){
+    if(isMobile){ 
+      return mIcon
+    }else return dIcon
+  }
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -158,7 +166,6 @@ function Browser() {
               
             </Swiper>
           </div>
-          {/* } */}
         <h1 className="BR-labels">Songs</h1>
         <div className="BR-song-grid-container-wrapper">
           <div className="BR-song-grid-container">
@@ -177,7 +184,7 @@ function Browser() {
                     </p>
                   </div>
                 </div>
-                <div className="icon-section">
+                <div className={checkM()}>
                   {user ? (
                     <>
                       <i

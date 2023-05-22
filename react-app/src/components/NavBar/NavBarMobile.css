@@ -1,0 +1,100 @@
+.M-NB-Body {
+    display: flex;
+    /* background-color:red; */
+    /* opacity: 0.91; */
+    height: 128px;
+    width: 100vw;
+    max-width: 100vw;
+    z-index: 10;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    gap: 20px;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.M-NB-Player-Wrapper-Wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.M-NB-Player-Wrapper {
+    display: flex;
+    background-color: green;
+    height: 57px;
+    width: 90vw;
+    border-radius: 10px;
+    align-self: center;
+    align-items: center;
+}
+
+
+.M-NB-SongInfo-Wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.M-NB-SongImg-Wrapper {
+    margin-left: 10px;
+    width: 44px;
+    height: 44px;
+}
+
+.M-NB-SongImg {
+    width: 44px;
+    height: 44px;
+    border-radius: 5px;
+
+}
+
+.M-NB-SongTitle-Wrapper {}
+
+.M-NB-SongTitle {
+    font-size: 1em;
+    font-weight: 500;
+    color: white;
+}
+
+.M-NB-SongArtist {
+    font-size: .8em;
+    color: pink;
+}
+
+.M-NB-Buttons-Wrapper {
+    position: absolute;
+    right: 10%;
+}
+
+
+.M-NB-ProgressBar-Wrapper {
+    position: relative;
+    bottom: 16px;
+    background-color: transparent;
+    width: 88vw;
+    height: fit-content;
+    z-index: 1;
+}
+
+.M-NB-Slider {}
+
+
+
+
+
+
+
+
+
+.M-NB-Nav {
+    background-color: yellow;
+    height: 60px;
+    width: 99vw;
+    position: absolute;
+    bottom: 0;
+}

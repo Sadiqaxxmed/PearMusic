@@ -5,12 +5,13 @@ import Menu from "./Menu/index";
 import noSong from '../../images/Music.png'
 import pear from '../../images/pear2.png'
 import ReactPlayer from 'react-player'
-import './NavBar.css'
+import './NavBarNew.css'
+import './NavBarMobile.css'
 import { thunkRemoveSong } from "../../store/queue";
 
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Slider from '@mui/material/Slider';
+import ColorThief from 'colorthief'
+import CustomSlider from "./CustomSlider";
+
 
 
 function NavBar() {
@@ -20,7 +21,7 @@ function NavBar() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [hasPlayed, setHasPlayed] = useState(false)
-  const [volume, setVolume] = useState(30)
+  const [volume, setVolume] = useState(50)
   const [playPause, setPlayPause] = useState(false)
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0)
@@ -36,6 +37,28 @@ function NavBar() {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    const getDominantColor = (url) => {
+      const image = new Image();
+      image.crossOrigin = 'Anonymous';
+      image.src = url;
+
+      image.addEventListener('load', () => {
+        const colorThief = new ColorThief();
+        const color = colorThief.getColor(image);
+        const averageColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+
+        const playerWrapper = document.querySelector('.M-NB-Player-Wrapper');
+        if (playerWrapper) {
+          playerWrapper.style.backgroundColor = averageColor;
+        }
+      });
+    };
+    if (coverImage !== undefined) {
+      getDominantColor(coverImage);
+    }
+  }, [songTitle])
+
+  useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth <= 768); // Adjust the value according to your mobile range
     };
@@ -47,6 +70,7 @@ function NavBar() {
       window.removeEventListener('resize', checkScreenSize);
     };
   }, []);
+
 
   // Logic to advance the song queue
   const advanceSongQueue = async () => {
@@ -70,6 +94,10 @@ function NavBar() {
     if (songUrl) {
       setToggleIcon('fa-solid fa-pause fa-xl icon-hover-pointer')
     }
+    else {
+      setHasPlayed(false)
+      setPlayPause(false)
+    }
     // setAlbumTitle(currentSong.albumTitle) need to pass in album title to single song
   }, [songUrl, queue[0]])
 
@@ -80,6 +108,7 @@ function NavBar() {
 
   //FIX THIS... THE LOGIC IS WONKY
   function playPauseFunc() {
+    console.log(queue)
     setHasPlayed(true)
     if (!playPause) {
       setToggleIcon('fa-solid fa-pause fa-xl icon-hover-pointer')
@@ -123,9 +152,10 @@ function NavBar() {
   }
 
   return (
-    <div className="NB-body">
-      {!isMobile && (
-        <div className="music-player-container-wrapper">
+    <div className="NB-body-Wrapper">
+      {!isMobile ? (
+        // Content for Desktop
+        <div className="NB-body">
           <div className="music-player-container">
             <div> <i className="fa-solid fa-shuffle fa-sm icon-hover-pointer" id='shuffle' onClick={((e) => alert('***SHUFFLE FEATURE COMING SOON***'))}></i> </div>
             <div> <i onClick={handleSeekDown} className="fa-solid fa-backward fa icon-hover-pointer" id='backwards'></i> </div>
@@ -134,91 +164,121 @@ function NavBar() {
             <div> <i onClick={handleSeekUp} className="fa-solid fa-forward fa icon-hover-pointer" id='forwards'></i> </div>
             <div> <i className="fa-solid fa-repeat fa-sm icon-hover-pointer" id='repeat' onClick={((e) => alert('***REPEAT FEATURE COMING SOON***'))}></i> </div>
           </div>
-        </div>)}
-      <div className="NB-Wrapper">
-        {!hasPlayed
-          ? (<img className="NB-Img" src={noSong} alt='music' />)
-          : (<img className="NB-Img" src={coverImage} alt='cover' />)}
-
-        <div className='NB-MUSIC-BLOCK'>
-          {/* Render ReactPlayer component and pass ref */}
-          <ReactPlayer
-            ref={playerRef}
-            url={songUrl}
-            controls={false}
-            volume={volume / 100}
-            playing={playPause}
-            onProgress={(progress) => setCurrentTime(progress.playedSeconds)}
-            played={currentTime}
-            onDuration={(duration) => setDuration(duration)}
-            style={{ display: 'none' }}
-            onEnded={((e) => advanceSongQueue())}
-          />
-          {hasPlayed
-            ? <>
-              <div className="NB-Player-CurrentSong-Wrapper">
-                <div className="NB-Player-CurrentSong">{songTitle}</div>
-                <div className="NB-Player-ArtistAlbum">
-                  <div className="NB-Player-Artist">{songArtist}</div>&nbsp;&nbsp; {/* change to -- equvalent emoji or symbol idk just no middle space in it like this (-  -)  */}
-                  <div className="NB-Player-Album">(album name)</div>
-                </div>
-              </div>
-              <div className="NB-Player-Times">
-                <div className="NB-Player-CurrentTime">{convertDecimalToTime(currentTime)}</div>
-                <div className="NB-Player-TimeLeft">-{convertDecimalToTime(duration - currentTime)}</div>
-              </div>
-              <input className='NB-Progress' type="range" value={currentTime} min='0' max={duration} onChange={(e) => handleProgressChange(e.target.value)} />
-            </>
-            : <img className="NB-Pear" src={pear} alt='pear' />
-          }
-        </div>
-      </div>
-      {!isMobile &&
-        (<div className="NB-Volume-Slider">
-          <i className="fa-solid fa-volume-low" id='music'></i>
-          <input type="range" min="0" max="100" value={volume} onChange={(e) => setVolume(e.target.value)} className="slider" id="myslider" />
-        </div>)}
-
-      <div className="NB-Symbol">
-      </div>
-      <div className="NB-Menu-Wrap">
-        {/* <i className="fa-solid fa-bars" id='burger' onClick={toggleMenu}/> */}
-        <ProfileButton user={sessionUser} onClick={toggleMenu} />
-        {isMenuOpen && <Menu />} {/*opens menu when clicked on*/}
-      </div>
-
-      {isMobile && (
-        <div className="NB-Mobile-Footer-Wrapper">
-
-          <div className="Mobile-music-player-container-wrapper">
-            <div className="Mobile-music-player-container">
-              <div> <i className="fa-solid fa-shuffle fa-sm icon-hover-pointer" id='shuffle' onClick={((e) => alert('***SHUFFLE FEATURE COMING SOON***'))}></i> </div>
-              <div> <i onClick={handleSeekDown} className="fa-solid fa-backward fa icon-hover-pointer" id='backwards'></i> </div>
-              <div> <i onClick={playPauseFunc} className={toggleIcon} id='play'></i> </div>
-              {/* <div> <i onClick={playPauseFunc} className="fa-solid fa-pause fa-xl" id='play'></i> </div> */}
-              <div> <i onClick={handleSeekUp} className="fa-solid fa-forward fa icon-hover-pointer" id='forwards'></i> </div>
-              <div> <i className="fa-solid fa-repeat fa-sm icon-hover-pointer" id='repeat' onClick={((e) => alert('***REPEAT FEATURE COMING SOON***'))}></i> </div>
+          <div className="NB-Wrapper">
+            {!hasPlayed
+              ? (<img className="NB-Img" src={noSong} alt='music' />)
+              : (<img className="NB-Img" src={coverImage} alt='cover' />)}
+            <div className='NB-MUSIC-BLOCK'>
+              {/* Render ReactPlayer component and pass ref */}
+              <ReactPlayer
+                ref={playerRef}
+                url={songUrl}
+                controls={false}
+                volume={volume / 100}
+                playing={playPause}
+                onProgress={(progress) => setCurrentTime(progress.playedSeconds)}
+                played={currentTime}
+                onDuration={(duration) => setDuration(duration)}
+                style={{ display: 'none' }}
+                onEnded={((e) => advanceSongQueue())}
+              />
+              {hasPlayed
+                ? <>
+                  <div className="NB-Player-CurrentSong-Wrapper">
+                    <div className="NB-Player-CurrentSong">{songTitle}</div>
+                    <div className="NB-Player-ArtistAlbum">
+                      <div className="NB-Player-Artist">{songArtist}</div>&nbsp;&nbsp; {/* change to -- equvalent emoji or symbol idk just no middle space in it like this (-  -)  */}
+                      <div className="NB-Player-Album">(album name)</div>
+                    </div>
+                  </div>
+                  <div className="NB-Player-Times">
+                    <div className="NB-Player-CurrentTime">{convertDecimalToTime(currentTime)}</div>
+                    <div className="NB-Player-TimeLeft">-{convertDecimalToTime(duration - currentTime)}</div>
+                  </div>
+                  <input className='NB-Progress' type="range" value={currentTime} min='0' max={duration} onChange={(e) => handleProgressChange(e.target.value)} />
+                </>
+                : <img className="NB-Pear" src={pear} alt='pear' />
+              }
             </div>
           </div>
+          <div className="NB-Volume-Slider">
+            <i className="fa-solid fa-volume-low" id='music'></i>
+            <input type="range" min="0" max="100" value={volume} onChange={(e) => setVolume(e.target.value)} className="slider" id="myslider" />
+          </div>
+          <div className="NB-Symbol">
+          </div>
+          <div className="NB-Menu-Wrap">
+            {/* <i className="fa-solid fa-bars" id='burger' onClick={toggleMenu}/> */}
+            <ProfileButton user={sessionUser} onClick={toggleMenu} />
+            {isMenuOpen && <Menu />} {/*opens menu when clicked on*/}
+          </div>
+        </div>
+      )
 
 
-          <div className="React-Slider-Wrap">
-            <Box sx={{ width: 150 }} className="NB-Volume-React-Slider">
-              <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
-                <i className="fa-solid fa-volume-low" id='Mobile-Music'></i>
-                <Slider className="react-slider" aria-label="Volume" value={volume} onChange={((e) => setVolume(e.target.value))} />
-                <i className="fa-solid fa-volume-high" id='Mobile-Music'></i>
-              </Stack>
-            </Box>
+        :
+
+        (
+
+          <div className="M-NB-Body">
+
+            {songArtist && songTitle && (
+
+              //show teeny weenie weency player if song is playing currently
+              <div className="M-NB-Player-Wrapper-Wrapper">
+                <div className="M-NB-Player-Wrapper">
+                  <ReactPlayer
+                    ref={playerRef}
+                    url={songUrl}
+                    controls={false}
+                    volume={volume / 100}
+                    playing={playPause}
+                    onProgress={(progress) => setCurrentTime(progress.playedSeconds)}
+                    played={currentTime}
+                    onDuration={(duration) => setDuration(duration)}
+                    style={{ display: 'none' }}
+                    onEnded={((e) => advanceSongQueue())}
+                  />
+                  <div className="M-NB-SongInfo-Wrapper">
+                    <div className="M-NB-SongImg-Wrapper">
+                      <img src={coverImage} alt='' className="M-NB-SongImg" />
+                    </div>
+                    <div className="M-NB-SongTitle-Wrapper">
+                      <div className="M-NB-SongTitle">{songTitle}</div>
+                      <div className="M-NB-SongArtist">{songArtist}</div>
+                    </div>
+                  </div>
+                  <div className="M-NB-Buttons-Wrapper">
+                    <div className="M-NB-Play">
+                      <i onClick={playPauseFunc} className={toggleIcon} id='play'></i>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="M-NB-ProgressBar-Wrapper">
+                  <CustomSlider
+                    currentTime={currentTime}
+                    duration={duration}
+                    handleProgressChange={handleProgressChange}
+                  />
+                </div>
+              </div>
+            )}
+
+            <div className="M-NB-Nav">
+
+            </div>
+
+
           </div>
 
+        )
 
-        </div>
-      )}
 
+      }
 
     </div>
-  )
+  );
 }
 
 
