@@ -14,7 +14,7 @@
   z-index: 100;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1050px) {
   .SB-body{
     display: none;
     width: 0;

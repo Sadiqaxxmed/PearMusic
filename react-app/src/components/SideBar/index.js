@@ -23,7 +23,7 @@ function SideBar() {
                 </h2>
             </NavLink>
             <div className='SB-search-field-div'>
-                <span className="material-symbols-outlined">
+            <span className="material-symbols-outlined">
                     search
                 </span>
                 <form onSubmit={() => alert('Feature Coming Soon!')}>
