@@ -25,7 +25,7 @@ const CustomSlider = ({ currentTime, duration, handleProgressChange }) => {
             },
         },
         '& .MuiSlider-rail': {
-            opacity: 1,
+            opacity: .7,
             width:'88vw',
             height:'2px',
             backgroundColor:'rgb(49,49,49)',

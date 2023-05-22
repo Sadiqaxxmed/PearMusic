@@ -60,7 +60,7 @@ function NavBar() {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 768); // Adjust the value according to your mobile range
+      setIsMobile(window.innerWidth <= 1050); // Adjust the value according to your mobile range
     };
 
     checkScreenSize();
