@@ -11,6 +11,7 @@ import { thunkRemoveSong } from "../../store/queue";
 
 import ColorThief from 'colorthief'
 import CustomSlider from "./CustomSlider";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 
 
@@ -18,6 +19,17 @@ function NavBar() {
   const sessionUser = useSelector(state => state.session.user);
   const queue = Object.values(useSelector(state => state.queue.queue))
   const playerRef = useRef(null); // Create a ref to the ReactPlayer component
+  const location = useLocation();
+
+  let browseIcon = 'material-symbols-outlined'
+  let songIcon = 'material-symbols-outlined'
+  if(location.pathname.includes('/browse')){
+    browseIcon = 'material-symbols-outlined active'
+  }if(location.pathname.includes('/songs')){
+    songIcon = 'material-symbols-outlined active'
+  }
+  
+  
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [hasPlayed, setHasPlayed] = useState(false)
@@ -31,8 +43,7 @@ function NavBar() {
   const [coverImage, setCoverImage] = useState('')
   const [toggleIcon, setToggleIcon] = useState('fa-solid fa-play fa-xl')
   const [isMobile, setIsMobile] = useState(false);
-  // const [albumTitle, setAlbumTitle] = useState(null)
-
+  const [] = useState('')
 
   const dispatch = useDispatch()
 
@@ -266,7 +277,22 @@ function NavBar() {
             )}
 
             <div className="M-NB-Nav">
-
+              <Link className="M-NB-Icon" exact="true" to="/browse" >
+                <span class={browseIcon}> home </span>
+                <p>Home</p>
+              </Link>
+              {/* <Link className="M-NB-Icon" exact="true" to="/browse">
+                <span className="material-symbols-outlined" id='M-Search'>search</span>
+                <p>Search</p>
+              </Link> */}
+              <Link className="M-NB-Icon" exact="true" to="/songs">
+                <span class={songIcon}>library_music</span>
+                <p>Liked</p>
+              </Link>
+              {/* <Link className="M-NB-Icon" exact="true" to="/browse">
+                <span class="material-symbols-outlined"> code </span>
+                <p>Devs</p>
+              </Link> */}
             </div>
 
 
