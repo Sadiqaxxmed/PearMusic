@@ -30,27 +30,29 @@ function AllPlaylist() {
       ) : (
         <div className="PL-Body">
           <h1 className="PL-Body-Title">All Playlist</h1>
-          {
-            allPlaylists.map(playlist =>
-              <div className="PL-Section" key={playlist.id}>
-                <div className="PL-Div">
-                  <div className="PL-Top-Sec"></div>
-                  <div className="PL-CoverImg">
-                    <Link exact="true" to={`/SinglePlaylist/${playlist.id}`} style={{ textDecoration: 'none' }}>
-                      <img className="PL-Img" alt='Playlist Cover' src={playlist.coverImage} id='test'></img>
-                    </Link>
-                  </div>
-                  <div className="PL-Bottom-Sec">
-                    <h3 className="PL-Title">{playlist.title}</h3>
-                    {/* <div className="icons-sec">
+          <div className="PL-Card-Wrapper">
+            {
+              allPlaylists.map(playlist =>
+                <div className="PL-Section" key={playlist.id}>
+                  <div className="PL-Div">
+                    <div className="PL-Top-Sec"></div>
+                    <div className="PL-CoverImg">
+                      <Link exact="true" to={`/SinglePlaylist/${playlist.id}`} style={{ textDecoration: 'none' }}>
+                        <img className="PL-Img" alt='Playlist Cover' src={playlist.coverImage} id='test'></img>
+                      </Link>
+                    </div>
+                    <div className="PL-Bottom-Sec">
+                      <h3 className="PL-Title">{playlist.title}</h3>
+                      {/* <div className="icons-sec">
                       <i id='PL-icon-heart' className="fa-solid fa-heart"></i>
                       <i id='PL-icon-menu' className="fa-solid fa-ellipsis"></i>
                     </div> */}
+                    </div>
                   </div>
                 </div>
-              </div>
-            )
-          }
+              )
+            }
+            </div>
         </div>)}
     </>
   )
