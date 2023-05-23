@@ -182,7 +182,7 @@ function SinglePlaylist() {
   return (
     <>
         {!averageColor && !isLoaded ? (
-            <img src="loading.gif" alt="loading-gif" />
+            <img className='LoadingGIf' src={loading} alt="loading-gif" />
         ) : (
             !isMobile ? (
                 <div className="SGPL-Body">
