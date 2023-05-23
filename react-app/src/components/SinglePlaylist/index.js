@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
 import ColorThief from 'colorthief'
+import loading from '../../images/loading.gif'
 
 import './SinglePlaylist.css'
-import './MobileSGPL.css'
 
 
 import { thunkAllPlaylists, thunkDeletePlaylist, thunkDeleteSongPlaylist, thunkPlaylistSongs, thunkResetPlaylists, thunkSinglePlaylist } from "../../store/playlist";
@@ -39,8 +39,6 @@ function SinglePlaylist() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isMobile, setIsMobile] = useState(false);
 
-
-  console.log(playlist)
   useEffect(async () => {
     const fetchData = async () => {
       setIsLoaded(false)
@@ -183,156 +181,236 @@ function SinglePlaylist() {
 
   return (
     <>
-      {!averageColor && !isLoaded ? <div>Loading</div> :
-        <div className="SGPL-Body">
-          <div className="gradient" style={{ background: `linear-gradient(to bottom, ${averageColor} 1%, rgb(31, 31, 31))` }} />
-          {!isMobile ? ( //Desktop
-            <div className="SGPL-Top">
-              <div className="SGPL-Top-Left">
-                <img className="SG-PL-Img" alt='temp' src={playlist?.coverImage}></img>
-              </div>
-              <div className="SGPL-Top-Right">
-                <h3 className="SGPL-Title">{playlist?.title}</h3>
-                <p className="SGPL-Info">{songs.length} SONGS • {totalPlayTime(songs)}</p>
-                <p className="SGPL-Description">{playlist?.description}</p>
-                <div className="SGPL-Buttons">
-                  <div className="SGPL-Play-Button" onClick={((e) => addQueue())}>
-                    <i className="fa-solid fa-play fa-lrg SGPL-play"></i>
-                    <p className="SGPL-Play-Text">Play</p>
-                  </div>
-                  <div className="SGPL-Shuffle-Button">
-                    <p className="SGPL-Shuffle-Text" onClick={((e) => alert('***SHUFFLE FEATURE COMING SOON***'))}>Shuffle</p> {/* Change back to shuffle when crud is complete */}
-                  </div>
-                  {(userId == playlist?.owner_id) &&
-                    <div className="SGPL-Owner-Buttons">
-                      <i id="song-icon-menu" className={openUDM ? "fa-solid fa-xmark" : "fa-solid fa-ellipsis"} onClick={((e) => openUDM ? setOpenUDM(false) : setOpenUDM(true))}></i>
-                      {openUDM &&
-                        <div >
-                          <div className='SGPL-Menu-Wrapper'>
-                            <div className="SGPL-Menu-Btn-Wrapper"> {/* dispatch add to queue thunk */}
-                              <OpenModalButton
-                                className='SGPL-Menu-Btn-Update'
-                                buttonText={`Update`}
-                                onButtonClick={((e) => setOpenUDM(false))}
-                                modalComponent={<UpdatePlaylist playlist={playlist} />}
-                              />
-                            </div>
-                            <div className="SGPL-Menu-Btn-Wrapper-End" > {/* open extra menu with all user playlists */}
-                              <div className='SGPL-Menu-Delete' onClick={((e) => DeletePlaylist(playlist.id, userId))}>&nbsp;&nbsp;Delete</div>
-                            </div>
-                          </div>
+        {!averageColor && !isLoaded ? (
+            <img src="loading.gif" alt="loading-gif" />
+        ) : (
+            !isMobile ? (
+                <div className="SGPL-Body">
+                    <div className="gradient" style={{ background: `linear-gradient(to bottom, ${averageColor} 1%, rgb(31, 31, 31))` }} />
+
+                    <div className="SGPL-Top">
+                        <div className="SGPL-Top-Left">
+                            <img className="SG-PL-Img" alt="temp" src={playlist?.coverImage} />
                         </div>
-                      }
-                    </div>
-                  }
-                </div>
-              </div>
-            </div>)
-            : ( ///////////////// Mobile ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-              <div className="SGPL-Top">
-                <div className="SGPL-Top-Left">
-                  <img className="SG-PL-Img" alt='temp' src={playlist?.coverImage}></img>
-                </div>
-                <div className="SGPL-Top-Right">
-                  <div className="SGPL-Title-Wrap">
-                    <h3 className="SGPL-Title">{playlist?.title}</h3>
-                    <p className="SGPL-Info">{songs.length} SONGS • {totalPlayTime(songs)}</p>
-                  </div>
-                  <div className="SGPL-Buttons-M">
-                    <div className="SGPL-Play-Button" onClick={((e) => addQueue())}>
-                      <i className="fa-solid fa-play fa-lrg SGPL-play"></i>
-                    </div>
-                    {/* <div className="SGPL-Shuffle-Button"> */}
-                    {/* <p className="SGPL-Shuffle-Text" onClick={((e) => alert('***SHUFFLE FEATURE COMING SOON***'))}>Shuffle</p> Change back to shuffle when crud is complete */}
-                    {/* </div> */}
-                    {(userId == playlist?.owner_id) &&
-                      <div className="SGPL-Owner-Buttons">
-                        <i id="song-icon-menu" className={openUDM ? "fa-solid fa-xmark" : "fa-solid fa-ellipsis"} onClick={((e) => openUDM ? setOpenUDM(false) : setOpenUDM(true))}></i>
-                        {openUDM &&
-                          <div >
-                            <div className='SGPL-Menu-Wrapper'>
-                              <div className="SGPL-Menu-Btn-Wrapper"> {/* dispatch add to queue thunk */}
-                                <OpenModalButton
-                                  className='SGPL-Menu-Btn-Update'
-                                  buttonText={`Update`}
-                                  onButtonClick={((e) => setOpenUDM(false))}
-                                  modalComponent={<UpdatePlaylist playlist={playlist} />}
-                                />
-                              </div>
-                              <div className="SGPL-Menu-Btn-Wrapper-End" > {/* open extra menu with all user playlists */}
-                                <div className='SGPL-Menu-Delete' onClick={((e) => DeletePlaylist(playlist.id, userId))}>&nbsp;&nbsp;Delete</div>
-                              </div>
+                        <div className="SGPL-Top-Right">
+                            <h3 className="SGPL-Title">{playlist?.title}</h3>
+                            <p className="SGPL-Info">{songs.length} SONGS • {totalPlayTime(songs)}</p>
+                            <p className="SGPL-Description">{playlist?.description}</p>
+                            <div className="SGPL-Buttons">
+                                <div className="SGPL-Play-Button" onClick={addQueue}>
+                                    <i className="fa-solid fa-play fa-lrg SGPL-play"></i>
+                                    <p className="SGPL-Play-Text">Play</p>
+                                </div>
+                                <div className="SGPL-Shuffle-Button">
+                                    <p className="SGPL-Shuffle-Text" onClick={() => alert('***SHUFFLE FEATURE COMING SOON***')}>Shuffle</p> {/* Change back to shuffle when crud is complete */}
+                                </div>
+                                {userId === playlist?.owner_id && (
+                                    <div className="SGPL-Owner-Buttons">
+                                        <i
+                                            id="song-icon-menu"
+                                            className={openUDM ? "fa-solid fa-xmark" : "fa-solid fa-ellipsis"}
+                                            onClick={() => setOpenUDM(!openUDM)}
+                                        ></i>
+                                        {openUDM && (
+                                            <div>
+                                                <div className="SGPL-Menu-Wrapper">
+                                                    <div className="SGPL-Menu-Btn-Wrapper">
+                                                        <OpenModalButton
+                                                            className="SGPL-Menu-Btn-Update"
+                                                            buttonText="Update"
+                                                            onButtonClick={() => setOpenUDM(false)}
+                                                            modalComponent={<UpdatePlaylist playlist={playlist} />}
+                                                        />
+                                                    </div>
+                                                    <div className="SGPL-Menu-Btn-Wrapper-End">
+                                                        <div className="SGPL-Menu-Delete" onClick={() => DeletePlaylist(playlist.id, userId)}>&nbsp;&nbsp;Delete</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
                             </div>
-                          </div>
-                        }
-                      </div>
-                    }
-                  </div>
-                </div>
-              </div>)
-          }
-
-          {/* //////////////////////////////////////// SONGS ///////////////////////////////////////////////////////////////////////////////////////////////*/}
-          <div className="SGPL-Bottom">
-            {songs.map((song, i) =>
-              <div className={i % 2 == 0 ? "SGPL-Darker-Shade" : 'SGPL-No-Shade'} tabIndex="0">
-                <div className="SGPL-Bottom-Title-Header">
-                  <div className="SGPL-Bottom-Song-Header">
-                    <div className="SGPL-Bottom-Song">
-                      <img className="SG-Bottom-PL-Img" alt='temp' src={song.coverImage} onClick={() => playNowFunc(song)}></img>
-                      <div className="SG-Bottom-TA-Wrapper">
-                        <p className="SGPL-Bottom-Song-text">{song.title}</p>
-                        <p className="SGPL-Bottom-text" >{song.artistName}</p>
-                      </div>
+                        </div>
                     </div>
-                  </div>
-                  <div className="SGPL-Delete-Div">
-                    {userId == playlist?.owner_id && <i className="fa-solid fa-xmark SGPL-delete-comment-icon" id="SGPL-Bottom-X" onClick={((e) => DeleteSong(song.id, playlist_id))}></i>}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-          {/* /////////////////////////////////////////////////////////////// End ///////////////////////////////////////////////////////////////////////////////////////////////*/}
-
-          {/* ///////////////////////////////////////////////////////////// comments ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
-          <div className="SGPL-Comments-Container">
-            <div className="SGPL-Border-Top-Comments">
-              <p className="SGPL-Bottom-text">{comments.length} Comments</p>
-              {errors.length ? <p style={{ color: 'red', fontSize: '12px' }}> {`* ${errors.length}`}</p> : null}
-              {errors.profanity ? <p style={{ color: 'red', fontSize: '12px' }}> {`* ${errors.profanity}`}</p> : null}
-            </div>
-            <form onSubmit={handleSubmit} className="SGPL-User-Input-Comment-Container">
-              <div style={{ display: 'flex' }}>
-                <span className="material-symbols-outlined SB-icons SGPL-current-user-profile-pic">account_circle</span>
-              </div>
-              <input
-                type='text'
-                placeholder="Add a comment..."
-                className="SGPL-Input-Comment-Field"
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-              ></input>
-              <button className="SGPL-Comment-Button">Submit</button>
-            </form>
-            <div className="SGPL-Comments-Area">
-              {comments.map(comment =>
-                <>
-                  <div className='SGPL-Profile-Comment-Container'>
-                    <span class="material-symbols-outlined SB-icons SGPL-profile-pic-container">account_circle</span>
-                    <div className="SGPL-Comment-Container">
-                      <p className="SGPL-Comment">{comment.comment}</p>
-                      {userId == comment.owner_id ? <i className="fa-solid fa-xmark SGPL-delete-comment-icon" onClick={() => deleteComment(comment.owner_id, comment.id, playlist_id)}></i> : null}
+                    <div className="SGPL-Bottom">
+                        <div className="SGPL-Bottom-Title-Header">
+                            <div className="SGPL-Bottom-Song-Header">
+                                <p className="SGPL-Bottom-text">Song</p>
+                            </div>
+                            <div className="SGPL-Bottom-Artist-Header">
+                                <p className="SGPL-Bottom-text" id="SGPL-Bottom-Time-text">Artist</p>
+                            </div>
+                            <div className="SGPL-Bottom-Album-Header">
+                                <p className="SGPL-Bottom-text" id="SGPL-Bottom-Time-text">Album</p>
+                            </div>
+                            <div className="SGPL-Bottom-Time-Header">
+                                <p className="SGPL-Bottom-text" id="SGPL-Bottom-Time-text">Time</p>
+                            </div>
+                        </div>
+                        {songs.map((song, i) => (
+                            <div className={i % 2 === 0 ? "SGPL-Darker-Shade" : 'SGPL-No-Shade'} tabIndex="0" key={song.id}>
+                                <div className="SGPL-Bottom-Title-Header">
+                                    <div className="SGPL-Bottom-Song-Header">
+                                        <div className="SGPL-Bottom-Song">
+                                            <img className="SG-Bottom-PL-Img" alt="temp" src={song.coverImage} onClick={() => playNowFunc(song)}></img>
+                                            <p className="SGPL-Bottom-Song-text">{song.title}</p>
+                                        </div>
+                                    </div>
+                                    <div className="SGPL-Bottom-Artist-Header">
+                                        <p className="SGPL-Bottom-text" id="SGPL-Bottom-Info-Text">{song.artistName}</p>
+                                    </div>
+                                    <div className="SGPL-Bottom-Album-Header">
+                                        <p className="SGPL-Bottom-text" id="SGPL-Bottom-Info-Text">{song.genre}</p>
+                                    </div>
+                                    <div className="SGPL-Time">
+                                        <p className="SGPL-Bottom-text" id="SGPL-Bottom-Info-Text">{songTotalPlayTime(song)}</p>
+                                    </div>
+                                    <div className="SGPL-Delete-Div">
+                                        {userId === playlist?.owner_id && <i className="fa-solid fa-xmark SGPL-delete-comment-icon" id="SGPL-Bottom-Info-Text" onClick={() => DeleteSong(song.id, playlist_id)}></i>}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      }
+                    <div className="SGPL-Comments-Container">
+                        {/* comments */}
+                        <div className="SGPL-Border-Top-Comments">
+                            <p className="SGPL-Bottom-text">{comments.length} Comments</p>
+                            {errors.length ? <p style={{ color: 'red', fontSize: '12px' }}> {`* ${errors.length}`}</p> : null}
+                            {errors.profanity ? <p style={{ color: 'red', fontSize: '12px' }}> {`* ${errors.profanity}`}</p> : null}
+                        </div>
+                        <form onSubmit={handleSubmit} className="SGPL-User-Input-Comment-Container">
+                            <div style={{ display: 'flex' }}>
+                                <span className="material-symbols-outlined SB-icons SGPL-current-user-profile-pic">account_circle</span>
+                            </div>
+                            <input
+                                type="text"
+                                placeholder="Add a comment..."
+                                className="SGPL-Input-Comment-Field"
+                                value={comment}
+                                onChange={(e) => setComment(e.target.value)}
+                            ></input>
+                            <button className="SGPL-Comment-Button">Submit</button>
+                        </form>
+                        <div className="SGPL-Comments-Area">
+                            {comments.map((comment) => (
+                                <div className="SGPL-Profile-Comment-Container" key={comment.id}>
+                                    <span className="material-symbols-outlined SB-icons SGPL-profile-pic-container">account_circle</span>
+                                    <div className="SGPL-Comment-Container">
+                                        <p className="SGPL-Comment">{comment.comment}</p>
+                                        {userId === comment.owner_id && <i className="fa-solid fa-xmark SGPL-delete-comment-icon" onClick={() => deleteComment(comment.owner_id, comment.id, playlist_id)}></i>}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            ) :
+                <div className="SGPL-Body">
+                    <div className="gradient" style={{ background: `linear-gradient(to bottom, ${averageColor} 1%, rgb(31, 31, 31))` }} />
+                    <div className="SGPL-Top">
+                        <div className="SGPL-Top-Left">
+                            <img className="SG-PL-Img" alt='temp' src={playlist?.coverImage}></img>
+                        </div>
+                        <div className="SGPL-Top-Right">
+                            <div className="SGPL-Title-Wrap">
+                                <h3 className="SGPL-Title">{playlist?.title}</h3>
+                                <p className="SGPL-Info">{songs.length} SONGS • {totalPlayTime(songs)}</p>
+                            </div>
+                            <div className="SGPL-Buttons-M">
+                                <div className="SGPL-Play-Button" onClick={((e) => addQueue())}>
+                                    <i className="fa-solid fa-play fa-lrg SGPL-play"></i>
+                                </div>
+                                {/* <div className="SGPL-Shuffle-Button"> */}
+                                {/* <p className="SGPL-Shuffle-Text" onClick={((e) => alert('***SHUFFLE FEATURE COMING SOON***'))}>Shuffle</p> Change back to shuffle when crud is complete */}
+                                {/* </div> */}
+                                {(userId == playlist?.owner_id) &&
+                                    <div className="SGPL-Owner-Buttons">
+                                        <i id="song-icon-menu" className={openUDM ? "fa-solid fa-xmark" : "fa-solid fa-ellipsis"} onClick={((e) => openUDM ? setOpenUDM(false) : setOpenUDM(true))}></i>
+                                        {openUDM &&
+                                            <div >
+                                                <div className='SGPL-Menu-Wrapper'>
+                                                    <div className="SGPL-Menu-Btn-Wrapper"> {/* dispatch add to queue thunk */}
+                                                        <OpenModalButton
+                                                            className='SGPL-Menu-Btn-Update'
+                                                            buttonText={`Update`}
+                                                            onButtonClick={((e) => setOpenUDM(false))}
+                                                            modalComponent={<UpdatePlaylist playlist={playlist} />}
+                                                        />
+                                                    </div>
+                                                    <div className="SGPL-Menu-Btn-Wrapper-End" > {/* open extra menu with all user playlists */}
+                                                        <div className='SGPL-Menu-Delete' onClick={((e) => DeletePlaylist(playlist.id, userId))}>&nbsp;&nbsp;Delete</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    {/* //////////////////////////////////////// SONGS ///////////////////////////////////////////////////////////////////////////////////////////////*/}
+                    <div className="SGPL-Bottom">
+                        {songs.map((song, i) =>
+                            <div className={i % 2 == 0 ? "SGPL-Darker-Shade" : 'SGPL-No-Shade'} tabIndex="0">
+                                <div className="SGPL-Bottom-Title-Header">
+                                    <div className="SGPL-Bottom-Song-Header">
+                                        <div className="SGPL-Bottom-Song">
+                                            <img className="SG-Bottom-PL-Img" alt='temp' src={song.coverImage} onClick={() => playNowFunc(song)}></img>
+                                            <div className="SG-Bottom-TA-Wrapper">
+                                                <p className="SGPL-Bottom-Song-text">{song.title}</p>
+                                                <p className="SGPL-Bottom-text" >{song.artistName}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="SGPL-Delete-Div">
+                                        {userId == playlist?.owner_id && <i className="fa-solid fa-xmark SGPL-delete-comment-icon" id="SGPL-Bottom-X" onClick={((e) => DeleteSong(song.id, playlist_id))}></i>}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                    {/* /////////////////////////////////////////////////////////////// End ///////////////////////////////////////////////////////////////////////////////////////////////*/}
+
+                    {/* ///////////////////////////////////////////////////////////// comments ///////////////////////////////////////////////////////////////////////////////////////////////////// */}
+                    <div className="SGPL-Comments-Container">
+                        <div className="SGPL-Border-Top-Comments">
+                            <p className="SGPL-Bottom-text">{comments.length} Comments</p>
+                            {errors.length ? <p style={{ color: 'red', fontSize: '12px' }}> {`* ${errors.length}`}</p> : null}
+                            {errors.profanity ? <p style={{ color: 'red', fontSize: '12px' }}> {`* ${errors.profanity}`}</p> : null}
+                        </div>
+                        <form onSubmit={handleSubmit} className="SGPL-User-Input-Comment-Container">
+                            <div style={{ display: 'flex' }}>
+                                <span className="material-symbols-outlined SB-icons SGPL-current-user-profile-pic">account_circle</span>
+                            </div>
+                            <input
+                                type='text'
+                                placeholder="Add a comment..."
+                                className="SGPL-Input-Comment-Field"
+                                value={comment}
+                                onChange={(e) => setComment(e.target.value)}
+                            ></input>
+                            <button className="SGPL-Comment-Button">Submit</button>
+                        </form>
+                        <div className="SGPL-Comments-Area">
+                            {comments.map(comment =>
+                                <>
+                                    <div className='SGPL-Profile-Comment-Container'>
+                                        <span class="material-symbols-outlined SB-icons SGPL-profile-pic-container">account_circle</span>
+                                        <div className="SGPL-Comment-Container">
+                                            <p className="SGPL-Comment">{comment.comment}</p>
+                                            {userId == comment.owner_id ? <i className="fa-solid fa-xmark SGPL-delete-comment-icon" onClick={() => deleteComment(comment.owner_id, comment.id, playlist_id)}></i> : null}
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                </div>
+        )}
     </>
-  )
+);
 }
 
 export default SinglePlaylist;
