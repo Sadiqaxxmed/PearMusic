@@ -2,37 +2,27 @@
 const ADD_SONG = 'ADD_SONG'
 const PLAY_NOW = 'PLAY_NOW'
 const REMOVE_SONG = 'REMOVE_SONG'
-// const MOVE_SONG = 'MOVE_SONG' prolly leave this for LATERRRR
 const NEW_QUEUE = 'NEW_QUEUE'
 
-// ACTION CREATORS
-export const actionAddSong = (song) => ({
+// Action Creators
+export const actionAddSong = song => ({
     type: ADD_SONG,
     payload: song,
 });
 
-export const actionPlayNow = (song) => ({
+export const actionPlayNow = song => ({
     type: PLAY_NOW,
-    payload: song
-})
-
-// for added functionalty later we can uncomment song id to remove specific songs
-// but for now i just want this to remove the first song in the queue when
-// the song is finsihed playing
-export const actionRemoveSong = (songId) => ({
-    type: REMOVE_SONG,
-    // payload: songId,
+    payload: song,
 });
 
-// export const actionMoveSong = (songId, newIndex) => ({
-//     type: MOVE_SONG,
-//     payload: { songId, newIndex },
-// });
+export const actionRemoveSong = () => ({
+    type: REMOVE_SONG,
+});
 
-export const actionNewQueue = (songs) => ({
+export const actionNewQueue = songs => ({
     type: NEW_QUEUE,
-    songs
-})
+    songs,
+});
 
 const normalizePlaylistSongs = (playlists) => {
     let normalize = {};
@@ -76,54 +66,37 @@ export const thunkExploreQueue = (songs) => dispatch => {
     dispatch(actionNewQueue(normalized))
 }
 
-// reducers
+// Reducer
 const initialState = {
-    queue: [{}],
+    queue: [],
 };
 
 const queueReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'ADD_SONG':
-            if (!(Object.values(state.queue).length === 0)) {
-                const queue = Object.values(state.queue)
-                queue.push(action.payload)
-                return {
-                    ...state,
-                    queue: queue,
-                };
-            }else{
-                return{
-                    ...state,
-                    queue:[{ ...action.payload}]
-                }
-            }
-
-        case 'PLAY_NOW':
+        case ADD_SONG:
             return {
                 ...state,
-                queue: [{ ...action.payload }]
-            }
-        case 'REMOVE_SONG':
-            const newQueue = Object.values(state.queue)
-            newQueue.shift()
-            return {
-                ...state,
-                queue: newQueue,
+                queue: [...state.queue, action.payload],
             };
-        // below is for removing specific songs from queue
-        // {...state, queue: state.queue.filter((song) => song.id !== action.payload),};
-        case 'NEW_QUEUE':
-            return { ...state, queue: { ...action.songs } }
-        // case 'MOVE_SONG': {
-        //     const { songId, newIndex } = action.payload;
-        //     const song = state.queue.find((song) => song.id === songId);
-        //     const newQueue = state.queue.filter((song) => song.id !== songId);
-        //     newQueue.splice(newIndex, 0, song);
-        //     return {
-        //         ...state,
-        //         queue: newQueue,
-        //     };
-        // }
+
+        case PLAY_NOW:
+            return {
+                ...state,
+                queue: [action.payload],
+            };
+
+        case REMOVE_SONG:
+            return {
+                ...state,
+                queue: state.queue.slice(1),
+            };
+
+        case NEW_QUEUE:
+            return {
+                ...state,
+                queue: action.songs,
+            };
+
         default:
             return state;
     }
