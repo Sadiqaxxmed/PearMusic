@@ -5,7 +5,7 @@ import Menu from "./Menu/index";
 import noSong from '../../images/Music.png'
 import pear from '../../images/pear2.png'
 import ReactPlayer from 'react-player'
-import './NavBarNew.css'
+import './NavBarDesktop.css'
 import './NavBarMobile.css'
 import { thunkRemoveSong } from "../../store/queue";
 
