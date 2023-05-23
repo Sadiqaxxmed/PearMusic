@@ -243,12 +243,11 @@
     grid-template-columns: 1fr;
     padding-top: 20px;
     margin: 0;
-
+    width: 95vw;
   }
 
   .BR-song-section {
-    width: calc(100vw);
-    max-width: 100vw;
+    width: 95vw;
     display: inline-flex;
     flex-direction: row;
     justify-content: none;
@@ -264,7 +263,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 15px;
+    padding-right: 40px;
   }
 }
 

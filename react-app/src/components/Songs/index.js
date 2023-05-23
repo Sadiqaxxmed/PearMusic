@@ -19,7 +19,7 @@ function Songs() {
     dispatch(thunkUserPlaylists(user_id));
   }, [dispatch]);
 
-  function unlikeSong(e){
+  function unlikeSong(e) {
     dispatch(thunkDeleteLikedSongs(e.currentTarget.dataset.songid, user_id));
   }
 
@@ -29,35 +29,38 @@ function Songs() {
 
   return (
     <>
-      <div className="song-body">
-        <h1 className="SG-labels">Liked Songs</h1>
-        <div className="song-div">
+      <div className="M-song-body">
+        <h1 className="M-SG-labels">Liked Songs</h1>
+        <div className="M-song-div">
           {songs.map((song) => (
-            <div className="song-section" onClick={() => playNowFunc(song)}>
-              <div className="song-sec-div">
-                <div className="song-art-cover">
-                  <img className="art-cover" alt="temp" src={song.coverImage} ></img>
+            <div className="M-song-section" onClick={() => playNowFunc(song)}>
+              <div className="M-song-sec-div">
+                <div className="M-song-art-cover">
+                  <img className="M-art-cover" alt="temp" src={song.coverImage}></img>
                 </div>
-                <div className="song-info">
-                  <h3 className="song-info" id="song-name">
+                <div className="M-song-info">
+                  <h3 className="M-song-info" id="M-song-name">
                     {song.title}
                   </h3>
-                  <p className="song-info" id="artists-name">
+                  <p className="M-song-info" id="M-artists-name">
                     {song.artistName}
                   </p>
                 </div>
               </div>
-              <div className="icon-section">
-                {/* <i id="song-icon-menu" className="fa-solid fa-ellipsis"></i> */}
-                <i id="song-icon-heart" className="fa-solid fa-heart" data-songid={song.id} onClick={((e) => unlikeSong(e))} ></i>
+              <div className="M-icon-section">
+                {/* <i id="M-song-icon-menu" className="fa-solid fa-ellipsis"></i> */}
+                <i
+                  id="song-icon-heart"
+                  className="fa-solid fa-heart"
+                  data-songid={song.id}
+                  onClick={(e) => unlikeSong(e)}
+                ></i>
               </div>
             </div>
-
           ))}
         </div>
       </div>
     </>
   );
 }
-
 export default Songs;
