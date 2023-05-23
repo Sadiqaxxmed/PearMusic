@@ -74,11 +74,13 @@
 
 .M-NB-ProgressBar-Wrapper {
     position: relative;
-    bottom: 16px;
+    bottom: 15px;
     background-color: transparent;
     width: 88vw;
+    left: 2px;
     height: fit-content;
     z-index: 1;
+    overflow: hidden;
 }
 
 .M-NB-Slider {}
