@@ -33,10 +33,10 @@ function Songs() {
         <h1 className="SG-labels">Liked Songs</h1>
         <div className="song-div">
           {songs.map((song) => (
-            <div className="song-section">
+            <div className="song-section" onClick={() => playNowFunc(song)}>
               <div className="song-sec-div">
                 <div className="song-art-cover">
-                  <img className="art-cover" alt="temp" src={song.coverImage} onClick={() => playNowFunc(song)} ></img>
+                  <img className="art-cover" alt="temp" src={song.coverImage} ></img>
                 </div>
                 <div className="song-info">
                   <h3 className="song-info" id="song-name">

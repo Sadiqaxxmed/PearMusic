@@ -34,23 +34,6 @@
   margin-left: 50px;
 }
 
-@media only screen and (max-width: 1350px) {
-  .song-div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 20px;
-  }
-}
-
-@media only screen and (max-width: 1000px) {
-  .song-div {
-    display: grid;
-    grid-template-columns: 1fr;
-    padding-top: 20px;
-    margin: 0;
-  }
-}
-
 .SG-labels {
   color: rgb(238, 238, 238);
   font-size: 34px;
@@ -76,7 +59,7 @@
 }
 
 #artists-name {
-  color: rgb(105,105,105);
+  color: rgb(105, 105, 105);
   display: flex;
   flex-direction: column;
   font-size: 10px;
@@ -114,3 +97,51 @@
 #song-icon-heart {
   color: rgb(226 96 106);
 }
+
+@media only screen and (max-width: 1350px) {
+  .song-body {
+    /* padding-top: 75px;
+    padding-left:  280px; */
+    z-index: -1;
+    height: 100%;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .SG-labels{
+    padding-bottom: 0px;
+    padding-left: 5px;
+  }
+
+  .song-div {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-top: 0px;
+    margin-left: 0px;
+  }
+
+  .song-section {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: left;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 5px;
+    border-top: none;
+    border-bottom: 1.5px solid rgb(42, 42, 42);
+    cursor: pointer;
+  }
+  
+  .song-sec-div {
+    display: inline-flex;
+    flex-direction: row;
+    width: 90vw;
+    margin-right: 0px;
+    overflow: hidden;
+  }
+  
+}
+
