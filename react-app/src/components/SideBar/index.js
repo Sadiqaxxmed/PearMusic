@@ -47,7 +47,7 @@ function SideBar() {
                         </>
                         : null}
                 </li>
-                <li className='SB-Library'>
+                {/* <li className='SB-Library'>
                     {userId ?
                         <>
                             <span className="material-symbols-outlined SB-icons pink-icons">
@@ -56,7 +56,7 @@ function SideBar() {
                             <p> <Link exact="true" to="/browse" style={{ textDecoration: 'none', color: 'white' }} onClick={() => alert('Feature Coming Soon!')}>Albums</Link> </p>
                         </>
                         : null}
-                </li>
+                </li> */}
             </div>
             <div className='SB-Playlists'>
                 <ul className='SB-Playlists-Title' />

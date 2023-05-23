@@ -50,7 +50,7 @@ function App() {
             <Route path="/songs" component={Songs} />
             <Route path="/allPlaylist" component={AllPlaylist} />
             <Route path="/SinglePlaylist/:playlist_id" component={SinglePlaylist} />
-            <Route path="/albums" component={Albums} />
+            {/* <Route path="/albums" component={Albums} /> */}
             <Route path="/manage-discography" component={ManageDiscography} />
             <Route path="/explore/:genre_type" component={ExploreGenre} />
 

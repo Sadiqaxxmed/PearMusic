@@ -56,7 +56,7 @@ function ProfileButton({ user }) {
               <NavLink to='/manage-discography' style={{ textDecoration: 'none' }} className="Menu-Manage-Disc-Btn">&nbsp;Manage Discography
                 <i className="fa-solid fa-record-vinyl" id='vinyl' />
               </NavLink>
-              <div className="Menu-Upload-Btn">
+              {/* <div className="Menu-Upload-Btn">
                 <OpenModalButton
                   buttonText="Upload Album"
                   onItemClick={closeMenu}
@@ -65,7 +65,7 @@ function ProfileButton({ user }) {
                 <span className="material-symbols-outlined" id='upload-album'>
                   library_music
                 </span>
-              </div>
+              </div> */}
 
               <div className="Menu-Upload-Btn">
                 <OpenModalButton

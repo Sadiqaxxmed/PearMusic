@@ -23,13 +23,13 @@ function NavBar() {
 
   let browseIcon = 'material-symbols-outlined'
   let songIcon = 'material-symbols-outlined'
-  if(location.pathname.includes('/browse')){
+  if (location.pathname.includes('/browse')) {
     browseIcon = 'material-symbols-outlined active'
-  }if(location.pathname.includes('/songs')){
+  } if (location.pathname.includes('/songs')) {
     songIcon = 'material-symbols-outlined active'
   }
-  
-  
+
+
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [hasPlayed, setHasPlayed] = useState(false)
