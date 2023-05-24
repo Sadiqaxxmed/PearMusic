@@ -124,7 +124,7 @@ function SignupFormModal() {
                     <h1 className="SF-Title">Upload Song</h1>
                     <form className='SF-Form' onSubmit={handleSubmit} method="POST" encType="multipart/form-data">
                         {errors.titleLength ? <div className="SF-Errors">* {errors.titleLength}</div> : null}
-                        <div className="SF-Song-Title-Lable">Song Title:
+                        <div className="SF-Song-Title-Lable">Track Name
                             <input type='text' className="SF-Song-Title" value={songTitle} onChange={(e) => setSongTitle(e.target.value)} required />
                         </div>
                         {errors.coverImage ? <div className="SF-Errors">* {errors.coverImage}</div> : null}

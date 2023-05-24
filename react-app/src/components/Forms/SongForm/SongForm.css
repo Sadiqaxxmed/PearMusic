@@ -76,3 +76,92 @@
 .SF-Errors {
     color: red;
 }
+
+
+@media only screen and (max-width: 1050px) {
+    .SF-Wrapper{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: normal;
+        align-items: center;
+        padding-bottom: 40px;
+    }
+
+    #x{
+        position: absolute;
+        top: 25px;
+        right: 25px;
+    }
+    
+    .SF-Song-Title-Lable{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .SF-Title{
+        display: flex;
+        align-self: flex-start;
+        justify-content: flex-start;
+        color: rgba(245, 245, 247, 1);
+        padding-left: 10px;
+    }
+    
+    .SF-Form{
+        display: flex;
+        flex-direction: column;
+        gap:10px;
+        width: 70%;
+        color: rgba(245, 245, 247, 1);
+    }
+    
+    .SF-Form-Top-Text{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .SF-Submit-Btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        background-color: rgb(218, 15, 72);
+        width: 60%;
+        border-radius: 4px;
+        padding: 8px 0px 8px 0px;
+        border: 0 solid;
+        color: white;
+    }
+    
+    .SF-Submit-Btn:hover {
+        cursor: pointer;
+        box-shadow: 5px 5px 5px black;
+    }
+    
+    .SF-Genre{
+        color: black;
+    }
+    
+    .SF-Loading-GIF-Container {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .SF-Loading-GIF {
+        width: 10%;
+        height: auto;
+    }
+    
+    .hidden {
+        visibility: hidden;
+    }
+    
+    #form-input:focus{
+        border: 2px solid red;
+    }
+    
+    .SF-Errors {
+        color: red;
+    }
+}

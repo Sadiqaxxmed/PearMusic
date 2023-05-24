@@ -44,7 +44,6 @@ function NavBar() {
   const [coverImage, setCoverImage] = useState('')
   const [toggleIcon, setToggleIcon] = useState('fa-solid fa-play fa-xl')
   const [isMobile, setIsMobile] = useState(false);
-  const [] = useState('')
 
   const dispatch = useDispatch()
 
@@ -165,7 +164,7 @@ function NavBar() {
 
   return (
     <div className="NB-body-Wrapper">
-      {isMobile && <NewMenu/>}
+      {isMobile && <NewMenu />}
       {!isMobile ? (
         // Content for Desktop
         <div className="NB-body">
@@ -234,10 +233,10 @@ function NavBar() {
         (
 
           <div className="M-NB-Body">
-            
+
             {songArtist && songTitle && (
 
-              
+
               //show teeny weenie weency player if song is playing currently
               <div className="M-NB-Player-Wrapper-Wrapper">
                 <div className="M-NB-Player-Wrapper">
