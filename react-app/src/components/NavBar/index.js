@@ -7,6 +7,7 @@ import pear from '../../images/pear2.png'
 import ReactPlayer from 'react-player'
 import './NavBarDesktop.css'
 import './NavBarMobile.css'
+import NewMenu from "../SlideOutMenu";
 import { thunkRemoveSong } from "../../store/queue";
 
 import ColorThief from 'colorthief'
@@ -43,7 +44,6 @@ function NavBar() {
   const [coverImage, setCoverImage] = useState('')
   const [toggleIcon, setToggleIcon] = useState('fa-solid fa-play fa-xl')
   const [isMobile, setIsMobile] = useState(false);
-  const [] = useState('')
 
   const dispatch = useDispatch()
 
@@ -164,6 +164,7 @@ function NavBar() {
 
   return (
     <div className="NB-body-Wrapper">
+      {isMobile && <NewMenu />}
       {!isMobile ? (
         // Content for Desktop
         <div className="NB-body">
@@ -235,6 +236,7 @@ function NavBar() {
 
             {songArtist && songTitle && (
 
+
               //show teeny weenie weency player if song is playing currently
               <div className="M-NB-Player-Wrapper-Wrapper">
                 <div className="M-NB-Player-Wrapper">
@@ -294,7 +296,6 @@ function NavBar() {
                 <p>Devs</p>
               </Link> */}
             </div>
-
 
           </div>
 
