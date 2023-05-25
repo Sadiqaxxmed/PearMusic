@@ -14,13 +14,14 @@
     overflow: hidden;
 }
 
-.fa-gear{
-    color:white;
+
+/* .fa-gear {
+    color: white;
     position: absolute;
-    top: 25px;
-    right: 25px;
+    top: 50px;
+    right: 50px;
     font-size: 1.5em;
-}
+} */
 
 .M-NB-Player-Wrapper-Wrapper {
     display: flex;
@@ -127,6 +128,6 @@
     font-size: 28px;
 }
 
-.material-symbols-outlined.active{
+.material-symbols-outlined.active {
     font-variation-settings: 'FILL' 1;
 }

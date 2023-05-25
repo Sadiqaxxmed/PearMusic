@@ -6,7 +6,7 @@ import SongForm from '../Forms/SongForm'
 import LoginFormModal from "../Forms/LoginFormModal";
 import SignupFormModal from "../Forms/SignupFormModal";
 import { useHistory } from 'react-router-dom';
-import { logout,login } from '../../store/session';
+import { logout, login } from '../../store/session';
 
 const SlideOutMenu = () => {
     const ulRef = useRef();
@@ -59,11 +59,11 @@ const SlideOutMenu = () => {
 
     return (
         <div>
-            <div className={`fa-solid fa-gear ${showMenu ? 'open' : ''}`} onClick={toggleMenu}>
-                {/* <div className="slide-out-menu-bar"></div>
-                <div className="slide-out-menu-bar"></div>
-                <div className="slide-out-menu-bar"></div> */}
-            </div>
+            {user ? (
+                <div className={`fa-solid fa-gear ${showMenu ? 'open' : ''}`} onClick={toggleMenu}></div>)
+                :
+                <div className={`fa-solid fa-user-plus ${showMenu ? 'open' : ''}`} onClick={toggleMenu}><p className='LoginBtnNavBarText'>Sign in</p></div>
+            }
             <div className={`slide-out-menu-container ${showMenu ? 'open' : ''}`} ref={ulRef}>
                 {user ?
                     <ul className='SOM-Loggedin'>
