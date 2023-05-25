@@ -164,7 +164,7 @@ function NavBar() {
 
   return (
     <div className="NB-body-Wrapper">
-      <NewMenu />
+      {isMobile && <NewMenu />}
       {!isMobile ? (
         // Content for Desktop
         <div className="NB-body">
@@ -211,11 +211,14 @@ function NavBar() {
                 : <img className="NB-Pear" src={pear} alt='pear' />
               }
             </div>
+
+            <div className="NB-Volume-Slider">
+              <i className="fa-solid fa-volume-low" id='music'></i>
+              <input type="range" min="0" max="100" value={volume} onChange={(e) => setVolume(e.target.value)} className="slider" id="myslider" />
+            </div>
           </div>
-          <div className="NB-Volume-Slider">
-            <i className="fa-solid fa-volume-low" id='music'></i>
-            <input type="range" min="0" max="100" value={volume} onChange={(e) => setVolume(e.target.value)} className="slider" id="myslider" />
-          </div>
+
+          <NewMenu />
         </div>
       )
 
@@ -225,7 +228,7 @@ function NavBar() {
         (
 
           <div className="M-NB-Body">
-
+            
             {songArtist && songTitle && (
 
 
@@ -279,10 +282,10 @@ function NavBar() {
                 <span className="material-symbols-outlined" id='M-Search'>search</span>
                 <p>Search</p>
               </Link> */}
-              <Link className="M-NB-Icon" exact="true" to="/songs">
+              {sessionUser && (<Link className="M-NB-Icon" exact="true" to="/songs">
                 <span class={songIcon}>library_music</span>
                 <p>Liked</p>
-              </Link>
+              </Link>)}
               {/* <Link className="M-NB-Icon" exact="true" to="/browse">
                 <span class="material-symbols-outlined"> code </span>
                 <p>Devs</p>
