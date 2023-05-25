@@ -3,8 +3,10 @@ import './SlideOutMenu.css';
 import { useDispatch, useSelector } from 'react-redux';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import SongForm from '../Forms/SongForm'
+import LoginFormModal from "../Forms/LoginFormModal";
+import SignupFormModal from "../Forms/SignupFormModal";
 import { useHistory } from 'react-router-dom';
-import { logout } from '../../store/session';
+import { logout,login } from '../../store/session';
 
 const SlideOutMenu = () => {
     const ulRef = useRef();
@@ -41,8 +43,18 @@ const SlideOutMenu = () => {
     const handleLogout = (e) => {
         e.preventDefault();
         dispatch(logout());
+        toggleMenu()
         return history.push('/browse');
     };
+
+    const loginDemoUser = () => {
+        setTimeout(() => {
+            dispatch(login('demo@aa.io', 'password'))
+            toggleMenu()
+        }, 750)
+        return
+    }
+
 
 
     return (
@@ -61,17 +73,30 @@ const SlideOutMenu = () => {
                             itemText="Upload Song"
                             onItemClick={toggleMenu}
                             modalComponent={<SongForm />}
-                            className='SOM-UploadSong'
+                            className='SOM-Label'
                         />
 
-                        <p className='SOM-Logout' onClick={((e) => {handleLogout(e)})}>Log Out</p>
+                        <p className='SOM-Logout' onClick={((e) => { handleLogout(e) })}>Log Out</p>
                     </ul>
                     :
-                    <ul>
-                        <p>Welcome</p>
-                        <p>Login</p>
-                        <p>Sign Up</p>
-                        <p>Demo Login</p>
+                    <ul className='SOM-Loggedout'>
+                        <p className='SOM-Welcome'>{`Welcome`}</p>
+
+                        <OpenModalMenuItem
+                            itemText="Login"
+                            onItemClick={toggleMenu}
+                            modalComponent={<LoginFormModal />}
+                            className='SOM-Label'
+                        />
+
+                        <OpenModalMenuItem
+                            itemText="Sign Up"
+                            onItemClick={toggleMenu}
+                            modalComponent={<SignupFormModal />}
+                            className='SOM-Label'
+                        />
+
+                        <p className='SOM-Demo-Label' onClick={((e) => loginDemoUser(e))}>Demo Login</p>
                     </ul>
                 }
             </div>

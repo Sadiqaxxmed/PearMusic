@@ -80,7 +80,7 @@ function LoginFormModal() {
               />
             </label>
             <button className={loginBtn} type="submit" disabled={isDisabled()}>Log In</button>
-            <div className="SignUp-Demo-Btn">
+            <div className="SignUp-Demo-Btn-Text">
               <p onClick={() => loginDemoUser()}>Demo User</p>
             </div>
           </form>

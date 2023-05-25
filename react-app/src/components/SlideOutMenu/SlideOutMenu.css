@@ -23,7 +23,7 @@
     width: 80%;
     max-width: 300px;
     height: 100%;
-    background-color: #fff;
+    background-color: black;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     transform: translateX(100%);
     transition: transform 0.3s;
@@ -38,6 +38,11 @@
 }
 
 .SOM-Loggedin {
+    display: flex;
+    flex-direction: column;
+}
+
+.SOM-Loggedout{
     display: flex;
     flex-direction: column;
 }
@@ -57,18 +62,34 @@
     padding-bottom: 40px;
 }
 
-p.SOM-UploadSong {
-    margin-block-end: 0;
-}
-
 .slide-out-menu p {
     list-style-type: none;
     padding: 20px;
     margin: 0px;
+    
 }
 
-p.SOM-UploadSong:hover {
+p.SOM-Label{
+    margin-block-end: 0;
+    cursor: pointer;
+}
+
+p.SOM-Demo-Label{
+    margin-block-end: 0;
+    color: crimson;
+    cursor: pointer;
+}
+
+p.SOM-Demo-Label:hover{
     animation: slideOutAnimation 0.3s forwards;
+}
+
+p.SOM-Label:hover {
+    animation: slideOutAnimation 0.3s forwards;
+}
+
+.SOM-Logout{
+    cursor: pointer;
 }
 
 .SOM-Logout:hover {
