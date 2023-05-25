@@ -39,14 +39,14 @@
   padding-left: 10px;
 }
 
-.MD-song-description-div > h3 {
+.MD-song-description-div>h3 {
   padding: 0;
   margin: 0;
   color: rgb(238, 238, 238);
   font-size: 18px;
 }
 
-.MD-song-description-div > p {
+.MD-song-description-div>p {
   padding: 0;
   margin: 0;
   font-size: 14px;
@@ -101,7 +101,8 @@
 .MD-Playlist-Info {
   display: inline-flex;
 }
-.MD-Playlist-CoverImage{
+
+.MD-Playlist-CoverImage {
   height: 150px;
   width: 150px;
   border-radius: 10px;
@@ -113,7 +114,7 @@
   right: -250px;
 }
 
-.MD-playlist-Title{
+.MD-playlist-Title {
   color: rgb(238, 238, 238);
   font-size: 12px;
   font-weight: 300;
@@ -127,6 +128,7 @@
   padding-top: 10px;
   right: 65px;
 }
+
 .MD-Album-Title {
   color: rgb(238, 238, 238);
   font-size: 12px;
@@ -147,7 +149,7 @@
 
 
 .TTM-Main-Wrapper {
-  background-color: rgb(30,30,30);
+  background-color: rgb(30, 30, 30);
   border: solid rgb(75, 75, 75) 1px;
   border-radius: 8px;
   width: 110px;
@@ -158,8 +160,8 @@
   left: 100px;
 }
 
-.UDM-Main-Wrapper{
-  background-color: rgb(30,30,30);
+.UDM-Main-Wrapper {
+  background-color: rgb(30, 30, 30);
   /* background-color: red; */
   border: solid rgb(75, 75, 75) 1px;
   border-radius: 8px;
@@ -168,44 +170,277 @@
   font-size: small;
 
 }
+
 /* used to fix overflow issue with menu popup being hidden by swiper */
-div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden{
-  overflow:none;
+div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
+  overflow: none;
 }
+
 /* idk rn the menu is going under songs and chaning the z index doesnt do anything */
 /* img.MD-song-images{
   z-index: -1;
   overflow: visible;
 } */
 
-.UDM-Main-Wrapper-Hidden{
+.UDM-Main-Wrapper-Hidden {
   display: none;
 }
 
-.UDM-Update-Wrapper{
+.UDM-Update-Wrapper {
   display: flex;
   flex-direction: row;
-  align-items:center;
+  align-items: center;
   width: 100px;
   /* border-bottom: solid rgb(98, 98, 98) 1px; */
   cursor: pointer;
   /* justify-content: space-between; */
   padding: 5px 0 5px 0;
 }
-.UDM-Delete-Wrapper{
+
+.UDM-Delete-Wrapper {
   display: flex;
   flex-direction: row;
-  align-items:center;
+  align-items: center;
   width: 100%;
   cursor: pointer;
   justify-content: space-between;
   padding: 5px 0 5px 0;
 }
-#update-ico{
+
+#update-ico {
   position: relative;
   left: 9.5px;
 }
-#delete-ico{
+
+#delete-ico {
   position: relative;
   right: 6px;
+}
+
+@media only screen and (max-width: 1050px) {
+  .MD-body {
+    z-index: -1;
+    min-height: calc(100% + 10px);
+    padding-top: 0px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .MD-label {
+    color: rgb(238, 238, 238);
+    font-size: 34px;
+    font-weight: 500;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgb(42, 42, 42);
+  }
+
+  .MD-Song-Section-Wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .MD-sub-labels {
+    color: rgb(238, 238, 238);
+    font-size: 24px;
+    font-weight: 500;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgb(42, 42, 42);
+  }
+
+  .MD-swiper-slide-songs {
+    display: inline-flex;
+    justify-content: space-evenly;
+  }
+
+  .MD-song-images {
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+  }
+
+  .MD-song-description-div {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+  }
+
+  .MD-song-description-div>h3 {
+    padding: 0;
+    margin: 0;
+    color: rgb(238, 238, 238);
+    font-size: 18px;
+  }
+
+  .MD-song-description-div>p {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: rgb(105, 105, 105);
+  }
+
+
+  .MD-song-container-div {
+    display: inline-flex;
+    /* margin-left: 60px; */
+  }
+
+  #MD-eclipse {
+    padding-bottom: 20px;
+    padding-left: 100px;
+    color: rgb(226, 96, 106)
+  }
+
+  #MD-eclipse:hover {
+    cursor: pointer;
+  }
+
+  .MD-album-images {
+    height: 150px;
+    width: 150px;
+    border-radius: 10px;
+    margin-left: 60px;
+  }
+
+  .MD-album-images {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left: 60px;
+  }
+
+  .MD-album-images:hover {
+    cursor: pointer;
+  }
+
+
+  .MD-section-container {
+    margin-bottom: 50px;
+
+  }
+
+  .MD-display-none {
+    display: none;
+  }
+
+  .MD-Playlist-Info {
+    display: inline-flex;
+  }
+
+  .MD-Playlist-CoverImage {
+    height: 150px;
+    width: 150px;
+    border-radius: 10px;
+    margin-left: 60px;
+  }
+
+  #MD-Main-Wapper {
+    position: absolute;
+    right: -250px;
+  }
+
+  .MD-playlist-Title {
+    color: rgb(238, 238, 238);
+    font-size: 12px;
+    font-weight: 300;
+    width: fit-content;
+    margin-left: 60px;
+    max-width: 130px;
+  }
+
+  .MD-Playlist-Icon {
+    position: absolute;
+    padding-top: 10px;
+    right: 65px;
+  }
+
+  .MD-Album-Title {
+    color: rgb(238, 238, 238);
+    font-size: 12px;
+    font-weight: 300;
+    width: fit-content;
+    margin-left: 60px;
+  }
+
+  #MD-eclipse-playlist {
+    /* padding-top: 15px; */
+    padding-left: 10px;
+    color: rgb(226, 96, 106)
+  }
+
+  #MD-eclipse-playlist:hover {
+    cursor: pointer;
+  }
+
+
+  .TTM-Main-Wrapper {
+    background-color: rgb(30, 30, 30);
+    border: solid rgb(75, 75, 75) 1px;
+    border-radius: 8px;
+    width: 110px;
+    color: rgb(214, 214, 214);
+    font-size: small;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+  }
+
+  .UDM-Main-Wrapper {
+    background-color: rgb(30, 30, 30);
+    /* background-color: red; */
+    border: solid rgb(75, 75, 75) 1px;
+    border-radius: 8px;
+    width: 80px;
+    color: rgb(214, 214, 214);
+    font-size: small;
+
+  }
+
+  /* used to fix overflow issue with menu popup being hidden by swiper */
+  div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
+    overflow: none;
+  }
+
+  /* idk rn the menu is going under songs and chaning the z index doesnt do anything */
+  /* img.MD-song-images{
+    z-index: -1;
+    overflow: visible;
+  } */
+
+  .UDM-Main-Wrapper-Hidden {
+    display: none;
+  }
+
+  .UDM-Update-Wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100px;
+    /* border-bottom: solid rgb(98, 98, 98) 1px; */
+    cursor: pointer;
+    /* justify-content: space-between; */
+    padding: 5px 0 5px 0;
+  }
+
+  .UDM-Delete-Wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    justify-content: space-between;
+    padding: 5px 0 5px 0;
+  }
+
+  #update-ico {
+    position: relative;
+    left: 9.5px;
+  }
+
+  #delete-ico {
+    position: relative;
+    right: 6px;
+  }
 }
