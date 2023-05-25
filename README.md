@@ -17,6 +17,17 @@ Pear Music is a music streaming application that allows users to upload & connec
 
 ## Dev Team: 
 
+**Yasine Benzekri**
+
+<a href="url"><img src="https://user-images.githubusercontent.com/43020644/232277185-808ea9ab-a5df-482a-8cba-38c34c847071.png" align="left" height="100" width="100" ></a>
+
+[Github](https://github.com/Yasine-ben)
+
+[Linkedin](https://www.linkedin.com/in/yasine-benzekri-389457271/)
+
+<br/>
+<br/>
+
 **Sadiq Ahmed**
 
 <a href="url"><img src="https://user-images.githubusercontent.com/43020644/232276720-dadec5e8-ce0d-4d6a-bf6a-9880d6501e95.png" align="left" height="100" width="100" ></a>
@@ -39,16 +50,7 @@ Pear Music is a music streaming application that allows users to upload & connec
 <br/>
 <br/>
 
-**Yasine Benzekri**
 
-<a href="url"><img src="https://user-images.githubusercontent.com/43020644/232277185-808ea9ab-a5df-482a-8cba-38c34c847071.png" align="left" height="100" width="100" ></a>
-
-[Github](https://github.com/Yasine-ben)
-
-[Linkedin](https://www.linkedin.com/in/yasine-benzekri-389457271/)
-
-<br/>
-<br/>
 
 ## Preview Of Pear Music (More in Repo Wiki) 
 
