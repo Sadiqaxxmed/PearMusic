@@ -164,7 +164,7 @@ function NavBar() {
 
   return (
     <div className="NB-body-Wrapper">
-      {isMobile && <NewMenu />}
+      <NewMenu />
       {!isMobile ? (
         // Content for Desktop
         <div className="NB-body">
@@ -199,8 +199,7 @@ function NavBar() {
                   <div className="NB-Player-CurrentSong-Wrapper">
                     <div className="NB-Player-CurrentSong">{songTitle}</div>
                     <div className="NB-Player-ArtistAlbum">
-                      <div className="NB-Player-Artist">{songArtist}</div>&nbsp;&nbsp; {/* change to -- equvalent emoji or symbol idk just no middle space in it like this (-  -)  */}
-                      <div className="NB-Player-Album">(album name)</div>
+                      <div className="NB-Player-Artist">{songArtist}</div> {/* change to -- equvalent emoji or symbol idk just no middle space in it like this (-  -)  */}
                     </div>
                   </div>
                   <div className="NB-Player-Times">
@@ -216,13 +215,6 @@ function NavBar() {
           <div className="NB-Volume-Slider">
             <i className="fa-solid fa-volume-low" id='music'></i>
             <input type="range" min="0" max="100" value={volume} onChange={(e) => setVolume(e.target.value)} className="slider" id="myslider" />
-          </div>
-          <div className="NB-Symbol">
-          </div>
-          <div className="NB-Menu-Wrap">
-            {/* <i className="fa-solid fa-bars" id='burger' onClick={toggleMenu}/> */}
-            <ProfileButton user={sessionUser} onClick={toggleMenu} />
-            {isMenuOpen && <Menu />} {/*opens menu when clicked on*/}
           </div>
         </div>
       )

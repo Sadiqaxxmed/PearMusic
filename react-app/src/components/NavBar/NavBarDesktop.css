@@ -11,6 +11,14 @@
     justify-content: space-between;
 }
 
+.fa-solid.fa-gear{
+    z-index: 100;
+    position: absolute;
+    top: 17px;
+    right: 10px;
+    font-size: 1.4em;
+}
+
 .music-player-container {
     display: flex;
     padding-left: 50px;
@@ -81,7 +89,7 @@
     /* wraps the song image and the grey player */
     display: flex;
     flex-direction: row;
-    margin-left: 62px;
+    margin-left: 40px;
     padding-top: 7px;
     padding-bottom: 7px;
 }
@@ -91,10 +99,10 @@
     display: flex;
     position: relative;
     flex-direction: row;
-    width: 33vw;
+    width: 30vw;
     justify-content: center;
     align-items: center;
-    margin-right: 30px;
+    margin-right: 20px;
     /* come back */
     overflow: hidden;
 }
@@ -117,6 +125,8 @@
 .NB-Player-ArtistAlbum {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items:center;
 }
 
 .NB-Progress {
@@ -192,6 +202,8 @@ input.NB-Progress::-webkit-slider-thumb {
 .NB-Volume-Slider {
     display: flex;
     flex-direction: row;
+    position: relative;
+    right: 10px;
 }
 
 #music.fa-solid.fa-volume-low {
