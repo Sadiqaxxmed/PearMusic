@@ -32,11 +32,57 @@
 
 .slide-out-menu-container.open {
     transform: translateX(0);
+    background-color: black;
+    color: white;
+    font-size: 1.5em;
 }
+
+.SOM-Loggedin {
+    display: flex;
+    flex-direction: column;
+}
+
+.SOM-Welcome {
+    display: flex;
+    align-self: flex-start;
+    justify-content: center;
+    text-overflow: ellipsis;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
+}
+
 
 .slide-out-menu ul {
     list-style-type: none;
+    padding-bottom: 40px;
+}
+
+p.SOM-UploadSong {
+    margin-block-end: 0;
+}
+
+.slide-out-menu p {
+    list-style-type: none;
     padding: 20px;
+    margin: 0px;
+}
+
+p.SOM-UploadSong:hover {
+    animation: slideOutAnimation 0.3s forwards;
+}
+
+.SOM-Logout:hover {
+    animation: slideOutAnimation 0.3s forwards;
+}
+
+@keyframes slideOutAnimation {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-15px);
+    }
 }
 
 .slide-out-menu li {

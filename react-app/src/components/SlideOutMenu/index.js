@@ -1,26 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './SlideOutMenu.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import SongForm from '../Forms/SongForm'
+import { useHistory } from 'react-router-dom';
+import { logout } from '../../store/session';
 
 const SlideOutMenu = () => {
+    const ulRef = useRef();
+    const dispatch = useDispatch();
+    const history = useHistory();
+
     const user = useSelector(state => state.session.user);
-    const ulRef = useRef(); 
 
     const [showMenu, setShowMenu] = useState(false);
 
-    console.log(user)
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
     };
-
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
     };
-
     useEffect(() => {
         if (!showMenu) return;
 
@@ -34,8 +36,14 @@ const SlideOutMenu = () => {
 
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
-
     const closeMenu = () => setShowMenu(false);
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        dispatch(logout());
+        return history.push('/browse');
+    };
+
 
     return (
         <div>
@@ -46,23 +54,24 @@ const SlideOutMenu = () => {
             </div>
             <div className={`slide-out-menu-container ${showMenu ? 'open' : ''}`} ref={ulRef}>
                 {user ?
-                    <ul>
-                        <p>{`Welcome ${user?.username}`}</p>
+                    <ul className='SOM-Loggedin'>
+                        <p className='SOM-Welcome'>{`Welcome ${user?.username}`}</p>
 
                         <OpenModalMenuItem
                             itemText="Upload Song"
                             onItemClick={toggleMenu}
                             modalComponent={<SongForm />}
+                            className='SOM-UploadSong'
                         />
 
-                        <li>Log Out</li>
+                        <p className='SOM-Logout' onClick={((e) => {handleLogout(e)})}>Log Out</p>
                     </ul>
                     :
                     <ul>
                         <p>Welcome</p>
-                        <li>Login</li>
-                        <li>Sign Up</li>
-                        <li>Demo Login</li>
+                        <p>Login</p>
+                        <p>Sign Up</p>
+                        <p>Demo Login</p>
                     </ul>
                 }
             </div>
