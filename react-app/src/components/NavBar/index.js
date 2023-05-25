@@ -24,10 +24,14 @@ function NavBar() {
 
   let browseIcon = 'material-symbols-outlined'
   let songIcon = 'material-symbols-outlined'
+  let playlistIcon = 'material-symbols-outlined'
+
   if (location.pathname.includes('/browse')) {
     browseIcon = 'material-symbols-outlined active'
-  } if (location.pathname.includes('/songs')) {
+  } else if(location.pathname.includes('/songs')) {
     songIcon = 'material-symbols-outlined active'
+  }else if(location.pathname.includes('/allPlaylist')){
+    playlistIcon = 'material-symbols-outlined active'
   }
 
 
@@ -228,7 +232,7 @@ function NavBar() {
         (
 
           <div className="M-NB-Body">
-            
+
             {songArtist && songTitle && (
 
 
@@ -277,6 +281,11 @@ function NavBar() {
               <Link className="M-NB-Icon" exact="true" to="/browse" >
                 <span class={browseIcon}> home </span>
                 <p>Home</p>
+              </Link>
+
+              <Link className="M-NB-Icon" exact="true" to="/allPlaylist" >
+                <span class={playlistIcon}> view_list </span>
+                <p>Playlists</p>
               </Link>
               {/* <Link className="M-NB-Icon" exact="true" to="/browse">
                 <span className="material-symbols-outlined" id='M-Search'>search</span>
