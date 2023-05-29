@@ -33,6 +33,7 @@
   border-radius: 10px;
 }
 
+
 .MD-song-description-div {
   display: flex;
   flex-direction: column;
@@ -60,8 +61,8 @@
 }
 
 #MD-eclipse {
-  padding-bottom: 20px;
-  padding-left: 100px;
+  padding-bottom: 0px;
+  padding-left: 0px;
   color: rgb(226, 96, 106)
 }
 
@@ -124,7 +125,7 @@
 }
 
 .MD-Playlist-Icon {
-  position: absolute;
+  position: absoute;
   padding-top: 10px;
   right: 65px;
 }
@@ -152,35 +153,27 @@
   background-color: rgb(30, 30, 30);
   border: solid rgb(75, 75, 75) 1px;
   border-radius: 8px;
-  width: 110px;
+  width: fit-content;
   color: rgb(214, 214, 214);
   font-size: small;
-  position: absolute;
-  top: 100px;
-  left: 100px;
 }
+
 
 .UDM-Main-Wrapper {
   background-color: rgb(30, 30, 30);
   /* background-color: red; */
   border: solid rgb(75, 75, 75) 1px;
   border-radius: 8px;
-  width: 80px;
+  width: 85px;
   color: rgb(214, 214, 214);
   font-size: small;
-
+  position: absolute;
 }
 
 /* used to fix overflow issue with menu popup being hidden by swiper */
 div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
   overflow: none;
 }
-
-/* idk rn the menu is going under songs and chaning the z index doesnt do anything */
-/* img.MD-song-images{
-  z-index: -1;
-  overflow: visible;
-} */
 
 .UDM-Main-Wrapper-Hidden {
   display: none;
@@ -203,7 +196,7 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
   align-items: center;
   width: 100%;
   cursor: pointer;
-  justify-content: space-between;
+  justify-content: center;
   padding: 5px 0 5px 0;
 }
 
@@ -247,7 +240,7 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
 
 
 
-
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
 
@@ -369,8 +362,9 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
   }
 
   #MD-eclipse {
-    padding-bottom: 20px;
-    padding-left: 100px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    
     color: rgb(226, 96, 106)
   }
 
@@ -478,7 +472,8 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
     width: 80px;
     color: rgb(214, 214, 214);
     font-size: small;
-
+    position: absolute;
+    right: 20px;
   }
 
   /* used to fix overflow issue with menu popup being hidden by swiper */
