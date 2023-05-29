@@ -271,10 +271,23 @@
   color: rgb(226 96 106);
 }
 
+#BR-song-icon-heart{
+  color: rgb(226 96 106);
+}
+
 
 .BR-heart-icon:hover {
   cursor: pointer;
   color: rgb(226 96 106);
+}
+
+.BR-Song-heart-icon {
+  color: rgb(226 96 106);
+  cursor: pointer;
+}
+
+#BR-song-icon-heart{
+  cursor: pointer;
 }
 
 #song-icon-heart:hover {

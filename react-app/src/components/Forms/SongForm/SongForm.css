@@ -44,10 +44,24 @@
     padding: 8px 0px 8px 0px;
     border: 0 solid;
     color: white;
+    cursor: pointer;
+}
+
+.SF-Submit-Btn:disabled {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    background-color: grey;
+    width: 60%;
+    border-radius: 4px;
+    padding: 8px 0px 8px 0px;
+    border: 0 solid;
+    color: white;
+    cursor:not-allowed;
 }
 
 .SF-Submit-Btn:hover {
-    cursor: pointer;
     box-shadow: 5px 5px 5px black;
 }
 
@@ -132,24 +146,6 @@
         max-height: 100px;
     }
 
-    .SF-Submit-Btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        align-self: center;
-        background-color: rgb(218, 15, 72);
-        width: 60%;
-        border-radius: 4px;
-        padding: 8px 0px 8px 0px;
-        border: 0 solid;
-        color: white;
-    }
-
-    .SF-Submit-Btn:hover {
-        cursor: pointer;
-        box-shadow: 5px 5px 5px black;
-    }
-
     .SF-Genre {
         color: black;
     }
@@ -184,6 +180,9 @@
         background-color: rgb(75, 75, 75);
         cursor: pointer;
         height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .Song-InnerBox{
@@ -205,7 +204,7 @@
     .SongPreview{
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-self: center;
     }
 
     .DragAndDropContainer:hover {
@@ -221,4 +220,5 @@
     .DragAndDropContainer.active {
         background-color: #eef5fc;
     }
+
 }

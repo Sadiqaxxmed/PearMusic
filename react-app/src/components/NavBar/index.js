@@ -303,7 +303,7 @@ function NavBar() {
               {sessionUser && (
                 <Link className="M-NB-Icon" exact="true" to="/manage-discography">
                 <span class={albumIcon}>album</span>
-                <p>Manage Discography</p>
+                <p>Manage</p>
                 </Link>
               )}
               {/* <Link className="M-NB-Icon" exact="true" to="/browse">

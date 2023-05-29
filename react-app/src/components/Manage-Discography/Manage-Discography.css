@@ -1,6 +1,6 @@
 .MD-body {
   z-index: -1;
-  height: 1200px;
+  min-height: calc(100% + 10px);
   padding-top: 65px;
   padding-left: 300px;
   padding-right: 50px;
@@ -217,13 +217,61 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
   right: 6px;
 }
 
+#MD-Label{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: none;
+  font-size: 2.6em;
+}
+
+.MD-Song-Section-Wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media only screen and (max-width: 1050px) {
   .MD-body {
     z-index: -1;
-    min-height: calc(100% + 10px);
+    min-height: 1000000px;
+    margin:0;
     padding-top: 0px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 0px;
+    padding-right: 0px;
+    overflow: hidden;
+  }
+
+  #MD-Label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none;
+    font-size: 2.6em;
   }
 
   .MD-label {
@@ -240,6 +288,12 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
     justify-content: center;
     align-items: center;
   }
+
+  .MD-playlists-container-div{
+    /* display: flex;
+    flex-wrap: wrap; */
+  }
+  
 
   .MD-sub-labels {
     color: rgb(238, 238, 238);
@@ -280,10 +334,38 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
     color: rgb(105, 105, 105);
   }
 
+  .swiper-slide.MD-songs-carousel-images-div{
+    /* max-width: 200px; */
+    /* background-color: red; */
+    /* display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   .MD-song-container-div {
-    display: inline-flex;
+    display: flex;
     /* margin-left: 60px; */
+    width: 100px;
+  }
+
+  .MD-Playlist-Info{
+    background-color: red;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    max-width: 200px;
+  }
+
+  .MD-Playlist-Icon {
+    position: relative;
+    padding-top: 10px;
+    right: 0px;
   }
 
   #MD-eclipse {
@@ -327,6 +409,7 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
 
   .MD-Playlist-Info {
     display: inline-flex;
+    max-width: 150px;
   }
 
   .MD-Playlist-CoverImage {
