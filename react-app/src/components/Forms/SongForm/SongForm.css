@@ -92,7 +92,7 @@
 }
 
 
-@media only screen and (max-width: 1050px) {
+
     .SF-Wrapper {
         width: 100vw;
         height: 100vh;
@@ -221,4 +221,3 @@
         background-color: #eef5fc;
     }
 
-}

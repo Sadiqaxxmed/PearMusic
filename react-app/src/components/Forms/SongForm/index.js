@@ -144,7 +144,7 @@ function SignupFormModal() {
 
         } if (!imageFormat?.some(ext => songCoverImage?.name.endsWith(ext))) {
             err.coverImage = 'Please provide a valid image file';
-        } else if (songCoverImage?.endsWith('.HEIC')) {
+        } else if (songCoverImage?.name.endsWith('.HEIC')) {
             err.coverImage = ('HEIC')
         }
 
@@ -188,124 +188,89 @@ function SignupFormModal() {
                     <i className="fa-solid fa-xmark" onClick={() => handleCloseModal()} id='x' />
                     <h1 className="SF-Title">Upload Song</h1>
                     {errors.submit ? <div className="SF-Errors">* {errors.submit} *</div> : null}
-                    {!isMobile ? (
-                        <form className='SF-Form' onSubmit={handleSubmit} method="POST" encType="multipart/form-data">
-                            {errors.titleLength ? <div className="SF-Errors">* {errors.titleLength}</div> : null}
-                            <div className="SF-Song-Title-Lable">Track Name
-                                <input type='text' className="SF-Song-Title" value={songTitle} onChange={(e) => setSongTitle(e.target.value)} required />
-                            </div>
-                            {errors.coverImage ? <div className="SF-Errors">* {errors.coverImage}</div> : null}
-                            <div> Cover Image:
-                                <input className="SF-CoverImage" type='file' accept='image/*' onChange={handleCoverFileChange} required />
-                            </div>
-                            <div className="SF-Genre-Wrapper"> Genre:
-                                <ReactSelect
-                                    className="SF-Genre"
-                                    options={GenreOptions}
-                                    value={GenreOptions.value}
-                                    onChange={handleGenreValueChange}
-                                />
-                            </div>
-                            {errors.songFile ? <div className="SF-Errors">* {errors.songFile}</div> : null}
-                            <div className="SF-Mp3-Wrapper"> Song File:
-                                <input type='file' accept="audio/*" onChange={handleFileChange} required />
-                            </div>
-                            <button className='SF-Submit-Btn' type="submit">Submit</button>
-                            <div className="SF-Loading-GIF-Container">
-                                <img src={loadingGif} alt='loading-gif' className={loading}></img>
-                            </div>
-                        </form>
-                    )
-
-                        :
-
-                        (
-                            <form className='SF-Form' onSubmit={handleSubmit} method="POST" encType="multipart/form-data">
-                                {errors.titleLength ? <div className="SF-Errors">* {errors.titleLength}</div> : null}
-                                <div className="SF-Song-Title-Lable">Track Name
-                                    <input type='text' className="SF-Song-Title" value={songTitle} onChange={(e) => setSongTitle(e.target.value)} required />
-                                </div>
-                                <div className="SF-Genre-Wrapper"> Genre:
-                                    <ReactSelect
-                                        className="SF-Genre"
-                                        options={GenreOptions}
-                                        value={GenreOptions.value}
-                                        onChange={handleGenreValueChange}
-                                    />
-                                </div>
-                                {errors.coverImage ? <div className="SF-Errors">* {errors.coverImage}</div> : null}
-                                <div className="SF-FileWrapper">
-                                    <div>
-                                    <label className="SF-CoverImage-Wrapper">Cover Image
-                                            <Dropzone onDrop={handleCoverFileChange} accept="image/*" multiple={false}>
-                                                {({ getRootProps, getInputProps, isDragActive }) => (
-                                                    <div {...getRootProps()} className={`DragAndDropContainer ${isDragActive ? 'active' : ''}`}>
-                                                        <input {...getInputProps()} />
-                                                        {coverPreview ? (
-                                                            isImageFile() ? (
-                                                                <img src={coverPreview} alt="Cover Preview" className="CoverImgPreview" />)
-                                                                :
-                                                                (
-                                                                    <div className="Song-InnerBox">
-                                                                        <i className="fa-solid fa-cloud-arrow-up" id="CI-Cloud"></i>
-                                                                        {!errors.coverImage === 'HEIC' ? (
-                                                                            <span style={{ color: 'red' }}>Invalid Image file. Please select an Image file.</span>)
-                                                                            :
-                                                                            <span style={{ color: 'red' }}>*HEIC Image files Unsupported*</span>}
-                                                                    </div>
-                                                                )
-                                                        ) : (
-                                                            <div className="CoverImage-InnerBox">
-                                                                <i class="fa-solid fa-cloud-arrow-up" id='CI-Cloud'></i>
-                                                                <span>Drag and drop or click to select a cover image</span>
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </Dropzone>
-                                        </label>
-                                    </div>
-                                    <div>
-                                    <label className="SF-Song-Wrapper">Audio File
-                                        {errors.songFile ? <div className="SF-Errors">* {errors.songFile}</div> : null}
-                                        <Dropzone onDrop={handleFileChange} accept="audio/*" multiple={false}>
-                                            {({ getRootProps, getInputProps, isDragActive }) => (
-                                                <div
-                                                    {...getRootProps()}
-                                                    className={`DragAndDropContainer ${isDragActive ? 'active' : ''}`}
-                                                >
-                                                    <input {...getInputProps()} />
-                                                    {songPreview ? (
-                                                        isAudioFile() ? (
-                                                            <audio controls className="SongPreview">
-                                                                <source src={songPreview} type="audio/mpeg" />
-                                                            </audio>
-                                                        ) : (
+                    <form className='SF-Form' onSubmit={handleSubmit} method="POST" encType="multipart/form-data">
+                        {errors.titleLength ? <div className="SF-Errors">* {errors.titleLength}</div> : null}
+                        <div className="SF-Song-Title-Lable">Track Name
+                            <input type='text' className="SF-Song-Title" value={songTitle} onChange={(e) => setSongTitle(e.target.value)} required />
+                        </div>
+                        <div className="SF-Genre-Wrapper"> Genre:
+                            <ReactSelect
+                                className="SF-Genre"
+                                options={GenreOptions}
+                                value={GenreOptions.value}
+                                onChange={handleGenreValueChange}
+                            />
+                        </div>
+                        {errors.coverImage ? <div className="SF-Errors">* {errors.coverImage}</div> : null}
+                        <div className="SF-FileWrapper">
+                            <div>
+                                <label className="SF-CoverImage-Wrapper">Cover Image
+                                    <Dropzone onDrop={handleCoverFileChange} accept="image/*" multiple={false}>
+                                        {({ getRootProps, getInputProps, isDragActive }) => (
+                                            <div {...getRootProps()} className={`DragAndDropContainer ${isDragActive ? 'active' : ''}`}>
+                                                <input {...getInputProps()} />
+                                                {coverPreview ? (
+                                                    isImageFile() ? (
+                                                        <img src={coverPreview} alt="Cover Preview" className="CoverImgPreview" />)
+                                                        :
+                                                        (
                                                             <div className="Song-InnerBox">
                                                                 <i className="fa-solid fa-cloud-arrow-up" id="CI-Cloud"></i>
-                                                                <span style={{ color: 'red' }}>Invalid audio file. Please select an audio file.</span>
+                                                                {!errors.coverImage === 'HEIC' ? (
+                                                                    <span style={{ color: 'red' }}>Invalid Image file. Please select an Image file.</span>)
+                                                                    :
+                                                                    <span style={{ color: 'red' }}>*HEIC Image files Unsupported*</span>}
                                                             </div>
                                                         )
+                                                ) : (
+                                                    <div className="CoverImage-InnerBox">
+                                                        <i class="fa-solid fa-cloud-arrow-up" id='CI-Cloud'></i>
+                                                        <span>Drag and drop or click to select a cover image</span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                    </Dropzone>
+                                </label>
+                            </div>
+                            <div>
+                                <label className="SF-Song-Wrapper">Audio File
+                                    {errors.songFile ? <div className="SF-Errors">* {errors.songFile}</div> : null}
+                                    <Dropzone onDrop={handleFileChange} accept="audio/*" multiple={false}>
+                                        {({ getRootProps, getInputProps, isDragActive }) => (
+                                            <div
+                                                {...getRootProps()}
+                                                className={`DragAndDropContainer ${isDragActive ? 'active' : ''}`}
+                                            >
+                                                <input {...getInputProps()} />
+                                                {songPreview ? (
+                                                    isAudioFile() ? (
+                                                        <audio controls className="SongPreview">
+                                                            <source src={songPreview} type="audio/mpeg" />
+                                                        </audio>
                                                     ) : (
                                                         <div className="Song-InnerBox">
                                                             <i className="fa-solid fa-cloud-arrow-up" id="CI-Cloud"></i>
-                                                            <span>Drag and drop or click to select a song file</span>
+                                                            <span style={{ color: 'red' }}>Invalid audio file. Please select an audio file.</span>
                                                         </div>
-                                                    )}
-                                                </div>
-                                            )}
-                                        </Dropzone>
-                                        </label>
-                                    </div>
-                                </div>
-                               
-                                <button className='SF-Submit-Btn' type="submit" disabled={!isFormValid()}>Submit</button>
-                                <div className="SF-Loading-GIF-Container">
-                                    <img src={loadingGif} alt='loading-gif' className={loading}></img>
-                                </div>
-                            </form>
-                        )
-                    }
+                                                    )
+                                                ) : (
+                                                    <div className="Song-InnerBox">
+                                                        <i className="fa-solid fa-cloud-arrow-up" id="CI-Cloud"></i>
+                                                        <span>Drag and drop or click to select a song file</span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                    </Dropzone>
+                                </label>
+                            </div>
+                        </div>
+                        <button className='SF-Submit-Btn' type="submit" disabled={!isFormValid()}>Submit</button>
+                        <div className="SF-Loading-GIF-Container">
+                            <img src={loadingGif} alt='loading-gif' className={loading}></img>
+                        </div>
+                    </form>
                 </div>
             )}
         </>
