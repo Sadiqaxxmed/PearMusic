@@ -3,6 +3,7 @@ import './SlideOutMenu.css';
 import { useDispatch, useSelector } from 'react-redux';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import SongForm from '../Forms/SongForm'
+import ManageDiscography from '../Manage-Discography'
 import LoginFormModal from "../Forms/LoginFormModal";
 import SignupFormModal from "../Forms/SignupFormModal";
 import { useHistory } from 'react-router-dom';
@@ -55,6 +56,10 @@ const SlideOutMenu = () => {
         return
     }
 
+    function redirectDiscography(location){
+        toggleMenu()
+        return history.push(location)
+    }
 
 
     return (
@@ -68,6 +73,8 @@ const SlideOutMenu = () => {
                 {user ?
                     <ul className='SOM-Loggedin'>
                         <p className='SOM-Welcome'>{`Welcome ${user?.username}`}</p>
+
+                        <p className='SOM-Label' onClick={() => redirectDiscography('/manage-discography')}> Manage Discography </p>
 
                         <OpenModalMenuItem
                             itemText="Upload Song"
