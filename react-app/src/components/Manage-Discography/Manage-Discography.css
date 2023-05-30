@@ -14,6 +14,23 @@
   border-bottom: 1px solid rgb(42, 42, 42);
 }
 
+.MD-Title-Wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MD-Title {
+  width: 90vw;
+  display: flex;
+  justify-content: flex-start;
+  align-self: center;
+  color: white;
+  opacity: .9;
+  font-weight: 500;
+  /* border-bottom: .5px solid grey; */
+}
+
 .MD-sub-labels {
   color: rgb(238, 238, 238);
   font-size: 24px;
@@ -168,6 +185,10 @@
   color: rgb(214, 214, 214);
   font-size: small;
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* used to fix overflow issue with menu popup being hidden by swiper */
@@ -183,11 +204,12 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100px;
+  width: 85px;
   /* border-bottom: solid rgb(98, 98, 98) 1px; */
   cursor: pointer;
   /* justify-content: space-between; */
   padding: 5px 0 5px 0;
+  margin-left: 15px;
 }
 
 .UDM-Delete-Wrapper {
@@ -196,8 +218,8 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
   align-items: center;
   width: 100%;
   cursor: pointer;
-  justify-content: center;
   padding: 5px 0 5px 0;
+  margin-left: 15px;
 }
 
 #update-ico {
@@ -207,10 +229,10 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
 
 #delete-ico {
   position: relative;
-  right: 6px;
+  left: 9.5px;
 }
 
-#MD-Label{
+#MD-Label {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,53 +240,35 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
   font-size: 2.6em;
 }
 
-.MD-Song-Section-Wrapper{
+.MD-Song-Section-Wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-
-
-
-
-
 
 @media only screen and (max-width: 1050px) {
   .MD-body {
     z-index: -1;
-    min-height: 1000000px;
-    margin:0;
+    min-height: calc(100% + 100px);
+    padding-bottom: 100px;
+    margin: 0;
     padding-top: 0px;
     padding-left: 0px;
     padding-right: 0px;
     overflow: hidden;
   }
 
-  #MD-Label{
+  #MD-Label {
     display: flex;
     align-items: center;
     justify-content: center;
     border-bottom: none;
     font-size: 2.6em;
+    padding-left: 20px;
+    max-width: 90vw;
   }
 
   .MD-label {
@@ -275,18 +279,36 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
     border-bottom: 1px solid rgb(42, 42, 42);
   }
 
-  .MD-Song-Section-Wrapper{
+  .MD-Title-Wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .MD-Title {
+    width: 90vw;
+    display: flex;
+    justify-content: flex-start;
+    align-self: center;
+    color: white;
+    opacity: .9;
+    font-weight: 500;
+    /* border-bottom: .5px solid grey; */
+  }
+
+  .MD-Song-Section-Wrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    width: 100vw;
   }
 
-  .MD-playlists-container-div{
+  .MD-playlists-container-div {
     /* display: flex;
     flex-wrap: wrap; */
   }
-  
+
 
   .MD-sub-labels {
     color: rgb(238, 238, 238);
@@ -327,7 +349,7 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
     color: rgb(105, 105, 105);
   }
 
-  .swiper-slide.MD-songs-carousel-images-div{
+  .swiper-slide.MD-songs-carousel-images-div {
     /* max-width: 200px; */
     /* background-color: red; */
     /* display: flex;
@@ -345,7 +367,7 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
     width: 100px;
   }
 
-  .MD-Playlist-Info{
+  .MD-Playlist-Info {
     background-color: red;
     width: fit-content;
     display: flex;
@@ -364,7 +386,7 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
   #MD-eclipse {
     padding-bottom: 0px;
     padding-left: 0px;
-    
+
     color: rgb(226, 96, 106)
   }
 
@@ -473,7 +495,11 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
     color: rgb(214, 214, 214);
     font-size: small;
     position: absolute;
-    right: 20px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   /* used to fix overflow issue with menu popup being hidden by swiper */
@@ -495,22 +521,25 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 100px;
+    width: 85px;
     /* border-bottom: solid rgb(98, 98, 98) 1px; */
     cursor: pointer;
     /* justify-content: space-between; */
     padding: 5px 0 5px 0;
+    margin-left: 15px;
   }
 
   .UDM-Delete-Wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 100%;
+    width: 85px;
     cursor: pointer;
-    justify-content: space-between;
     padding: 5px 0 5px 0;
+    margin-left: 15px;
   }
+
+  
 
   #update-ico {
     position: relative;
@@ -519,6 +548,26 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
 
   #delete-ico {
     position: relative;
-    right: 6px;
+    left: 9.5px;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  .UDM-Main-Wrapper {
+    background-color: rgb(30, 30, 30);
+    /* background-color: red; */
+    border: solid rgb(75, 75, 75) 1px;
+    border-radius: 8px;
+    width: 80px;
+    color: rgb(214, 214, 214);
+    font-size: small;
+    position: absolute;
+    right: 20px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }

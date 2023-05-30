@@ -106,7 +106,9 @@ function ManageDiscography() {
   return (
     <div className="MD-body" ref={ulRef}>
       <h1 className='MD-label' id='MD-Label'>Manage Discography</h1>
-      <h1 className="BR-labels">Songs</h1>
+      <div className='MD-Title-Wrapper'>
+        <h1 className="MD-Title">Your Tracks</h1>
+      </div>
       <div className='MD-Song-Section-Wrapper'>
         {userSongs.map((song) => (
           <div className="BR-song-section">
@@ -124,7 +126,7 @@ function ManageDiscography() {
               </div>
             </div>
             <div className="MD-icon-section">
-              {showMenu && song.id == cardId ? <i id='MD-eclipse' className="fa-solid fa-xmark" onClick={() => toggleUDM()} /> : <i id='MD-eclipse' className="fa-solid fa-ellipsis" onClick={()=> toggleUDM(song.id)}/>}
+              {showMenu && song.id == cardId ? <i id='MD-eclipse' className="fa-solid fa-xmark" onClick={() => toggleUDM()} /> : <i id='MD-eclipse' className="fa-solid fa-ellipsis" onClick={() => toggleUDM(song.id)} />}
               {showMenu && song.id == cardId &&
                 <div className='UDM-Main-Wrapper'>
                   <div className="UDM-Update-Wrapper">
