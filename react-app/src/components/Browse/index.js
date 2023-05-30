@@ -184,7 +184,7 @@ function Browser() {
                     </p>
                   </div>
                 </div>
-                <div className={checkM()}>
+                <div if ='BR-icons-wrap' className={checkM()}>
                   {user ? (
                     <>
                       <i

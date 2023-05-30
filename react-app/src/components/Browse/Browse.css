@@ -260,10 +260,15 @@
 
   .M-icon-section {
     position: relative;
+    right: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding-right: 5px;
+    width: 10px;
+  }
+  #BR-icons-wrap{
+    width: fit-content;
   }
 }
 
