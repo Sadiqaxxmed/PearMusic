@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Menu from "./Menu/index";
 import noSong from '../../images/Music.png'
 import pear from '../../images/pear2.png'
+import { YouTube } from 'react-player/youtube';
 import ReactPlayer from 'react-player'
 import './NavBarDesktop.css'
 import './NavBarMobile.css'
@@ -33,7 +34,7 @@ function NavBar() {
     songIcon = 'material-symbols-outlined active'
   } else if (location.pathname.includes('/allPlaylist')) {
     playlistIcon = 'material-symbols-outlined active'
-  } else if (location.pathname.includes('/manage-discography')){
+  } else if (location.pathname.includes('/manage-discography')) {
     albumIcon = 'material-symbols-outlined active'
   }
 
@@ -255,6 +256,7 @@ function NavBar() {
               <div className="M-NB-Player-Wrapper-Wrapper">
                 <div className="M-NB-Player-Wrapper">
                   <ReactPlayer
+                  playsInline
                     ref={playerRef}
                     url={songUrl}
                     controls={false}
@@ -266,6 +268,7 @@ function NavBar() {
                     style={{ display: 'none' }}
                     onEnded={((e) => advanceSongQueue())}
                   />
+                  
                   <div className="M-NB-SongInfo-Wrapper">
                     <div className="M-NB-SongImg-Wrapper">
                       <img src={coverImage} alt='' className="M-NB-SongImg" />
@@ -307,14 +310,14 @@ function NavBar() {
               </Link> */}
               {sessionUser && (
                 <Link className="M-NB-Icon" exact="true" to="/songs">
-                <span class={songIcon}>library_music</span>
-                <p>Liked</p>
+                  <span class={songIcon}>library_music</span>
+                  <p>Liked</p>
                 </Link>
               )}
               {sessionUser && (
                 <Link className="M-NB-Icon" exact="true" to="/manage-discography">
-                <span class={albumIcon}>album</span>
-                <p>Manage</p>
+                  <span class={albumIcon}>album</span>
+                  <p>Manage</p>
                 </Link>
               )}
               {/* <Link className="M-NB-Icon" exact="true" to="/browse">
