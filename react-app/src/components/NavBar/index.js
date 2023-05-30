@@ -51,6 +51,7 @@ function NavBar() {
   const [coverImage, setCoverImage] = useState('')
   const [toggleIcon, setToggleIcon] = useState('fa-solid fa-play fa-xl')
   const [isMobile, setIsMobile] = useState(false);
+  const [isPhone, setIsPhone] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -161,6 +162,17 @@ function NavBar() {
     setCurrentTime(e)
   }
 
+  useEffect(() => {
+    const isMobileDevice = /Mobi|Android/i.test(navigator.userAgent);
+    setIsPhone(isMobileDevice)
+
+    // Cleanup function
+    return () => {
+      // Perform any necessary cleanup
+    };
+  }, []);
+
+
   // FUNC TO CHANGE SECONDS TO MINUTES FOR PLAYER VIEW (NOT FOR ANY LOGIC IN THE CODE BESIDES AESTETIC AND USER EXPERIENCE)
   function convertDecimalToTime(decimalValue) {
     const minutes = Math.floor(decimalValue / 60); // Get minutes by dividing decimalValue by 60 and rounding down
@@ -269,8 +281,7 @@ function NavBar() {
                     </div>
                   </div>
                 </div>
-
-                <div className="M-NB-ProgressBar-Wrapper">
+                <div className={isPhone ? "P-NB-ProgressBar-Wrapper" : "M-NB-ProgressBar-Wrapper"}>
                   <CustomSlider
                     currentTime={currentTime}
                     duration={duration}

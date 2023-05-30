@@ -84,6 +84,17 @@
 }
 
 
+.P-NB-ProgressBar-Wrapper {
+    position: relative;
+    bottom: 22px;
+    background-color: transparent;
+    width: 88vw;
+    left: 2px;
+    height: fit-content;
+    z-index: 1;
+    overflow: hidden;
+}
+
 .M-NB-ProgressBar-Wrapper {
     position: relative;
     bottom: 15px;
@@ -94,8 +105,6 @@
     z-index: 1;
     overflow: hidden;
 }
-
-.M-NB-Slider {}
 
 
 .M-NB-Nav {
