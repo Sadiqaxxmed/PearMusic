@@ -34,7 +34,7 @@ const CustomSlider = ({ currentTime, duration, handleProgressChange }) => {
 
     return (
         <CustomSliderComponent
-        className='M-NB-Slider'
+            className='M-NB-Slider'
             aria-label="time-indicator"
             size="small"
             value={position}
