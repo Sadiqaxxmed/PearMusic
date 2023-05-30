@@ -25,6 +25,7 @@ def songs():
 @song_routes.route('/singleSong', methods=['POST'])
 @login_required
 def create_song():
+    print('HERE//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////')
     data = request.files
 
     user = current_user
@@ -66,7 +67,7 @@ def create_song():
             # if the dictionary doesn't have a url key
             # it means that there was an error when we tried to upload
             # so we send back that error message
-            return {"message": "Error uploading file to AWS", "status": 500}
+            return jsonify({"error": "Error uploading file to AWS"}), 500
 
         songURL = uploadSong["url"]
         imageURL = uploadImage["url"]
@@ -95,10 +96,13 @@ def create_song():
         )
         db.session.add(new_song)
         db.session.commit()
-        return {"message": "Succesfully Uploaded Song", "status": 201}
-
+        return jsonify({"message": "Succesfully Uploaded Song"}), 201
+    
     if form.errors:
-        return {"message": "Invalid Data", "status": 403}
+        return jsonify({"error": "Invalid Data"}), 403
+    
+    else:
+        return jsonify({"error": "Form Validation Error"}), 500
 
 
 @song_routes.route('/allSongs/<int:user_id>')

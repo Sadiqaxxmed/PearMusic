@@ -28,12 +28,11 @@ const UpdateSong = (song) => {
     const [title, setTitle] = useState(song.song.title)
     const [genreValue, setGenreValue] = useState(song.song.genre)
     const [errors, setErrors] = useState({});
+    const [showModal, setShowModal] = useState(true);
+
     const songId = song.song.id
     const userId = useSelector(state => state.session.user.id)
     const { closeModal } = useModal();
-
-
-
 
     const handleUpdate = (e) => {
         e.preventDefault()
@@ -41,40 +40,47 @@ const UpdateSong = (song) => {
         if (title.length >= 16) err.title = '* Song Title must be less than 16 characters'
         if (err.title) return setErrors(err)
 
-        dispatch(thunkUpdateSong({songId,userId,title,genreValue}))
+        dispatch(thunkUpdateSong({ songId, userId, title, genreValue }))
         closeModal()
     }
 
     const handleGenreValueChange = (selectedOption) => { setGenreValue(selectedOption.value); }
+    const handleCloseModal = () => { setShowModal(false); }; // Set the state to close the modal
+
+
     return (
-        <div className="US-Main-Wrapper">
-            <div className="US-Title">
-                <h3>Update Song</h3>
-            </div>
-            <label>
-                { errors.title ? <p style={{color:'red', marginBottom:'10px', marginTop:'0'}}>{errors.title}</p> : null }
-                <p className="US-input-field">Song Title:</p>
+        <>
+        {showModal && 
+            <div className="US-Main-Wrapper">
+                <i className="fa-solid fa-xmark" onClick={() => handleCloseModal()} id='x' />
+                <div className="US-Title">
+                    <h3>Update Song</h3>
+                </div>
+                <label>
+                    {errors.title ? <p style={{ color: 'red', marginBottom: '10px', marginTop: '0' }}>{errors.title}</p> : null}
+                    <p className="US-input-field">Song Title:</p>
 
-                <input className="US-TitleInput" type="text" placeholder={title} value={title} onChange={((e)=> setTitle(e.target.value))}/>
-            </label>
+                    <input className="US-TitleInput" type="text" placeholder={title} value={title} onChange={((e) => setTitle(e.target.value))} />
+                </label>
 
-            <div className="US-update-info">
-            <div className="US-Genre-div">
-            <label className="US-Genre-label">
-                <p className="US-input-field">Genre:</p>
+                <div className="US-update-info">
+                    <div className="US-Genre-div">
+                        <label className="US-Genre-label">
+                            <p className="US-input-field">Genre:</p>
 
-            <ReactSelect
-                className="US-Genre"
-                options={GenreOptions}
-                value={GenreOptions.value}
-                defaultInputValue={genreValue}
-                onChange={handleGenreValueChange}
-            />
-            </label>
-            </div>
-            </div>
-            <div className="US-Submit-Button" onClick={handleUpdate}>Update</div>
-        </div>
+                            <ReactSelect
+                                className="US-Genre"
+                                options={GenreOptions}
+                                value={GenreOptions.value}
+                                defaultInputValue={genreValue}
+                                onChange={handleGenreValueChange}
+                            />
+                        </label>
+                    </div>
+                </div>
+                <div className="US-Submit-Button" onClick={handleUpdate}>Update</div>
+            </div>}
+        </>
     )
 }
 

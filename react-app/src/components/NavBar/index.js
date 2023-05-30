@@ -25,13 +25,16 @@ function NavBar() {
   let browseIcon = 'material-symbols-outlined'
   let songIcon = 'material-symbols-outlined'
   let playlistIcon = 'material-symbols-outlined'
+  let albumIcon = 'material-symbols-outlined'
 
   if (location.pathname.includes('/browse')) {
     browseIcon = 'material-symbols-outlined active'
-  } else if(location.pathname.includes('/songs')) {
+  } else if (location.pathname.includes('/songs')) {
     songIcon = 'material-symbols-outlined active'
-  }else if(location.pathname.includes('/allPlaylist')){
+  } else if (location.pathname.includes('/allPlaylist')) {
     playlistIcon = 'material-symbols-outlined active'
+  } else if (location.pathname.includes('/manage-discography')){
+    albumIcon = 'material-symbols-outlined active'
   }
 
 
@@ -291,10 +294,18 @@ function NavBar() {
                 <span className="material-symbols-outlined" id='M-Search'>search</span>
                 <p>Search</p>
               </Link> */}
-              {sessionUser && (<Link className="M-NB-Icon" exact="true" to="/songs">
+              {sessionUser && (
+                <Link className="M-NB-Icon" exact="true" to="/songs">
                 <span class={songIcon}>library_music</span>
                 <p>Liked</p>
-              </Link>)}
+                </Link>
+              )}
+              {sessionUser && (
+                <Link className="M-NB-Icon" exact="true" to="/manage-discography">
+                <span class={albumIcon}>album</span>
+                <p>Manage</p>
+                </Link>
+              )}
               {/* <Link className="M-NB-Icon" exact="true" to="/browse">
                 <span class="material-symbols-outlined"> code </span>
                 <p>Devs</p>

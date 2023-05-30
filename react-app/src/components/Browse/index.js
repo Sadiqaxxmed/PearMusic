@@ -184,7 +184,7 @@ function Browser() {
                     </p>
                   </div>
                 </div>
-                <div className={checkM()}>
+                <div if ='BR-icons-wrap' className={checkM()}>
                   {user ? (
                     <>
                       <i
@@ -195,13 +195,13 @@ function Browser() {
                       {menuOpen && song.id === cardId && <ToolTipMenu song={song} setMenuOpen={setMenuOpen} />}
                       {likedSongs.includes(song.id) ? (
                         <i
-                          id="song-icon-heart"
+                          id="BR-song-icon-heart"
                           className="fa-solid fa-heart"
                           onClick={() => isLikedSong(song.id, user)}
                         ></i>
                       ) : (
                         <i
-                          className="fa-regular fa-heart BR-heart-icon"
+                          className="fa-regular fa-heart BR-Song-heart-icon"
                           onClick={() => isLikedSong(song.id, user)}
                         ></i>
                       )}
