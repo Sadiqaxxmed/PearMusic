@@ -22,24 +22,25 @@
 
 .fa-solid.fa-user-plus {
     z-index: 100;
-    font-size: .9em;
+    font-size: .8em;
     position: absolute;
-    top: 8px;
-    right: 15px;
+    top: 12px;
+    right: 10px;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     background-color: rgba(226, 96, 106, 1);
-    width: 100px;
-    gap: 10px;
+    width: 90px;
+    height: 30px;
+    gap: 5px;
     border-radius: 20px;
     cursor: pointer;
 }
 
 .LoginBtnNavBarText{
-    font-size: .9em;
+    font-size: 1em;
     color: white;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }

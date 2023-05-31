@@ -1,6 +1,7 @@
 .SGPL-Body {
   z-index: -1;
-  height: 2000px;
+  height: 100%;
+  padding-bottom: 100px;
   padding-top: 100px;
   padding-left: 300px;
   padding-right: 50px;
@@ -13,7 +14,7 @@
   padding-bottom: 5px;
 }
 
-.SGPL-Top{
+.SGPL-Top {
   display: inline-flex;
 }
 
@@ -22,6 +23,7 @@
   font-size: 25px;
   padding-left: 20px;
 }
+
 .SGPL-Info {
   margin-left: 20px;
   color: rgb(160, 155, 153);
@@ -106,15 +108,14 @@
   color: rgb(255, 255, 255);
 }
 
-.SGPL-Bottom-text{
-
-}
+.SGPL-Bottom-text {}
 
 .SGPL-Bottom-Title-Header {
   margin-top: 20px;
   display: inline-flex;
   width: 100%;
 }
+
 .SGPL-Bottom-Song-Header {
   height: 50px;
   width: 40%;
@@ -309,13 +310,13 @@
   margin: 5px;
 }
 
-.SGPL-Owner-Buttons{
+.SGPL-Owner-Buttons {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.SGPL-Delete-Button{
+.SGPL-Delete-Button {
   display: inline-flex;
   justify-content: center;
   margin-left: 20px;
@@ -326,7 +327,7 @@
   cursor: pointer;
 }
 
-.SGPL-Delete-Text{
+.SGPL-Delete-Text {
   display: flex;
   align-self: center;
   text-align: center;
@@ -336,8 +337,8 @@
   color: rgb(255, 255, 255);
 }
 
-.SGPL-Menu-Wrapper{
-  background-color: rgb(30,30,30);
+.SGPL-Menu-Wrapper {
+  background-color: rgb(30, 30, 30);
   border: solid rgb(75, 75, 75) 1px;
   border-radius: 8px;
   width: 80px;
@@ -346,10 +347,10 @@
   position: absolute;
 }
 
-.SGPL-Menu-Btn-Wrapper{
+.SGPL-Menu-Btn-Wrapper {
   display: flex;
   flex-direction: row;
-  align-items:center;
+  align-items: center;
   width: 100%;
   border-bottom: solid rgb(98, 98, 98) 1px;
   cursor: pointer;
@@ -357,22 +358,22 @@
   padding: 5px 0 5px 0;
 }
 
-.SGPL-Menu-Btn-Wrapper-End{
+.SGPL-Menu-Btn-Wrapper-End {
   display: flex;
   flex-direction: row;
-  align-items:center;
+  align-items: center;
   width: 100%;
   cursor: pointer;
   justify-content: space-between;
   padding: 5px 0 5px 0;
 }
 
-.SGPL-Delete-Div{
+.SGPL-Delete-Div {
   display: inline-flex;
   width: fit-content;
 }
 
-.fa-solid.fa-xmark.SGPL-delete-comment-icon{
+.fa-solid.fa-xmark.SGPL-delete-comment-icon {
   display: flex;
   align-items: center;
   padding-bottom: 5px;
@@ -381,434 +382,435 @@
 
 @media only screen and (max-width: 1050px) {
   .gradient {
-      /* Adjust the height as needed */
-      background: linear-gradient(to bottom, #1ED760 10%, rgb(31, 31, 31));
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 35vw;
-      /* Adjust the height as needed */
-      z-index: -1;
+    /* Adjust the height as needed */
+    background: linear-gradient(to bottom, #1ED760 10%, rgb(31, 31, 31));
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 35vw;
+    /* Adjust the height as needed */
+    z-index: -1;
   }
 
   .SGPL-Body {
-      z-index: -1;
-      height: calc(100%+20px);
-      padding-top: 30px;
-      padding-left: 15px;
-      padding-right: 15px;
+    z-index: -1;
+    height: 100%;
+    padding-bottom: 100px;
+    margin-top: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .SGPL-Top-Left {
-      display: flex;
-      width: fit-content;
-      align-self: center;
-      justify-self: center;
+    display: flex;
+    width: fit-content;
+    align-self: center;
+    justify-self: center;
   }
 
   .SG-PL-Img {
-      display: flex;
-      height: 225px;
-      width: 225px;
-      border-radius: 0px;
-      padding-bottom: 5px;
+    display: flex;
+    height: 225px;
+    width: 225px;
+    border-radius: 0px;
+    padding-bottom: 5px;
   }
 
   .SGPL-Top {
-      display: flex;
-      flex-direction: column;
+    display: flex;
+    flex-direction: column;
   }
 
   .SGPL-Title {
-      color: white;
-      font-size: 25px;
-      padding-left: 0px;
+    color: white;
+    font-size: 25px;
+    padding-left: 0px;
   }
 
   .SGPL-Info {
-      margin-left: 0px;
-      color: rgb(160, 155, 153);
-      font-weight: 700;
-      font-size: 10px;
+    margin-left: 0px;
+    color: rgb(160, 155, 153);
+    font-weight: 700;
+    font-size: 10px;
   }
 
   .SGPL-Description {
-      /* margin-left: 20px;
+    /* margin-left: 20px;
       margin-bottom: 15px;
       color: rgb(224, 222, 221);
       font-weight: 300;
       font-size: 13px; */
-      display: none;
+    display: none;
   }
 
   .SGPL-Top-Right {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .SGPL-Title-Wrap {
-      display: flex;
-      flex-direction: column;
+    display: flex;
+    flex-direction: column;
   }
 
   .SGPL-Buttons-M {
-      display: flex;
-      flex-direction: row-reverse;
-      align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
   }
 
   .SGPL-Play-Button {
-      display: flex;
-      justify-content: center;
-      margin-left: 20px;
-      height: 50px;
-      width: 50px;
-      border-radius: 25px;
-      align-self: center;
-      background-color: rgb(251, 45, 71);
-      
+    display: flex;
+    justify-content: center;
+    margin-left: 20px;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    align-self: center;
+    background-color: rgb(251, 45, 71);
+
   }
 
   .SGPL-Play-Button:hover {
-      cursor: pointer;
+    cursor: pointer;
   }
 
   .SGPL-Play-Text {
-      display: flex;
-      align-self: center;
-      text-align: center;
-      padding-left: 5px;
-      font-weight: 700;
-      font-size: 14px;
-      color: rgb(255, 255, 255);
+    display: flex;
+    align-self: center;
+    text-align: center;
+    padding-left: 5px;
+    font-weight: 700;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
   }
 
   .SGPL-play {
-      display: flex;
-      align-self: center;
-      text-align: center;
-      color: rgb(255, 255, 255);
+    display: flex;
+    align-self: center;
+    text-align: center;
+    color: rgb(255, 255, 255);
   }
 
   .SGPL-Shuffle-Button {
-      display: inline-flex;
-      justify-content: center;
-      margin-left: 10px;
-      height: 25px;
-      width: 100px;
-      border-radius: 5px;
-      background-color: rgb(251, 45, 71);
+    display: inline-flex;
+    justify-content: center;
+    margin-left: 10px;
+    height: 25px;
+    width: 100px;
+    border-radius: 5px;
+    background-color: rgb(251, 45, 71);
 
   }
 
   .SGPL-Shuffle-Button:hover {
-      cursor: pointer;
+    cursor: pointer;
   }
 
   .SGPL-Shuffle-Text {
-      display: flex;
-      align-self: center;
-      text-align: center;
-      padding-left: 5px;
-      font-weight: 700;
-      font-size: 14px;
-      color: rgb(255, 255, 255);
+    display: flex;
+    align-self: center;
+    text-align: center;
+    padding-left: 5px;
+    font-weight: 700;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
   }
 
   .SGPL-Shuffle {
-      display: flex;
-      align-self: center;
-      text-align: center;
-      color: rgb(255, 255, 255);
+    display: flex;
+    align-self: center;
+    text-align: center;
+    color: rgb(255, 255, 255);
   }
 
 
   .SGPL-Bottom-Title-Header {
-      margin-top: 20px;
-      display: inline-flex;
-      width: 100%;
-      justify-content: space-between;
+    margin-top: 20px;
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
   }
 
-  #SGPL-Bottom-X{
-      margin-right: 10px;
+  #SGPL-Bottom-X {
+    margin-right: 10px;
   }
 
   .SGPL-Bottom-Song-Header {
-      height: 50px;
-      width: fit-content;
-      /* background-color: red; */
+    height: 50px;
+    width: fit-content;
+    /* background-color: red; */
   }
 
   .SGPL-Bottom-Artist-Header {
-      height: 50px;
-      width: 20%;
-      /* background-color: blue; */
+    height: 50px;
+    width: 20%;
+    /* background-color: blue; */
   }
 
   .SGPL-Bottom-Album-Header {
-      height: 50px;
-      width: 20%;
-      /* background-color: black; */
+    height: 50px;
+    width: 20%;
+    /* background-color: black; */
   }
 
   .SGPL-Bottom-Time-Header {
-      height: 50px;
-      width: 20%;
-      /* background-color: white; */
+    height: 50px;
+    width: 20%;
+    /* background-color: white; */
   }
 
   .SGPL-Bottom-text {
-      /* padding-left: 100px; */
-      color: rgb(160, 155, 153);
+    /* padding-left: 100px; */
+    color: rgb(160, 155, 153);
   }
 
   #SGPL-Bottom-Time-text {
-      padding-left: 100px;
+    padding-left: 100px;
   }
 
 
   .SG-Bottom-PL-Img {
-      height: 41px;
-      width: 40px;
-      border-radius: 5px;
-      margin-left: 10px;
+    height: 41px;
+    width: 40px;
+    border-radius: 5px;
+    margin-left: 10px;
   }
 
   .SG-Bottom-PL-Img:hover {
-      cursor: pointer;
+    cursor: pointer;
   }
 
-  
+
 
   .SGPL-Comment-Button {
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: center;
-      /* align-items: center; */
-      /* align-self: center; */
-      background-color: rgb(218, 15, 72);
-      width: auto;
-      border-radius: 4px;
-      padding: 8px;
-      border: 0 solid;
-      color: white;
-      transition: box-shadow 0.3s ease-in-out;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    /* align-self: center; */
+    background-color: rgb(218, 15, 72);
+    width: auto;
+    border-radius: 4px;
+    padding: 8px;
+    border: 0 solid;
+    color: white;
+    transition: box-shadow 0.3s ease-in-out;
   }
 
   .SGPL-Comment-Button:hover {
-      cursor: pointer;
-      box-shadow: 5px 5px 5px black;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px black;
   }
 
   .SGPL-Bottom-Song {
-      display:flex; 
+    display: flex;
   }
 
-  .SG-Bottom-TA-Wrapper{
-      display: flex;
-      flex-direction: column;
-      height: 50px;
-      position: relative;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 5px;
-      top: -5px;
-      width: fit-content;
+  .SG-Bottom-TA-Wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    position: relative;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
+    top: -5px;
+    width: fit-content;
   }
 
-  .SGPL-Bottom-Song-text{
-      font-size: .8em;
-      color: white;
-      margin: 0;
-      margin-left: 0px;
+  .SGPL-Bottom-Song-text {
+    font-size: .8em;
+    color: white;
+    margin: 0;
+    margin-left: 0px;
   }
 
   .SGPL-Bottom-text {
-      font-size: .8em;
-      color: rgb(166,166,166);
-      margin: 0;
-      margin-left: 10px;
+    font-size: .8em;
+    color: rgb(166, 166, 166);
+    margin: 0;
+    margin-left: 10px;
   }
 
   #SGPL-Bottom-Info-Text {
-      font-size: small;
-      padding-left: 100px;
+    font-size: small;
+    padding-left: 100px;
   }
 
   .SGPL-Darker-Shade {
-      height: 80px;
-      width: 100%;
-      border-radius: 10px;
-      /* background-color: rgb(41, 30, 27); */
-      background-color: rgb(35, 35, 35);
+    height: 80px;
+    width: 100%;
+    border-radius: 10px;
+    /* background-color: rgb(41, 30, 27); */
+    background-color: rgb(35, 35, 35);
   }
 
   .SGPL-Darker-Shade:hover {
-      background-color: rgb(44, 44, 44);
+    background-color: rgb(44, 44, 44);
   }
 
   .SGPL-Darker-Shade:focus {
-      background-color: rgb(156, 30, 29);
+    background-color: rgb(156, 30, 29);
   }
 
   .SGPL-No-Shade {
-      height: 80px;
-      width: 100%;
-      border-radius: 10px;
+    height: 80px;
+    width: 100%;
+    border-radius: 10px;
   }
 
   .SGPL-No-Shade:hover {
-      background-color: rgb(44, 44, 44);
+    background-color: rgb(44, 44, 44);
   }
 
   .SGPL-No-Shade:focus {
-      background-color: rgb(156, 30, 29);
+    background-color: rgb(156, 30, 29);
   }
 
   .SGPL-icon-menu {
-      color: rgb(251, 45, 71);
+    color: rgb(251, 45, 71);
   }
 
   .SGPL-icon-menu:hover {
-      cursor: pointer;
+    cursor: pointer;
   }
 
   .SGPL-Border-Top-Comments {
-      border-top: 1px solid rgb(42, 42, 42);
-      border-bottom: 1px solid rgb(42, 42, 42);
-      margin-top: 20px;
-      margin-bottom: 10px;
+    border-top: 1px solid rgb(42, 42, 42);
+    border-bottom: 1px solid rgb(42, 42, 42);
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
 
   .SGPL-Time {
-      display: inline-flex;
-      width: 100px;
+    display: inline-flex;
+    width: 100px;
   }
 
   .SGPL-icon-menu-div {
-      padding-top: 10px;
-      padding-left: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
   }
 
   .SGPL-Input-Comment-Field {
-      margin-top: 10px;
-      margin-bottom: 20px;
-      width: 100%;
-      height: 2.4em;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 2.4em;
   }
 
   .SGPL-Comments-Area {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   .SGPL-Comment-Container {
-      margin-left: 10px;
-      display: flex;
-      justify-content: space-between;
+    margin-left: 10px;
+    display: flex;
+    justify-content: space-between;
   }
 
   .SGPL-Comment {
-      color: rgb(255, 255, 255);
-      font-size: 12px;
+    color: rgb(255, 255, 255);
+    font-size: 12px;
   }
 
   .SGPL-delete-comment-icon {
-      margin-right: 3%;
-      color: rgb(251, 45, 71);
+    margin-right: 3%;
+    color: rgb(251, 45, 71);
   }
 
   .SGPL-delete-comment-icon:hover {
-      cursor: pointer;
+    cursor: pointer;
   }
 
   .Profile-Pic-Section {
-      display: flex;
-      background-color: white;
-      font-size: .01em;
+    display: flex;
+    background-color: white;
+    font-size: .01em;
   }
 
   .SGPL-profile-pic-container {
-      margin-left: 2%;
-      margin-top: 1%;
+    margin-left: 2%;
+    margin-top: 1%;
   }
 
   .SGPL-Profile-Comment-Container {
-      border-radius: 10px;
-      background-color: rgb(35, 35, 35);
-      border: 1px solid rgb(156, 30, 29);
-      margin: 5px;
+    border-radius: 10px;
+    background-color: rgb(35, 35, 35);
+    border: 1px solid rgb(156, 30, 29);
+    margin: 5px;
   }
 
   .SGPL-Owner-Buttons {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 
   .SGPL-Delete-Button {
-      display: inline-flex;
-      justify-content: center;
-      margin-left: 20px;
-      height: 25px;
-      width: 100px;
-      border-radius: 5px;
-      background-color: rgb(251, 45, 71);
-      cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    margin-left: 20px;
+    height: 25px;
+    width: 100px;
+    border-radius: 5px;
+    background-color: rgb(251, 45, 71);
+    cursor: pointer;
   }
 
   .SGPL-Delete-Text {
-      display: flex;
-      align-self: center;
-      text-align: center;
-      padding-left: 5px;
-      font-weight: 700;
-      font-size: 14px;
-      color: rgb(255, 255, 255);
+    display: flex;
+    align-self: center;
+    text-align: center;
+    padding-left: 5px;
+    font-weight: 700;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
   }
 
   .SGPL-Menu-Wrapper {
-      background-color: rgb(30, 30, 30);
-      border: solid rgb(75, 75, 75) 1px;
-      border-radius: 8px;
-      width: 80px;
-      color: rgb(214, 214, 214);
-      font-size: small;
-      position: absolute;
+    background-color: rgb(30, 30, 30);
+    border: solid rgb(75, 75, 75) 1px;
+    border-radius: 8px;
+    width: 80px;
+    color: rgb(214, 214, 214);
+    font-size: small;
+    position: absolute;
   }
 
   .SGPL-Menu-Btn-Wrapper {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      width: 100%;
-      border-bottom: solid rgb(98, 98, 98) 1px;
-      cursor: pointer;
-      justify-content: space-between;
-      padding: 5px 0 5px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    border-bottom: solid rgb(98, 98, 98) 1px;
+    cursor: pointer;
+    justify-content: space-between;
+    padding: 5px 0 5px 0;
   }
 
   .SGPL-Menu-Btn-Wrapper-End {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      width: 100%;
-      cursor: pointer;
-      justify-content: space-between;
-      padding: 5px 0 5px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    justify-content: space-between;
+    padding: 5px 0 5px 0;
   }
 
   .SGPL-Delete-Div {
-      display: inline-flex;
-      width: fit-content;
+    display: inline-flex;
+    width: fit-content;
   }
 
   .fa-solid.fa-xmark.SGPL-delete-comment-icon {
-      display: flex;
-      align-items: center;
-      padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
   }
 }

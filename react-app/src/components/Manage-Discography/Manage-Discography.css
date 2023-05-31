@@ -1,6 +1,7 @@
 .MD-body {
   z-index: -1;
-  min-height: calc(100% + 10px);
+  height: 100%;
+  padding-bottom: 100px;
   padding-top: 65px;
   padding-left: 300px;
   padding-right: 50px;
@@ -252,7 +253,7 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
 @media only screen and (max-width: 1050px) {
   .MD-body {
     z-index: -1;
-    min-height: calc(100% + 100px);
+    height: 100%;
     padding-bottom: 100px;
     margin: 0;
     padding-top: 0px;
@@ -539,7 +540,7 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
     margin-left: 15px;
   }
 
-  
+
 
   #update-ico {
     position: relative;
@@ -556,7 +557,6 @@ div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
 @media only screen and (max-width: 768px) {
   .UDM-Main-Wrapper {
     background-color: rgb(30, 30, 30);
-    /* background-color: red; */
     border: solid rgb(75, 75, 75) 1px;
     border-radius: 8px;
     width: 80px;
