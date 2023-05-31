@@ -5,3 +5,15 @@
   padding-left: 300px;
   padding-right: 50px;
 }
+
+@media only screen and (max-width: 1050px) {
+  .EG-Body {
+    z-index: -1;
+    height: calc(100%+20px);
+    padding-top: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+      

@@ -93,7 +93,7 @@ def seed_songs():
         title='Cupid',
         genre='K-Pop',
         coverImage='https://upload.wikimedia.org/wikipedia/en/a/a6/Fifty_Fifty_-_The_Beginning_Cupid.png',
-        mp3file="",
+        mp3file="https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/FIFTY+FIFTY+(%E1%84%91%E1%85%B5%E1%84%91%E1%85%B3%E1%84%90%E1%85%B5%E1%84%91%E1%85%B5%E1%84%91%E1%85%B3%E1%84%90%E1%85%B5)+-+'Cupid'+(TwinVer.)+Official+Lyric+Video.mp3",
         duration=2.59,
         user_id=1,
         artistName='Fifty Fifty'
