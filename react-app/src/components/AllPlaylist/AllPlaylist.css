@@ -38,6 +38,16 @@
   display: flex;
 }
 
+.PL-Card-Wrapper {
+  display: flex;
+  flex-direction: row;
+
+  flex-wrap: wrap;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+}
+
 .PL-Img {
   height: 225px;
   width: 225px;

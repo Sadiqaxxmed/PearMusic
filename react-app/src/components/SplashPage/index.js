@@ -15,22 +15,9 @@ import './SplashPage.css'
 
 function SplashPage({ isLoaded }) {
   const [devList, setDevList] = useState([])
-  const divRef = useRef(null);
-  useEffect(() => {
-    setTimeout(function () {
-      let oldContent = document?.querySelector('.HP-Apple-Subscription-Red');
-      let newContent = document?.querySelector('.HP-Apple-Subscription-White');
-      if (oldContent && newContent) {
-        oldContent.style.transform = 'translateY(-100%)';
-        oldContent.style.opacity = '0';
-        newContent.style.transform = 'translateY(0)';
-        newContent.style.opacity = '1';
-      }
-    }, 4000); // 5 seconds in milliseconds
-  }, [isLoaded])
-
   const devs = [YasineCard, SadiqCard, MikeCard]
 
+  const divRef = useRef(null);
   const devRand = (devs) => {
     let randDevs = []
 
@@ -47,10 +34,22 @@ function SplashPage({ isLoaded }) {
   }
 
   useEffect(() => {
+    setTimeout(function () {
+      let oldContent = document?.querySelector('.HP-Apple-Subscription-Red');
+      let newContent = document?.querySelector('.HP-Apple-Subscription-White');
+      if (oldContent && newContent) {
+        oldContent.style.transform = 'translateY(-100%)';
+        oldContent.style.opacity = '0';
+        newContent.style.transform = 'translateY(0)';
+        newContent.style.opacity = '1';
+      }
+    }, 4000); // 5 seconds in milliseconds
+  }, [isLoaded])
+  useEffect(() => {
     setDevList(devRand(devs))
   }, [])
 
-  // console.log(card1)
+
   return (
     <div className='HP-Body' style={{ backgroundColor: 'white' }}>
       <div className="HP-Main-Wrapper">
