@@ -123,10 +123,14 @@ function ExploreGenre() {
                   <div className="SGPL-Bottom-Song-Header">
                     <div className="SGPL-Bottom-Song">
                       <img className="SG-Bottom-PL-Img" alt='temp' src={song.coverImage} onClick={() => playNowFunc(song)}></img>
+                      {!isMobile ? <p className="SGPL-Bottom-Song-text">{song.title}</p>
+                      :
                       <div className="SG-Bottom-TA-Wrapper">
                         <p className="SGPL-Bottom-Song-text">{song.title}</p>
                         <p className="SGPL-Bottom-text" >{song.artistName}</p>
                       </div>
+                      }
+                      
                     </div>
                   </div>
                   {!isMobile && (<div className="SGPL-Bottom-Artist-Header"> <p className="SGPL-Bottom-text" id="SGPL-Bottom-Info-Text">{song.artistName}</p> </div>)}
