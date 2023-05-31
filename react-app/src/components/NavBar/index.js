@@ -184,7 +184,19 @@ function NavBar() {
 
   return (
     <div className="NB-body-Wrapper">
-      {isMobile && <NewMenu />}
+      <NewMenu />
+      <ReactPlayer
+        ref={playerRef}
+        url={songUrl}
+        controls={false}
+        volume={volume / 100}
+        playing={playPause}
+        onProgress={(progress) => setCurrentTime(progress.playedSeconds)}
+        played={currentTime}
+        onDuration={(duration) => setDuration(duration)}
+        style={{ display: 'none' }}
+        onEnded={((e) => advanceSongQueue())}
+      />
       {!isMobile ? (
         // Content for Desktop
         <div className="NB-body">
@@ -201,19 +213,6 @@ function NavBar() {
               ? (<img className="NB-Img" src={noSong} alt='music' />)
               : (<img className="NB-Img" src={coverImage} alt='cover' />)}
             <div className='NB-MUSIC-BLOCK'>
-              {/* Render ReactPlayer component and pass ref */}
-              <ReactPlayer
-                ref={playerRef}
-                url={songUrl}
-                controls={false}
-                volume={volume / 100}
-                playing={playPause}
-                onProgress={(progress) => setCurrentTime(progress.playedSeconds)}
-                played={currentTime}
-                onDuration={(duration) => setDuration(duration)}
-                style={{ display: 'none' }}
-                onEnded={((e) => advanceSongQueue())}
-              />
               {hasPlayed
                 ? <>
                   <div className="NB-Player-CurrentSong-Wrapper">
@@ -237,38 +236,15 @@ function NavBar() {
               <input type="range" min="0" max="100" value={volume} onChange={(e) => setVolume(e.target.value)} className="slider" id="myslider" />
             </div>
           </div>
-
-          <NewMenu />
         </div>
-      )
-
-
+        )
         :
-
         (
-
           <div className="M-NB-Body">
-
             {songArtist && songTitle && (
-
-
               //show teeny weenie weency player if song is playing currently
               <div className="M-NB-Player-Wrapper-Wrapper">
                 <div className="M-NB-Player-Wrapper">
-                  <ReactPlayer
-                  playsInline
-                    ref={playerRef}
-                    url={songUrl}
-                    controls={false}
-                    volume={volume / 100}
-                    playing={playPause}
-                    onProgress={(progress) => setCurrentTime(progress.playedSeconds)}
-                    played={currentTime}
-                    onDuration={(duration) => setDuration(duration)}
-                    style={{ display: 'none' }}
-                    onEnded={((e) => advanceSongQueue())}
-                  />
-                  
                   <div className="M-NB-SongInfo-Wrapper">
                     <div className="M-NB-SongImg-Wrapper">
                       <img src={coverImage} alt='' className="M-NB-SongImg" />
