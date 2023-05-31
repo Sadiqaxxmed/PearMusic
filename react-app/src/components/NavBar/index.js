@@ -1,20 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
-import ProfileButton from "../Navigation/ProfileButton";
 import { useDispatch, useSelector } from "react-redux";
-import Menu from "./Menu/index";
-import noSong from '../../images/Music.png'
-import pear from '../../images/pear2.png'
-import { YouTube } from 'react-player/youtube';
-import ReactPlayer from 'react-player'
-import './NavBarDesktop.css'
-import './NavBarMobile.css'
-import NewMenu from "../SlideOutMenu";
+import { Link, useLocation } from "react-router-dom";
 import { thunkRemoveSong } from "../../store/queue";
 
+import ReactPlayer from 'react-player'
+import NewMenu from "../SlideOutMenu";
 import ColorThief from 'colorthief'
 import CustomSlider from "./CustomSlider";
-import { Link, useLocation, useParams } from "react-router-dom";
+import noSong from '../../images/Music.png'
+import pear from '../../images/pear2.png'
 
+import './NavBarDesktop.css'
+import './NavBarMobile.css'
 
 
 function NavBar() {
@@ -37,8 +34,6 @@ function NavBar() {
   } else if (location.pathname.includes('/manage-discography')) {
     albumIcon = 'material-symbols-outlined active'
   }
-
-
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [hasPlayed, setHasPlayed] = useState(false)
@@ -77,7 +72,6 @@ function NavBar() {
       getDominantColor(coverImage);
     }
   }, [songTitle])
-
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth <= 1050); // Adjust the value according to your mobile range
@@ -90,14 +84,6 @@ function NavBar() {
       window.removeEventListener('resize', checkScreenSize);
     };
   }, []);
-
-
-  // Logic to advance the song queue
-  const advanceSongQueue = async () => {
-
-    dispatch(thunkRemoveSong())
-    return
-  }
   // Updates useStates to reflect queue change whenever the queue is altered
   useEffect(() => {
     if (queue[0]) {
@@ -120,12 +106,25 @@ function NavBar() {
     }
     // setAlbumTitle(currentSong.albumTitle) need to pass in album title to single song
   }, [songUrl, queue[0]])
+  useEffect(() => {
+    const isMobileDevice = /Mobi|Android/i.test(navigator.userAgent);
+    setIsPhone(isMobileDevice)
 
+    // Cleanup function
+    return () => {
+      // Perform any necessary cleanup
+    };
+  }, []);
+
+  // Logic to advance the song queue
+  const advanceSongQueue = async () => {
+    dispatch(thunkRemoveSong())
+    return
+  }
   // LOGIC FOR TOP RIGHT MENU OPEN
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
-
   //FIX THIS... THE LOGIC IS WONKY
   function playPauseFunc() {
     console.log(queue)
@@ -140,7 +139,6 @@ function NavBar() {
       return;
     }
   }
-
   // LOGIC TO HANDLE SKIP BUTTON CLICK
   const handleSeekUp = () => {
     if (playerRef.current) {
@@ -148,7 +146,6 @@ function NavBar() {
       playerRef.current.seekTo(currentTime + 10); // Seek to current time + 10 seconds
     }
   };
-
   // LOGIC TO HANDLE REVERSE BUTTON CLICK
   const handleSeekDown = () => {
     if (playerRef.current) {
@@ -156,24 +153,11 @@ function NavBar() {
       playerRef.current.seekTo(currentTime - 10); // Seek to current time - 10 seconds
     }
   };
-
   // UPDATES CURRENT TIME BASED ON PLAYER PROGRESS OUTPUT
   const handleProgressChange = (e) => {
     playerRef.current.seekTo(e)
     setCurrentTime(e)
   }
-
-  useEffect(() => {
-    const isMobileDevice = /Mobi|Android/i.test(navigator.userAgent);
-    setIsPhone(isMobileDevice)
-
-    // Cleanup function
-    return () => {
-      // Perform any necessary cleanup
-    };
-  }, []);
-
-
   // FUNC TO CHANGE SECONDS TO MINUTES FOR PLAYER VIEW (NOT FOR ANY LOGIC IN THE CODE BESIDES AESTETIC AND USER EXPERIENCE)
   function convertDecimalToTime(decimalValue) {
     const minutes = Math.floor(decimalValue / 60); // Get minutes by dividing decimalValue by 60 and rounding down
@@ -230,16 +214,15 @@ function NavBar() {
                 : <img className="NB-Pear" src={pear} alt='pear' />
               }
             </div>
-
             <div className="NB-Volume-Slider">
               <i className="fa-solid fa-volume-low" id='music'></i>
               <input type="range" min="0" max="100" value={volume} onChange={(e) => setVolume(e.target.value)} className="slider" id="myslider" />
             </div>
           </div>
         </div>
-        )
-        :
-        (
+      )
+      :
+      (
           <div className="M-NB-Body">
             {songArtist && songTitle && (
               //show teeny weenie weency player if song is playing currently
@@ -269,13 +252,11 @@ function NavBar() {
                 </div>
               </div>
             )}
-
             <div className="M-NB-Nav">
               <Link className="M-NB-Icon" exact="true" to="/browse" >
                 <span class={browseIcon}> home </span>
                 <p>Home</p>
               </Link>
-
               <Link className="M-NB-Icon" exact="true" to="/allPlaylist" >
                 <span class={playlistIcon}> view_list </span>
                 <p>Playlists</p>
@@ -301,14 +282,9 @@ function NavBar() {
                 <p>Devs</p>
               </Link> */}
             </div>
-
           </div>
-
         )
-
-
       }
-
     </div>
   );
 }
