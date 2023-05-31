@@ -38,7 +38,9 @@ function NavBar() {
     albumIcon = 'material-symbols-outlined active'
   }
 
-
+  const handlePlay = (message) => {
+    console.log(message)
+  };
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [hasPlayed, setHasPlayed] = useState(false)
@@ -102,6 +104,7 @@ function NavBar() {
   useEffect(() => {
     if (queue[0]) {
       if (queue[0].mp3file !== undefined) {
+
         setHasPlayed(true)
         setPlayPause(true)
       }
@@ -128,11 +131,13 @@ function NavBar() {
 
   //FIX THIS... THE LOGIC IS WONKY
   function playPauseFunc() {
-    console.log(queue)
+    // console.log(queue)
     setHasPlayed(true)
+    // console.log(playerRef.current.props.playing)
     if (!playPause) {
       setToggleIcon('fa-solid fa-pause fa-xl icon-hover-pointer')
       setPlayPause(true)
+
       return;
     } else {
       setToggleIcon('fa-solid fa-play fa-xl icon-hover-pointer')
@@ -182,8 +187,36 @@ function NavBar() {
     return timeString;
   }
 
+  console.log('playpause ', playPause)
+  console.log('duration ', duration)
+
+  // useEffect(() => {
+  //   const isMobileDevice = /Mobi|Android/i.test(navigator.userAgent);
+  //   setIsMobile(isMobileDevice);
+
+  //   if (queue.length === 1 && isMobileDevice) {
+  //     const timer = setTimeout(() => {
+  //       setPlayPause(prevPlayPause => !prevPlayPause);
+  //     }, 1000);
+
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [playPause]);
+
   return (
     <div className="NB-body-Wrapper">
+      <ReactPlayer
+        ref={playerRef}
+        url={songUrl}
+        controls={false}
+        volume={volume / 100}
+        playing={playPause}
+        onProgress={(progress) => setCurrentTime(progress.playedSeconds)}
+        played={currentTime}
+        onDuration={(duration) => setDuration(duration)}
+        style={{ display: 'none' }}
+        onEnded={((e) => advanceSongQueue())}
+      />
       {isMobile && <NewMenu />}
       {!isMobile ? (
         // Content for Desktop
@@ -201,19 +234,6 @@ function NavBar() {
               ? (<img className="NB-Img" src={noSong} alt='music' />)
               : (<img className="NB-Img" src={coverImage} alt='cover' />)}
             <div className='NB-MUSIC-BLOCK'>
-              {/* Render ReactPlayer component and pass ref */}
-              <ReactPlayer
-                ref={playerRef}
-                url={songUrl}
-                controls={false}
-                volume={volume / 100}
-                playing={playPause}
-                onProgress={(progress) => setCurrentTime(progress.playedSeconds)}
-                played={currentTime}
-                onDuration={(duration) => setDuration(duration)}
-                style={{ display: 'none' }}
-                onEnded={((e) => advanceSongQueue())}
-              />
               {hasPlayed
                 ? <>
                   <div className="NB-Player-CurrentSong-Wrapper">
@@ -255,20 +275,6 @@ function NavBar() {
               //show teeny weenie weency player if song is playing currently
               <div className="M-NB-Player-Wrapper-Wrapper">
                 <div className="M-NB-Player-Wrapper">
-                  <ReactPlayer
-                  playsInline
-                    ref={playerRef}
-                    url={songUrl}
-                    controls={false}
-                    volume={volume / 100}
-                    playing={playPause}
-                    onProgress={(progress) => setCurrentTime(progress.playedSeconds)}
-                    played={currentTime}
-                    onDuration={(duration) => setDuration(duration)}
-                    style={{ display: 'none' }}
-                    onEnded={((e) => advanceSongQueue())}
-                  />
-                  
                   <div className="M-NB-SongInfo-Wrapper">
                     <div className="M-NB-SongImg-Wrapper">
                       <img src={coverImage} alt='' className="M-NB-SongImg" />
