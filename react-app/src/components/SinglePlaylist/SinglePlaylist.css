@@ -395,7 +395,7 @@
   .SGPL-Body {
       z-index: -1;
       height: calc(100%+20px);
-      padding-top: 30px;
+      margin-top: 0px;
       padding-left: 15px;
       padding-right: 15px;
   }
