@@ -37,12 +37,6 @@ function Browser() {
   const mIcon = 'M-icon-section'
   const dIcon = 'icon-section'
 
-  function checkM() {
-    if (isMobile) {
-      return mIcon
-    } else return dIcon
-  }
-
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth <= 768); // Adjust the value according to your mobile range
@@ -55,26 +49,29 @@ function Browser() {
       window.removeEventListener('resize', checkScreenSize);
     };
   }, []);
-
   useEffect(async () => {
     const fetchData = async () => {
       setIsLoaded(false)
       await dispatch(thunkAllSongs());
-      await dispatch(thunkLikedSongs(user));
       await dispatch(thunkAllPlaylists())
-      await dispatch(thunkUserPlaylists(user));
+      if (user) {
+        await dispatch(thunkLikedSongs(user));
+        await dispatch(thunkUserPlaylists(user));
+      }
       setIsLoaded(true)
     }
     fetchData()
-    return () => {
-      dispatch(thunkResetSongs());
-    }
+
   }, [dispatch, user])
 
   const playNowFunc = (song) => {
     dispatch(thunkPlayNow(song))
   }
-
+  function checkM() {
+    if (isMobile) {
+      return mIcon
+    } else return dIcon
+  }
   function openMenuFunc(id) {
     if (!menuOpen) {
       setMenuOpen(true)
@@ -85,7 +82,6 @@ function Browser() {
     }
 
   }
-
   function isLikedSong(songId, userId) {
 
     if (likedSongs.includes(songId)) {
@@ -98,8 +94,8 @@ function Browser() {
   return (
     <>
       {!isLoaded ? <img className='LoadingGIf' src={loading} alt="loading-gif" />
-      :
-      (<div className="BR-body">
+        :
+        (<div className="BR-body">
           <h1 className="BR-Top">
             Listen Now
           </h1>
@@ -127,7 +123,7 @@ function Browser() {
               </SwiperSlide>
               <SwiperSlide>
                 <img className="BR-images" src={Pop} alt="Browse Card" onClick={() => history.push('/explore/Pop')} />
-              </SwiperSlide>              
+              </SwiperSlide>
               <SwiperSlide>
                 <img className="BR-images" src={MidwestEmo} alt="Browse Card" onClick={() => history.push('/explore/Alternative')} />
               </SwiperSlide>
@@ -143,7 +139,7 @@ function Browser() {
               </SwiperSlide>
               <SwiperSlide>
                 <img className="BR-images" src={Pop} alt="Browse Card" onClick={() => history.push('/explore/Pop')} />
-              </SwiperSlide> 
+              </SwiperSlide>
               <SwiperSlide>
                 <img className="BR-images" src={MidwestEmo} alt="Browse Card" onClick={() => history.push('/explore/Alternative')} />
               </SwiperSlide>
@@ -202,7 +198,7 @@ function Browser() {
             </div>
           </div>
         </div>
-      )}
+        )}
     </>
   )
 }
