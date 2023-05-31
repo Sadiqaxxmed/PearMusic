@@ -119,16 +119,6 @@ function SinglePlaylist() {
         dispatch(thunkDeleteSongPlaylist(songId, playlistId))
         setOpenUDM(false)
     }
-    function openMenuFunc(id) {
-        if (!menuOpen) {
-            setMenuOpen(true)
-            setCardId(id)
-        } else {
-            setMenuOpen(false)
-            setCardId(null)
-        }
-
-    }
     const playNowFunc = (song) => {
         dispatch(thunkPlayNow(song))
     }
@@ -144,7 +134,7 @@ function SinglePlaylist() {
     const deleteSong = async (songId, playlistId) => {
         dispatch(thunkDeleteSongPlaylist(songId, playlistId))
     }
-    
+
 
     function handleSubmit(e) {
         e.preventDefault()
