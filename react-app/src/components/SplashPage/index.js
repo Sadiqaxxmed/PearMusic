@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import icon from '../../images/SplashPagePhones/pmi.png'
 import icon2 from '../../images/SplashPagePhones/blackPear.png'
-
-import silver from '../../images/SplashPagePhones/silver.png'
 import silverLock from '../../images/SplashPagePhones/silver-lock.png'
 import blue from '../../images/SplashPagePhones/blue.png'
 import blueLock from '../../images/SplashPagePhones/blue-lock.png'
@@ -13,14 +11,10 @@ import arrow from '../../images/arrows.gif'
 import YasineCard from "./devs/YasineCard";
 import SadiqCard from "./devs/SadiqCard";
 import MikeCard from "./devs/MikeCard";
-
 import './SplashPage.css'
 
 function SplashPage({ isLoaded }) {
-
   const [devList, setDevList] = useState([])
-  const [showFooter, setShowFooter] = useState(true)
-
   const divRef = useRef(null);
   useEffect(() => {
     setTimeout(function () {
@@ -54,21 +48,6 @@ function SplashPage({ isLoaded }) {
 
   useEffect(() => {
     setDevList(devRand(devs))
-
-    // let prevScrollY = window.pageYOffset || document.documentElement.scrollTop;
-
-    // const handleScroll = () => {
-    //   const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
-    //   const isScrollingUp = currentScrollY > prevScrollY;
-    //   prevScrollY = currentScrollY;
-
-    //   setShowFooter(!isScrollingUp);
-    // };
-
-    // window.addEventListener('scroll', handleScroll);
-    // return () => {
-    //   window.removeEventListener('scroll', handleScroll);
-    // };
   }, [])
 
   // console.log(card1)
@@ -96,11 +75,6 @@ function SplashPage({ isLoaded }) {
             <img src={arrow} alt='arrow' className="HP-MeetTheDevs-Arrow" />
           </div>
         </div>
-        {/* <div className="HP-Icon-Wrapper">
-        <img className='HP-Icon' src={icon} alt='icon' /> */}
-        {/* <h1 className="HP-Title">Apple Music</h1> */}
-        {/* </div> */}
-
         <div className="HP-Icon-Wrapper-Wrapper">
           <div className="HP-Icon-Wrapper">
             <div className="HP-Icon">
@@ -122,15 +96,6 @@ function SplashPage({ isLoaded }) {
           <img className='HP-Image' src={silverLock} alt='' />
           <img className='HP-Image' src={blueLock} alt='' />
         </div>
-
-        {/* {showFooter && (
-          <div className="HP-MeetTheDevs-Wrapper">
-            <img src={arrow} alt='arrow' className="HP-MeetTheDevs-Arrow"/>
-            <p className="HP-MeetTheDevs">Meet the Devs</p>
-            <img src={arrow} alt='arrow' className="HP-MeetTheDevs-Arrow"/>
-          </div>
-        )} */}
-
         <div className="HP-Devs-Wrapper">
           {devList.map((Card, index) => (
             <Card key={index} />
