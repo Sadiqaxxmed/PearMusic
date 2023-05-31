@@ -18,6 +18,7 @@ import KPop from '../../images/Fin-Cards(smaller)/kpop.gif'
 import Pop from '../../images/Fin-Cards(smaller)/pop.gif'
 import Rap from '../../images/Fin-Cards(smaller)/rap.gif'
 import RnB from '../../images/Fin-Cards(smaller)/r&b.gif'
+import MidwestEmo from '../../images/Fin-Cards(smaller)/midwest.gif'
 
 
 function Browser() {
@@ -126,6 +127,9 @@ function Browser() {
               </SwiperSlide>
               <SwiperSlide>
                 <img className="BR-images" src={Pop} alt="Browse Card" onClick={() => history.push('/explore/Pop')} />
+              </SwiperSlide>              
+              <SwiperSlide>
+                <img className="BR-images" src={MidwestEmo} alt="Browse Card" onClick={() => history.push('/explore/Alternative')} />
               </SwiperSlide>
               <SwiperSlide>
                 <img className="BR-images" src={Rap} alt="Browse Card" onClick={() => history.push('/explore/Rap')} />
@@ -133,11 +137,15 @@ function Browser() {
               <SwiperSlide>
                 <img className="BR-images" src={RnB} alt="Browse Card" onClick={() => history.push('/explore/R&B')} />
               </SwiperSlide>
+
               <SwiperSlide>
                 <img className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
               </SwiperSlide>
               <SwiperSlide>
                 <img className="BR-images" src={Pop} alt="Browse Card" onClick={() => history.push('/explore/Pop')} />
+              </SwiperSlide> 
+              <SwiperSlide>
+                <img className="BR-images" src={MidwestEmo} alt="Browse Card" onClick={() => history.push('/explore/Alternative')} />
               </SwiperSlide>
               <SwiperSlide>
                 <img className="BR-images" src={Rap} alt="Browse Card" onClick={() => history.push('/explore/Rap')} />

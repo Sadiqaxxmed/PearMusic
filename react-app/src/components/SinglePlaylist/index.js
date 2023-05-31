@@ -2,21 +2,18 @@ import React, { useEffect, useState } from "react";
 import BadWords from 'bad-words';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { thunkAllPlaylists, thunkDeletePlaylist, thunkDeleteSongPlaylist, thunkPlaylistSongs, thunkResetPlaylists, thunkSinglePlaylist } from "../../store/playlist";
+import { thunkGetComments, thunkCreateComment, thunkResetComments, thunkDeleteComment } from "../../store/comment";
+import { thunkNewQueue, thunkPlayNow } from "../../store/queue";
+import { thunkResetSongs } from "../../store/song";
 
+import OpenModalButton from "../OpenModalButton";
+import UpdatePlaylist from "../Manage-Discography/UDModals/UpdatePlaylist";
 import ColorThief from 'colorthief'
 import loading from '../../images/loading.gif'
-
 import './SinglePlaylist.css'
 
 
-import { thunkAllPlaylists, thunkDeletePlaylist, thunkDeleteSongPlaylist, thunkPlaylistSongs, thunkResetPlaylists, thunkSinglePlaylist } from "../../store/playlist";
-import { thunkGetComments, thunkCreateComment, thunkResetComments, thunkDeleteComment } from "../../store/comment";
-
-
-import { thunkNewQueue, thunkPlayNow } from "../../store/queue";
-import OpenModalButton from "../OpenModalButton";
-import UpdatePlaylist from "../Manage-Discography/UDModals/UpdatePlaylist";
-import { thunkResetSongs } from "../../store/song";
 
 function SinglePlaylist() {
     const badWords = new BadWords();
@@ -27,7 +24,6 @@ function SinglePlaylist() {
 
     const history = useHistory()
     const userId = useSelector(state => state.session.user?.id)
-    // const userName = useSelector(state => state.session.user.username)
 
     const songs = Object.values(useSelector(state => state.playlists.singlePlaylist))
     const playlist = Object.values(useSelector(state => state.playlists.playlistDetails))[0]
@@ -38,6 +34,7 @@ function SinglePlaylist() {
     const [openUDM, setOpenUDM] = useState(false)
     const [isLoaded, setIsLoaded] = useState(false)
     const [isMobile, setIsMobile] = useState(false);
+    const [averageColor, setAverageColor] = useState("#00000");
 
     useEffect(async () => {
         const fetchData = async () => {
@@ -53,13 +50,6 @@ function SinglePlaylist() {
         }
         fetchData()
     }, [dispatch, playlist_id])
-
-    function addQueue() {
-        dispatch(thunkNewQueue(playlist_id))
-    }
-
-    const [averageColor, setAverageColor] = useState('');
-
     useEffect(() => {
         const getDominantColor = (url) => {
             const image = new Image();
@@ -78,7 +68,6 @@ function SinglePlaylist() {
             getDominantColor(playlist.coverImage);
         }
     }, [playlist?.coverImage]);
-
     useEffect(() => {
         const checkScreenSize = () => {
             setIsMobile(window.innerWidth <= 1050); // Adjust the value according to your mobile range
@@ -92,6 +81,9 @@ function SinglePlaylist() {
         };
     }, []);
 
+    function addQueue() {
+        dispatch(thunkNewQueue(playlist_id))
+    }
     function totalPlayTime(songs) {
         let minutes = 0;
         let seconds = 0;
@@ -108,7 +100,6 @@ function SinglePlaylist() {
 
         return `${minutes} MINUTES, ${seconds} SECONDS`
     }
-
     function songTotalPlayTime(songs) {
         let minutes = 0;
         let seconds = 0;
@@ -118,22 +109,16 @@ function SinglePlaylist() {
         seconds = duration?.toString().split('.')[1].toString().length < 2 ? seconds = `0${duration?.toString().split('.')[1].toString()}` : seconds = duration?.toString().split('.')[1].toString()
         return `${minutes}:${seconds}`
     }
-
-
     const DeletePlaylist = (playlistId, userId) => {
         dispatch(thunkDeletePlaylist(playlistId, userId))
         dispatch(thunkResetPlaylists())
         dispatch(thunkResetSongs())
         return history.push('/allPlaylist')
     }
-
-
     const DeleteSong = (songId, playlistId) => {
         dispatch(thunkDeleteSongPlaylist(songId, playlistId))
         setOpenUDM(false)
     }
-
-
     function openMenuFunc(id) {
         if (!menuOpen) {
             setMenuOpen(true)
@@ -144,8 +129,22 @@ function SinglePlaylist() {
         }
 
     }
-
-    totalPlayTime(songs)
+    const playNowFunc = (song) => {
+        dispatch(thunkPlayNow(song))
+    }
+    function deleteComment(ownerId, commentId, playlistId) {
+        if (userId === ownerId) {
+            dispatch(thunkDeleteComment(commentId, playlistId))
+            dispatch(thunkResetComments())
+        }
+        else {
+            alert('This aint yours bud')
+        }
+    }
+    const deleteSong = async (songId, playlistId) => {
+        dispatch(thunkDeleteSongPlaylist(songId, playlistId))
+    }
+    
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -161,23 +160,6 @@ function SinglePlaylist() {
         return
     }
 
-    const playNowFunc = (song) => {
-        dispatch(thunkPlayNow(song))
-    }
-
-    function deleteComment(ownerId, commentId, playlistId) {
-        if (userId === ownerId) {
-            dispatch(thunkDeleteComment(commentId, playlistId))
-            dispatch(thunkResetComments())
-        }
-        else {
-            alert('This aint yours bud')
-        }
-    }
-
-    const deleteSong = async (songId, playlistId) => {
-        dispatch(thunkDeleteSongPlaylist(songId, playlistId))
-    }
 
     return (
         <>

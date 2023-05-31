@@ -254,11 +254,11 @@ function NavBar() {
             )}
             <div className="M-NB-Nav">
               <Link className="M-NB-Icon" exact="true" to="/browse" >
-                <span class={browseIcon}> home </span>
+                <span className={browseIcon}> home </span>
                 <p>Home</p>
               </Link>
               <Link className="M-NB-Icon" exact="true" to="/allPlaylist" >
-                <span class={playlistIcon}> view_list </span>
+                <span className={playlistIcon}> view_list </span>
                 <p>Playlists</p>
               </Link>
               {/* <Link className="M-NB-Icon" exact="true" to="/browse">
@@ -267,18 +267,18 @@ function NavBar() {
               </Link> */}
               {sessionUser && (
                 <Link className="M-NB-Icon" exact="true" to="/songs">
-                  <span class={songIcon}>library_music</span>
+                  <span className={songIcon}>library_music</span>
                   <p>Liked</p>
                 </Link>
               )}
               {sessionUser && (
                 <Link className="M-NB-Icon" exact="true" to="/manage-discography">
-                  <span class={albumIcon}>album</span>
+                  <span className={albumIcon}>album</span>
                   <p>Manage</p>
                 </Link>
               )}
               {/* <Link className="M-NB-Icon" exact="true" to="/browse">
-                <span class="material-symbols-outlined"> code </span>
+                <span className="material-symbols-outlined"> code </span>
                 <p>Devs</p>
               </Link> */}
             </div>
