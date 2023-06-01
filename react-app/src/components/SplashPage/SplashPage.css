@@ -1,6 +1,7 @@
 .HP-Body {
   /* Set height to 100% of viewport height */
   width: 100vw;
+  height: 100%;
   /* Set width to 100% of parent element */
   /* max-height: 1700px; */
   /* Set maximum height to 800 pixels */
@@ -15,13 +16,12 @@
 
 .HP-Main-Wrapper {
   /* display: grid; */
-  height: 100%;
 }
 
 .HP-Nav {
   display: flex;
   flex-direction: row;
-  width: 1027px;
+  width: 95%;
   justify-content: center;
   align-items: center;
   justify-content: space-between;
@@ -40,6 +40,7 @@
   border-radius: 20px;
   font-weight: 600;
   font-size: .7em;
+  margin-right:15px;
 }
 
 .HP-Title {
@@ -350,6 +351,8 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    position: relative;
+    bottom: 200px;
   }
 }
 
