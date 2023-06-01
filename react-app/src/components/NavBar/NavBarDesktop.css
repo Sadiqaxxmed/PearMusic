@@ -8,7 +8,6 @@
     width: calc(100% - 260px);
     /* subtracts removed width from width when calculating width */
     z-index: 10;
-    justify-content: space-between;
 }
 
 .fa-solid.fa-gear {
@@ -152,6 +151,8 @@
     margin-left: 40px;
     padding-top: 7px;
     padding-bottom: 7px;
+    position: absolute;
+    left: 25%;
 }
 
 .NB-MUSIC-BLOCK {
