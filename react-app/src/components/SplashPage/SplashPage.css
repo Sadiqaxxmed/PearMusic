@@ -21,7 +21,7 @@
 .HP-Nav {
   display: flex;
   flex-direction: row;
-  width: 1027px;
+  width: 95%;
   justify-content: center;
   align-items: center;
   justify-content: space-between;
@@ -40,6 +40,7 @@
   border-radius: 20px;
   font-weight: 600;
   font-size: .7em;
+  margin-right:15px;
 }
 
 .HP-Title {
