@@ -58,7 +58,7 @@
     padding: 8px 0px 8px 0px;
     border: 0 solid;
     color: white;
-    cursor:not-allowed;
+    cursor: not-allowed;
 }
 
 .SF-Submit-Btn:hover {
@@ -93,131 +93,184 @@
 
 
 
-    .SF-Wrapper {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: normal;
-        align-items: center;
-        padding-bottom: 40px;
-    }
+.SF-Wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: normal;
+    align-items: center;
+    padding-bottom: 40px;
+}
 
-    #x {
-        position: absolute;
-        top: 25px;
-        right: 25px;
-    }
+#x {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+}
 
-    .SF-Song-Title-Lable {
-        display: flex;
-        flex-direction: column;
-    }
+.SF-Song-Title-Lable {
+    display: flex;
+    flex-direction: column;
+}
 
-    .SF-Title {
-        display: flex;
-        align-self: flex-start;
-        justify-content: flex-start;
-        color: rgba(245, 245, 247, 1);
-        padding-left: 10px;
-    }
+.SF-Song-Title{
+    height: 25px;
+    font-size: 1em;
+    margin-top:10px;
+    text-align: left;
+    padding-bottom: 0px ;
+}
 
-    .SF-Form {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        width: 90%;
-        color: rgba(245, 245, 247, 1);
-    }
+.SF-Title {
+    display: flex;
+    align-self: flex-start;
+    justify-content: flex-start;
+    color: rgba(245, 245, 247, 1);
+    padding-left: 10px;
+}
 
-    .SF-Form-Top-Text {
-        display: flex;
-        flex-direction: column;
-    }
+.SF-Form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 90%;
+    color: rgba(245, 245, 247, 1);
+}
 
-    .SF-FileWrapper{
-        display:flex;
-        flex-direction: column;
-        gap: 20px;
-    }
+.SF-Form-Top-Text {
+    display: flex;
+    flex-direction: column;
+}
 
-    .CoverImgPreview{
-        height: 100px;
-        max-height: 100px;
-    }
+.SF-FileWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
-    .SF-Genre {
-        color: black;
-    }
 
-    .SF-Loading-GIF-Container {
-        display: flex;
-        justify-content: center;
-    }
 
-    .SF-Loading-GIF {
-        width: 10%;
-        height: auto;
-    }
+.SF-Genre {
+    color: black;
+}
 
-    .hidden {
-        visibility: hidden;
-    }
+.SF-Loading-GIF-Container {
+    display: flex;
+    justify-content: center;
+}
 
-    #form-input:focus {
-        border: 2px solid red;
-    }
+.SF-Loading-GIF {
+    width: 10%;
+    height: auto;
+}
 
-    .SF-Errors {
-        color: red;
-    }
+.hidden {
+    visibility: hidden;
+}
 
-    .DragAndDropContainer {
-        border: 2px dashed #aaa;
-        border-radius: 4px;
-        padding: 20px;
-        text-align: center;
-        background-color: rgb(75, 75, 75);
-        cursor: pointer;
-        height: 100px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+#form-input:focus {
+    border: 2px solid red;
+}
 
-    .Song-InnerBox{
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
+.SF-Errors {
+    color: red;
+}
 
-    .CoverImage-InnerBox{
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
+.DragAndDropContainer {
+    border: 2px dashed #aaa;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    background-color: rgb(75, 75, 75);
+    cursor: pointer;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    #CI-Cloud{
-        font-size: 3em;
-    }
+.Song-InnerBox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
-    .SongPreview{
-        display: flex;
-        align-items: center;
-        justify-self: center;
-    }
+.CoverImage-InnerBox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
-    .DragAndDropContainer:hover {
-        border-color: #888;
-    }
+#CI-Cloud {
+    font-size: 3em;
+}
 
-    .DragAndDropContainer p {
-        margin: 0;
-        font-size: 16px;
-        color: #888;
-    }
 
-    .DragAndDropContainer.active {
-        background-color: #eef5fc;
-    }
 
+.DragAndDropContainer:hover {
+    border-color: #888;
+}
+
+.DragAndDropContainer p {
+    margin: 0;
+    font-size: 16px;
+    color: #888;
+}
+
+.DragAndDropContainer.active {
+    background-color: #eef5fc;
+}
+
+.SF-CoverImageFileInput-Wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#SF-CoverImageFileInput{
+    border: 2px dashed #aaa;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    background-color: rgb(75, 75, 75);
+    cursor: pointer;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.CoverImgPreview {
+    width: 70px;
+    max-height: 100px;
+}
+
+.SF-SongInput-Wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#SF-SongInput{
+    border: 2px dashed #aaa;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    background-color: rgb(75, 75, 75);
+    cursor: pointer;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.SongPreview {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
