@@ -12,7 +12,7 @@
 
 .fa-solid.fa-gear {
     z-index: 100;
-    position: absolute;
+    position: fixed;
     top: 18px;
     right: 15px;
     font-size: 1.4em;
