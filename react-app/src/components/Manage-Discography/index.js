@@ -4,14 +4,14 @@ import { useHistory } from 'react-router-dom';
 import { thunkResetSongs, thunkUserSongs } from '../../store/song';
 import { thunkResetAlbums, thunkUserAlbums } from '../../store/album';
 import { thunkResetPlaylists, thunkUserPlaylists } from '../../store/playlist';
-import { thunkDeletePlaylist } from "../../store/playlist";
-import UpdatePlaylist from './UDModals/UpdatePlaylist'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+// import { thunkDeletePlaylist } from "../../store/playlist";
+// import UpdatePlaylist from './UDModals/UpdatePlaylist'
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Navigation } from 'swiper';
 import { useModal } from '../../context/Modal';
 import './Manage-Discography.css'
 
-import OpenModalButton from '../OpenModalButton';
+// import OpenModalButton from '../OpenModalButton';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import UpdateSong from "./UDModals/UpdateSongModal";
 import DeleteSong from "./UDModals/DeleteSongModal";
@@ -26,13 +26,13 @@ function ManageDiscography() {
   const [isUDMOpen, setIsUDMOpen] = useState(false)
   const [cardId, setCardId] = useState(null)
   const [showMenu, setShowMenu] = useState(false);
-  const [playlistCardId, setPlaylistCardId] = useState(null)
+  // const [playlistCardId, setPlaylistCardId] = useState(null)
   const [slidesPerView, setSlidesPerView] = useState(4);
 
   const userId = useSelector(state => state.session.user?.id)
   const userSongs = Object.values(useSelector(state => state.songs.userSongs))
   // const userAlbums = Object.values(useSelector(state => state.albums.allAlbums))
-  const userPlaylists = Object.values(useSelector(state => state.playlists.userPlaylists))
+  // const userPlaylists = Object.values(useSelector(state => state.playlists.userPlaylists))
 
   useEffect(() => {
     dispatch(thunkUserSongs(userId))
@@ -96,12 +96,6 @@ function ManageDiscography() {
     }
 
   }
-  // const deletePlaylist = (playlistId) => {
-  //   dispatch(thunkDeletePlaylist(playlistId, userId))
-  //   setMenuOpen(false)
-  // }
-
-
 
   return (
     <div className="MD-body" ref={ulRef}>

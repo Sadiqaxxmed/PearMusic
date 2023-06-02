@@ -19,6 +19,7 @@ import Pop from '../../images/Fin-Cards(smaller)/pop.gif'
 import Rap from '../../images/Fin-Cards(smaller)/rap.gif'
 import RnB from '../../images/Fin-Cards(smaller)/r&b.gif'
 import MidwestEmo from '../../images/Fin-Cards(smaller)/midwest.gif'
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 
 
 function Browser() {
@@ -177,7 +178,11 @@ function Browser() {
                           className="fa-solid fa-ellipsis"
                           onClick={(e) => openMenuFunc(song.id)}
                         ></i>
-                        {menuOpen && song.id === cardId && <ToolTipMenu song={song} setMenuOpen={setMenuOpen} />}
+                        {menuOpen && song.id === cardId && 
+  
+                        <ToolTipMenu song={song} setMenuOpen={setMenuOpen} />
+                        
+                        }
                         {likedSongs.includes(song.id) ? (
                           <i
                             id="BR-song-icon-heart"
