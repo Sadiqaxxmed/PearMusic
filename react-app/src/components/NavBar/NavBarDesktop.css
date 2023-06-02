@@ -148,7 +148,7 @@
     /* wraps the song image and the grey player */
     display: flex;
     flex-direction: row;
-    margin-left: 40px;
+    margin-left: 0px;
     padding-top: 7px;
     padding-bottom: 7px;
     position: absolute;
