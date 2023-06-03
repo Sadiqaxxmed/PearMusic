@@ -26,7 +26,7 @@
     color: black;
     position: absolute;
     font-size: 1.8em;
-    left: 30px;
+    left: 20px;
     top: 86px;
 }
 
@@ -141,7 +141,7 @@
     color: black;
     width: 100%;
     height: 30px;
-    padding-left: 50px;
+    padding-left: 40px;
     font-size: .95em;
 }
 
@@ -167,6 +167,7 @@
     color: white;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .SA-Search-Img {
