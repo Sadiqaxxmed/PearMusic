@@ -261,10 +261,6 @@ function NavBar() {
                 <span className={playlistIcon}> view_list </span>
                 <p>Playlists</p>
               </Link>
-              {/* <Link className="M-NB-Icon" exact="true" to="/browse">
-                <span className="material-symbols-outlined" id='M-Search'>search</span>
-                <p>Search</p>
-              </Link> */}
               {sessionUser && (
                 <Link className="M-NB-Icon" exact="true" to="/songs">
                   <span className={songIcon}>library_music</span>
@@ -277,6 +273,11 @@ function NavBar() {
                   <p>Manage</p>
                 </Link>
               )}
+              {/* <div className="M-NB-Icon" onClick={() => ''}>
+                <span className="material-symbols-outlined" id='M-Search'>search</span>
+                <p>Search</p>
+              </div> */}
+              
               {/* <Link className="M-NB-Icon" exact="true" to="/browse">
                 <span className="material-symbols-outlined"> code </span>
                 <p>Devs</p>

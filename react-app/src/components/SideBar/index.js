@@ -14,10 +14,24 @@ function SideBar() {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [searchLoading, setSearchLoading] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         dispatch(thunkUserPlaylists(userId));
     }, [dispatch, userId]);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsMobile(window.innerWidth <= 1050); // Adjust the value according to your mobile range
+        };
+
+        checkScreenSize();
+
+        window.addEventListener('resize', checkScreenSize);
+        return () => {
+            window.removeEventListener('resize', checkScreenSize);
+        };
+    }, []);
 
     useEffect(() => {
         const handleSearch = async () => {
@@ -49,81 +63,85 @@ function SideBar() {
     };
     // console.log(searchResults)
     return (
-        <div className='SB-body'>
-            <NavLink
-                to='/'
-                style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'white', width: '0' }}
-            >
-                <img src={image} alt='temp' style={{ width: 'auto', height: '23px' }} />
-                <h2 className='SB-logo' style={{ fontWeight: '400' }}>
-                    Music
-                </h2>
-            </NavLink>
-            <div className='SB-search-field-div'>
-                <span className='material-symbols-outlined'>search</span>
-                <form onSubmit={(e) => e.preventDefault()}>
-                    <input
-                        id='search-field'
-                        type='text'
-                        placeholder='Search...'
-                        value={searchTerm}
-                        onChange={((e) => setSearchTerm(e.target.value))}
-                    />
+        <>
+            { }
+            <div className='SB-body'>
+                <NavLink
+                    to='/'
+                    style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'white', width: '0' }}
+                >
+                    <img src={image} alt='temp' style={{ width: 'auto', height: '23px' }} />
+                    <h2 className='SB-logo' style={{ fontWeight: '400' }}>
+                        Music
+                    </h2>
+                </NavLink>
+                <div className='SB-search-field-div'>
+                    <span className='material-symbols-outlined'>search</span>
+                    <form onSubmit={(e) => e.preventDefault()}>
+                        <input
+                            id='search-field'
+                            type='text'
+                            placeholder='Search...'
+                            value={searchTerm}
+                            onChange={((e) => setSearchTerm(e.target.value))}
+                        />
 
-                    {searchResults?.search_results?.length > 0 && (
-                        <ul className='SB-Search-Results'>
-                            {Object.values(searchResults.search_results).map((song, idx) => (
-                                <li className='SB-Search-Result' key={`search-result-${idx}`} onClick={() => playNowFunc(song)}>
-                                    {song.title}
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </form>
-            </div>
-            <h3 className='SB-lib-play-headers'>Library</h3>
-            <div className='SB-Library'>
-                <li className='SB-Library'>
-                    <span className='material-symbols-outlined SB-icons pink-icons'>Home</span>
-                    <p>
-                        <Link exact="true" to="/browse" style={{ textDecoration: 'none', color: 'white' }}>
-                            Home
-                        </Link>
-                    </p>
-                </li>
-                <li className='SB-Library'>
-                    {userId ? (
-                        <>
-                            <span className='material-symbols-outlined SB-icons pink-icons'>music_note</span>
-                            <p>
-                                <Link exact="true" to="/songs" style={{ textDecoration: 'none', color: 'white' }}>
-                                    Liked Songs
-                                </Link>
-                            </p>
-                        </>
-                    ) : null}
-                </li>
-            </div>
-            <div className='SB-Playlists'>
-                <ul className='SB-Playlists-Title' />
-                {userId ? (
-                    <>
-                        <h3 className='SB-lib-play-headers'>Playlists</h3>
-                        <div className='SB-Playlist-div'>
-                            <li className='SB-User-Playlist-li'>
-                                <span className='material-symbols-outlined SB-icons pink-icons'>list</span>
+                        {searchResults?.search_results?.length > 0 && (
+                            <ul className='SB-Search-Results'>
+                                {Object.values(searchResults.search_results).map((song, idx) => (
+                                    <li className='SB-Search-Result' key={`search-result-${idx}`} onClick={() => playNowFunc(song)}>
+                                        {song.title}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </form>
+                </div>
+                <h3 className='SB-lib-play-headers'>Library</h3>
+                <div className='SB-Library'>
+                    <li className='SB-Library'>
+                        <span className='material-symbols-outlined SB-icons pink-icons'>Home</span>
+                        <p>
+                            <Link exact="true" to="/browse" style={{ textDecoration: 'none', color: 'white' }}>
+                                Home
+                            </Link>
+                        </p>
+                    </li>
+                    <li className='SB-Library'>
+                        {userId ? (
+                            <>
+                                <span className='material-symbols-outlined SB-icons pink-icons'>music_note</span>
                                 <p>
-                                    <Link exact="true" to="/allPlaylist" style={{ textDecoration: 'none', color: 'white' }}>
-                                        All Playlists
+                                    <Link exact="true" to="/songs" style={{ textDecoration: 'none', color: 'white' }}>
+                                        Liked Songs
                                     </Link>
                                 </p>
-                            </li>
-                        </div>
-                    </>
-                ) : null}
+                            </>
+                        ) : null}
+                    </li>
+                </div>
+                <div className='SB-Playlists'>
+                    <ul className='SB-Playlists-Title' />
+                    {userId ? (
+                        <>
+                            <h3 className='SB-lib-play-headers'>Playlists</h3>
+                            <div className='SB-Playlist-div'>
+                                <li className='SB-User-Playlist-li'>
+                                    <span className='material-symbols-outlined SB-icons pink-icons'>list</span>
+                                    <p>
+                                        <Link exact="true" to="/allPlaylist" style={{ textDecoration: 'none', color: 'white' }}>
+                                            All Playlists
+                                        </Link>
+                                    </p>
+                                </li>
+                            </div>
+                        </>
+                    ) : null}
+                </div>
             </div>
-        </div>
+        </>
     );
+
 }
 
 export default SideBar;
