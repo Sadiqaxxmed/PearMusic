@@ -73,32 +73,39 @@ function Search() {
             {isSearching
                 ?
                 <div className="SA-Wrapper">
-                    <h1 className="SA-Title">Search</h1>
-
                     <div className='SA-Search-Field-Wrapper'>
+                        <i class="fa-solid fa-arrow-left" id='SA-Arrow' onClick={(() => setIsSearching(false))} />
                         <span className='material-symbols-outlined' id='SA-SearchIcon'>search</span>
-                        <div>
+                        <div className="SA-InputBox-Wrapper">
                             <input
-                                id='SA-Search-Input'
+                                className='SA-Search-Input'
                                 type='text'
-                                placeholder='Search...'
+                                placeholder='What do you want to listen to?'
                                 value={searchTerm}
                                 onChange={((e) => setSearchTerm(e.target.value))}
                             />
-
-                            {searchResults?.search_results?.length > 0 && (
-                                <ul className='SA-Search-Results'>
-                                    {Object.values(searchResults.search_results).map((song, idx) => (
-                                        <li className='SA-Search-Result' key={`search-result-${idx}`} onClick={() => playNowFunc(song)}>
-                                            {song.title}
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
                         </div>
                     </div>
+
+                    <div className="SA-Search-Results-Wrapper">
+                        {searchResults?.search_results?.length > 0 && (
+                            <ul className='SA-Search-Results'>
+                                {Object.values(searchResults.search_results).map((song, idx) => (
+                                    <li className='SA-Search-Result' key={`search-result-${idx}`} onClick={() => playNowFunc(song)}>
+                                        <img src={song.coverImage} alt='' className="SA-Search-Img" />
+                                        <div className="SA-TitlenType-Wrapper">
+                                            <p className="SA-SongTitle">{song.title} </p>
+                                            <p className="SA-Type">Song</p>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
                 </div>
+
                 :
+
                 <div className="SI-Wrapper">
                     <h1 className="SI-Title">Search</h1>
                     <div className='SI-Search-Field-Wrapper'>
@@ -111,9 +118,15 @@ function Search() {
                                 onClick={() => setIsSearching(true)}
                             />
                         </div>
+                        <p className="SI-BrowseAll">Browse all</p>
                         <div className="SI-DiscoverGenreBlocks-Wrapper">
                             {genres.map((genre, idx) => (
-                                <div className="SI-GenreBlock" key={`DiscoverGenre-Block-${idx}`} style={{ backgroundColor: genre.color }} onClick={((e) => '')}>
+                                <div
+                                    className="SI-GenreBlock"
+                                    key={`DiscoverGenre-Block-${idx}`}
+                                    style={{ backgroundColor: genre.color }}
+                                    onClick={((e) => history.push(`/explore/${genre.genre}`))}
+                                >
                                     <p className="SI-GenreBlock-Text">{genre.genre}</p>
                                 </div>
                             ))}
