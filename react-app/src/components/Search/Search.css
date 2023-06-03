@@ -1,0 +1,41 @@
+.SI-Wrapper {
+    height: 100%;
+    width: 95vw;
+    padding-bottom: 50px;
+    padding: 0px 10px 0px 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.SI-Title {
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+}
+
+.SI-Search-Field-Wrapper {}
+
+.SI-InputBox-Wrapper{
+    display: flex;
+    flex-direction: row;
+
+}
+
+#SI-SearchIcon {
+    color: black;
+    position: absolute;
+    font-size: 1.8em;
+    left: 30px;
+    top: 86px;
+}
+
+.SI-Search-Input {
+    background-color: white;
+    color: black;
+    width: 90%;
+    height: 30px;
+    padding-left: 40px;
+    font-size: .95em;
+}

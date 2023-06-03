@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import './App.css';
 import SideBar from './components/SideBar/index.js'
 import NavBar from './components/NavBar';
 import SplashPage from "./components/SplashPage";
@@ -12,10 +11,12 @@ import Songs from './components/Songs';
 import AllPlaylist from './components/AllPlaylist';
 import SinglePlaylist from "./components/SinglePlaylist";
 import Albums from "./components/Albums";
+import Search from "./components/Search";
 import ManageDiscography from "./components/Manage-Discography";
 import ScrollToTop from './components/ScrollToTop.js'
 import ExploreGenre from "./components/ExploreGenre";
 import NotFound from "./components/NotFound";
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ function App() {
           <Switch>
             <Route exact path="/browse" component={Browser} />
             <Route path="/songs" component={Songs} />
+            <Route path="/Search" component={Search}/>
             <Route path="/allPlaylist" component={AllPlaylist} />
             <Route path="/SinglePlaylist/:playlist_id" component={SinglePlaylist} />
             {/* <Route path="/albums" component={Albums} /> */}
