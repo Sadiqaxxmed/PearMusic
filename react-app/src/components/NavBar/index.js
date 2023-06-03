@@ -130,9 +130,11 @@ function NavBar() {
   }
   //FIX THIS... THE LOGIC IS WONKY
   function playPauseFunc() {
-    console.log(queue)
-    setHasPlayed(true)
-    if (!playPause) {
+    // console.log(queue)
+    if(songUrl){
+      setHasPlayed(true)
+    }
+      if (!playPause && songUrl) {
       setToggleIcon('fa-solid fa-pause fa-xl icon-hover-pointer')
       setPlayPause(true)
       return;
