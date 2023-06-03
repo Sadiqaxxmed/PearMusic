@@ -12,7 +12,22 @@ function Search() {
     const [searchResults, setSearchResults] = useState([]);
     const [searchLoading, setSearchLoading] = useState(false);
     const [isSearching, setIsSearching] = useState(false) //for switching the state to hide suggestions and title when search is clicked on
-
+    const genres = [
+        { genre: 'R&B', color: '#FF98B1' },
+        { genre: 'Alternative', color: '#FFD700' },
+        { genre: 'Rock', color: '#A85500' },
+        { genre: 'Funk', color: '#A674E9' },
+        { genre: 'Grunge', color: '#1DB245' },
+        { genre: 'Country', color: '#85878A' },
+        { genre: 'Pop', color: '#0088CC' },
+        { genre: 'Trap', color: '#84218E' },
+        { genre: 'EDM', color: '#B3882F' },
+        { genre: 'K-Pop', color: '#D62040' },
+        { genre: 'Disco', color: '#FFC8E1' },
+        { genre: 'Folk', color: '#FF98B1' },
+        { genre: 'Heavy Metal', color: '#A85500' },
+        { genre: 'Jazz', color: '#84218E' }
+    ];
     useEffect(() => {
         const handleSearch = async () => {
             setSearchLoading(true);
@@ -95,6 +110,13 @@ function Search() {
                                 placeholder='What do you want to listen to?'
                                 onClick={() => setIsSearching(true)}
                             />
+                        </div>
+                        <div className="SI-DiscoverGenreBlocks-Wrapper">
+                            {genres.map((genre, idx) => (
+                                <div className="SI-GenreBlock" key={`DiscoverGenre-Block-${idx}`} style={{ backgroundColor: genre.color }} onClick={((e) => '')}>
+                                    <p className="SI-GenreBlock-Text">{genre.genre}</p>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
