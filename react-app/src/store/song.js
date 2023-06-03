@@ -71,6 +71,17 @@ export const thunkAllSongs = () => async dispatch => {
   }
 }
 
+export const thunkDevPicks = () => async dispatch => {
+  const response = await fetch('/api/songs/devPicks/28,27,1,2,3,4,5,7,8,9,10,11,12,14,15,21')
+
+  if (response.ok) {
+    const allSongs = await response.json();
+    const normalized = normalizeAllSongs(allSongs.songs);
+    dispatch(actionAllSongs(normalized));
+    return;
+  }
+}
+
 export const thunkUserSongs = (userId) => async dispatch => {
   const response = await fetch(`/api/songs/allSongs/${userId}`)
   if (response.ok) {
