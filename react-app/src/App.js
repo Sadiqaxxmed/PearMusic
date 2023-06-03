@@ -12,6 +12,7 @@ import AllPlaylist from './components/AllPlaylist';
 import SinglePlaylist from "./components/SinglePlaylist";
 import Albums from "./components/Albums";
 import Search from "./components/Search";
+import loading from './images/loading.gif'
 import ManageDiscography from "./components/Manage-Discography";
 import ScrollToTop from './components/ScrollToTop.js'
 import ExploreGenre from "./components/ExploreGenre";
@@ -27,7 +28,7 @@ function App() {
   }, [dispatch]);
 
   if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <img className='LoadingGIf' src={loading} alt="loading-gif" />;
   }
 
   return (

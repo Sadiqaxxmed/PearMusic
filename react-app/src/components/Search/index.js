@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { thunkPlayNow } from "../../store/queue";
 import './Search.css'
 import { useDispatch } from "react-redux";
+import loading from '../../images/loading.gif'
 
 function Search() {
     const history = useHistory()
@@ -48,7 +49,7 @@ function Search() {
         if (searchTerm) {
             handleSearch();
         } else {
-            setSearchLoading(false);
+            setSearchLoading(null);
             setSearchResults([]);
         }
     }, [searchTerm]);
@@ -86,22 +87,26 @@ function Search() {
                             />
                         </div>
                     </div>
-
-                    <div className="SA-Search-Results-Wrapper">
-                        {searchResults?.search_results?.length > 0 && (
-                            <ul className='SA-Search-Results'>
-                                {Object.values(searchResults.search_results).map((song, idx) => (
-                                    <li className='SA-Search-Result' key={`search-result-${idx}`} onClick={() => playNowFunc(song)}>
-                                        <img src={song.coverImage} alt='' className="SA-Search-Img" />
-                                        <div className="SA-TitlenType-Wrapper">
-                                            <p className="SA-SongTitle">{song.title} </p>
-                                            <p className="SA-Type">Song</p>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
+                    {(searchLoading !== null) && searchLoading
+                        ?
+                        <img className='LoadingGIf' src={loading} alt="loading-gif" />
+                        :
+                        <div className="SA-Search-Results-Wrapper">
+                            {searchResults?.search_results?.length > 0 && (
+                                <ul className='SA-Search-Results'>
+                                    {Object.values(searchResults.search_results).map((song, idx) => (
+                                        <li className='SA-Search-Result' key={`search-result-${idx}`} onClick={() => playNowFunc(song)}>
+                                            <img src={song.coverImage} alt='' className="SA-Search-Img" />
+                                            <div className="SA-TitlenType-Wrapper">
+                                                <p className="SA-SongTitle">{song.title} </p>
+                                                <p className="SA-Type">Song</p>
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
+                    }
                 </div>
 
                 :
