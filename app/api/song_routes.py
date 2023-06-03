@@ -1,4 +1,5 @@
-import mutagen
+# import mutagen
+import random
 import requests
 from io import BytesIO
 from mutagen.mp3 import MP3
@@ -20,6 +21,23 @@ def songs():
     """
     songs = Song.query.all()
     return {'songs': [song.to_dict() for song in songs]}
+
+import random
+
+@song_routes.route('/devPicks/<string:song_ids>')
+def devPicks(song_ids):
+    """
+    Query for songs with given IDs and returns them in a list of song dictionaries
+    """
+    song_ids = song_ids.split(',')  # Split the IDs into a list
+
+    songs = Song.query.filter(Song.id.in_(song_ids)).all()
+
+    if not songs:
+        return {'error': 'No songs found with the provided IDs'}, 404
+
+    return {'songs': [song.to_dict() for song in songs]}
+
 
 
 @song_routes.route('/singleSong', methods=['POST'])

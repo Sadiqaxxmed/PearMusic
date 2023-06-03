@@ -17,7 +17,21 @@ const SlideOutMenu = () => {
     const user = useSelector(state => state.session.user);
 
     const [showMenu, setShowMenu] = useState(false);
+    const [isSqueezed, setIsSqueezed] = useState(false);
 
+    useEffect(() => {
+        const checkScreenSize = () => {
+            const screenWidth = window.innerWidth;
+            setIsSqueezed(screenWidth >= 1051 && screenWidth <= 1200);
+        };
+
+        checkScreenSize();
+
+        window.addEventListener('resize', checkScreenSize);
+        return () => {
+            window.removeEventListener('resize', checkScreenSize);
+        };
+    }, []);
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
@@ -39,6 +53,7 @@ const SlideOutMenu = () => {
 
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
+
     const closeMenu = () => setShowMenu(false);
 
     const handleLogout = (e) => {
@@ -56,7 +71,7 @@ const SlideOutMenu = () => {
         return
     }
 
-    function redirectDiscography(location){
+    function redirectDiscography(location) {
         toggleMenu()
         return history.push(location)
     }
@@ -67,7 +82,9 @@ const SlideOutMenu = () => {
             {user ? (
                 <div className={`fa-solid fa-gear ${showMenu ? 'open' : ''}`} onClick={toggleMenu}></div>)
                 :
-                <div className={`fa-solid fa-user-plus ${showMenu ? 'open' : ''}`} onClick={toggleMenu}><p className='LoginBtnNavBarText'>Sign in</p></div>
+                <div className={`fa-solid fa-user-plus ${showMenu ? 'open' : ''}`} style={isSqueezed ? { width: '35px', paddingLeft:'2px' } : {}} onClick={toggleMenu}>
+                    {!isSqueezed && <p className='LoginBtnNavBarText'>Sign in</p>}
+                </div>
             }
             <div className={`slide-out-menu-container ${showMenu ? 'open' : ''}`} ref={ulRef}>
                 {user ?

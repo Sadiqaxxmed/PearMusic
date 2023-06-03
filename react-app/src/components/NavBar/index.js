@@ -24,6 +24,7 @@ function NavBar() {
   let songIcon = 'material-symbols-outlined'
   let playlistIcon = 'material-symbols-outlined'
   let albumIcon = 'material-symbols-outlined'
+  let searchIcon = 'material-symbols-outlined'
 
   if (location.pathname.includes('/browse')) {
     browseIcon = 'material-symbols-outlined active'
@@ -33,6 +34,8 @@ function NavBar() {
     playlistIcon = 'material-symbols-outlined active'
   } else if (location.pathname.includes('/manage-discography')) {
     albumIcon = 'material-symbols-outlined active'
+  }else if (location.pathname.includes('/Search')) {
+    searchIcon = 'material-symbols-outlined active'
   }
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -261,22 +264,23 @@ function NavBar() {
                 <span className={playlistIcon}> view_list </span>
                 <p>Playlists</p>
               </Link>
-              {/* <Link className="M-NB-Icon" exact="true" to="/browse">
-                <span className="material-symbols-outlined" id='M-Search'>search</span>
-                <p>Search</p>
-              </Link> */}
               {sessionUser && (
                 <Link className="M-NB-Icon" exact="true" to="/songs">
                   <span className={songIcon}>library_music</span>
                   <p>Liked</p>
                 </Link>
               )}
-              {sessionUser && (
+              <Link className="M-NB-Icon" exact='true' to='/Search'>
+                <span className={searchIcon} id='M-Search'>search</span>
+                <p>Search</p>
+              </Link>
+              
+              {/* {sessionUser && (
                 <Link className="M-NB-Icon" exact="true" to="/manage-discography">
                   <span className={albumIcon}>album</span>
                   <p>Manage</p>
                 </Link>
-              )}
+              )} */}
               {/* <Link className="M-NB-Icon" exact="true" to="/browse">
                 <span className="material-symbols-outlined"> code </span>
                 <p>Devs</p>

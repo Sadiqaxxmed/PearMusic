@@ -4,7 +4,7 @@ import { Pagination, EffectCoverflow } from 'swiper';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { thunkAllSongs, thunkResetSongs, thunkLikedSongs, thunkLikeSongs, thunkDeleteLikedSongs } from "../../store/song";
+import { thunkAllSongs,thunkDevPicks, thunkResetSongs, thunkLikedSongs, thunkLikeSongs, thunkDeleteLikedSongs } from "../../store/song";
 import { thunkPlayNow } from "../../store/queue";
 import { thunkAllPlaylists, thunkUserPlaylists } from "../../store/playlist";
 
@@ -52,7 +52,7 @@ function Browser() {
   useEffect(async () => {
     const fetchData = async () => {
       setIsLoaded(false)
-      await dispatch(thunkAllSongs());
+      await dispatch(thunkDevPicks());
       await dispatch(thunkAllPlaylists())
       if (user) {
         await dispatch(thunkLikedSongs(user));
@@ -151,7 +151,7 @@ function Browser() {
               </SwiperSlide>
             </Swiper>
           </div>
-          <h1 className="BR-labels">Songs</h1>
+          <h1 className="BR-labels">Editor's Picks</h1>
           <div className="BR-song-grid-container-wrapper">
             <div className="BR-song-grid-container">
               {songs.map((song, idx) => (

@@ -47,7 +47,8 @@ function SongForm() {
         { value: 'EDM', label: 'EDM' },
         { value: 'Disco', label: 'Disco' },
         { value: 'Trap', label: 'Trap' },
-        { value: 'Grunge', label: 'Grunge' }
+        { value: 'Grunge', label: 'Grunge' },
+        { value: 'Alternative', label: 'Alternative' }
     ];
     const imageFormat = [
         ".jpg", ".jpeg", ".png", ".gif",
