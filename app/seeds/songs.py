@@ -20,7 +20,7 @@ def seed_songs():
     song1 = Song(
         title='Is There Someone Else?',
         genre='Pop',
-        coverImage='https://images.genius.com/e302445fd7858455c4ae44690356d476.1000x1000x1.jpg',
+        coverImage='https://i.ibb.co/HDgSfQz/istheresomeoneelse.jpg',
         mp3file="https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/The+Weeknd+-+Is+There+Someone+Else_+(Audio).mp3",
         duration=3.19,
         user_id=1,
@@ -29,7 +29,7 @@ def seed_songs():
     song2 = Song(
         title='Never Been',
         genre='Rap',
-        coverImage='https://upload.wikimedia.org/wikipedia/en/e/ea/TheIncredibleTrueStory.jpg',
+        coverImage='https://i.ibb.co/ZzsqMV9/Never-Been.jpg',
         mp3file="https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/Logic+-+Never+Been+(Official+Audio).mp3",
         duration=4.07,
         user_id=1,
@@ -38,7 +38,7 @@ def seed_songs():
     song3 = Song(
         title='War with Heaven',
         genre='Pop',
-        coverImage='https://www.udiscovermusic.com/wp-content/uploads/2022/03/Keshi-Gabriel-Album.jpg',
+        coverImage='https://i.ibb.co/YZn941j/War-With-Heaven.jpg',
         mp3file="https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/keshi+-+War+With+Heaven+%5BFor+Shang-Chi+Album%5D+(Official+Audio).mp3",
         user_id=1,
         duration=3.13,
@@ -47,7 +47,7 @@ def seed_songs():
     song4 = Song(
         title='Pink + White',
         genre='Alternative',
-        coverImage='https://s.yimg.com/ny/api/res/1.2/DuJgkQetGhmVmIcp_sMITQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTk2MDtjZj13ZWJw/https://media.zenfs.com/en/udiscovermusic_435/6c064427dd17d256ced8ec2c9b3fd747',
+        coverImage='https://i.ibb.co/3fs9Q0Y/Remi.webp',
         mp3file='https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/Pink++White+(Live+at+Electric+Lady).mp3',
         duration=3.15,
         user_id=1,
@@ -56,7 +56,7 @@ def seed_songs():
     song5 = Song(
         title='Whats Next',
         genre='Rap',
-        coverImage='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRutoQr73RIvghrgN5AxuDfBCVQLLVehJ9_JA&usqp=CAU',
+        coverImage='https://i.ibb.co/kXmKRRv/whatsnext.jpg',
         mp3file="https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/Drake+-+What's+Next+(Official+Music+Video).mp3",
         duration=3.20,
         user_id=1,
@@ -65,7 +65,7 @@ def seed_songs():
     song6 = Song(
         title='XO Tour Life',
         genre='Rap',
-        coverImage='https://i1.sndcdn.com/artworks-JP1tzUizbOmgwn4o-pEwDPg-t500x500.jpg',
+        coverImage='https://i.ibb.co/xSt7qRr/XO.jpg',
         mp3file="https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/Lil+Uzi+Vert+-+XO+Tour+Llif3+(Official+Lyric+Video).mp3",
         duration=3.00,
         user_id=1,
@@ -74,7 +74,7 @@ def seed_songs():
     song7 = Song(
         title='OMG',
         genre='K-Pop',
-        coverImage='https://www.nme.com/wp-content/uploads/2023/01/newjeans-ador-hybe-090123.jpg',
+        coverImage='https://i.ibb.co/5YhMmpP/OMG.jpg',
         mp3file="https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/NewJeans+(%E1%84%82%E1%85%B2%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3)+'OMG'+Official+MV+(Performance+ver.1).mp3",
         duration=3.40,
         user_id=1,
@@ -83,7 +83,7 @@ def seed_songs():
     song8 = Song(
         title='How You Like That',
         genre='K-Pop',
-        coverImage='https://i.ytimg.com/vi/ioNng23DkIM/maxresdefault.jpg',
+        coverImage='https://i.ibb.co/C2crB7d/Howyoulikethat.jpg',
         mp3file="https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/BLACKPINK+-+'How+You+Like+That'+MV.mp3",
         duration=3.03,
         user_id=1,
@@ -92,7 +92,7 @@ def seed_songs():
     song9 = Song(
         title='Cupid',
         genre='K-Pop',
-        coverImage='https://upload.wikimedia.org/wikipedia/en/a/a6/Fifty_Fifty_-_The_Beginning_Cupid.png',
+        coverImage='https://i.ibb.co/LhrS3H4/Fifty-Fifty.png',
         mp3file="https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/FIFTY+FIFTY+(%E1%84%91%E1%85%B5%E1%84%91%E1%85%B3%E1%84%90%E1%85%B5%E1%84%91%E1%85%B5%E1%84%91%E1%85%B3%E1%84%90%E1%85%B5)+-+'Cupid'+(TwinVer.)+Official+Lyric+Video.mp3",
         duration=2.59,
         user_id=1,
@@ -101,7 +101,7 @@ def seed_songs():
     song10 = Song(
         title='Shelter',
         genre='EDM',
-        coverImage='https://i.ytimg.com/vi/fzQ6gRAEoy0/maxresdefault.jpg',
+        coverImage='https://i.ibb.co/wps8Jgw/Shelter.jpg',
         mp3file="https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/Porter+Robinson+%26+Madeon+-+Shelter+(Official+Audio).mp3",
         duration=3.37,
         user_id=1,
@@ -110,8 +110,8 @@ def seed_songs():
     song11 = Song(
         title='Hypeboy',
         genre='K-Pop',
-        coverImage='https://images.genius.com/0cc17757cbe6c7934352f1d2ce021a34.1000x1000x1.jpg',
-        mp3file="",
+        coverImage='https://i.ibb.co/3YqkZHb/HypeBoy.jpg',
+        mp3file="https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/NewJeans+(%E1%84%82%E1%85%B2%E1%84%8C%E1%85%B5%E1%86%AB%E1%84%89%E1%85%B3)+-+Hype+Boy+Official+Audio.mp3",
         duration=3.37,
         user_id=1,
         artistName='New Jeans'
@@ -119,7 +119,7 @@ def seed_songs():
     song12 = Song(
         title='Butter',
         genre='K-Pop',
-        coverImage='https://upload.wikimedia.org/wikipedia/en/d/db/BTS_-_Butter.png',
+        coverImage='https://i.ibb.co/2KWh2RV/Butter.png',
         mp3file="https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/BTS+(%E1%84%87%E1%85%A1%E1%86%BC%E1%84%90%E1%85%A1%E1%86%AB%E1%84%89%E1%85%A9%E1%84%82%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AB)+-+Butter+(Official+Audio).mp3",
         duration=3.00,
         user_id=1,
@@ -128,7 +128,7 @@ def seed_songs():
     song13 = Song(
         title='Kill This Love',
         genre='K-Pop',
-        coverImage='https://www.billboard.com/wp-content/uploads/media/blackpink-kill-this-love-MV-2019-billboard-1548.jpg',
+        coverImage='https://i.ibb.co/MBsKjbv/killthislove.webp',
         mp3file="https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/BLACKPINK+-+'Kill+This+Love'+MV.mp3",
         duration=3.13,
         user_id=1,
@@ -137,7 +137,7 @@ def seed_songs():
     song14 = Song(
         title='Hurt From Mercury',
         genre='R&B',
-        coverImage='https://i1.sndcdn.com/artworks-YfXbYJtJ1DBq-0-t500x500.jpg',
+        coverImage='https://i.ibb.co/PCfdmzQ/mercury.jpg',
         mp3file="https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/Tory+Lanez+-+Hurt+From+Mercury+%5BOfficial+Audio%5D.mp3",
         duration=3.23,
         user_id=1,
@@ -146,7 +146,7 @@ def seed_songs():
     song15 = Song(
         title="550's & Leon Dore",
         genre='R&B',
-        coverImage='https://i1.sndcdn.com/artworks-Y0AJaOJ1j7CZMDq7-AEAYOA-t240x240.jpg',
+        coverImage='https://i.ibb.co/t2vKC1k/550.jpg',
         mp3file="https://pearbucket.s3.us-east-2.amazonaws.com/pearmp3s/Karri+-+550s+%26+Leon+Dore+(Official+Visualizer).mp3",
         duration=2.03,
         user_id=1,
