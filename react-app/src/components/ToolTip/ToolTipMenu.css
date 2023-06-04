@@ -1,3 +1,11 @@
+/* DEFAULT MENU DEFAULT MENU DEFAULT MENU DEFAULT MENU DEFAULT MENU DEFAULT MENU DEFAULT MENU DEFAULT MENU*/
+*/
+
+/* .TTM-Container-Div {
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+}
 .TTM-Main-Wrapper-DIF {
     display: flex;
     flex-direction: column;
@@ -11,17 +19,30 @@
     bottom: 45%;
     padding: 0;
 }
-
-.TTM-container-div {
-    position: absolute;
+.TTM-Btn-Wrapper {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(75, 75, 75);
+    padding: 5px 0px 5px 0px;
+    cursor: pointer;
 }
+.TTM-BTN-Title{
 
-.pop-out-menu {
-    visibility: hidden;
-}
-
-.pop-out-menu-open {
-    flex-direction: column;
+} */
+/* DEFAULT MENU DEFAULT MENU DEFAULT MENU DEFAULT MENU DEFAULT MENU DEFAULT MENU DEFAULT MENU DEFAULT MENU*/
+/*|||*/
+/*|||*/
+/*|||*/
+/*|||*/
+/*|||*/
+/*|||*/
+/*|||*/
+/*|||*/
+/*|||*/
+/*|||*/
+/* PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU*/
+.POM-Playlist-Wrapper {
+    /* flex-direction: column;
     background-color: rgb(30, 30, 30);
     border: solid rgb(75, 75, 75) 1px;
     border-radius: 8px;
@@ -32,81 +53,113 @@
     left:-100%;
     margin-bottom: 158px;
     padding: 0;
-
+    z-index: 100; */
 }
 
 .POM-BTN-Wrapper-Title {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     justify-content: center;
     border-bottom: 1px solid rgb(75, 75, 75);
-    padding: 5px 0px 5px 0px;
+    padding: 5px 0px 5px 0px; */
 }
 
 .POM-BTN-Wrapper {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     border-bottom: 1px solid rgb(75, 75, 75);
     padding: 5px 0px 5px 0px;
-    cursor: pointer;
+    cursor: pointer; */
 }
 
-.TTM-Btn-Wrapper {
+/* PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU PLAYLIST MENU*/
+
+.TT-Menu-Wrapper{
+    position: absolute;
+    margin-right:70px;
+    border-radius: 5px;
+    z-index: 100;
+    font-size: .9em;
+    border: solid rgb(75, 75, 75) 1px;
+    background-color: rgb(45, 45, 45);
+    color: white;
+}
+
+.TT-Options-Wrapper{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 8px;
+    width: 110px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.TT-Options-Wrapper > *:hover{
+    /* background-color: rgb(75, 75, 75);; */
+    text-shadow: 1px 1px 2px pink;
+}
+
+.TT-Option-Container{
+    cursor: pointer;
+    padding: 5px 5px 5px 5px;
+}
+
+
+
+
+
+
+.TT-PL-Wrapper{
+    width: 180px;
+    height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    scrollbar-width: thin; /* For Firefox */
+}
+
+.TT-PL-Wrapper::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background: transparent;
+}
+
+.TT-PL-Title{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px 5px 5px;
+    margin-bottom:5px;
+    font-size: 1.2em;
+    text-align: center;
+    align-items: center;
     border-bottom: 1px solid rgb(75, 75, 75);
-    padding: 5px 0px 5px 0px;
+}
+
+#TT-PL-Arrow{
+    padding-top:2px;
+    font-size: 1em;
     cursor: pointer;
 }
 
-.TTM-Btn-Wrapper-End {
-    display: flex;
-    flex-direction: row;
-    padding: 5px 0px 5px 0px;
+.TT-PL-Option{
+    padding: 0 5px 0 5px;
+    font-size: 1em;
+    font-weight: 300;
     cursor: pointer;
+    height: 35px;
+    overflow-x: scroll;
+    text-overflow:ellipsis;
+    white-space: nowrap;
 }
 
-/* used to fix overflow issue with menu popup being hidden by swiper */
-/* div.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden{
-    overflow: none;
-} */
-/* idk rn the menu is going under songs and chaning the z index doesnt do anything */
-/* img.MD-song-images{
-    z-index: -1;
-    overflow: visible;
-} */
-
-/* .UDM-Main-Wrapper-Hidden{
-    display: none;
+.TT-PL-Option::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    background: transparent;
 }
 
-.UDM-Update-Wrapper{
-    display: flex;
-    flex-direction: row;
-    align-items:center;
-    width: 100%;
-    border-bottom: solid rgb(98, 98, 98) 1px;
-    cursor: pointer;
-    justify-content: space-between;
-    padding: 5px 0 5px 0;
+.TT-PL-Option:hover{
+    background-color: rgb(75, 75, 75);
 }
-.UDM-Delete-Wrapper{
-    display: flex;
-    flex-direction: row;
-    align-items:center;
-    width: 100%;
-    cursor: pointer;
-    justify-content: space-between;
-    padding: 5px 0 5px 0;
-}
-#update-ico{
-    position: relative;
-    right: 5px;
-}
-#delete-ico{
-    position: relative;
-    right: 6px;
-}
-
-.UDM-Update{}
-.UDM-Delete{} */
