@@ -34,7 +34,7 @@ function NavBar() {
     playlistIcon = 'material-symbols-outlined active'
   } else if (location.pathname.includes('/manage-discography')) {
     albumIcon = 'material-symbols-outlined active'
-  }else if (location.pathname.includes('/Search')) {
+  } else if (location.pathname.includes('/Search')) {
     searchIcon = 'material-symbols-outlined active'
   }
 
@@ -51,6 +51,7 @@ function NavBar() {
   const [toggleIcon, setToggleIcon] = useState('fa-solid fa-play fa-xl')
   const [isMobile, setIsMobile] = useState(false);
   const [isPhone, setIsPhone] = useState(false)
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   const dispatch = useDispatch()
 
@@ -71,10 +72,12 @@ function NavBar() {
         }
       });
     };
-    if (coverImage !== undefined) {
+
+    if (isImageLoaded && coverImage !== '') {
       getDominantColor(coverImage);
     }
-  }, [songTitle])
+  }, [coverImage, isImageLoaded]);
+
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth <= 1050); // Adjust the value according to your mobile range
@@ -131,10 +134,10 @@ function NavBar() {
   //FIX THIS... THE LOGIC IS WONKY
   function playPauseFunc() {
     // console.log(queue)
-    if(songUrl){
+    if (songUrl) {
       setHasPlayed(true)
     }
-      if (!playPause && songUrl) {
+    if (!playPause && songUrl) {
       setToggleIcon('fa-solid fa-pause fa-xl icon-hover-pointer')
       setPlayPause(true)
       return;
@@ -170,6 +173,9 @@ function NavBar() {
     const timeString = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`; // Format the time string with colon and leading zero for single-digit seconds
     return timeString;
   }
+  const handleCoverImageLoad = () => {
+    setIsImageLoaded(true);
+  };
 
   return (
     <div className="NB-body-Wrapper">
@@ -226,8 +232,8 @@ function NavBar() {
           </div>
         </div>
       )
-      :
-      (
+        :
+        (
           <div className="M-NB-Body">
             {songArtist && songTitle && (
               //show teeny weenie weency player if song is playing currently
@@ -235,7 +241,12 @@ function NavBar() {
                 <div className="M-NB-Player-Wrapper">
                   <div className="M-NB-SongInfo-Wrapper">
                     <div className="M-NB-SongImg-Wrapper">
-                      <img src={coverImage} alt='' className="M-NB-SongImg" />
+                      <img
+                        src={coverImage}
+                        alt=''
+                        className="M-NB-SongImg"
+                        onLoad={handleCoverImageLoad}
+                      />
                     </div>
                     <div className="M-NB-SongTitle-Wrapper">
                       <div className="M-NB-SongTitle">{songTitle}</div>
@@ -276,7 +287,7 @@ function NavBar() {
                 <span className={searchIcon} id='M-Search'>search</span>
                 <p>Search</p>
               </Link>
-              
+
               {/* {sessionUser && (
                 <Link className="M-NB-Icon" exact="true" to="/manage-discography">
                   <span className={albumIcon}>album</span>
