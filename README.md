@@ -102,11 +102,11 @@ flask run
 cd react-app
 npm start
 ```
-
+<!-- 
 ## Api's & plugins Used:
 **react-player** || **bad-words** || **email-validator**
 ## Additional Features Planned:
 ```
 1. Album Functionality
 2. Liked Playlists
-```
+``` -->
