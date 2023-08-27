@@ -14,11 +14,11 @@ import loading from '../../images/loading.gif'
 import './Browse.css'
 import 'swiper/swiper.min.css'
 
-import KPop from '../../images/Fin-Cards(smaller)/kpop.gif'
-import Pop from '../../images/Fin-Cards(smaller)/pop.gif'
-import Rap from '../../images/Fin-Cards(smaller)/rap.gif'
-import RnB from '../../images/Fin-Cards(smaller)/r&b.gif'
-import MidwestEmo from '../../images/Fin-Cards(smaller)/midwest.gif'
+import KPop from '../../images/Fin-Cards(smaller)/kpop.webm'
+import Pop from '../../images/Fin-Cards(smaller)/pop.webm'
+import Rap from '../../images/Fin-Cards(smaller)/rap.webm'
+import RnB from '../../images/Fin-Cards(smaller)/r&b.webm'
+import MidwestEmo from '../../images/Fin-Cards(smaller)/midwest.webm'
 
 
 function Browser() {
@@ -105,7 +105,7 @@ function Browser() {
               grabCursor={true}
               centeredSlides={true}
               loop={true}
-              slidesPerView={3}
+              slidesPerView={5}
               spaceBetween={0}
               coverflowEffect={{
                 rotate: 0,
@@ -119,35 +119,51 @@ function Browser() {
               className="mySwiper-BR"
             >
               <SwiperSlide>
-                <img className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
+                <video loading="lazy" type='video/webM' autoPlay className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
               </SwiperSlide>
               <SwiperSlide>
-                <img className="BR-images" src={Pop} alt="Browse Card" onClick={() => history.push('/explore/Pop')} />
+                <video loading="lazy" type='video/webM' autoPlay className="BR-images" src={Pop} alt="Browse Card" onClick={() => history.push('/explore/Pop')} />
               </SwiperSlide>
               <SwiperSlide>
-                <img className="BR-images" src={MidwestEmo} alt="Browse Card" onClick={() => history.push('/explore/Alternative')} />
+                <video loading="lazy" type='video/webM' autoPlay className="BR-images" src={MidwestEmo} alt="Browse Card" onClick={() => history.push('/explore/Alternative')} />
               </SwiperSlide>
               <SwiperSlide>
-                <img className="BR-images" src={Rap} alt="Browse Card" onClick={() => history.push('/explore/Rap')} />
+                <video loading="lazy" type='video/webM' autoPlay className="BR-images" src={Rap} alt="Browse Card" onClick={() => history.push('/explore/Rap')} />
               </SwiperSlide>
               <SwiperSlide>
-                <img className="BR-images" src={RnB} alt="Browse Card" onClick={() => history.push('/explore/R&B')} />
+                <video loading="lazy" type='video/webM' autoPlay className="BR-images" src={RnB} alt="Browse Card" onClick={() => history.push('/explore/R&B')} />
               </SwiperSlide>
 
               <SwiperSlide>
-                <img className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
+                <video loading="lazy" type='video/webM' autoPlay className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
               </SwiperSlide>
               <SwiperSlide>
-                <img className="BR-images" src={Pop} alt="Browse Card" onClick={() => history.push('/explore/Pop')} />
+                <video loading="lazy" type='video/webM' autoPlay className="BR-images" src={Pop} alt="Browse Card" onClick={() => history.push('/explore/Pop')} />
               </SwiperSlide>
               <SwiperSlide>
-                <img className="BR-images" src={MidwestEmo} alt="Browse Card" onClick={() => history.push('/explore/Alternative')} />
+                <video loading="lazy" type='video/webM' autoPlay className="BR-images" src={MidwestEmo} alt="Browse Card" onClick={() => history.push('/explore/Alternative')} />
               </SwiperSlide>
               <SwiperSlide>
-                <img className="BR-images" src={Rap} alt="Browse Card" onClick={() => history.push('/explore/Rap')} />
+                <video loading="lazy" type='video/webM' autoPlay className="BR-images" src={Rap} alt="Browse Card" onClick={() => history.push('/explore/Rap')} />
               </SwiperSlide>
               <SwiperSlide>
-                <img className="BR-images" src={RnB} alt="Browse Card" onClick={() => history.push('/explore/R&B')} />
+                <video loading="lazy" type='video/webM' autoPlay className="BR-images" src={RnB} alt="Browse Card" onClick={() => history.push('/explore/R&B')} />
+              </SwiperSlide>
+
+              <SwiperSlide>
+                <video loading="lazy" type='video/webM' autoPlay className="BR-images" src={KPop} alt="Browse Card" onClick={() => history.push('/explore/K-Pop')} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <video loading="lazy" type='video/webM' autoPlay className="BR-images" src={Pop} alt="Browse Card" onClick={() => history.push('/explore/Pop')} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <video loading="lazy" type='video/webM' autoPlay className="BR-images" src={MidwestEmo} alt="Browse Card" onClick={() => history.push('/explore/Alternative')} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <video loading="lazy" type='video/webM' autoPlay className="BR-images" src={Rap} alt="Browse Card" onClick={() => history.push('/explore/Rap')} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <video loading="lazy" type='video/webM' autoPlay className="BR-images" src={RnB} alt="Browse Card" onClick={() => history.push('/explore/R&B')} />
               </SwiperSlide>
             </Swiper>
           </div>
